@@ -30,8 +30,9 @@ public class SignInServlet extends HttpServlet {
         RequestDispatcher dispatcher;
 
         if( password.equals("Test")){
+            out.println(userName);
             dispatcher = request.getRequestDispatcher("mainPage.html");
-            dispatcher.forward(request,response);
+            dispatcher.include(request,response);
         }
         else{
             out.println("<font color='red'><b>You have entered incorrect password</b></font>");

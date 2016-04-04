@@ -1,5 +1,5 @@
 //Define an angular module for our app
-var sampleApp = angular.module('sampleApp', ['smart-table']);
+var sampleApp = angular.module('sampleApp', []);
 
 //Define Routing for app
 //Uri /AddNewOrder -> template AddOrder.html and Controller AddOrderController
@@ -13,8 +13,8 @@ sampleApp.config(['$routeProvider',
             templateUrl: '../GenerateDiscrepancy.html',
             controller: 'GenerateDiscrepancyController'
         })
-            
-            
+
+
             .when('/uploadBiometric', {
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
@@ -59,6 +59,7 @@ sampleApp.controller("ReportController", function ($scope, $http) {
         $scope.showMe = !$scope.showMe;
     }
 });
+
 sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http) {
     $http.get("./json/Discrepancy.json").then(function (response) {
         $scope.rowCollection = response.data;
@@ -99,6 +100,8 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http) {
         $scope.showMe = !$scope.showMe;
     }
 });
+
+
 sampleApp.controller("GenerateReportController", function ($scope, $http) {
     $http.get("./json/WebDetails.json").then(function (response) {
         $scope.rowCollection = response.data;
