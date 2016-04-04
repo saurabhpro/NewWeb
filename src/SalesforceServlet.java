@@ -28,12 +28,7 @@ public class SalesforceServlet extends HttpServlet {
         String filename = m.getFilesystemName("salesforceFile");
         out.println(filename + "Successfully Uploaded");
 
-        response.sendRedirect("http://localhost:8080/Email_war_exploded/#/uploadHrnet");
-        /*
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
-        requestDispatcher.include(request, response);
-        */
-
+        response.sendRedirect("./mainPage.html#/uploadHoliday");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -80,7 +80,7 @@ jQuery(document).ready(function () {
             sidebar.find('.hover').removeClass('hover');
             return true;
         },
-        submenuSelector: ".has-children",
+        submenuSelector: ".has-children"
     });
 
     function checkMQ() {

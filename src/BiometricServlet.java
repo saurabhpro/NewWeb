@@ -1,5 +1,6 @@
 import com.oreilly.servlet.MultipartRequest;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +19,6 @@ public class BiometricServlet extends HttpServlet {
     String message;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         File biometricFilePath = new File("C:\\ProjectFiles\\Biometric");
         if (!biometricFilePath.exists()) {
             biometricFilePath.mkdirs();
@@ -31,14 +30,7 @@ public class BiometricServlet extends HttpServlet {
 
         String filename = m.getFilesystemName("biometricFile");
 
-        //request.setAttribute("message", "Upload has been done successfully!");
-
-        response.sendRedirect("http://localhost:8080/Email_war_exploded/#/uploadBiometric");
-
-        /*
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/../uploadBiometric.jsp");
-        requestDispatcher.include(request, response);
-        */
+        response.sendRedirect("./mainPage.html#/uploadBiometric");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

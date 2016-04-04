@@ -74,7 +74,6 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http) {
         angular.forEach($scope.rowCollection, function (item) {
             item.Selected = $scope.selectedAll;
         });
-
     };
 
     $scope.showDetails = function (item) {
@@ -84,7 +83,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http) {
             resolve: {
                 item: function () {
                     return  item;
-                },
+                }
             }
         });
 

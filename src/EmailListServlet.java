@@ -28,13 +28,7 @@ public class EmailListServlet extends HttpServlet {
         String filename = m.getFilesystemName("emailListFile");
         out.println(filename + "Successfully Uploaded");
 
-        response.sendRedirect("http://localhost:8088/Email_war_exploded/#/uploadEmailList");
-        /*
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
-        requestDispatcher.include(request, response);
-        */
-
-
+        response.sendRedirect("./mainPage.html#/uploadEmailList");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
