@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp" ng-controller="GenerateReportController" lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="js/app.js"></script>
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src ="bower_components/angular-smart-table/dist/smart-table.js"></script>
+    <title>Employee List</title>
+</head>
+<body>
+
+<main class="cd-main-content">
+    <div class="content-wrapper">
+        <br>
+        <h2 style="text-align: center">
+            List of All Employees
+        </h2>
+        <form>
+            <br><br>
+
+            <button class="btn btn-primary" style="float: right;" type="submit" value="DOWNLOAD DAILY REP0RT"
+                    onclick="location.href='./GenerateDiscrepancy.html';">DOWNLOAD DAILY REPORT
+            </button>
+            <br/>
+            <br/>
+            <br/>
+            <table st-table="rowCollection" name="empListTable" class="table table-striped">
+                <thead>
+                <tr style="font-weight:bolder;">
+                    <th style="width: 40px">
+                        <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/>
+                    </th>
+                    <th style="width: 200px">EMPLOYEE ID</th>
+                    <th style="width: 200px">SALESFORCE ID</th>
+                    <th style="width: 200px">EMPLOYEE NAMES</th>
+                    <th style="width: 400px">EMPLOYEE EMAILS</th>
+                    <th style="width: 200px">AVERAGE CHECK-IN</th>
+                    <th style="width: 200px">AVERAGE CHECK-OUT</th>
+                    <th style="width: 200px">AVERAGE WORK HOURS</th>
+                    <th style="width: 400px">CLARIFICATION NEEDED</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="item in rowCollection">
+
+                    <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected"></td>
+                    <td> {{item.empRevalId}}</td>
+                    <td> {{item.empSalesforceId}}</td>
+                    <td style="width: 200px">{{item.empName}}</td>
+                    <td style="width: 400px">{{item.empEmailId}}</td>
+                    <td style="width: 400px">{{item.empAvgCheckInTimeForMonth}}</td>
+                    <td style="width: 400px">{{item.empAvgCheckOutTimeForMonth}}</td>
+                    <td style="width: 400px">{{item.empAvgWorkHoursForMonth}}</td>
+                    <td style="width: 400px">{{item.empIfClarificationNeeded}}</td>
+
+                </tr>
+                </tbody>
+            </table>
+        </form>
+
+    </div> <!-- .content-wrapper -->
+</main> <!-- .cd-main-content -->
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+</body>
+</html>

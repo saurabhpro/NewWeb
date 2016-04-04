@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+    <link rel="stylesheet" href="css/customStyle.css">
+</head>
+<body>
+<header>
+    <nav class="top-bar" data-topbar>
+        <ul class="title-area">
+            <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+        <div class="logo">
+            <a href="http://reval.com">
+                <img src="img/RevalLogo.jpg" />
+            </a>
+        </div>
+  <!--      <section class="top-bar-section">
+            <!-- Right Nav Section -->
+    <!--        <ul class="center-buttons">
+                <li class="divider"></li>
+                <li><a href="#">Centered Button</a></li>
+                <li class="divider"></li>
+                <li><a href="#">Centered Button</a></li>
+                <li class="divider"></li>
+            </ul>
+        </section> -->
+    </nav>
+</header>
+<main class="cd-main-content">
+    <div class="row">
+        <div class="medium-6 medium-centered large-4 large-centered columns">
+
+            <form action="signin" method="post">
+                <div class="row column log-in-form">
+                    <h4 class="text-center">Log in with you email account</h4>
+                    <label>Email
+                        <input type="text" placeholder="somebody@example.com" name="username">
+                    </label>
+                    <label>Password
+                        <input type="text" placeholder="Password" name="password">
+                    </label>
+                    <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
+                    <p><input type="submit" class="button" style="width: 100%" value="Log In"></p>
+                    <p class="text-center"><a href="#">password = Test</a></p>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+
+<link rel="stylesheet" href="css/customStyle.css">
+<link rel="stylesheet" href="bower_components/foundation/css/foundation.min.css" property="">
+<script type="application/javascript" src="bower_components/foundation/js/foundation.min.js"></script>
+</body>
+</html>
