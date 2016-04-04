@@ -21,6 +21,8 @@
     "angular-smart-table": "^2.1.8",
     "angular": "^1.5.3",
     "angular-animate": "^1.5.3",
-    "jQuery-menu-aim": "*"
+    "jQuery-menu-aim": "*",
+    "angular-bootstrap": "^1.2.5",
+    "angular-route": "^1.5.3"
   }
 }
