@@ -57,7 +57,7 @@ sampleApp.controller("ReportController", function ($scope, $http) {
     }
 });
 
-sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $modal, $log) {
+sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $uibModal, $log) {
     $http.get("./json/Discrepancy.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
@@ -73,13 +73,18 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
     };
 
+    $scope.showMe = false;
+    $scope.clickFunc = function () {
+        $scope.showMe = !$scope.showMe;
+    };
+
     $scope.items = ['item1', 'item2', 'item3'];
 
     $scope.open = function () {
 
-        var modalInstance = $modal.open({
-            templateUrl: '../GenerateDiscrepancy.html',
-            controller: 'DetailModalController',
+        var modalInstance = $uibModal.open({
+            templateUrl: 'RowDetail.html',
+            controller: 'ModalInstanceCtrl',
             resolve: {
                 items: function () {
                     return $scope.items;
@@ -87,24 +92,33 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
             }
         });
 
-        $log.info('Items ' + new Date()+ $scope.items[0]);
-
         modalInstance.result.then(function (selectedItem) {
             $scope.selected = selectedItem;
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
-
-    $scope.showMe = false;
-    $scope.clickFunc = function () {
-        $scope.showMe = !$scope.showMe;
-    }
 });
 
+angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, items) {
 
+    $scope.items = items;
+    $scope.selected = {
+        item: $scope.items[0]
+    };
 
-sampleApp.controller("GenerateReportController", function ($scope, $http, $modal, $log) {
+    $scope.ok = function () {
+        $uibModalInstance.close($scope.selected.item);
+    };
+
+    $log.info('Items ' + new Date()+ $scope.items[0]);
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+});
+
+sampleApp.controller("GenerateReportController", function ($scope, $http, $uibModal, $log) {
     $http.get("./json/WebDetails.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
@@ -121,13 +135,17 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $modal
 
     };
 
+    $scope.showMe = false;
+    $scope.clickFunc = function () {
+        $scope.showMe = !$scope.showMe;
+    }
     $scope.items = ['item1', 'item2', 'item3'];
 
     $scope.open = function () {
 
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail.html',
-            controller: 'DetailModalController',
+            controller: 'ModalInstanceCtrl',
             resolve: {
                 items: function () {
                     return $scope.items;
@@ -138,33 +156,10 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $modal
         modalInstance.result.then(function (selectedItem) {
             $scope.selected = selectedItem;
         }, function () {
-            $log.info('Modal dismissed at: ' + new Date()+ "selected item");
+            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
-    $scope.showMe = false;
-    $scope.clickFunc = function () {
-        $scope.showMe = !$scope.showMe;
-    }
-});
-
-sampleApp.controller('DetailModalController', function ($scope, $modalInstance, $log, items) {
-
-    $scope.items = items;
-
-    $log.info('From new World: ' + new Date()+ $scope.items[0]);
-
-    $scope.selected = {
-        item: $scope.items[0]
-    };
-
-    $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
-    };
-
-    $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
-    };
 });
 
 sampleApp.controller("uploadBiometricController", function ($scope, $http) {
