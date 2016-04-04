@@ -2,13 +2,13 @@
  * Created by kumars on 4/4/2016.
  */
 angular.module('plunker', ['ui.bootstrap']);
-angular.module('plunker').controller('ModalDemoCtrl',function ($scope, $modal, $log) {
+angular.module('plunker').controller('ModalDemoCtrl',function ($scope, $uibModal, $log) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
     $scope.open = function () {
 
-        var modalInstance = $modal.open({
+        var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail.html',
             controller: 'ModalInstanceCtrl',
             resolve: {
@@ -26,7 +26,7 @@ angular.module('plunker').controller('ModalDemoCtrl',function ($scope, $modal, $
     };
 });
 
-angular.module('plunker').controller('ModalInstanceCtrl',function ($scope, $modalInstance, items) {
+angular.module('plunker').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, items) {
 
     $scope.items = items;
     $scope.selected = {
@@ -34,10 +34,10 @@ angular.module('plunker').controller('ModalInstanceCtrl',function ($scope, $moda
     };
 
     $scope.ok = function () {
-        $modalInstance.close($scope.selected.item);
+        $uibModalInstance.close($scope.selected.item);
     };
 
     $scope.cancel = function () {
-        $modalInstance.dismiss('cancel');
+        $uibModalInstance.dismiss('cancel');
     };
 });

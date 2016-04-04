@@ -72,12 +72,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
             item.Selected = $scope.selectedAll;
         });
     };
-
-    $scope.showMe = false;
-    $scope.clickFunc = function () {
-        $scope.showMe = !$scope.showMe;
-    };
-
+    
     $scope.items = ['item1', 'item2', 'item3'];
 
     $scope.open = function () {
@@ -98,9 +93,15 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+    $scope.showMe = false;
+    $scope.clickFunc = function () {
+        $scope.showMe = !$scope.showMe;
+    };
+
+    
 });
 
-angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, items) {
+angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, $log, items) {
 
     $scope.items = items;
     $scope.selected = {
