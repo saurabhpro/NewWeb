@@ -15,13 +15,12 @@
 
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js"></script>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>
-
     <title>Discrepancy Employee List</title>
 </head>
-
 <body>
 
 <main class="cd-main-content">
@@ -56,7 +55,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in rowCollection" data-ng-click="showDetails(item.empSalesforceId)">
+                <tr ng-repeat="item in rowCollection" ng-click="open()">
 
                     <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected"></td>
                     <td> {{item.empRevalId}}</td>
@@ -76,5 +75,24 @@
     </div> <!-- .content-wrapper -->
 </main> <!-- .cd-main-content -->
 <script src="js/main.js"></script> <!-- Resource jQuery -->
+
+<script type="text/ng-template" id="RowDetail.html">
+
+    <div class="modal-header">
+        <h3>I'm a modal!</h3>
+    </div>
+    <div class="modal-body">
+        <ul>
+            <li ng-repeat="item in items">
+                <a ng-click="selected.item = item">{{ item }}</a>
+            </li>
+        </ul>
+        Selected: <b>{{ selected.item }}</b>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" ng-click="ok()">OK</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</script>
 </body>
 </html>

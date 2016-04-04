@@ -30,8 +30,4 @@ public class SalesforceServlet extends HttpServlet {
 
         response.sendRedirect("./mainPage.html#/uploadHoliday");
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }

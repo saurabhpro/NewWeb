@@ -1,5 +1,5 @@
 //Define an angular module for our app
-var sampleApp = angular.module('sampleApp', []);
+var sampleApp = angular.module('sampleApp', ['ui.bootstrap']);
 
 //Define Routing for app
 //Uri /AddNewOrder -> template AddOrder.html and Controller AddOrderController
@@ -12,10 +12,7 @@ sampleApp.config(['$routeProvider',
         }).when('/GenerateDiscrepancy', {
             templateUrl: '../GenerateDiscrepancy.html',
             controller: 'GenerateDiscrepancyController'
-        })
-
-
-            .when('/uploadBiometric', {
+        }).when('/uploadBiometric', {
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
         }).when('/uploadSalesforce', {
@@ -60,7 +57,7 @@ sampleApp.controller("ReportController", function ($scope, $http) {
     }
 });
 
-sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http) {
+sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $modal, $log) {
     $http.get("./json/Discrepancy.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
@@ -76,21 +73,26 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http) {
         });
     };
 
-    $scope.showDetails = function (item) {
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.open = function () {
+
         var modalInstance = $modal.open({
-            templateUrl: 'yourview.html',
+            templateUrl: '../GenerateDiscrepancy.html',
             controller: 'DetailModalController',
             resolve: {
-                item: function () {
-                    return  item;
+                items: function () {
+                    return $scope.items;
                 }
             }
         });
 
-        modalInstance.result.then(function (item) {
-            // ok
+        $log.info('Items ' + new Date()+ $scope.items[0]);
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
         }, function () {
-            // dismiss
+            $log.info('Modal dismissed at: ' + new Date());
         });
     };
 
@@ -101,7 +103,8 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http) {
 });
 
 
-sampleApp.controller("GenerateReportController", function ($scope, $http) {
+
+sampleApp.controller("GenerateReportController", function ($scope, $http, $modal, $log) {
     $http.get("./json/WebDetails.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
@@ -118,10 +121,50 @@ sampleApp.controller("GenerateReportController", function ($scope, $http) {
 
     };
 
+    $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.open = function () {
+
+        var modalInstance = $modal.open({
+            templateUrl: 'RowDetail.html',
+            controller: 'DetailModalController',
+            resolve: {
+                items: function () {
+                    return $scope.items;
+                }
+            }
+        });
+
+        modalInstance.result.then(function (selectedItem) {
+            $scope.selected = selectedItem;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date()+ "selected item");
+        });
+    };
+
     $scope.showMe = false;
     $scope.clickFunc = function () {
         $scope.showMe = !$scope.showMe;
     }
+});
+
+sampleApp.controller('DetailModalController', function ($scope, $modalInstance, $log, items) {
+
+    $scope.items = items;
+
+    $log.info('From new World: ' + new Date()+ $scope.items[0]);
+
+    $scope.selected = {
+        item: $scope.items[0]
+    };
+
+    $scope.ok = function () {
+        $modalInstance.close($scope.selected.item);
+    };
+
+    $scope.cancel = function () {
+        $modalInstance.dismiss('cancel');
+    };
 });
 
 sampleApp.controller("uploadBiometricController", function ($scope, $http) {
