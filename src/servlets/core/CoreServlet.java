@@ -37,7 +37,7 @@ public class CoreServlet extends HttpServlet {
             SheetFactory sheetFactory = new SheetFactory();
 
             setEmpListID("C:\\ProjectFiles\\Emails.xlsx");
-            setBiometricFile("C:\\ProjectFiles\\Biometric\\jan leaves.xls");
+            setBiometricFile("C:\\ProjectFiles\\Biometric\\feb leaves.xls");
             setHrNetFile("C:\\ProjectFiles\\Salesforce\\Jan-Feb FF Report.xlsx");
 
             EmployeeMasterData employeeMasterData = new EmployeeMasterData(empListID);
@@ -72,7 +72,7 @@ public class CoreServlet extends HttpServlet {
 
             ListGenerator od = new OnlyDiscrepancyDetailsJson();
             od.generate();
-            //od.displayOnConsole();
+            od.displayOnConsole();
             od.createJSONList("Discrepancy");
         }catch (Exception ignored){}
 
