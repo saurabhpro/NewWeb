@@ -75,11 +75,12 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
     
    // $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function (items) {
+    $scope.open = function (items,size) {
         $log.info('Items24 ' + new Date()+ items.empRevalId);
         var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail.html',
             controller: 'ModalInstanceCtrl',
+            size:size,
             resolve: {
                 items: function () {
                     return items;
@@ -139,29 +140,31 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
 
     };
 
-    $scope.showMe = false;
-    $scope.clickFunc = function () {
-        $scope.showMe = !$scope.showMe;
-    }
-    $scope.items = ['item1', 'item2', 'item3'];
-
-    $scope.open = function () {
-
+    $scope.open = function (items, size) {
+        $log.info('Items24 ' + new Date()+ items.empRevalId);
         var modalInstance = $uibModal.open({
-            templateUrl: 'RowDetail.html',
+            templateUrl: 'RowDetail2.html',
             controller: 'ModalInstanceCtrl',
+            size:size,
             resolve: {
                 items: function () {
-                    return $scope.items;
+                    return items;
                 }
             }
-        });
 
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
+        });
+        $log.info('Items25 ' + new Date()+ items.empName);
+
+        modalInstance.result.then(function (items) {
+            $scope.items = items;
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
+    };
+
+    $scope.showMe = false;
+    $scope.clickFunc = function () {
+        $scope.showMe = !$scope.showMe;
     };
 
 });
