@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>SignIn</servlet-name>
-        <servlet-class>login.SignInServlet</servlet-class>
+        <servlet-class>servlets.login.SignInServlet</servlet-class>
         <init-param>
             <param-name>userName</param-name>
             <param-value>reval@gmail</param-value>
