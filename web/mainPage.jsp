@@ -32,9 +32,7 @@
                     <img src="img/cd-avatar.png" alt="avatar">
                     <%out.print(session.getAttribute("userName"));%>
                 </a>
-
                 <ul>
-
                     <li><a href="#0">My Account</a></li>
                     <li><a href="#0">Edit Account</a></li>
                     <li><a href="logout">Logout</a></li>
