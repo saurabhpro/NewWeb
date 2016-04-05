@@ -73,26 +73,29 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
     };
     
-    $scope.items = ['item1', 'item2', 'item3'];
+   // $scope.items = ['item1', 'item2', 'item3'];
 
-    $scope.open = function () {
-
+    $scope.open = function (items) {
+        $log.info('Items24 ' + new Date()+ items.empRevalId);
         var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail.html',
             controller: 'ModalInstanceCtrl',
             resolve: {
                 items: function () {
-                    return $scope.items;
+                    return items;
                 }
             }
+        
         });
-
-        modalInstance.result.then(function (selectedItem) {
-            $scope.selected = selectedItem;
+        $log.info('Items25 ' + new Date()+ items.empName);
+        
+        modalInstance.result.then(function (items) {
+            $scope.items = items;
         }, function () {
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+
     $scope.showMe = false;
     $scope.clickFunc = function () {
         $scope.showMe = !$scope.showMe;
@@ -104,15 +107,15 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
 angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, $log, items) {
 
     $scope.items = items;
-    $scope.selected = {
+  /*  $scope.selected = {
         item: $scope.items[0]
-    };
+    };*/
 
     $scope.ok = function () {
-        $uibModalInstance.close($scope.selected.item);
+        $uibModalInstance.close($scope.items);
     };
 
-    $log.info('Items ' + new Date()+ $scope.items[0]);
+    $log.info('Items ' + new Date()+ $scope.items);
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');

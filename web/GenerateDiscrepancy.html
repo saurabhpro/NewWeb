@@ -59,7 +59,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in rowCollection" ng-click="open()">
+                <tr ng-repeat="item in rowCollection" ng-click="open(item)">
 
                     <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected"></td>
                     <td> {{item.empRevalId}}</td>
