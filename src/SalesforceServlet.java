@@ -28,6 +28,6 @@ public class SalesforceServlet extends HttpServlet {
         String filename = m.getFilesystemName("salesforceFile");
         out.println(filename + "Successfully Uploaded");
 
-        response.sendRedirect("./mainPage.html#/uploadHoliday");
+        response.sendRedirect("./mainPage.jsp#/uploadHoliday");
     }
 }

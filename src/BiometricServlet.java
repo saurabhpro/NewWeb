@@ -30,7 +30,7 @@ public class BiometricServlet extends HttpServlet {
 
         String filename = m.getFilesystemName("biometricFile");
 
-        response.sendRedirect("./mainPage.html#/uploadBiometric");
+        response.sendRedirect("./mainPage.jsp#/uploadBiometric");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

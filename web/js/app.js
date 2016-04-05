@@ -28,7 +28,7 @@ sampleApp.config(['$routeProvider',
             //templateUrl: './UploadFiles/uploadHoliday.jsp',
             controller: 'logoutController'
         }).otherwise({
-            redirectTo: '/mainPage.html'
+            redirectTo: '/mainPage.jsp'
         });
 
     }]);

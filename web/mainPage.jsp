@@ -1,6 +1,6 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="sampleApp" ng-controller="ReportController" lang="en">
-
+<%@ page import="login.SignInServlet" %>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -30,14 +30,14 @@
             <li class="has-children account">
                 <a href="#0">
                     <img src="img/cd-avatar.png" alt="avatar">
-                    Account
+                    <%out.print(session.getAttribute("userName"));%>
                 </a>
 
                 <ul>
 
                     <li><a href="#0">My Account</a></li>
                     <li><a href="#0">Edit Account</a></li>
-                    <li><a href="#0">Logout</a></li>
+                    <li><a href="logout">Logout</a></li>
                 </ul>
             </li>
         </ul>
