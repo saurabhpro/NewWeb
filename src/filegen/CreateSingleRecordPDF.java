@@ -28,11 +28,12 @@ public class CreateSingleRecordPDF {
         try {
             JSONParser parser = new JSONParser();
             Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + "Discrepancy.json"));
-            JSONArray array = (JSONArray)a;
+            JSONObject jsonObject = (JSONObject)a;
 
-            for (Object o : array) {
+            JSONArray slideContent = (JSONArray) jsonObject.get(0);
+            for (Object o : slideContent) {
 
-                JSONObject person = (JSONObject) o;
+                JSONObject person = (JSONObject)o;
 
                 if (person.get(0).equals(key)) {
                     String id = (String) person.get("empRevalId");

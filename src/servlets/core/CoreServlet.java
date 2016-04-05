@@ -92,5 +92,4 @@ public class CoreServlet extends HttpServlet {
         CoreServlet.hrNetFile=hrNetFile;
     }
 
-
 }
