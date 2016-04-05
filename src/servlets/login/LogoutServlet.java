@@ -1,5 +1,6 @@
 package servlets.login;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,11 +24,12 @@ public class LogoutServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter out=response.getWriter();
 
-        request.getRequestDispatcher("logout.html").include(request, response);
-
-        HttpSession session=request.getSession();
-        session.invalidate();
-
+        request.getSession().invalidate();
+        response.setHeader("Cache-Control", "no-cache, no-store");
+        response.setHeader("Pragma", "no-cache");
+        response.setDateHeader("Expires", 0);
+        RequestDispatcher dispatcher=request.getRequestDispatcher("logout.html");
+        dispatcher.include(request, response);
         out.close();
     }
 }

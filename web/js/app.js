@@ -72,6 +72,23 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
             item.Selected = $scope.selectedAll;
         });
     };
+    $scope.unCheckAll = function(){
+        $log.info('Items ' + new Date());
+        angular.forEach($scope.rowCollection,function(item){
+            if(!item.isSelected){
+                $scope.selectedAll=false;
+            }
+        });
+        angular.forEach($scope.rowCollection,function(item){
+            if(!item.isSelected){
+                flag=true;
+            }
+        });
+        if(flag == false) {
+            $scope.selectedAll = true;
+        }
+
+    };
     
    // $scope.items = ['item1', 'item2', 'item3'];
 
@@ -138,6 +155,24 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
             item.Selected = $scope.selectedAll;
         });
 
+    };
+
+    $scope.unCheckAll = function(){
+        $log.info('Items ' + new Date());
+        var flag= false;
+        angular.forEach($scope.rowCollection,function(item){
+          if(!item.isSelected){
+              $scope.selectedAll=false;
+          }
+        });
+        angular.forEach($scope.rowCollection,function(item){
+            if(!item.isSelected){
+                flag=true;
+            }
+        });
+        if(flag == false) {
+            $scope.selectedAll = true;
+        }
     };
 
     $scope.open = function (items, size) {

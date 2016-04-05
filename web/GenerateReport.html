@@ -18,11 +18,18 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <script src="js/app.js"></script>
+    <style type="text/css" media="screen">
+        .click:hover{
+            text-decoration: underline;
+        }
+    </style>
+
 
     <!-- Optional theme -->
 
     <!--   <script src ="bower_components/angular-smart-table/dist/smart-table.js"></script> -->
     <title>Employee List</title>
+
 </head>
 <body>
 
@@ -32,15 +39,20 @@
         <h2 style="text-align: center">
             List of All Employees
         </h2>
+        <div ng-model="message">
+
+        </div>
         <form>
             <br><br>
 
-            <button class="btn btn-primary" style="float: right;" type="submit" value="DOWNLOAD DAILY REP0RT"
+            <button class="btn btn-success" style="float: right;" type="submit" value="DOWNLOAD DAILY REP0RT"
                     onclick="location.href='./GenerateReport.html';">DOWNLOAD DAILY REPORT
             </button>
+
             <br/>
             <br/>
             <br/>
+
             <table st-table="rowCollection" name="empListTable" class="table table-striped">
                 <thead>
                 <tr style="font-weight:bolder;">
@@ -58,9 +70,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="item in rowCollection" ng-click="open(item,'lg')">
+                <tr ng-repeat="item in rowCollection">
 
-                    <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected"></td>
+                    <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="unCheckAll()"></td>
                     <td> {{item.empRevalId}}</td>
                     <td> {{item.empSalesforceId}}</td>
                     <td style="width: 200px">{{item.empName}}</td>
@@ -69,10 +81,12 @@
                     <td style="width: 400px">{{item.empAvgCheckOutTimeForMonth}}</td>
                     <td style="width: 400px">{{item.empAvgWorkHoursForMonth}}</td>
                     <td style="width: 400px">{{item.empIfClarificationNeeded}}</td>
+                    <td class="click" style="color: blue;" ng-click="open(item,'lg')">View</td>
 
                 </tr>
                 </tbody>
             </table>
+
         </form>
 
     </div> <!-- .content-wrapper -->
