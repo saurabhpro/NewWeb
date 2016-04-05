@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html ng-app="sampleApp" lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
@@ -80,6 +79,7 @@
         <button class="btn btn-primary" ng-click="ok()">OK</button>
         <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
         <form action="filegen">
+            <input type="text" name="id" value={{items.empRevalId}}>
             <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
         </form>
     </div>

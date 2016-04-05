@@ -92,6 +92,9 @@ public class JSONModelForWeb {
     public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
         this.empAvgCheckInTimeForMonth = a.toString();
     }
+    public void setEmpAvgCheckInTimeForMonth(String a) {
+        this.empAvgCheckInTimeForMonth = a;
+    }
 
     public String getEmpAvgCheckOutTimeForMonth() {
         return empAvgCheckOutTimeForMonth;
@@ -100,6 +103,9 @@ public class JSONModelForWeb {
     public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
         this.empAvgCheckOutTimeForMonth = a.toString();
     }
+    public void setEmpAvgCheckOutTimeForMonth(String a) {
+        this.empAvgCheckOutTimeForMonth = a;
+    }
 
     public String getEmpAvgWorkHoursForMonth() {
         return empAvgWorkHoursForMonth;
@@ -107,6 +113,9 @@ public class JSONModelForWeb {
 
     public void setEmpAvgWorkHoursForMonth(LocalTime a) {
         this.empAvgWorkHoursForMonth = a.toString();
+    }
+    public void setEmpAvgWorkHoursForMonth(String a) {
+        this.empAvgWorkHoursForMonth = a;
     }
 
     public ArrayList<SubMenuAttendanceOfDate> getAllDateDetailsList() {

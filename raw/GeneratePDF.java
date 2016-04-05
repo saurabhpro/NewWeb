@@ -49,10 +49,10 @@ public class GeneratePDF {
     }
 
     private static void addMetaData(Document document) {
-        document.addTitle("Generate PDF report");
-        document.addSubject("Generate PDF report");
-        document.addAuthor("Java Honk");
-        document.addCreator("Java Honk");
+        document.addTitle("Single Person Report");
+        document.addSubject("Single Perosn Report");
+        document.addAuthor("Saurabh");
+        document.addCreator("Amrita");
     }
 
     private static void addTitlePage(Document document)

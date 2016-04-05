@@ -54,7 +54,7 @@ public class PublicHolidayWorkerJson extends ListGenerator {
         List<HolidayWorkerModel> user = holidayWorkerList;
 
         try {
-            File jfile = new File(".\\JSON files\\" + fileName + ".json");
+            File jfile = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + fileName + ".json");
             // Convert object to JSON string and save into file directly
             mapper.writeValue(jfile, user);
 

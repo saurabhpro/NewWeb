@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="filegen-lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/filegen-lib" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/filegen-lib" recursive="false" />
+  </library>
+</component>

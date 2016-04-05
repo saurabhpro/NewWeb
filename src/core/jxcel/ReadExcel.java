@@ -69,15 +69,15 @@ public class ReadExcel {
         od.createJSONList("Discrepancy");
     }
 
-    private static void setBiometricFile(String biometricFile) {
+    public static void setBiometricFile(String biometricFile) {
         ReadExcel.biometricFile = biometricFile;
     }
 
-    private static void setEmpListID(String empListID) {
+    public static void setEmpListID(String empListID) {
         ReadExcel.empListID = ".\\ExcelFiles\\Emails.xlsx";
     }
 
-    private static void setHrNetFile(String hrNetFile) {
+    public static void setHrNetFile(String hrNetFile) {
         ReadExcel.hrNetFile = hrNetFile;
     }
 

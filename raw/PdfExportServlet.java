@@ -47,7 +47,6 @@ public class PdfExportServlet extends HttpServlet {
                     "filename="+ fileName);
 
             try {
-
                 GeneratePDF.createPDF(temperotyFilePath+"\\"+fileName);
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 baos = convertPDFToByteArrayOutputStream(
