@@ -45,7 +45,9 @@ public class SingleRecordServlet extends HttpServlet {
                          HttpServletResponse response) throws ServletException, IOException {
 
         final ServletContext servletContext = request.getSession().getServletContext();
+
         final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+
         final String temperotyFilePath = tempDirectory.getAbsolutePath();
 
         String id = request.getParameter("id");
@@ -58,6 +60,8 @@ public class SingleRecordServlet extends HttpServlet {
 
         try {
             CreateSingleRecordPDF.createPDF(temperotyFilePath + "\\" + fileName, id);
+            System.out.println(temperotyFilePath);
+
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
             baos = convertPDFToByteArrayOutputStream(temperotyFilePath + "\\" + fileName);

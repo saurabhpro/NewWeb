@@ -26,11 +26,11 @@ public class CreateSingleRecordPDF {
     public static WebJSONModel getData(String key) {
         try {
             JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + "MarkDiscrepancy.json"));
+            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + "Discrepancy.json"));
             JSONObject jsonObject = (JSONObject) a;
 
-            JSONArray slideContent = (JSONArray) jsonObject.get(0);
-            for (Object o : slideContent) {
+            //   JSONArray slideContent = (JSONArray) jsonObject.get(0);
+            for (Object o : jsonObject.values()) {
 
                 JSONObject person = (JSONObject) o;
 
