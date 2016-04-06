@@ -11,7 +11,7 @@ public class BasicEmployeeDetails {
     private String salesForceId;
     private String emailId;
 
-    BasicEmployeeDetails(String name, String empId, String salesForceId, String emailId) {
+    public BasicEmployeeDetails(String name, String empId, String salesForceId, String emailId) {
         this.name = name;
         this.empId = empId;
         this.salesForceId = salesForceId;
