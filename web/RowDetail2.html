@@ -1,4 +1,5 @@
 <html ng-app="sampleApp" lang="en" class="no-js">
+<div ng-include="'RowDetail2.html'"></div>
 <head>
     <meta charset="UTF-8">
 
@@ -51,9 +52,7 @@
         <table class="table table-striped table-condensed">
             <thead>
             <tr>
-                <th style="width: 40px">
-                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/>
-                </th>
+
                 <th>Current Date</th>
                 <th>Attendance Type</th>
                 <th>Leave Type</th>
@@ -64,7 +63,6 @@
             </thead>
             <tbody>
             <tr ng-repeat="day in items.allDateDetailsList">
-                <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="unCheckAll()"></td>
                 <td> {{day.currentDate | date}}</td>
                 <td> {{day.attendanceStatusType}}</td>
                 <td> {{day.leaveTypeForThisDate}}</td>
