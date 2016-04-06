@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp" lang="en" class="no-js">
+<div ng-include="'DraftEmail.html'"></div>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <!-- since there could be dependencies problem, maintain the inculsion order -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <title>Compose Email</title>
+</head>
+<body>
+<script type="text/ng-template" id="DraftEmail.html">
+    <div style="margin: 10px;">
+        <div class="modal-header">
+            New Message
+        </div>
+        <div ng-controller="GenerateDiscrepancyController">
+            <form>
+                Recipients<input type="text" class="form-control" id="inputdefault" placeholder="Recipients" value={{items.empEmailId}} style="width:95%;"><br />
+                Subject <input class="form-control input-lg" id="inputlg" type="text" placeholder="Subject" value="Mail Regarding Discrepancies" style="width:95%;"><br />
+                <textarea style="width:95%;" rows="10"></textarea>
+            </form>
+
+            <div class="modal-footer">
+                <button class="btn btn-warning" ng-click="cancel()">Close</button>
+                <button class="btn btn-primary" ng-click="email">Send</button>
+
+                <br/>
+            </div>
+        </div>
+    </div>
+</script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/jQuery-menu-aim/jquery.menu-aim.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+</body>
+</html>

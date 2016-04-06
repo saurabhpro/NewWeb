@@ -127,10 +127,9 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
                     return items;
                 }
             }
-        
         });
         $log.info('Items25 ' + new Date()+ items.empName);
-        
+
         modalInstance.result.then(function (items) {
             $scope.items = items;
         }, function () {
@@ -138,14 +137,54 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
     };
 
+    $scope.openEmailDialog = function (items,day,size) {
+        $log.info('Items24 ' + new Date());
+        var modalInstance = $uibModal.open({
+            templateUrl: 'DraftEmail.html',
+            controller: 'DraftEmailController',
+            size:size,
+            resolve: {
+                items: function () {
+                    return items;
+                },
+                day: function () {
+                    return day;
+                }
+            }
+        });
+        $log.info('Items25 ' + new Date());
+
+        modalInstance.result.then(function (items,day) {
+            $scope.items = items;
+            $scope.day = day;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
     $scope.showMe = false;
     $scope.clickFunc = function () {
         $scope.showMe = !$scope.showMe;
     };
-
-    
 });
+angular.module('sampleApp').controller('DraftEmailController',function ($scope, $uibModalInstance, $log,items, day) {
 
+    $scope.items = items;
+    $scope.day = day;
+    /*  $scope.selected = {
+     item: $scope.items[0]
+     };*/
+    $scope.send = function () {
+
+        $uibModalInstance.close($scope.day);
+    };
+
+    $log.info('Items ' + new Date()+ $scope.items);
+
+    $scope.cancel = function () {
+        $uibModalInstance.dismiss('cancel');
+    };
+
+});
 angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, $log, items) {
 
     $scope.items = items;
