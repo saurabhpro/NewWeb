@@ -180,31 +180,6 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
 
     };
 
-    $scope.discrepancyCheckAll = function () {
-        if ($scope.discrepancySelectedAll) {
-            $scope.discrepancySelectedAll = true;
-        } else {
-            $scope.discrepancySelectedAll = false;
-        }
-        angular.forEach($scope.items.allDateDetailsList, function (day) {
-            day.Selected= $scope.discrepancySelectedAll;
-        });
-
-    };
-    $scope.discrepancyCheckStatus= function() {
-        var checkCount = 0;
-        var length =0;
-        angular.forEach($scope.items.allDateDetailsList, function(day) {
-            length++;
-        });
-        angular.forEach($scope.items.allDateDetailsList, function(day) {
-            if(day.Selected) checkCount++;
-
-        });
-        $log.info('New Flag ' + new Date() + checkCount + length);
-        $scope.discrepancySelectedAll = ( checkCount === length);
-    };
-
     $scope.checkStatus= function() {
         var checkCount = 0;
         var length =0;
