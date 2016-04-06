@@ -101,6 +101,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
 
     };
+
     $scope.discrepancyCheckStatus= function() {
         var checkCount = 0;
         var length =0;
