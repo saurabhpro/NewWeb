@@ -52,7 +52,7 @@
             <thead>
             <tr>
                 <th style="width: 40px">
-                    <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/>
+                    <input type="checkbox" ng-model="discrepancySelectedAll" ng-click="discrepancyCheckAll()"/>
                 </th>
                 <th>Current Date</th>
                 <th>Attendance Type</th>
@@ -64,7 +64,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="day in items.allDateDetailsList">
-                <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="unCheckAll()"></td>
+                <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="day.Selected" ng-click="discrepancyCheckStatus()"></td>
                 <td> {{day.currentDate | date}}</td>
                 <td> {{day.attendanceStatusType}}</td>
                 <td> {{day.leaveTypeForThisDate}}</td>
