@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html ng-app="App">
+
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="app.js"></script>
+</head>
+
+<body>
+
+<div ng-controller="listCtrl">
+    <table border="1">
+        <thead>
+        <tr>
+            <th><input type="checkbox" ng-change="checkAll(checkedAll)" ng-model="checkedAll"></th>
+            <th>Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="user in users">
+            <td>
+                <input ng-change="checkItem(user.id, user.selected)" type="checkbox" ng-model="user.selected">
+            </td>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+
+</html>

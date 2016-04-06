@@ -62,6 +62,8 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         $scope.rowCollection = response.data;
     });
 
+
+
     $scope.checkAll = function () {
         if ($scope.selectedAll) {
             $scope.selectedAll = true;
@@ -71,26 +73,23 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         angular.forEach($scope.rowCollection, function (item) {
             item.Selected = $scope.selectedAll;
         });
-    };
-    $scope.unCheckAll = function(){
-        $log.info('Items ' + new Date());
-        angular.forEach($scope.rowCollection,function(item){
-            if(!item.isSelected){
-                $scope.selectedAll=false;
-            }
-        });
-        angular.forEach($scope.rowCollection,function(item){
-            if(!item.isSelected){
-                flag=true;
-            }
-        });
-        if(flag == false) {
-            $scope.selectedAll = true;
-        }
 
     };
-    
-   // $scope.items = ['item1', 'item2', 'item3'];
+
+    $scope.checkStatus= function() {
+        var checkCount = 0;
+        var length =0;
+        angular.forEach($scope.rowCollection, function(item) {
+            length++;
+        });
+        angular.forEach($scope.rowCollection, function(item) {
+            if(item.Selected) checkCount++;
+
+        });
+        $log.info('New Flag ' + new Date() + checkCount + length);
+        $scope.selectedAll = ( checkCount === length);
+    };
+
 
     $scope.open = function (items,size) {
         $log.info('Items24 ' + new Date()+ items.empRevalId);
@@ -157,22 +156,18 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
 
     };
 
-    $scope.unCheckAll = function(){
-        $log.info('Items ' + new Date());
-        var flag= false;
-        angular.forEach($scope.rowCollection,function(item){
-          if(!item.isSelected){
-              $scope.selectedAll=false;
-          }
+    $scope.checkStatus= function() {
+        var checkCount = 0;
+        var length =0;
+        angular.forEach($scope.rowCollection, function(item) {
+            length++;
         });
-        angular.forEach($scope.rowCollection,function(item){
-            if(!item.isSelected){
-                flag=true;
-            }
+        angular.forEach($scope.rowCollection, function(item) {
+            if(item.Selected) checkCount++;
+
         });
-        if(flag == false) {
-            $scope.selectedAll = true;
-        }
+        $log.info('New Flag ' + new Date() + checkCount + length);
+        $scope.selectedAll = ( checkCount === length);
     };
 
     $scope.open = function (items, size) {
