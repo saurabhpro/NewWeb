@@ -11,7 +11,7 @@ import java.io.PrintWriter;
 /**
  * Created by AroraA on 06-03-2016.
  */
-@WebServlet(name = "servlets.upload.FileDownload",urlPatterns = {"/download"})
+@WebServlet(name = "servlets.upload.FileDownload", urlPatterns = {"/download"})
 public class FileDownload extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String filename = "New.txt";

@@ -13,12 +13,8 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../css/reset.css"> <!-- CSS reset -->
     <link rel="stylesheet" href="../css/style.css"> <!-- Resource style -->
-    <script src="../js/modernizr.js"></script> <!-- Modernizr -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <script src="../js/app.js"></script>
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
 
     <title>Upload Salesforce</title>
 </head>
@@ -32,8 +28,6 @@
         </form>
     </div> <!-- .content-wrapper -->
 </main> <!-- .cd-main-content -->
-<script src="../js/jquery-2.1.4.js"></script>
-<script src="../js/jquery.menu-aim.js"></script>
 <script src="../js/main.js"></script>
 </body>
 </html>

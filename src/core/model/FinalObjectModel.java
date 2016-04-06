@@ -3,6 +3,8 @@ package core.model;
 import core.emplmasterrecord.EmployeeMasterData;
 import core.jxcel.TimeManager;
 import core.model.attendence.AttendanceOfDate;
+import core.model.empl.BasicEmployeeDetails;
+import core.model.uploadedfiles.HrnetDetails;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -10,19 +12,19 @@ import java.util.ArrayList;
 /**
  * Created by kumars on 2/19/2016.
  */
-public class FinalModel extends BasicEmployeeDetails {
+public class FinalObjectModel extends BasicEmployeeDetails {
     public final AttendanceOfDate[] attendanceOfDate;
     public final ArrayList<HrnetDetails> hrnetDetails;
     private final LocalTime avgInTime;
     private final LocalTime avgOutTime;
-    private final int numberOfEntriesinHrNet;
+    private final int numberOfEntriesInHrNet;
     private final LocalTime averageNumberOfHoursMonthly;
     // AMRITA
     private final int[] count = new int[5];// Absent, Present, Public_Holiday,
     // Weekend_Holiday, Half_Day
     private boolean ifClarificationNeeded = false;
 
-    public FinalModel(String EmployeeID, int numberOfEntriesinHrNet, AttendanceOfDate[] a, ArrayList<HrnetDetails> hr1) {
+    public FinalObjectModel(String EmployeeID, int numberOfEntriesInHrNet, AttendanceOfDate[] a, ArrayList<HrnetDetails> hr1) {
         this.setEmpId(EmployeeID);
 
         BasicEmployeeDetails b = EmployeeMasterData.allEmployeeRecordMap.get(EmployeeID);
@@ -33,7 +35,7 @@ public class FinalModel extends BasicEmployeeDetails {
             this.setEmailId(b.getEmailId());
         }
         this.attendanceOfDate = a;
-        this.numberOfEntriesinHrNet = numberOfEntriesinHrNet;
+        this.numberOfEntriesInHrNet = numberOfEntriesInHrNet;
         // this.needClarificationFromEmployee = needClarificationFromEmployee;
         this.hrnetDetails = hr1;
 
@@ -54,7 +56,7 @@ public class FinalModel extends BasicEmployeeDetails {
         System.out.println("Work Hours for day: " + this.getAverageNumberOfHoursMonthly());
         System.out.println();
 
-        System.out.println("Number Of Leaves Applied: " + this.numberOfEntriesinHrNet);
+        System.out.println("Number Of Leaves Applied: " + this.numberOfEntriesInHrNet);
         if (this.hrnetDetails != null) {
             this.displayArrayList();
         }

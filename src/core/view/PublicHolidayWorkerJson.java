@@ -1,11 +1,11 @@
-package core.combinedModel;
+package core.view;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import core.jxcel.*;
-import core.model.FinalModel;
+import core.jxcel.TimeManager;
+import core.model.FinalObjectModel;
 import core.model.HolidayWorkerModel;
-import core.model.JSONModelForWeb;
-import core.model.ListGenerator;
+import core.model.WebJSONModel;
+import core.model.ListGeneratorModel;
 import core.model.attendence.HolidaysList;
 
 import java.io.File;
@@ -19,19 +19,19 @@ import static core.model.attendence.AttendanceStatusType.PUBLIC_HOLIDAY;
 /**
  * Created by kumars on 3/4/2016.
  */
-public class PublicHolidayWorkerJson extends ListGenerator {
+public class PublicHolidayWorkerJson extends ListGeneratorModel {
     List<HolidayWorkerModel> holidayWorkerList = new ArrayList<>();
 
     @Override
     public void generate() {
-        for (FinalModel finalModel : allEmpDetails.values()) {
+        for (FinalObjectModel finalObjectModel : allEmpDetails.values()) {
             for (HolidaysList h : HolidaysList.values()) {
                 Month curMnth = h.getDate().getMonth();
                 int changeOnDate = h.getDate().getDayOfMonth() - 1;
                 if (curMnth == TimeManager.getMonth() &&
-                        finalModel.attendanceOfDate[changeOnDate].getAttendanceStatusType() == PUBLIC_HOLIDAY &&
-                        finalModel.attendanceOfDate[changeOnDate].getCheckIn() != null) {
-                    HolidayWorkerModel h1 = new JSONModelForWeb(finalModel).getHolidayWorkerObjForThisDate(changeOnDate);
+                        finalObjectModel.attendanceOfDate[changeOnDate].getAttendanceStatusType() == PUBLIC_HOLIDAY &&
+                        finalObjectModel.attendanceOfDate[changeOnDate].getCheckIn() != null) {
+                    HolidayWorkerModel h1 = new WebJSONModel(finalObjectModel).getHolidayWorkerObjForThisDate(changeOnDate);
                     if (h1 != null) {
                         h1.setHoliday(h);
                         holidayWorkerList.add(h1);

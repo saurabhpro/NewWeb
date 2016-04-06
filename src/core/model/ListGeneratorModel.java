@@ -1,7 +1,7 @@
 package core.model;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import core.combinedModel.Discrepancy;
+import core.combined.MarkDiscrepancy;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,20 +11,20 @@ import java.util.TreeMap;
 /**
  * Created by Saurabh on 3/12/2016.
  */
-public abstract class ListGenerator {
-    protected final Map<String, FinalModel> allEmpDetails = Discrepancy.EmpCombinedMap;
-    protected final Map<String, JSONModelForWeb> filteredEmpDetails = new TreeMap<>();
+public abstract class ListGeneratorModel {
+    protected final Map<String, FinalObjectModel> allEmpDetails = MarkDiscrepancy.EmpCombinedMap;
+    protected final Map<String, WebJSONModel> filteredEmpDetails = new TreeMap<>();
 
     public abstract void generate();
 
     public void displayOnConsole() {
-        filteredEmpDetails.values().forEach(JSONModelForWeb::displayAllDates);
+        filteredEmpDetails.values().forEach(WebJSONModel::displayAllDates);
     }
 
     public void createJSONList(String fileName) {
         ObjectMapper mapper = new ObjectMapper();
         // For testing
-        Map<String, JSONModelForWeb> user = filteredEmpDetails;
+        Map<String, WebJSONModel> user = filteredEmpDetails;
 
         try {
             File jfile = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + fileName + ".json");

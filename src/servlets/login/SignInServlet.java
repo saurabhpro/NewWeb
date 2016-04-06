@@ -17,20 +17,21 @@ import java.io.PrintWriter;
 @WebServlet(name = "SignInServlet", urlPatterns = {"/signin"})
 public class SignInServlet extends HttpServlet implements java.io.Serializable {
 
-    public SignInServlet(){
-
-    }
     private String userName;
-
     private String password;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public SignInServlet() {
+
     }
 
     public String getUserName() {
         return userName;
     }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
     public String getPassword() {
         return password;
     }
@@ -49,15 +50,14 @@ public class SignInServlet extends HttpServlet implements java.io.Serializable {
 
         HttpSession session = request.getSession();
         session.setAttribute("userName", userName);
-        session.setAttribute("password",password);
+        session.setAttribute("password", password);
         RequestDispatcher dispatcher;
 
         ServletConfig config = getServletConfig();
-        if( password.equals(config.getInitParameter("password"))&&userName.equals(config.getInitParameter("userName"))){
+        if (password.equals(config.getInitParameter("password")) && userName.equals(config.getInitParameter("userName"))) {
             dispatcher = request.getRequestDispatcher("./mainPage.jsp");
-            dispatcher.include(request,response);
-        }
-        else{
+            dispatcher.include(request, response);
+        } else {
             out.println("<font color='red'><b>You have entered incorrect password or username</b></font>");
             dispatcher = request.getRequestDispatcher("./signin.html");
             dispatcher.include(request, response);

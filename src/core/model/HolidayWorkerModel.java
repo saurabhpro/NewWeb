@@ -1,6 +1,7 @@
 package core.model;
 
 import core.model.attendence.HolidaysList;
+import core.model.empl.BasicEmployeeDetails;
 
 /**
  * Created by Saurabh on 3/12/2016.
@@ -8,9 +9,9 @@ import core.model.attendence.HolidaysList;
 public class HolidayWorkerModel {
     HolidaysList holiday;
     BasicEmployeeDetails basicEmployeeDetails;
-    JSONModelForWeb.SubMenuAttendanceOfDate subMenuAttendanceOfDate;
+    WebJSONModel.SubMenuAttendanceOfDate subMenuAttendanceOfDate;
 
-    public HolidayWorkerModel(BasicEmployeeDetails b, JSONModelForWeb.SubMenuAttendanceOfDate s) {
+    public HolidayWorkerModel(BasicEmployeeDetails b, WebJSONModel.SubMenuAttendanceOfDate s) {
         this.basicEmployeeDetails = b;
         this.subMenuAttendanceOfDate = s;
     }
@@ -19,7 +20,7 @@ public class HolidayWorkerModel {
         return basicEmployeeDetails;
     }
 
-    public JSONModelForWeb.SubMenuAttendanceOfDate getSubMenuAttendanceOfDate() {
+    public WebJSONModel.SubMenuAttendanceOfDate getSubMenuAttendanceOfDate() {
         return subMenuAttendanceOfDate;
     }
 

@@ -2,7 +2,7 @@ package core.jxcel;
 
 import core.factory.XLSXSheetAndCell;
 import core.model.FileOperations;
-import core.model.HrnetDetails;
+import core.model.uploadedfiles.HrnetDetails;
 import core.model.attendence.AttendanceOfLeave;
 import core.model.attendence.LeaveType;
 import org.apache.poi.ss.usermodel.Cell;

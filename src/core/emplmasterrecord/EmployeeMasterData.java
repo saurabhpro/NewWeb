@@ -2,7 +2,7 @@ package core.emplmasterrecord;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import core.factory.XLSXSheetAndCell;
-import core.model.BasicEmployeeDetails;
+import core.model.empl.BasicEmployeeDetails;
 import core.model.FileOperations;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;

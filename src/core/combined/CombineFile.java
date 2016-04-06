@@ -1,8 +1,13 @@
-package core.combinedModel;
+package core.combined;
 
 import core.emplmasterrecord.EmployeeMasterData;
-import core.jxcel.*;
-import core.model.*;
+import core.jxcel.BiometricFileWorker;
+import core.jxcel.HrnetFileWorker;
+import core.jxcel.TimeManager;
+import core.model.empl.BasicEmployeeDetails;
+import core.model.uploadedfiles.EmpBiometricDetails;
+import core.model.FinalObjectModel;
+import core.model.uploadedfiles.HrnetDetails;
 import core.model.attendence.HolidaysList;
 import core.model.attendence.LeaveType;
 
@@ -19,14 +24,14 @@ import static core.model.attendence.AttendanceStatusType.*;
  * Created by kumars on 2/16/2016. 6-03-2016 changed the Type from ABSENT to
  * UNACCOUNTED_ABSENCE.
  */
-public class Combined2 {
+public class CombineFile {
 
     // Comparator needs string as Type
-    public static Map<String, FinalModel> EmpCombinedMap;
+    public static Map<String, FinalObjectModel> EmpCombinedMap;
     private final Map<String, ArrayList<HrnetDetails>> empHrnetDetails;
     private final Map<String, EmpBiometricDetails> empBiometricDetails;
 
-    public Combined2() {
+    public CombineFile() {
         EmpCombinedMap = new TreeMap<>(String::compareTo);
         empHrnetDetails = HrnetFileWorker.hrnetDetails;
         empBiometricDetails = BiometricFileWorker.empList;
@@ -63,7 +68,7 @@ public class Combined2 {
         for (EmpBiometricDetails empObj : empBiometricDetails.values()) {
             if (empObj.getNumberOfEntriesInHrNet() == 0) {
                 EmpCombinedMap.put(empObj.getEmpId(),
-                        new FinalModel(empObj.getEmpId(), empObj.numberOfEntriesInHrNet, empObj.attendanceOfDate, null));
+                        new FinalObjectModel(empObj.getEmpId(), empObj.numberOfEntriesInHrNet, empObj.attendanceOfDate, null));
             } else {
                 Set<String> hrKeySet = empHrnetDetails.keySet();
 
@@ -73,7 +78,7 @@ public class Combined2 {
                     if (tempSalesForceId != null && hrKey.equals(tempSalesForceId)) {
 
                         ArrayList<HrnetDetails> hrnet = empHrnetDetails.get(hrKey);
-                        EmpCombinedMap.put(empObj.getEmpId(), new FinalModel(empObj.getEmpId(), empObj.numberOfEntriesInHrNet,
+                        EmpCombinedMap.put(empObj.getEmpId(), new FinalObjectModel(empObj.getEmpId(), empObj.numberOfEntriesInHrNet,
                                 empObj.attendanceOfDate, hrnet));
                     }
                 }
@@ -173,7 +178,7 @@ public class Combined2 {
         }
     }
 
-    private void countAttendanceStatusType(FinalModel emp) {
+    private void countAttendanceStatusType(FinalObjectModel emp) {
         // to be removed today
         for (int j = 0; j < TimeManager.getMonth().maxLength(); j++) {
 
@@ -194,7 +199,7 @@ public class Combined2 {
 
     public void displayCombineFiles() {
         System.out.println(TimeManager.getMonth());
-        EmpCombinedMap.values().forEach(FinalModel::displayFinalList);
+        EmpCombinedMap.values().forEach(FinalObjectModel::displayFinalList);
     }
 
 }

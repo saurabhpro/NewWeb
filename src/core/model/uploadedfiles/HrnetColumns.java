@@ -1,4 +1,4 @@
-package core.model;
+package core.model.uploadedfiles;
 
 /**
  * Created by Saurabh on 2/12/2016.

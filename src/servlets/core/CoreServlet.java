@@ -1,13 +1,15 @@
 package servlets.core;
 
-import core.combinedModel.*;
+import core.combined.CombineFile;
+import core.combined.MarkDiscrepancy;
 import core.emplmasterrecord.EmployeeMasterData;
 import core.factory.SheetFactory;
 import core.jxcel.BiometricFileWorker;
 import core.jxcel.HrnetFileWorker;
-import core.jxcel.ReadExcel;
-import core.model.ListGenerator;
-import core.view.JsonMapper;
+import core.model.ListGeneratorModel;
+import core.view.AllEmployeeDetailsJson;
+import core.view.OnlyDiscrepancyDetailsJson;
+import core.view.PublicHolidayWorkerJson;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,7 +27,19 @@ public class CoreServlet extends HttpServlet {
 
     private static String biometricFile;
     private static String hrNetFile;
-    private static String empListID =".\\ExcelFiles\\Emails.xlsx";
+    private static String empListID;
+
+    private static void setBiometricFile(String biometricFile) {
+        CoreServlet.biometricFile = biometricFile;
+    }
+
+    private static void setEmpListID(String empListID) {
+        CoreServlet.empListID = empListID;
+    }
+
+    private static void setHrNetFile(String hrNetFile) {
+        CoreServlet.hrNetFile = hrNetFile;
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -55,41 +69,29 @@ public class CoreServlet extends HttpServlet {
                 ((HrnetFileWorker) fileWorker).readFile();
             }
 
-            Combined2 combined2 = new Combined2();
-            combined2.combineFiles();
+            CombineFile combineFile = new CombineFile();
+            combineFile.combineFiles();
 
-            Discrepancy discrepancy = new Discrepancy();
-            discrepancy.findDiscrepancy();
+            MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
+            markDiscrepancy.findDiscrepancy();
 
-            ListGenerator ph = new PublicHolidayWorkerJson();
+            ListGeneratorModel ph = new PublicHolidayWorkerJson();
             ph.generate();
-          //  ph.displayOnConsole();
+            //  ph.displayOnConsole();
             ph.createJSONList("PublicHoliday");
 
-            ListGenerator c = new AllEmployeeDetailsJson();
+            ListGeneratorModel c = new AllEmployeeDetailsJson();
             c.generate();
             c.createJSONList("WebDetails");
 
-            ListGenerator od = new OnlyDiscrepancyDetailsJson();
+            ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
             od.generate();
             od.displayOnConsole();
-            od.createJSONList("Discrepancy");
-        }catch (Exception ignored){}
+            od.createJSONList("MarkDiscrepancy");
+        } catch (Exception ignored) {}
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("mainPage.jsp");
-        requestDispatcher.forward(request,response);
-    }
-
-    private static void setBiometricFile(String biometricFile) {
-       CoreServlet.biometricFile = biometricFile;
-    }
-
-    private static void setEmpListID(String empListID) {
-       CoreServlet.empListID="C:\\ProjectFiles\\Biometric\\Emails.xlsx";
-    }
-
-    private static void setHrNetFile(String hrNetFile) {
-        CoreServlet.hrNetFile=hrNetFile;
+        requestDispatcher.forward(request, response);
     }
 
 }

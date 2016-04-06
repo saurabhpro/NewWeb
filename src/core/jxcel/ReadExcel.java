@@ -1,11 +1,14 @@
 package core.jxcel;
 
-import core.combinedModel.*;
+import core.combined.*;
 import core.emplmasterrecord.EmployeeMasterData;
 import core.factory.SheetFactory;
-import core.model.ListGenerator;
+import core.model.ListGeneratorModel;
 import core.model.Version;
+import core.view.AllEmployeeDetailsJson;
 import core.view.JsonMapper;
+import core.view.OnlyDiscrepancyDetailsJson;
+import core.view.PublicHolidayWorkerJson;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -43,30 +46,30 @@ public class ReadExcel {
             ((HrnetFileWorker) fileWorker).readFile();
         }
 
-        Combined2 combined2 = new Combined2();
-        combined2.combineFiles();
+        CombineFile combineFile = new CombineFile();
+        combineFile.combineFiles();
         new JsonMapper().toJsonFile(null).fromJsonToFormattedJson(null);
 
         // displayAllDates Combined Files
-        //	combined2.displayCombineFiles();
+        //	combineFile.displayCombineFiles();
 
         // remove discrepancies
-        Discrepancy discrepancy = new Discrepancy();
-        discrepancy.findDiscrepancy();
+        MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
+        markDiscrepancy.findDiscrepancy();
 
-        ListGenerator ph = new PublicHolidayWorkerJson();
+        ListGeneratorModel ph = new PublicHolidayWorkerJson();
         ph.generate();
         ph.displayOnConsole();
         ph.createJSONList("PublicHoliday");
 
-        ListGenerator c = new AllEmployeeDetailsJson();
+        ListGeneratorModel c = new AllEmployeeDetailsJson();
         c.generate();
         c.createJSONList("WebDetails");
 
-        ListGenerator od = new OnlyDiscrepancyDetailsJson();
+        ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
         od.generate();
         //od.displayOnConsole();
-        od.createJSONList("Discrepancy");
+        od.createJSONList("MarkDiscrepancy");
     }
 
     public static void setBiometricFile(String biometricFile) {

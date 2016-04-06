@@ -4,7 +4,7 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import core.model.JSONModelForWeb;
+import core.model.WebJSONModel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -14,7 +14,6 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Objects;
 
 /**
  * Created by kumars on 4/5/2016.
@@ -22,18 +21,18 @@ import java.util.Objects;
 public class CreateSingleRecordPDF {
     private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
     private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
-    private static   JSONModelForWeb ob;
+    private static WebJSONModel ob;
 
-    public static JSONModelForWeb getData(String key) {
+    public static WebJSONModel getData(String key) {
         try {
             JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + "Discrepancy.json"));
-            JSONObject jsonObject = (JSONObject)a;
+            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + "MarkDiscrepancy.json"));
+            JSONObject jsonObject = (JSONObject) a;
 
             JSONArray slideContent = (JSONArray) jsonObject.get(0);
             for (Object o : slideContent) {
 
-                JSONObject person = (JSONObject)o;
+                JSONObject person = (JSONObject) o;
 
                 if (person.get(0).equals(key)) {
                     String id = (String) person.get("empRevalId");
@@ -49,7 +48,7 @@ public class CreateSingleRecordPDF {
                     ob.setEmpEmailId(empEmailId);
 
                     String empAvgCheckInTimeForMonth = (String) person.get("empAvgCheckInTimeForMonth");
-                   ob.setEmpAvgCheckInTimeForMonth(empAvgCheckInTimeForMonth);
+                    ob.setEmpAvgCheckInTimeForMonth(empAvgCheckInTimeForMonth);
 
                     String empAvgCheckOutTimeForMonth = (String) person.get("empAvgCheckOutTimeForMonth");
                     ob.setEmpAvgCheckOutTimeForMonth(empAvgCheckOutTimeForMonth);
@@ -71,8 +70,6 @@ public class CreateSingleRecordPDF {
     }
 
 
-
-
     public static Document createPDF(String fileName, String id) {
         Document document = null;
 
@@ -83,7 +80,7 @@ public class CreateSingleRecordPDF {
 
             addMetaData(document);
 
-            ob =  getData(id);
+            ob = getData(id);
 
             addTitlePage(document);
 
@@ -158,16 +155,16 @@ public class CreateSingleRecordPDF {
         table.setHeaderRows(1);
 
         //for (int i = 0; i < 5; i++) {
-            table.setWidthPercentage(100);
-            table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-            table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
-            table.addCell(ob.getEmpRevalId());
-            table.addCell(ob.getEmpSalesforceId());
-            table.addCell(ob.getEmpEmailId());
-            table.addCell(ob.getEmpAvgCheckInTimeForMonth());
-            table.addCell(ob.getEmpAvgCheckOutTimeForMonth());
-            table.addCell(ob.getEmpAvgWorkHoursForMonth());
-       // }
+        table.setWidthPercentage(100);
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
+        table.addCell(ob.getEmpRevalId());
+        table.addCell(ob.getEmpSalesforceId());
+        table.addCell(ob.getEmpEmailId());
+        table.addCell(ob.getEmpAvgCheckInTimeForMonth());
+        table.addCell(ob.getEmpAvgCheckOutTimeForMonth());
+        table.addCell(ob.getEmpAvgWorkHoursForMonth());
+        // }
         document.add(table);
     }
 

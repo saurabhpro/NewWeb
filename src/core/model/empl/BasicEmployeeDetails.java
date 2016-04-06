@@ -1,4 +1,4 @@
-package core.model;
+package core.model.empl;
 
 import core.emplmasterrecord.EmployeeMasterData;
 

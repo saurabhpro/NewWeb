@@ -1,6 +1,7 @@
-package core.model;
+package core.model.uploadedfiles;
 
 import core.model.attendence.AttendanceOfLeave;
+import core.model.empl.BasicEmployeeDetails;
 
 /**
  * Created by AroraA on 09-02-2016.

@@ -3,8 +3,8 @@ package core.view;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import core.combinedModel.Combined2;
-import core.model.FinalModel;
+import core.combined.CombineFile;
+import core.model.FinalObjectModel;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -17,7 +17,7 @@ import java.util.Map;
 public class JsonMapper {
     private ObjectMapper mapper = new ObjectMapper();
     // For testing
-    private Map<String, FinalModel> user;
+    private Map<String, FinalObjectModel> user;
 
     public void fromJsonToFormattedJson(String jsonInString) {
         // Convert object to JSON string and pretty print
@@ -54,7 +54,7 @@ public class JsonMapper {
     public JsonMapper toJsonFile(String fileName) {
 
         // For testing
-        user = Combined2.EmpCombinedMap;
+        user = CombineFile.EmpCombinedMap;
 
         try {
             File jfile = new File(".\\JSON files\\unformattedJson.json");

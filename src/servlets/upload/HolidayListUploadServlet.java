@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * Created by AroraA on 07-03-2016.
  */
-@WebServlet(name = "servlets.upload.HolidayListUploadServlet",urlPatterns = {"/upHoliday"})
+@WebServlet(name = "servlets.upload.HolidayListUploadServlet", urlPatterns = {"/upHoliday"})
 public class HolidayListUploadServlet extends HttpServlet {
     MultipartRequest m;
 

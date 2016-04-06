@@ -3,6 +3,7 @@ package core.model;
 import core.model.attendence.AttendanceOfDate;
 import core.model.attendence.AttendanceStatusType;
 import core.model.attendence.LeaveType;
+import core.model.empl.BasicEmployeeDetails;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.ArrayList;
 /**
  * Created by kumars on 3/11/2016.
  */
-public class JSONModelForWeb {
+public class WebJSONModel {
     private String empRevalId;
     private String empSalesforceId;
     private String empName;
@@ -22,7 +23,7 @@ public class JSONModelForWeb {
     private ArrayList<SubMenuAttendanceOfDate> allDateDetailsList;
     private Boolean empIfClarificationNeeded;
 
-    public JSONModelForWeb(FinalModel f) {
+    public WebJSONModel(FinalObjectModel f) {
         setEmpRevalId(f.getEmpId());
         setEmpSalesforceId(f.getSalesForceId());
         setEmpName(f.getName());
@@ -37,7 +38,7 @@ public class JSONModelForWeb {
         setAllDateDetailsList();
     }
 
-    public JSONModelForWeb(FinalModel f, String discrepancy) {
+    public WebJSONModel(FinalObjectModel f, String discrepancy) {
         this(f);
         setAllDateDetailsList(discrepancy);
     }
@@ -89,33 +90,36 @@ public class JSONModelForWeb {
         return empAvgCheckInTimeForMonth;
     }
 
-    public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
-        this.empAvgCheckInTimeForMonth = a.toString();
-    }
     public void setEmpAvgCheckInTimeForMonth(String a) {
         this.empAvgCheckInTimeForMonth = a;
+    }
+
+    public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
+        this.empAvgCheckInTimeForMonth = a.toString();
     }
 
     public String getEmpAvgCheckOutTimeForMonth() {
         return empAvgCheckOutTimeForMonth;
     }
 
-    public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
-        this.empAvgCheckOutTimeForMonth = a.toString();
-    }
     public void setEmpAvgCheckOutTimeForMonth(String a) {
         this.empAvgCheckOutTimeForMonth = a;
+    }
+
+    public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
+        this.empAvgCheckOutTimeForMonth = a.toString();
     }
 
     public String getEmpAvgWorkHoursForMonth() {
         return empAvgWorkHoursForMonth;
     }
 
-    public void setEmpAvgWorkHoursForMonth(LocalTime a) {
-        this.empAvgWorkHoursForMonth = a.toString();
-    }
     public void setEmpAvgWorkHoursForMonth(String a) {
         this.empAvgWorkHoursForMonth = a;
+    }
+
+    public void setEmpAvgWorkHoursForMonth(LocalTime a) {
+        this.empAvgWorkHoursForMonth = a.toString();
     }
 
     public ArrayList<SubMenuAttendanceOfDate> getAllDateDetailsList() {

@@ -1,4 +1,6 @@
-package core.model;
+package core.model.empl;
+
+import core.model.empl.BasicEmployeeDetails;
 
 /**
  * Created by kumars on 3/1/2016.

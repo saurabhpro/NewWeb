@@ -6,8 +6,6 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static core.jxcel.TimeManager.calculateTimeDifference;
-
 /**
  * Created by kumars on 2/12/2016.
  */

@@ -2,10 +2,11 @@
  * Created by Saurabhk on 08-02-2016.
  */
 
-package core.model;
+package core.model.uploadedfiles;
 
 import core.jxcel.TimeManager;
 import core.model.attendence.AttendanceOfDate;
+import core.model.empl.BasicEmployeeDetails;
 
 import java.time.LocalTime;
 
