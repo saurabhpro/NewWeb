@@ -13,7 +13,7 @@ public class OnlyDiscrepancyDetailsJson extends ListGeneratorModel {
         WebJSONModel webJSONModel;
         for (FinalObjectModel f : allEmpDetails.values()) {
             if (f.getIfClarificationNeeded()) {
-                webJSONModel = new WebJSONModel(f, "MarkDiscrepancy");
+                webJSONModel = new WebJSONModel(f, "Discrepancy");
                 filteredEmpDetails.put(f.getEmpId(), webJSONModel);
             }
         }

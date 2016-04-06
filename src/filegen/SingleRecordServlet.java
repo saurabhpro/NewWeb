@@ -48,23 +48,21 @@ public class SingleRecordServlet extends HttpServlet {
 
         final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 
-        final String temperotyFilePath = tempDirectory.getAbsolutePath();
+        final String temporaryFilePath = tempDirectory.getAbsolutePath();
 
         String id = request.getParameter("id");
+        String fileToUse = request.getParameter("fileToUse");
 
-        String fileName = "Generate_Report_" + System.currentTimeMillis() + ".pdf";
+        String fileName = "Generate_Report_" +fileToUse+"_"+ System.currentTimeMillis() + ".pdf";
         response.setContentType("application/pdf");
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Cache-Control", "max-age=0");
         response.setHeader("Content-disposition", "attachment; " + "filename=" + fileName);
 
         try {
-            CreateSingleRecordPDF.createPDF(temperotyFilePath + "\\" + fileName, id);
-            System.out.println(temperotyFilePath);
-
+            CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, id, fileToUse);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-
-            baos = convertPDFToByteArrayOutputStream(temperotyFilePath + "\\" + fileName);
+            baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
 
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);

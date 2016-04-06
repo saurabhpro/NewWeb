@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * Created by kumars on 4/5/2016.
  */
-@WebServlet(name = "CoreServlet", urlPatterns = {"/core"})
+@WebServlet(name = "CoreServlet", urlPatterns = {"/src/core"})
 public class CoreServlet extends HttpServlet {
 
     private static String biometricFile;

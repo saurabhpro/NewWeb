@@ -69,7 +69,7 @@ public class ReadExcel {
         ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
         od.generate();
         //od.displayOnConsole();
-        od.createJSONList("MarkDiscrepancy");
+        od.createJSONList("Discrepancy");
     }
 
     public static void setBiometricFile(String biometricFile) {
