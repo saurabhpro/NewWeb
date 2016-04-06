@@ -61,6 +61,7 @@ public class SingleRecordServlet extends HttpServlet {
 
         try {
             CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, id, fileToUse);
+            JsonToExcel.fromJsonToExcel(temporaryFilePath+"\\"+fileName+".xlsx", id, fileToUse);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
 
