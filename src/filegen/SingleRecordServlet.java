@@ -53,7 +53,7 @@ public class SingleRecordServlet extends HttpServlet {
         String id = request.getParameter("id");
         String fileToUse = request.getParameter("fileToUse");
 
-        String fileName = "Generate_Report_" +fileToUse+"_"+ System.currentTimeMillis() + ".pdf";
+        String fileName = "Generate_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
         response.setContentType("application/pdf");
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Cache-Control", "max-age=0");
@@ -61,7 +61,7 @@ public class SingleRecordServlet extends HttpServlet {
 
         try {
             CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, id, fileToUse);
-            JsonToExcel.fromJsonToExcel( id, fileToUse);
+            JsonToExcel.fromJsonToExcel(id, fileToUse);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
 

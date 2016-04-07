@@ -1,11 +1,5 @@
 package filegen;
 
-import core.model.FinalObjectModel;
-import core.model.HolidayWorkerModel;
-import core.model.attendence.AttendanceOfDate;
-import core.model.attendence.AttendanceStatusType;
-import core.model.empl.BasicEmployeeDetails;
-
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Map;
@@ -25,7 +19,8 @@ public class FileCreatorModel {
     private ArrayList<DayDetail> allDateDetailsList;
     private Boolean empIfClarificationNeeded;
 
-    public FileCreatorModel(){}
+    public FileCreatorModel() {
+    }
 
     public String getEmpRevalId() {
         return empRevalId;
@@ -99,7 +94,7 @@ public class FileCreatorModel {
         return allDateDetailsList;
     }
 
-    public void setAllDateDetailsList(ArrayList< Map<String, String>> attendanceOfDates) {
+    public void setAllDateDetailsList(ArrayList<Map<String, String>> attendanceOfDates) {
         allDateDetailsList = new ArrayList<>();
         this.allDateDetailsList.addAll(attendanceOfDates.stream().map(DayDetail::new).collect(Collectors.toList()));
     }

@@ -1,6 +1,7 @@
 package core.jxcel;
 
-import core.combined.*;
+import core.combined.CombineFile;
+import core.combined.MarkDiscrepancy;
 import core.emplmasterrecord.EmployeeMasterData;
 import core.factory.SheetFactory;
 import core.model.ListGeneratorModel;
@@ -28,8 +29,8 @@ public class ReadExcel {
         SheetFactory sheetFactory = new SheetFactory();
 
         setEmpListID(".\\ExcelFiles\\Emails.xlsx");
-        setBiometricFile(".\\ExcelFiles\\jan leaves.xls");
-        setHrNetFile(".\\ExcelFiles\\Jan-Feb FF Report.xlsx");
+        setBiometricFile(".\\ExcelFiles\\march 8.xls");
+        setHrNetFile(".\\ExcelFiles\\March FF report Final.xlsx");
 
         EmployeeMasterData employeeMasterData = new EmployeeMasterData(empListID);
         employeeMasterData.readFile();
@@ -45,6 +46,7 @@ public class ReadExcel {
         fileWorker = sheetFactory.dispatch("XLSX", hrNetFile);
         if (fileWorker instanceof HrnetFileWorker) {
             ((HrnetFileWorker) fileWorker).readFile();
+            ((HrnetFileWorker) fileWorker).displayFile();
         }
 
         CombineFile combineFile = new CombineFile();

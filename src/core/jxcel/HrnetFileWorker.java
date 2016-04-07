@@ -2,9 +2,9 @@ package core.jxcel;
 
 import core.factory.XLSXSheetAndCell;
 import core.model.FileOperations;
-import core.model.uploadedfiles.HrnetDetails;
 import core.model.attendence.AttendanceOfLeave;
 import core.model.attendence.LeaveType;
+import core.model.uploadedfiles.HrnetDetails;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 
@@ -78,10 +78,8 @@ public class HrnetFileWorker implements FileOperations {
                     case 1:
                         empName = cell.getStringCellValue();
                         break;
+
                     case 2:
-                        empRequest = cell.getStringCellValue();
-                        break;
-                    case 3:
                         String tmp = cell.getStringCellValue().replace(" ", "_").toUpperCase();
                         for (LeaveType leaveType : LeaveType.values()) {
                             if (Objects.equals(leaveType.toString(), tmp)) {
@@ -90,16 +88,16 @@ public class HrnetFileWorker implements FileOperations {
                             }
                         }
                         break;
-                    case 4:// startdate column
+                    case 3:// startdate column
                         tempDate = getLocalDate(cell);
                         attendanceOfLeave.setStartDate(tempDate);
                         break;
-                    case 5:// end date column
+                    case 4:// end date column
                         tempDate = getLocalDate(cell);
                         attendanceOfLeave.setEndDate(tempDate);
                         break;
 
-                    case 6:
+                    case 5:
                         attendanceOfLeave.setAbsenceTime(cell.getNumericCellValue());
                         break;
 
@@ -114,12 +112,12 @@ public class HrnetFileWorker implements FileOperations {
             if (attendanceOfLeave.getStartDate() != null && attendanceOfLeave.getLeaveType() != null) {
                 if (hrnetDetails.containsKey(salesForceID)) {
                     tempArrLst = hrnetDetails.get(salesForceID);
-                    tempArrLst.add(new HrnetDetails(salesForceID, empName, empRequest, attendanceOfLeave));
+                    tempArrLst.add(new HrnetDetails(salesForceID, empName, attendanceOfLeave));
                     hrnetDetails.put(salesForceID, tempArrLst);
 
                 } else {
                     tempArrLst = new ArrayList<>();
-                    tempArrLst.add(new HrnetDetails(salesForceID, empName, empRequest, attendanceOfLeave));
+                    tempArrLst.add(new HrnetDetails(salesForceID, empName, attendanceOfLeave));
                     hrnetDetails.put(salesForceID, tempArrLst);
                 }
             }

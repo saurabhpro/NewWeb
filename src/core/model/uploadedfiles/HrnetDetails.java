@@ -8,19 +8,16 @@ import core.model.empl.BasicEmployeeDetails;
  */
 public class HrnetDetails extends BasicEmployeeDetails {
     public final AttendanceOfLeave attendanceOfLeave;
-    private final String requestID;
 
-    public HrnetDetails(String empId, String name, String requestID, AttendanceOfLeave attendanceOfLeave) {
+    public HrnetDetails(String empId, String name, AttendanceOfLeave attendanceOfLeave) {
         setEmpId(empId);
         setName(name);
-        this.requestID = requestID;
         this.attendanceOfLeave = attendanceOfLeave;
     }
 
     public void printHrNetDetail() {
         System.out.print(this.getEmpId());
         System.out.print("\t" + this.getName());
-        System.out.print("\t" + this.requestID);
         System.out.print("\t" + this.attendanceOfLeave.getLeaveType());
         System.out.print("\t" + this.attendanceOfLeave.getStartDate() + "\t" + this.attendanceOfLeave.getEndDate());
         System.out.println("\t" + this.attendanceOfLeave.getAbsenceTime());

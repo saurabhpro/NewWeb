@@ -2,34 +2,38 @@ package filegen;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPHeaderCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import core.model.WebJSONModel;
 import org.jetbrains.annotations.Nullable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
-import java.lang.reflect.Array;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.Month;
+import java.time.Year;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 /**
  * Created by kumars on 4/5/2016.
  */
 public class CreateSingleRecordPDF {
+    static Month MONTH =null;
+    static Year YEAR = null;
     private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.TIMES_ROMAN, 12, Font.BOLD);
+    private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD);
 
     @Nullable
     public static FileCreatorModel setDataInObject(String key, FileCreatorModel ob, String fileToUse) {
         try {
             JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader("C:\\Users\\AroraA\\IdeaProjects\\NewWeb\\web\\json\\" + fileToUse+ ".json"));
+            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + fileToUse + ".json"));
             JSONObject jsonObject = (JSONObject) a;
             Set s = jsonObject.keySet();
 
@@ -68,6 +72,14 @@ public class CreateSingleRecordPDF {
                         JSONObject day = (JSONObject) c;
                         Map<String, String> tempMap = new TreeMap<>();
                         String currentDate = (String) day.get("currentDate");
+
+                        if(MONTH == null && YEAR == null){
+                            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+                            LocalDate date = LocalDate.parse(currentDate, formatter);
+                            MONTH = date.getMonth();
+                            YEAR = Year.of(date.getYear());
+                        }
+
                         String attendanceStatusType = (String) day.get("attendanceStatusType");
                         String leaveTypeForThisDate = (String) day.get("leaveTypeForThisDate");
                         String checkIn = (String) day.get("checkIn");
@@ -106,7 +118,7 @@ public class CreateSingleRecordPDF {
 
             setDataInObject(id, ob, fileToUse);
 
-            addTitlePage(document, ob);
+            addTitlePage(document, ob, fileToUse);
 
             createTable(document, ob);
 
@@ -125,17 +137,17 @@ public class CreateSingleRecordPDF {
         document.addCreator("Amrita");
     }
 
-    private static void addTitlePage(Document document, FileCreatorModel ob)
+    private static void addTitlePage(Document document, FileCreatorModel ob, String fileToUse)
             throws DocumentException {
 
         Paragraph preface = new Paragraph();
         creteEmptyLine(preface, 1);
         preface.add(new Paragraph(ob.getEmpName(), TIME_ROMAN));
+        preface.add(new Paragraph(fileToUse+" Report For "+ MONTH +" "+ YEAR, TIME_ROMAN_SMALL));
 
         creteEmptyLine(preface, 1);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        preface.add(new Paragraph("Report created on "
-                + simpleDateFormat.format(new Date()), TIME_ROMAN_SMALL));
+        preface.add(new Paragraph("Report created on " + simpleDateFormat.format(new Date()), TIME_ROMAN_SMALL));
         document.add(preface);
 
     }
@@ -150,7 +162,9 @@ public class CreateSingleRecordPDF {
         Paragraph paragraph = new Paragraph();
         creteEmptyLine(paragraph, 2);
         document.add(paragraph);
-        PdfPTable table = new PdfPTable(6);
+        PdfPTable table = new PdfPTable(6);     //columns
+        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
 
         PdfPCell c1 = new PdfPCell(new Phrase("Emp Id"));
         c1.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -180,8 +194,7 @@ public class CreateSingleRecordPDF {
 
         //for (int i = 0; i < 5; i++) {
         table.setWidthPercentage(100);
-        table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
-        table.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
+
         table.addCell(ob.getEmpRevalId());
         table.addCell(ob.getEmpSalesforceId());
         table.addCell(ob.getEmpEmailId());
@@ -222,7 +235,7 @@ public class CreateSingleRecordPDF {
         table2.setHeaderRows(1);
 
         ArrayList<FileCreatorModel.DayDetail> a = ob.getAllDateDetailsList();
-        for(FileCreatorModel.DayDetail mp : a){
+        for (FileCreatorModel.DayDetail mp : a) {
             table2.setWidthPercentage(100);
             table2.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
             table2.getDefaultCell().setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -234,7 +247,6 @@ public class CreateSingleRecordPDF {
             table2.addCell(mp.getCheckOut());
             table2.addCell(mp.getWorkTimeForDay());
         }
-
         document.add(table2);
     }
 

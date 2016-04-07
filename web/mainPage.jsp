@@ -71,6 +71,11 @@
 
       </li>
 
+      <li class="has-children">
+        <form action="src/core" method="post">
+          <input type="submit" value="Generate Jsons">
+        </form>
+      </li>
       <li class="has-children comments">
         <a href="#0">Send Email</a>
 

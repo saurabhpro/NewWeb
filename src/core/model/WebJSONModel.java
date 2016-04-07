@@ -184,11 +184,11 @@ public class WebJSONModel {
             attendanceStatusType = attendance.getAttendanceStatusType();
             leaveTypeForThisDate = attendance.getLeaveTypeForThisDate();
 
-            if(checkIn==null)
-                checkIn="undefined";
-            if(checkOut==null)
-                checkOut="undefined";
-            if(workTimeForDay==null)
+            if (checkIn == null)
+                checkIn = "undefined";
+            if (checkOut == null)
+                checkOut = "undefined";
+            if (workTimeForDay == null)
                 workTimeForDay = "undefined";
         }
 

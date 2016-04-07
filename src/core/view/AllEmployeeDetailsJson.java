@@ -1,8 +1,8 @@
 package core.view;
 
 import core.model.FinalObjectModel;
-import core.model.WebJSONModel;
 import core.model.ListGeneratorModel;
+import core.model.WebJSONModel;
 
 /**
  * Created by kumars on 3/11/2016.

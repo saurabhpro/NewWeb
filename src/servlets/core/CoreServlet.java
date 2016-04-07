@@ -88,7 +88,8 @@ public class CoreServlet extends HttpServlet {
             od.generate();
             od.displayOnConsole();
             od.createJSONList("MarkDiscrepancy");
-        } catch (Exception ignored) {}
+        } catch (Exception ignored) {
+        }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("mainPage.jsp");
         requestDispatcher.forward(request, response);

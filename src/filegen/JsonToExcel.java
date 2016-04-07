@@ -57,7 +57,7 @@ public class JsonToExcel {
 
             JSONParser parser = new JSONParser();
 
-            Object a = parser.parse(new FileReader("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\web\\json\\" + fileToUse + ".json"));
+            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + fileToUse + ".json"));
             JSONObject jsonObject = (JSONObject) a;
             Set s = jsonObject.keySet();
 
@@ -82,7 +82,7 @@ public class JsonToExcel {
 
                     XSSFRow row202 = sheet.getRow(2);
                     XSSFCell r1c202 = row202.createCell(i + 1);
-                    tmp=person.get("empName").toString();
+                    tmp = person.get("empName").toString();
                     r1c202.setCellValue(tmp);
 
                     XSSFRow row30 = sheet.getRow(3);
@@ -97,7 +97,7 @@ public class JsonToExcel {
 
                     XSSFRow row50 = sheet.getRow(5);
                     XSSFCell r1c50 = row50.createCell(i + 1);
-                    tmp =person.get("empAvgCheckOutTimeForMonth").toString();
+                    tmp = person.get("empAvgCheckOutTimeForMonth").toString();
                     r1c50.setCellValue(tmp);
 
                     XSSFRow row60 = sheet.getRow(6);

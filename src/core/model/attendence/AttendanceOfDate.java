@@ -44,7 +44,7 @@ public class AttendanceOfDate {
 
                 statusType = AttendanceStatusType.WEEKEND_HOLIDAY;
 
-            if(getWorkTimeForDay()!=null && !getCheckOut().equals(LocalTime.MIDNIGHT)){
+            if (getWorkTimeForDay() != null && !getCheckOut().equals(LocalTime.MIDNIGHT)) {
                 if (getWorkTimeForDay().compareTo(LocalTime.of(6, 0)) > 0)
                     statusType = AttendanceStatusType.PRESENT;
             }
