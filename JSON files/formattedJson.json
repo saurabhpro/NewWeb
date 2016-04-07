@@ -9228,7 +9228,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "PRESENT",
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
@@ -29005,7 +29005,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "PRESENT",
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
@@ -33884,10 +33884,10 @@
     "ifClarificationNeeded" : false
   },
   "R139" : {
-    "name" : null,
+    "name" : "Saurabh Kumar",
     "empId" : "R139",
-    "salesForceId" : null,
-    "emailId" : null,
+    "salesForceId" : "9999",
+    "emailId" : "saurabh.kumar@reval.com",
     "attendanceOfDate" : [ {
       "currentDate" : {
         "year" : 2016,
@@ -51529,7 +51529,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "PRESENT",
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
@@ -51736,7 +51736,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "PRESENT",
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
@@ -72264,7 +72264,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "PRESENT",
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
@@ -73059,7 +73059,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "PRESENT",
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
@@ -79318,7 +79318,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "PRESENT",
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
@@ -82274,4 +82274,6 @@
         "dayOfYear" : 26,
         "leapYear" : true,
         "monthValue" : 1,
-        "dayOf
+        "dayOfMonth" : 26,
+        "chronology" : {
+          

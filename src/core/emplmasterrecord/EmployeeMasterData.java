@@ -63,7 +63,7 @@ public class EmployeeMasterData implements FileOperations {
         Map<String, BasicEmployeeDetails> user = allEmployeeRecordMap;
 
         try {
-            File jfile = new File(".\\JSON files\\Emails.json");
+            File jfile = new File("C:\\Users\\AroraA\\IdeaProjects\\NewWeb\\web\\json\\Emails.json");
             // Convert object to JSON string and save into file directly
             mapper.writeValue(jfile, user);
 

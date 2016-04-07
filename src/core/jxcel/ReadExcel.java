@@ -33,6 +33,7 @@ public class ReadExcel {
 
         EmployeeMasterData employeeMasterData = new EmployeeMasterData(empListID);
         employeeMasterData.readFile();
+        employeeMasterData.toJsonFile();
 
         // read Biometric Excel File
         fileWorker = sheetFactory.dispatch("Jxcel", biometricFile);
@@ -50,8 +51,8 @@ public class ReadExcel {
         combineFile.combineFiles();
         new JsonMapper().toJsonFile(null).fromJsonToFormattedJson(null);
 
-        // displayAllDates Combined Files
-        //	combineFile.displayCombineFiles();
+        //displayAllDates Combined Files
+        combineFile.displayCombineFiles();
 
         // remove discrepancies
         MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
@@ -68,7 +69,7 @@ public class ReadExcel {
 
         ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
         od.generate();
-        //od.displayOnConsole();
+        od.displayOnConsole();
         od.createJSONList("Discrepancy");
     }
 
