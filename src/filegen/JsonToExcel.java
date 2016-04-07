@@ -15,7 +15,7 @@ import java.util.Set;
  * Created by kumars on 4/6/2016.
  */
 public class JsonToExcel {
-    public static void fromJsonToExcel(String key, String fileToUse, String toUse) {
+    public static void fromJsonToExcel(String id, String fileToUse) {
         try {
 
 
@@ -56,42 +56,54 @@ public class JsonToExcel {
             String projectname = null;
 
             JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + toUse + ".json"));
+
+            Object a = parser.parse(new FileReader("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\web\\json\\" + fileToUse + ".json"));
             JSONObject jsonObject = (JSONObject) a;
             Set s = jsonObject.keySet();
 
             for (Object value : s) {
                 String jKey = (String) value;
                 int i = 0;
-                if (jKey.equals(key)) {
+                if (jKey.equals(id)) {
 
                     JSONObject person = (JSONObject) jsonObject.get(jKey);
 
+                    String tmp;
                     XSSFRow row00 = sheet.getRow(0);
                     XSSFCell r1c00 = row00.createCell(i + 1);
-                    r1c00.setCellValue(person.get("EmpId").toString());
+                    tmp = person.get("empRevalId").toString();
+                    System.out.println(tmp);
+                    r1c00.setCellValue(tmp);
+
                     XSSFRow row102 = sheet.getRow(1);
                     XSSFCell r1c102 = row102.createCell(i + 1);
-                    r1c102.setCellValue(person.get("empSalesforceId").toString());
+                    tmp = person.get("empSalesforceId").toString();
+                    r1c102.setCellValue(tmp);
+
                     XSSFRow row202 = sheet.getRow(2);
                     XSSFCell r1c202 = row202.createCell(i + 1);
-                    r1c202.setCellValue(person.get("empName").toString());
+                    tmp=person.get("empName").toString();
+                    r1c202.setCellValue(tmp);
+
                     XSSFRow row30 = sheet.getRow(3);
                     XSSFCell r1c30 = row30.createCell(i + 1);
-                    r1c30.setCellValue(person.get("empEmailId").toString());
+                    tmp = person.get("empEmailId").toString();
+                    r1c30.setCellValue(tmp);
+
                     XSSFRow row40 = sheet.getRow(4);
                     XSSFCell r1c40 = row40.createCell(i + 1);
-                    r1c40.setCellValue(person.get("empAvgCheckInTimeForMonth").toString());
+                    tmp = person.get("empAvgCheckInTimeForMonth").toString();
+                    r1c40.setCellValue(tmp);
+
                     XSSFRow row50 = sheet.getRow(5);
                     XSSFCell r1c50 = row50.createCell(i + 1);
-                    r1c50.setCellValue(person.get("empAvgCheckOutTimeForMonth").toString());
+                    tmp =person.get("empAvgCheckOutTimeForMonth").toString();
+                    r1c50.setCellValue(tmp);
+
                     XSSFRow row60 = sheet.getRow(6);
                     XSSFCell r1c60 = row60.createCell(i + 1);
-                    r1c60.setCellValue(person.get("empAvgWorkHoursForMonth").toString());
-
-    /*XSSFRow row220 = sheet.getRow(22);
-    XSSFCell r1c220 = row220.createCell(i+1);
-    r1c220.setCellValue(obj.getString("contact_no"));*/
+                    tmp = person.get("empAvgWorkHoursForMonth").toString();
+                    r1c60.setCellValue(tmp);
                 }
 
                 fis.close();
