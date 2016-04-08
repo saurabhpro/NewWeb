@@ -13,7 +13,7 @@ import java.util.TreeMap;
  */
 public abstract class ListGeneratorModel {
     protected final Map<String, FinalObjectModel> allEmpDetails = MarkDiscrepancy.EmpCombinedMap;
-    protected final Map<String, WebJSONModel> filteredEmpDetails = new TreeMap<>();
+    protected Map<String, WebJSONModel> filteredEmpDetails;
 
     public abstract void generate();
 
@@ -25,9 +25,14 @@ public abstract class ListGeneratorModel {
         ObjectMapper mapper = new ObjectMapper();
         // For testing
         Map<String, WebJSONModel> user = filteredEmpDetails;
-
         try {
-            File jfile = new File("C:\\Users\\Kumars\\IdeaProjects\\NewWeb\\web\\json\\" + fileName + ".json");
+            File jfile = new File("./web/json/" + fileName + ".json");
+            /*
+            System.out.println(jfile.getAbsolutePath());
+            System.out.println(jfile.getCanonicalPath());
+            System.out.println(jfile.getParent());
+             */
+
             // Convert object to JSON string and save into file directly
             mapper.writeValue(jfile, user);
 

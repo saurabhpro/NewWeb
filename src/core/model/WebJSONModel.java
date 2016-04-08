@@ -8,6 +8,8 @@ import core.model.empl.BasicEmployeeDetails;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import static core.model.attendence.AttendanceStatusType.WEEKEND_HOLIDAY;
+
 /**
  * Created by kumars on 3/11/2016.
  */
@@ -38,9 +40,9 @@ public class WebJSONModel {
         setAllDateDetailsList();
     }
 
-    public WebJSONModel(FinalObjectModel f, String discrepancy) {
+    public WebJSONModel(FinalObjectModel f, String type) {
         this(f);
-        setAllDateDetailsList(discrepancy);
+        setAllDateDetailsList(type);
     }
 
     public void setAttendanceOfDates(AttendanceOfDate[] attendanceOfDates) {
@@ -90,36 +92,36 @@ public class WebJSONModel {
         return empAvgCheckInTimeForMonth;
     }
 
-    public void setEmpAvgCheckInTimeForMonth(String a) {
-        this.empAvgCheckInTimeForMonth = a;
-    }
-
     public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
         this.empAvgCheckInTimeForMonth = a.toString();
+    }
+
+    public void setEmpAvgCheckInTimeForMonth(String a) {
+        this.empAvgCheckInTimeForMonth = a;
     }
 
     public String getEmpAvgCheckOutTimeForMonth() {
         return empAvgCheckOutTimeForMonth;
     }
 
-    public void setEmpAvgCheckOutTimeForMonth(String a) {
-        this.empAvgCheckOutTimeForMonth = a;
-    }
-
     public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
         this.empAvgCheckOutTimeForMonth = a.toString();
+    }
+
+    public void setEmpAvgCheckOutTimeForMonth(String a) {
+        this.empAvgCheckOutTimeForMonth = a;
     }
 
     public String getEmpAvgWorkHoursForMonth() {
         return empAvgWorkHoursForMonth;
     }
 
-    public void setEmpAvgWorkHoursForMonth(String a) {
-        this.empAvgWorkHoursForMonth = a;
-    }
-
     public void setEmpAvgWorkHoursForMonth(LocalTime a) {
         this.empAvgWorkHoursForMonth = a.toString();
+    }
+
+    public void setEmpAvgWorkHoursForMonth(String a) {
+        this.empAvgWorkHoursForMonth = a;
     }
 
     public ArrayList<SubMenuAttendanceOfDate> getAllDateDetailsList() {
@@ -127,10 +129,20 @@ public class WebJSONModel {
     }
 
     public void setAllDateDetailsList(String Type) {
-        allDateDetailsList = new ArrayList<>();
-        for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
-            if (attendanceOfDate.getAttendanceStatusType().equals(AttendanceStatusType.UNACCOUNTED_ABSENCE))
-                this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
+        this.allDateDetailsList = new ArrayList<>();
+        if (Type.equals("Discrepancy")) {
+            for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
+
+                if (attendanceOfDate.getAttendanceStatusType().equals(AttendanceStatusType.UNACCOUNTED_ABSENCE))
+                    this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
+
+            }
+        }else if (Type.equals("Weekend")) {
+            for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
+                if (attendanceOfDate.getAttendanceStatusType().equals(WEEKEND_HOLIDAY) && attendanceOfDate.getWorkTimeForDay() != null) {
+                    this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
+                }
+            }
         }
     }
 
@@ -155,8 +167,8 @@ public class WebJSONModel {
     }
 
     public void displayAllDates() {
-            displayBasicDetails();
-            getAllDateDetailsList().forEach(SubMenuAttendanceOfDate::displaySub);
+        displayBasicDetails();
+        getAllDateDetailsList().forEach(SubMenuAttendanceOfDate::displaySub);
 
     }
 

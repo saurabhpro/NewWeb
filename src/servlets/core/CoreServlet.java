@@ -87,7 +87,7 @@ public class CoreServlet extends HttpServlet {
             ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
             od.generate();
             //od.displayOnConsole();
-            od.createJSONList("MarkDiscrepancy");
+            od.createJSONList("Discrepancy");
         } catch (Exception ignored) {
         }
 

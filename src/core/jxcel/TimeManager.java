@@ -1,21 +1,22 @@
 package core.jxcel;
 
+import core.model.ProjectConstants;
 import core.model.attendence.AttendanceOfDate;
+import org.jetbrains.annotations.Contract;
 
 import java.time.*;
 import java.util.Arrays;
 import java.util.List;
+
+import static core.model.ProjectConstants.SECONDS_PER_HOUR;
+import static core.model.ProjectConstants.SECONDS_PER_MINUTE;
+import static core.model.ProjectConstants.YEAR;
 
 /**
  * Created by SaurabhK on 09-02-2016.
  */
 public class TimeManager {
 
-    private static final int MINUTES_PER_HOUR = 60;
-    private static final int SECONDS_PER_MINUTE = 60;
-    private static final int SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
-    private static Year year;
-    private static Month month;
 
     private TimeManager() {
     }
@@ -111,11 +112,11 @@ public class TimeManager {
     }
 
     public static Month getMonth() {
-        return month;
+        return ProjectConstants.MONTH;
     }
 
     public static void setMonth(Month month) {
-        TimeManager.month = month;
+        ProjectConstants.MONTH = month;
     }
 
     private static LocalTime getTime(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
@@ -131,11 +132,12 @@ public class TimeManager {
 
     }
 
+    @Contract(pure = true)
     public static Year getYear() {
-        return year;
+        return YEAR;
     }
 
-    public static void setYear(Year year) {
-        TimeManager.year = year;
+    public static void setYear(Year YEAR) {
+        ProjectConstants.YEAR = YEAR;
     }
 }
