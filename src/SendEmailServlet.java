@@ -22,15 +22,18 @@ public class SendEmailServlet extends HttpServlet  {
     String to;
     String message;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletConfig config = getServletConfig();
 
         subject=request.getParameter("subject");
         System.out.println(subject);
         message=request.getParameter("message");
         System.out.println(message);
-        //to = "saurabh.kumar@reval.com";
-        to = request.getParameter("to");
+        to = "amrita.arora@reval.com";
+        //to = request.getParameter("to");
         //String to = "amrita.arora.1192@gmail.com";
 
         String from = config.getInitParameter("from");
@@ -76,16 +79,15 @@ public class SendEmailServlet extends HttpServlet  {
             transport.connect(host, from, pass);
             transport.sendMessage(message1, message1.getAllRecipients());
             transport.close();
-            out.print("Successful");
+            out.print(ANSI_GREEN + "Message Sent");
             RequestDispatcher rd=request.getRequestDispatcher("./ThankYou.html");
             rd.include(request,response);
 
         } catch (MessagingException mex) {
             mex.printStackTrace();
-            out.print( "Error: unable to send message....");
+            out.print( ANSI_RED +"Error: unable to send message...." +mex);
             RequestDispatcher rd=request.getRequestDispatcher("./ThankYou.html");
             rd.include(request,response);
-            out.print(mex);
         }
     }
 }

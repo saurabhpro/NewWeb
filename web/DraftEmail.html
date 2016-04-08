@@ -15,24 +15,29 @@
 <body>
 <script type="text/ng-template" id="DraftEmail.html">
     <div style="margin: 10px;">
+
         <div class="modal-header">
             New Message
         </div>
         <div ng-controller="GenerateDiscrepancyController">
-            <form action="email">
-                Recipients<input type="text" name="to" class="form-control" id="inputdefault" placeholder="Recipients" value={{items.empEmailId}} style="width:95%;"><br />
-                Subject <input class="form-control input-lg" name="subject" id="inputlg" type="text" placeholder="Subject" value="Mail Regarding Discrepancies" style="width:95%;"><br />
+
+            <form action="email" method="post">
+                Recipients<input type="text" name="to" class="form-control" id="inputdefault" placeholder="Recipients"
+                                 value={{items.empEmailId}} style="width:95%;"><br/>
+                Subject <input class="form-control input-lg" name="subject" id="inputlg" type="text"
+                               placeholder="Subject" value="Mail Regarding Discrepancies" style="width:95%;"><br/>
                 <textarea name="message" style="width:95%;" rows="10">
                     Hi,
                     Discrepancies found in the attendance system:
                     </textarea>
 
-            <div class="modal-footer">
-                <button class="btn btn-warning" ng-click="cancel()">Close</button>
-                <br/>
-            </div>
-                <button class="btn btn-primary" ng-clcik="send()">Send</button>
+                <div class="modal-footer">
+                    <button class="btn btn-primary">Send</button>
+                </div>
             </form>
+            <div class="modal-footer">
+                <button style="float: right;" class="btn btn-warning" ng-click="cancel()">Close</button>
+            </div>
         </div>
     </div>
 </script>

@@ -48,36 +48,42 @@
       <li class="cd-label">Main</li>
       <li class="has-children comments">
         <a href="#0">Overview</a>
-
+      </li>
       <li class="has-children overview">
+        <a href="#UploadFiles" id="upload">Upload Files</a>
+      </li>
 
-        <a href="">Reports</a>
+       <!--<li class="has-children overview">
+       <a href="">Reports</a>
         <ul>
           <li><a href="#GenerateReport">Daily Report</a></li>
           <li><a href="#GenerateDiscrepancy">Discrepancy Report</a></li>
         </ul>
 
       </li>
+      -->
       <li class="has-children notifications active upload">
 
-        <a href="#0" id="upload" ng-click="clickFunc()">Upload Files</a>
+        <a href="" id="reports" ng-click="clickFunc()">Reports</a>
 
         <ul ng-show="showMe">
-          <li><a href="#uploadBiometric">Biometric File</a></li>
+          <li><a href="#GenerateReport">Monthly Report</a></li>
+          <li><a href="#GenerateDiscrepancy">Discrepancy Report</a></li>
+          <li><a href="#GenerateWeekendHoliday">Weekend Holiday</a></li>
+          <li><a href="#GeneratePublicHoliday">Public Holiday</a></li>
+
+          <!--<li><a href="#uploadBiometric">Biometric File</a></li>
           <li><a href="#uploadSalesforce">Financial Force File </a></li>
           <li><a href="#uploadEmailList">Email List File</a></li>
           <li><a href="#uploadHoliday">Holiday List File</a></li>
+          -->
         </ul>
 
       </li>
 
-      <li class="has-children">
-        <form action="src/core" method="post">
-          <input type="submit" value="Generate Jsons">
-        </form>
-      </li>
+
       <li class="has-children comments">
-        <a href="#0">Send Email</a>
+        <a href="#0">Sent Email</a>
 
 
       </li>

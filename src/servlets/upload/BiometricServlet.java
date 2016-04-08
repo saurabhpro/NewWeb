@@ -29,9 +29,12 @@ public class BiometricServlet extends HttpServlet {
 
         m = new MultipartRequest(request, biometricFilePath.toString());
 
+        String biometricDate= request.getParameter("biometricDate");
+
+        System.out.println(biometricDate);
         String filename = m.getFilesystemName("biometricFile");
 
-        response.sendRedirect("./mainPage.jsp#/uploadBiometric");
+        response.sendRedirect("./mainPage.jsp#/UploadFiles");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

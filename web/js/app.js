@@ -15,18 +15,12 @@ sampleApp.config(['$routeProvider',
         }).when('/uploadBiometric', {
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
-        }).when('/uploadSalesforce', {
-            templateUrl: './UploadFiles/uploadSalesforce.jsp',
-            controller: 'uploadHrnetController'
-        }).when('/uploadEmailList', {
-            templateUrl: './UploadFiles/uploadEmailList.jsp',
-            controller: 'uploadEmailListController'
-        }).when('/uploadHoliday', {
-            templateUrl: './UploadFiles/uploadHoliday.jsp',
-            controller: 'uploadHolidayController'
         }).when('/Logout',{
             //templateUrl: './UploadFiles/uploadHoliday.jsp',
             controller: 'logoutController'
+        }).when('/UploadFiles',{
+            templateUrl: './uploadFiles.jsp',
+            controller: 'UploadFilesController'
         }).otherwise({
             redirectTo: '/mainPage.jsp'
         });
@@ -140,7 +134,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
     $scope.openEmailDialog = function (items,day,size) {
         $log.info('Items24 ' + new Date());
         var modalInstance = $uibModal.open({
-            templateUrl: 'DraftEmail.html',
+            templateUrl: 'compose.html',
             controller: 'DraftEmailController',
             size:size,
             resolve: {
@@ -263,30 +257,11 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
 
 });
 
-sampleApp.controller("uploadBiometricController", function ($scope, $http) {
-    /*
-
-     $scope.getDataFromServer = function() {
-
-     $http({
-     method : 'POST',
-     url : '../../BiometricServlet'
-     }).success(function(data, status, headers, config) {
-     $scope.message = "successful";
-     }).error(function(data, status, headers, config) {
-     $scope.message = "error";
-     alert(data+headers+config);
-     document.write(data);
-     });
-
-     };
-     */
-});
-sampleApp.controller("uploadHrnetController", function ($scope, $http) {
-});
-sampleApp.controller("uploadEmailListController", function ($scope, $http) {
-});
-sampleApp.controller("uploadHolidayController", function ($scope, $http) {
+sampleApp.controller("UploadFilesController", function ($scope, $http) {
+    $scope.A = function(){
+        console.log('you click A on ', Date());
+        $scope.button_A = Date();
+    }
 });
 
 sampleApp.controller("logoutController", function($scope, $http){});
