@@ -27,8 +27,7 @@ public class MarkDiscrepancy {
                 for (int j = 0; j < TimeManager.getMonth().maxLength(); j++) {
                     if ((finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
                             || (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))) {
-                        System.out.println(
-                                "Null List- MarkDiscrepancy Set for " + finalObjectModel.getName() + " Date: " + (j + 1));
+                      //  System.out.println("Null List- MarkDiscrepancy Set for " + finalObjectModel.getName() + " Date: " + (j + 1));
                         finalObjectModel.setIfClarificationNeeded(true);
                     }
                 }
@@ -50,7 +49,7 @@ public class MarkDiscrepancy {
                                 break;
                         }
                         if (flag == 0) {
-                            System.out.println("MarkDiscrepancy Set for " + finalObjectModel.getName() + " Date: " + (j + 1));
+                          //  System.out.println("MarkDiscrepancy Set for " + finalObjectModel.getName() + " Date: " + (j + 1));
                             finalObjectModel.setIfClarificationNeeded(true);
                         }
                     }
@@ -71,8 +70,7 @@ public class MarkDiscrepancy {
                             if (hrnetDetail.attendanceOfLeave.getStartDate().getDayOfMonth() == j + 1) {
                                 if ((finalObjectModel.attendanceOfDate[j].getWorkTimeForDay() == null)
                                         || (finalObjectModel.attendanceOfDate[j].getWorkTimeForDay().getHour() < 4)) {
-                                    System.out.println("MarkDiscrepancy set for half day less than 4: "
-                                            + finalObjectModel.getName() + " Date: " + (j + 1));
+                                    //System.out.println("MarkDiscrepancy set for half day less than 4: " + finalObjectModel.getName() + " Date: " + (j + 1));
                                     finalObjectModel.setIfClarificationNeeded(true);
                                 }
                             }
@@ -80,7 +78,7 @@ public class MarkDiscrepancy {
                     }
                 }
             }
-            System.out.println();
+            //System.out.println();
         }
     }
 
@@ -102,7 +100,7 @@ public class MarkDiscrepancy {
 
                     case "PresentInBoth":
                         if (!hrnetDetail.attendanceOfLeave.getLeaveType().equals(WORK_FROM_HOME_IND)) {
-                            System.out.println("MarkDiscrepancy set for present: " + finalObjectModel.getName() + " Date:" + (j + 1));
+                      //      System.out.println("MarkDiscrepancy set for present: " + finalObjectModel.getName() + " Date:" + (j + 1));
                             finalObjectModel.setIfClarificationNeeded(true);
                         }
                         break;

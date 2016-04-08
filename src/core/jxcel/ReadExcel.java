@@ -46,7 +46,7 @@ public class ReadExcel {
         fileWorker = sheetFactory.dispatch("XLSX", hrNetFile);
         if (fileWorker instanceof HrnetFileWorker) {
             ((HrnetFileWorker) fileWorker).readFile();
-            ((HrnetFileWorker) fileWorker).displayFile();
+         //   ((HrnetFileWorker) fileWorker).displayFile();
         }
 
         CombineFile combineFile = new CombineFile();
@@ -54,7 +54,7 @@ public class ReadExcel {
         new JsonMapper().toJsonFile(null).fromJsonToFormattedJson(null);
 
         //displayAllDates Combined Files
-        combineFile.displayCombineFiles();
+        //combineFile.displayCombineFiles();
 
         // remove discrepancies
         MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
@@ -62,7 +62,7 @@ public class ReadExcel {
 
         ListGeneratorModel ph = new PublicHolidayWorkerJson();
         ph.generate();
-        ph.displayOnConsole();
+      //  ph.displayOnConsole();
         ph.createJSONList("PublicHoliday");
 
         ListGeneratorModel c = new AllEmployeeDetailsJson();

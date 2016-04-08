@@ -1202,7 +1202,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -3142,12 +3142,12 @@
       },
       "overTime" : null,
       "workTimeForDay" : {
-        "hour" : 9,
+        "hour" : 5,
         "minute" : 50,
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "HALF_DAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -3432,7 +3432,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -3453,7 +3453,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -3474,7 +3474,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -3494,13 +3494,8 @@
       "checkIn" : null,
       "checkOut" : null,
       "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 4,
-        "minute" : 0,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "HALF_DAY",
+      "workTimeForDay" : null,
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -3521,7 +3516,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -4145,7 +4140,7 @@
     },
     "averageNumberOfHoursMonthly" : {
       "hour" : 9,
-      "minute" : 43,
+      "minute" : 16,
       "second" : 0,
       "nano" : 0
     },
@@ -6652,13 +6647,8 @@
       "checkIn" : null,
       "checkOut" : null,
       "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 4,
-        "minute" : 0,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "HALF_DAY",
+      "workTimeForDay" : null,
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -6793,7 +6783,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -7190,12 +7180,12 @@
       },
       "overTime" : null,
       "workTimeForDay" : {
-        "hour" : 17,
+        "hour" : 13,
         "minute" : 57,
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "HALF_DAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -7366,7 +7356,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -12589,12 +12579,12 @@
       },
       "overTime" : null,
       "workTimeForDay" : {
-        "hour" : 7,
+        "hour" : 3,
         "minute" : 42,
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "HALF_DAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -12771,7 +12761,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -12970,8 +12960,8 @@
       "nano" : 0
     },
     "averageNumberOfHoursMonthly" : {
-      "hour" : 9,
-      "minute" : 9,
+      "hour" : 8,
+      "minute" : 57,
       "second" : 0,
       "nano" : 0
     },
@@ -15392,7 +15382,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -15713,7 +15703,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -15734,7 +15724,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -15915,12 +15905,12 @@
       },
       "overTime" : null,
       "workTimeForDay" : {
-        "hour" : 8,
+        "hour" : 4,
         "minute" : 16,
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "HALF_DAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -15941,7 +15931,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -15962,7 +15952,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -16430,7 +16420,7 @@
     },
     "averageNumberOfHoursMonthly" : {
       "hour" : 8,
-      "minute" : 44,
+      "minute" : 28,
       "second" : 0,
       "nano" : 0
     },
@@ -17101,7 +17091,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -17324,12 +17314,12 @@
       },
       "overTime" : null,
       "workTimeForDay" : {
-        "hour" : 9,
+        "hour" : 5,
         "minute" : 59,
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "HALF_DAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -17457,7 +17447,7 @@
     },
     "averageNumberOfHoursMonthly" : {
       "hour" : 8,
-      "minute" : 30,
+      "minute" : 12,
       "second" : 0,
       "nano" : 0
     },
@@ -18309,7 +18299,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -18574,7 +18564,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -18600,7 +18590,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -20755,13 +20745,8 @@
       "checkIn" : null,
       "checkOut" : null,
       "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 4,
-        "minute" : 0,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "HALF_DAY",
+      "workTimeForDay" : null,
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -25073,7 +25058,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -25784,7 +25769,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -26577,7 +26562,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -27083,7 +27068,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -27188,7 +27173,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -31136,7 +31121,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -33292,10 +33277,10 @@
     "ifClarificationNeeded" : false
   },
   "R137" : {
-    "name" : null,
+    "name" : "Surabhi Kulkarni",
     "empId" : "R137",
-    "salesForceId" : null,
-    "emailId" : null,
+    "salesForceId" : "9999",
+    "emailId" : "surabhi.kulkarni@reval.com",
     "attendanceOfDate" : [ {
       "currentDate" : {
         "year" : 2016,
@@ -36827,13 +36812,8 @@
       "checkIn" : null,
       "checkOut" : null,
       "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 4,
-        "minute" : 0,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "HALF_DAY",
+      "workTimeForDay" : null,
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -51394,10 +51374,10 @@
     "ifClarificationNeeded" : false
   },
   "R156" : {
-    "name" : "Surabhi Kulkarni",
+    "name" : null,
     "empId" : "R156",
-    "salesForceId" : "9999",
-    "emailId" : "surabhi.kulkarni@reval.com",
+    "salesForceId" : null,
+    "emailId" : null,
     "attendanceOfDate" : [ {
       "currentDate" : {
         "year" : 2016,
@@ -56292,7 +56272,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -56313,7 +56293,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -56334,7 +56314,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -56907,7 +56887,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -57114,7 +57094,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -57135,7 +57115,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -57378,7 +57358,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -59740,7 +59720,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -59844,7 +59824,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -60475,12 +60455,12 @@
       },
       "overTime" : null,
       "workTimeForDay" : {
-        "hour" : 8,
+        "hour" : 4,
         "minute" : 0,
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "HALF_DAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -60506,7 +60486,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -60744,7 +60724,7 @@
     },
     "averageNumberOfHoursMonthly" : {
       "hour" : 8,
-      "minute" : 29,
+      "minute" : 15,
       "second" : 0,
       "nano" : 0
     },
@@ -64969,12 +64949,12 @@
       },
       "overTime" : null,
       "workTimeForDay" : {
-        "hour" : 10,
+        "hour" : 6,
         "minute" : 10,
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "HALF_DAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -65031,7 +65011,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -65052,7 +65032,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -65073,7 +65053,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -65213,7 +65193,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -65644,7 +65624,7 @@
     },
     "averageNumberOfHoursMonthly" : {
       "hour" : 9,
-      "minute" : 30,
+      "minute" : 14,
       "second" : 0,
       "nano" : 0
     },
@@ -68683,7 +68663,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -68704,7 +68684,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -68725,7 +68705,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -68746,7 +68726,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -68767,7 +68747,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -68788,7 +68768,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -68809,7 +68789,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -68830,7 +68810,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -69943,7 +69923,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -73034,7 +73014,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -73138,7 +73118,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -73195,7 +73175,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -73443,7 +73423,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -73542,7 +73522,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -73563,7 +73543,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -73584,7 +73564,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -78499,7 +78479,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -79311,7 +79291,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -80942,7 +80922,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -80963,7 +80943,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -81124,7 +81104,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -81150,7 +81130,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -81176,7 +81156,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -83671,7 +83651,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -83692,7 +83672,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -83713,7 +83693,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -83734,7 +83714,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -83770,7 +83750,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -83941,7 +83921,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -83967,7 +83947,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -83988,7 +83968,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -84009,7 +83989,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "SICK_IND"
     }, {
       "currentDate" : {
@@ -85971,7 +85951,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -87091,7 +87071,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87112,7 +87092,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87133,7 +87113,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87154,7 +87134,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87175,7 +87155,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87196,7 +87176,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87217,7 +87197,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87238,7 +87218,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87259,7 +87239,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -87280,7 +87260,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "VACATION_IND"
     }, {
       "currentDate" : {
@@ -90807,7 +90787,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -91014,7 +90994,7 @@
       "checkOut" : null,
       "overTime" : null,
       "workTimeForDay" : null,
-      "attendanceStatusType" : "UNACCOUNTED_ABSENCE",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "CASUAL_IND"
     }, {
       "currentDate" : {
@@ -91148,7 +91128,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -91408,7 +91388,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -91434,7 +91414,7 @@
         "second" : 0,
         "nano" : 0
       },
-      "attendanceStatusType" : "PRESENT",
+      "attendanceStatusType" : "ON_LEAVE",
       "leaveTypeForThisDate" : "WORK_FROM_HOME_IND"
     }, {
       "currentDate" : {
@@ -94932,298 +94912,4 @@
       "leaveTypeForThisDate" : "NO_LEAVE"
     }, {
       "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "TUESDAY",
-        "dayOfYear" : 82,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 22,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : {
-        "hour" : 8,
-        "minute" : 32,
-        "second" : 0,
-        "nano" : 0
-      },
-      "checkOut" : {
-        "hour" : 17,
-        "minute" : 28,
-        "second" : 0,
-        "nano" : 0
-      },
-      "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 8,
-        "minute" : 56,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "PRESENT",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "WEDNESDAY",
-        "dayOfYear" : 83,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 23,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : {
-        "hour" : 8,
-        "minute" : 27,
-        "second" : 0,
-        "nano" : 0
-      },
-      "checkOut" : {
-        "hour" : 17,
-        "minute" : 22,
-        "second" : 0,
-        "nano" : 0
-      },
-      "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 8,
-        "minute" : 55,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "PRESENT",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "THURSDAY",
-        "dayOfYear" : 84,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 24,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : null,
-      "checkOut" : null,
-      "overTime" : null,
-      "workTimeForDay" : null,
-      "attendanceStatusType" : "PUBLIC_HOLIDAY",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "FRIDAY",
-        "dayOfYear" : 85,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 25,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : null,
-      "checkOut" : null,
-      "overTime" : null,
-      "workTimeForDay" : null,
-      "attendanceStatusType" : "PUBLIC_HOLIDAY",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "SATURDAY",
-        "dayOfYear" : 86,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 26,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : null,
-      "checkOut" : null,
-      "overTime" : null,
-      "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "SUNDAY",
-        "dayOfYear" : 87,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 27,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : null,
-      "checkOut" : null,
-      "overTime" : null,
-      "workTimeForDay" : null,
-      "attendanceStatusType" : "WEEKEND_HOLIDAY",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "MONDAY",
-        "dayOfYear" : 88,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 28,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : {
-        "hour" : 8,
-        "minute" : 29,
-        "second" : 0,
-        "nano" : 0
-      },
-      "checkOut" : {
-        "hour" : 17,
-        "minute" : 27,
-        "second" : 0,
-        "nano" : 0
-      },
-      "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 8,
-        "minute" : 58,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "PRESENT",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "TUESDAY",
-        "dayOfYear" : 89,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 29,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : {
-        "hour" : 10,
-        "minute" : 32,
-        "second" : 0,
-        "nano" : 0
-      },
-      "checkOut" : {
-        "hour" : 19,
-        "minute" : 11,
-        "second" : 0,
-        "nano" : 0
-      },
-      "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 8,
-        "minute" : 39,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "PRESENT",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "WEDNESDAY",
-        "dayOfYear" : 90,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 30,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : {
-        "hour" : 8,
-        "minute" : 39,
-        "second" : 0,
-        "nano" : 0
-      },
-      "checkOut" : {
-        "hour" : 17,
-        "minute" : 31,
-        "second" : 0,
-        "nano" : 0
-      },
-      "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 8,
-        "minute" : 52,
-        "second" : 0,
-        "nano" : 0
-      },
-      "attendanceStatusType" : "PRESENT",
-      "leaveTypeForThisDate" : "NO_LEAVE"
-    }, {
-      "currentDate" : {
-        "year" : 2016,
-        "month" : "MARCH",
-        "era" : "CE",
-        "dayOfWeek" : "THURSDAY",
-        "dayOfYear" : 91,
-        "leapYear" : true,
-        "monthValue" : 3,
-        "dayOfMonth" : 31,
-        "chronology" : {
-          "id" : "ISO",
-          "calendarType" : "iso8601"
-        }
-      },
-      "checkIn" : {
-        "hour" : 8,
-        "minute" : 43,
-        "second" : 0,
-        "nano" : 0
-      },
-      "checkOut" : {
-        "hour" : 16,
-        "minute" : 33,
-        "second" : 0,
-        "nano" : 0
-      },
-      "overTime" : null,
-      "workTimeForDay" : {
-        "hour" : 7,
-        "minute" : 50,
-        "second" : 0,
-        "n
+        "year" : 2016

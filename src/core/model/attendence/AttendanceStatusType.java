@@ -10,5 +10,6 @@ public enum AttendanceStatusType {
     WEEKEND_HOLIDAY,
     HALF_DAY,
     UNACCOUNTED_ABSENCE,
+    ON_LEAVE,
     NOT_AN_EMPLOYEE
 }

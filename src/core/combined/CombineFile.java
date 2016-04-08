@@ -5,6 +5,7 @@ import core.jxcel.BiometricFileWorker;
 import core.jxcel.HrnetFileWorker;
 import core.jxcel.TimeManager;
 import core.model.FinalObjectModel;
+import core.model.attendence.AttendanceStatusType;
 import core.model.attendence.HolidaysList;
 import core.model.attendence.LeaveType;
 import core.model.empl.BasicEmployeeDetails;
@@ -45,6 +46,8 @@ public class CombineFile {
             changeDatesRange = tempStart.getDayOfMonth() - 1;
             empObj.attendanceOfDate[changeDatesRange].setLeaveTypeForThisDate(hr.attendanceOfLeave.getLeaveType());
 
+            //update the AttendanceStatusType to On leave for leavs applied on salesforce
+            empObj.attendanceOfDate[changeDatesRange].setAttendanceStatusType(AttendanceStatusType.ON_LEAVE);
             if (tempStart.equals(tempEnd))
                 break;
 
@@ -125,12 +128,10 @@ public class CombineFile {
                         String tempSalesForceId = new BasicEmployeeDetails().getSalesForceId(empObj.getEmpId());
 
                         if (tempSalesForceId != null && tempSalesForceId.equals(hrEntry.getKey())) {
-
                             for (HrnetDetails hr : hrEntry.getValue()) {
                                 updateFromAbsentToPresentOrHalfDay(hr, empObj); //update emoObj using the details from hr
                                 updateLeaveTypes(hr, empObj);
                             }
-
                         }
                     }
                     break;
@@ -147,7 +148,7 @@ public class CombineFile {
             changeDatesRange = tempStart.getDayOfMonth() - 1;
 
             if (leaveTime == 0.5) {
-                empObj.attendanceOfDate[changeDatesRange].setAttendanceStatusType(HALF_DAY);
+                empObj.attendanceOfDate[changeDatesRange].setAttendanceStatusType(HALF_DAY);        //second point of update for Half_Day
 
             } else if (hr.attendanceOfLeave.getLeaveType() == LeaveType.WORK_FROM_HOME_IND) {
                 empObj.attendanceOfDate[changeDatesRange].setWorkTimeForDay(LocalTime.of(6, 0));
@@ -165,15 +166,16 @@ public class CombineFile {
         for (int i = 0; i < TimeManager.getMonth().maxLength(); i++) {
             // 06-03-2016 changed the Type from ABSENT to
             // UNACCOUNTED_ABSENCE.
-            if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(ABSENT))
+            if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(ABSENT)) {
                 empObj.attendanceOfDate[i].setAttendanceStatusType(UNACCOUNTED_ABSENCE);
-
+            }
             else if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(HALF_DAY)) {
                 LocalTime time = empObj.attendanceOfDate[i].getWorkTimeForDay();
                 if (time == null)
                     empObj.attendanceOfDate[i].setWorkTimeForDay(LocalTime.of(4, 0));
-                else
+                else if(empObj.attendanceOfDate[i].getLeaveTypeForThisDate() == LeaveType.WORK_FROM_HOME_IND)
                     empObj.attendanceOfDate[i].setWorkTimeForDay(time.plusHours(4));
+
             }
         }
     }

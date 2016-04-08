@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * Created by kumars on 4/5/2016.
  */
-@WebServlet(name = "CoreServlet", urlPatterns = {"/core"})
+@WebServlet(name = "CoreServlet", urlPatterns = {"/src/core"})
 public class CoreServlet extends HttpServlet {
 
     private static String biometricFile;
@@ -42,17 +42,20 @@ public class CoreServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Object fileWorker;
             SheetFactory sheetFactory = new SheetFactory();
 
-            setEmpListID("C:\\ProjectFiles\\EmailList\\Emails.xlsx");
+            setEmpListID("C:\\ProjectFiles\\Emails.xlsx");
             setBiometricFile("C:\\ProjectFiles\\Biometric\\march 8.xls");
             setHrNetFile("C:\\ProjectFiles\\Salesforce\\March FF report Final.xlsx");
 
             EmployeeMasterData employeeMasterData = new EmployeeMasterData(empListID);
             employeeMasterData.readFile();
-            employeeMasterData.toJsonFile();
 
             // read Biometric Excel File
             fileWorker = sheetFactory.dispatch("Jxcel", biometricFile);
@@ -83,12 +86,13 @@ public class CoreServlet extends HttpServlet {
 
             ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
             od.generate();
-            od.displayOnConsole();
+            //od.displayOnConsole();
             od.createJSONList("MarkDiscrepancy");
         } catch (Exception ignored) {
         }
 
-        response.sendRedirect("./mainPage.jsp#/UploadFiles");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("mainPage.jsp");
+        requestDispatcher.forward(request, response);
     }
 
 }
