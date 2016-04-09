@@ -2,11 +2,13 @@ package core.combined;
 
 import core.jxcel.TimeManager;
 import core.model.FinalObjectModel;
+import core.model.ProjectConstants;
 import core.model.uploadedfiles.HrnetDetails;
 
 import java.time.LocalDate;
 import java.util.Map;
 
+import static core.model.ProjectConstants.*;
 import static core.model.attendence.AttendanceStatusType.*;
 import static core.model.attendence.LeaveType.WORK_FROM_HOME_IND;
 
@@ -24,7 +26,7 @@ public class MarkDiscrepancy {
             // MarkDiscrepancy if an employee is absent and there is no entry in
             // Hrnet file.
             if (finalObjectModel.hrnetDetails == null) {
-                for (int j = 0; j < TimeManager.getMonth().maxLength(); j++) {
+                for (int j = 0; j < getMONTH().maxLength(); j++) {
                     if ((finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
                             || (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))) {
                       //  System.out.println("Null List- MarkDiscrepancy Set for " + finalObjectModel.getName() + " Date: " + (j + 1));
@@ -35,7 +37,7 @@ public class MarkDiscrepancy {
             } else {
                 // case where there is an entry
                 int flag;
-                for (int j = 0; j < TimeManager.getMonth().maxLength(); j++) {
+                for (int j = 0; j < getMONTH().maxLength(); j++) {
                     flag = 0;
                     // his status is still absent after merging
                     if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE)) {

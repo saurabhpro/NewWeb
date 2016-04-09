@@ -4,11 +4,13 @@
 
 package core.model.uploadedfiles;
 
-import core.jxcel.TimeManager;
+import core.model.ProjectConstants;
 import core.model.attendence.AttendanceOfDate;
 import core.model.empl.BasicEmployeeDetails;
 
 import java.time.LocalTime;
+
+import static core.model.ProjectConstants.*;
 
 public class EmpBiometricDetails extends BasicEmployeeDetails {
     public final AttendanceOfDate[] attendanceOfDate;
@@ -29,20 +31,20 @@ public class EmpBiometricDetails extends BasicEmployeeDetails {
     }
 
     public void printEmpBiometricDetails() {
-        System.out.println("Name: " + this.getName());
-        System.out.println("Employee ID: " + this.getEmpId());
+        System.out.println(EMP_NAME + " : " + this.getName());
+        System.out.println(EMP_REVAL_IND_ID + " : " + this.getEmpId());
 
         LocalTime workTime;
 
-        for (int j = 0; j < TimeManager.getMonth().maxLength(); j++) {
-            System.out.print(this.attendanceOfDate[j].getCurrentDate());
-            System.out.print("\tIn Time: " + this.attendanceOfDate[j].getCheckIn());
-            System.out.print("\tOut Time: " + this.attendanceOfDate[j].getCheckOut());
-            System.out.print("\tStatus: " + this.attendanceOfDate[j].getAttendanceStatusType() + "\n");
+        for (int j = 0; j < getMONTH().maxLength(); j++) {
+            System.out.print(CURRENT_DATE + " : " + this.attendanceOfDate[j].getCurrentDate());
+            System.out.print("\t" + EMP_CHECK_IN + " : " + this.attendanceOfDate[j].getCheckIn());
+            System.out.print("\t+" + EMP_CHECK_OUT + " : " + this.attendanceOfDate[j].getCheckOut());
+            System.out.print("\t" + EMP_ATTENDANCE_STATUS_TYPE + " : " + this.attendanceOfDate[j].getAttendanceStatusType() + "\n");
 
             workTime = this.attendanceOfDate[j].getWorkTimeForDay();
             if (workTime != null)
-                System.out.println(workTime);
+                System.out.println(EMP_WORK_HOURS_FOR_THIS_DAY + " : " + workTime);
 
         }
 

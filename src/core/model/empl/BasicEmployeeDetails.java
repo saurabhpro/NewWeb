@@ -2,6 +2,8 @@ package core.model.empl;
 
 import core.emplmasterrecord.EmployeeMasterData;
 
+import static core.model.ProjectConstants.*;
+
 /**
  * Created by kumars on 2/29/2016.
  */
@@ -22,10 +24,10 @@ public class BasicEmployeeDetails {
     }
 
     public void displayBasicInfo() {
-        System.out.print("EmpId: " + this.getEmpId());
-        System.out.print("\tEmpName: " + this.getName());
-        System.out.print("\tEmpEmailId: " + this.getEmailId());
-        System.out.println("\tEmpSalesForce: " + this.getSalesForceId());
+        System.out.print(EMP_REVAL_IND_ID + " : " + this.getEmpId());
+        System.out.print("\t" + EMP_NAME + " : " + this.getName());
+        System.out.print("\t" + EMP_EMAIL_ID + " : " + this.getEmailId());
+        System.out.println("\t" + EMP_FINANCIAL_FORCE_ID + " : " + this.getSalesForceId());
     }
 
     public String getEmailId() {

@@ -5,6 +5,7 @@ import core.jxcel.BiometricFileWorker;
 import core.jxcel.HrnetFileWorker;
 import core.jxcel.TimeManager;
 import core.model.FinalObjectModel;
+import core.model.ProjectConstants;
 import core.model.attendence.AttendanceStatusType;
 import core.model.attendence.HolidaysList;
 import core.model.attendence.LeaveType;
@@ -19,6 +20,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import static core.model.ProjectConstants.*;
 import static core.model.attendence.AttendanceStatusType.*;
 
 /**
@@ -52,7 +54,7 @@ public class CombineFile {
                 break;
 
             tempStart = tempStart.plusDays(1);
-        } while (tempStart.getMonth().equals(TimeManager.getMonth()));
+        } while (tempStart.getMonth().equals(getMONTH()));
     }
 
     public void combineFiles() {
@@ -110,7 +112,7 @@ public class CombineFile {
     private void holidayStatusUpdater(EmpBiometricDetails empObj) {
         // set public holiday status
         for (HolidaysList h : HolidaysList.values()) {
-            if (h.getDate().getMonth() == TimeManager.getMonth()) {
+            if (h.getDate().getMonth() == getMONTH()) {
                 empObj.attendanceOfDate[h.getDate().getDayOfMonth() - 1].setAttendanceStatusType(PUBLIC_HOLIDAY);
             }
 
@@ -118,7 +120,7 @@ public class CombineFile {
     }
 
     private void absentStatusUpdater(EmpBiometricDetails empObj) {
-        for (int i = 0; i < TimeManager.getMonth().maxLength(); i++) {
+        for (int i = 0; i < getMONTH().maxLength(); i++) {
             switch (empObj.attendanceOfDate[i].getAttendanceStatusType()) {
                 case ABSENT:
                     // check for Work from home and half day
@@ -159,11 +161,11 @@ public class CombineFile {
                 break;
             leaveTime--;
             tempStart = tempStart.plusDays(1);
-        } while (leaveTime > 0 && tempStart.getMonth().equals(TimeManager.getMonth()));
+        } while (leaveTime > 0 && tempStart.getMonth().equals(getMONTH()));
     }
 
     private void halfDayWorkHoursUpdater(EmpBiometricDetails empObj) {
-        for (int i = 0; i < TimeManager.getMonth().maxLength(); i++) {
+        for (int i = 0; i < getMONTH().maxLength(); i++) {
             // 06-03-2016 changed the Type from ABSENT to
             // UNACCOUNTED_ABSENCE.
             if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(ABSENT)) {
@@ -182,7 +184,7 @@ public class CombineFile {
 
     private void countAttendanceStatusType(FinalObjectModel emp) {
         // to be removed today
-        for (int j = 0; j < TimeManager.getMonth().maxLength(); j++) {
+        for (int j = 0; j < getMONTH().maxLength(); j++) {
 
             // AMRITA
             if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
@@ -200,7 +202,7 @@ public class CombineFile {
     }
 
     public void displayCombineFiles() {
-        System.out.println(TimeManager.getMonth());
+        System.out.println(getMONTH());
         EmpCombinedMap.values().forEach(FinalObjectModel::displayFinalList);
     }
 

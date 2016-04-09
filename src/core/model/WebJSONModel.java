@@ -8,6 +8,7 @@ import core.model.empl.BasicEmployeeDetails;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import static core.model.ProjectConstants.*;
 import static core.model.attendence.AttendanceStatusType.WEEKEND_HOLIDAY;
 
 /**
@@ -92,36 +93,36 @@ public class WebJSONModel {
         return empAvgCheckInTimeForMonth;
     }
 
-    public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
-        this.empAvgCheckInTimeForMonth = a.toString();
-    }
-
     public void setEmpAvgCheckInTimeForMonth(String a) {
         this.empAvgCheckInTimeForMonth = a;
+    }
+
+    public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
+        this.empAvgCheckInTimeForMonth = a.toString();
     }
 
     public String getEmpAvgCheckOutTimeForMonth() {
         return empAvgCheckOutTimeForMonth;
     }
 
-    public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
-        this.empAvgCheckOutTimeForMonth = a.toString();
-    }
-
     public void setEmpAvgCheckOutTimeForMonth(String a) {
         this.empAvgCheckOutTimeForMonth = a;
+    }
+
+    public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
+        this.empAvgCheckOutTimeForMonth = a.toString();
     }
 
     public String getEmpAvgWorkHoursForMonth() {
         return empAvgWorkHoursForMonth;
     }
 
-    public void setEmpAvgWorkHoursForMonth(LocalTime a) {
-        this.empAvgWorkHoursForMonth = a.toString();
-    }
-
     public void setEmpAvgWorkHoursForMonth(String a) {
         this.empAvgWorkHoursForMonth = a;
+    }
+
+    public void setEmpAvgWorkHoursForMonth(LocalTime a) {
+        this.empAvgWorkHoursForMonth = a.toString();
     }
 
     public ArrayList<SubMenuAttendanceOfDate> getAllDateDetailsList() {
@@ -130,14 +131,14 @@ public class WebJSONModel {
 
     public void setAllDateDetailsList(String Type) {
         this.allDateDetailsList = new ArrayList<>();
-        if (Type.equals("Discrepancy")) {
+        if (Type.equals(DISCREPANCY_IN_WORKERS_LIST)) {
             for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
 
                 if (attendanceOfDate.getAttendanceStatusType().equals(AttendanceStatusType.UNACCOUNTED_ABSENCE))
                     this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
 
             }
-        }else if (Type.equals("Weekend")) {
+        } else if (Type.equals(WEEKEND_WORKERS_LIST)) {
             for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
                 if (attendanceOfDate.getAttendanceStatusType().equals(WEEKEND_HOLIDAY) && attendanceOfDate.getWorkTimeForDay() != null) {
                     this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
@@ -155,14 +156,14 @@ public class WebJSONModel {
     }
 
     private void displayBasicDetails() {
-        System.out.println("\nEmpId " + getEmpRevalId());
-        System.out.println("Emp Salesforce " + getEmpSalesforceId());
-        System.out.println("Emp Name" + getEmpName());
-        System.out.println("Emp Email" + getEmpEmailId());
-        System.out.println("Emp Average check in " + getEmpAvgCheckInTimeForMonth());
-        System.out.println("Emp Average check out " + getEmpAvgCheckOutTimeForMonth());
-        System.out.println("Emp Average work hours " + getEmpAvgWorkHoursForMonth());
-        System.out.println("Emp Clarification needed " + getEmpIfClarificationNeeded());
+        System.out.println("\n" + EMP_REVAL_IND_ID + " : " + getEmpRevalId());
+        System.out.println(EMP_FINANCIAL_FORCE_ID + " : " + getEmpSalesforceId());
+        System.out.println(EMP_NAME + " : " + getEmpName());
+        System.out.println(EMP_EMAIL_ID + " : " + getEmpEmailId());
+        System.out.println(EMP_AVERAGE_MONTHLY_CHECK_IN + " : " + getEmpAvgCheckInTimeForMonth());
+        System.out.println(EMP_AVERAGE_MONTHLY_CHECK_OUT + " : " + getEmpAvgCheckOutTimeForMonth());
+        System.out.println(EMP_AVERAGE_MONTHLY_WORK_HOURS + " : " + getEmpAvgWorkHoursForMonth());
+        System.out.println(CLARIFICATION_NEEDED + " : " + getEmpIfClarificationNeeded());
 
     }
 
@@ -197,11 +198,11 @@ public class WebJSONModel {
             leaveTypeForThisDate = attendance.getLeaveTypeForThisDate();
 
             if (checkIn == null)
-                checkIn = "undefined";
+                checkIn = UNDEFINED;
             if (checkOut == null)
-                checkOut = "undefined";
+                checkOut = UNDEFINED;
             if (workTimeForDay == null)
-                workTimeForDay = "undefined";
+                workTimeForDay = UNDEFINED;
         }
 
         public String getCurrentDate() {
@@ -229,12 +230,12 @@ public class WebJSONModel {
         }
 
         public void displaySub() {
-            System.out.println("Date: " + currentDate);
-            System.out.println("Check in: " + checkIn);
-            System.out.println("Check out: " + checkOut);
-            System.out.println("Work Time: " + workTimeForDay);
-            System.out.println("Attendance Status: " + attendanceStatusType);
-            System.out.println("Leave Type: " + leaveTypeForThisDate);
+            System.out.println(CURRENT_DATE + " : " + getCurrentDate());
+            System.out.println(EMP_CHECK_IN + " : " + getCheckIn());
+            System.out.println(EMP_CHECK_OUT + " : " + getCheckOut());
+            System.out.println(EMP_WORK_HOURS_FOR_THIS_DAY + " : " + getWorkTimeForDay());
+            System.out.println(EMP_ATTENDANCE_STATUS_TYPE + " : " + getAttendanceStatusType());
+            System.out.println(EMP_LEAVE_REQUEST_TYPE + " : " + getLeaveTypeForThisDate());
         }
     }
 }

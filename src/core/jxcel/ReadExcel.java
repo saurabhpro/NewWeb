@@ -5,6 +5,7 @@ import core.combined.MarkDiscrepancy;
 import core.emplmasterrecord.EmployeeMasterData;
 import core.factory.SheetFactory;
 import core.model.ListGeneratorModel;
+import core.model.ProjectConstants;
 import core.model.Version;
 import core.view.*;
 
@@ -24,9 +25,9 @@ public class ReadExcel {
         Object fileWorker;
         SheetFactory sheetFactory = new SheetFactory();
 
-        setEmployeeRecordFileName(ALL_EMPLOYEE_RECORD_FILE);
+        setEmployeeRecordFileName(ALL_EMPLOYEE_RECORD_FILE_PATH);
         setBiometricFileName(BIOMETRIC_FILE_PATH);
-        setFinancialForceFileName(FINANCIAL_FORCE_FILE);
+        setFinancialForceFileName(FINANCIAL_FORCE_FILE_PATH);
 
         EmployeeMasterData employeeMasterData = new EmployeeMasterData(getEmployeeRecordFileName());
         employeeMasterData.readFile();
@@ -47,7 +48,7 @@ public class ReadExcel {
 
         CombineFile combineFile = new CombineFile();
         combineFile.combineFiles();
-        new JsonMapper().toJsonFile(null).fromJsonToFormattedJson(null);
+        //new JsonMapper().toJsonFile(null).fromJsonToFormattedJson(null);
 
         //displayAllDates Combined Files
         //combineFile.displayCombineFiles();
@@ -58,21 +59,22 @@ public class ReadExcel {
 
         ListGeneratorModel ph = new PublicHolidayWorkerJson();
         ph.generate();
-      //  ph.displayOnConsole();
-        ph.createJSONList(getPublicHolidayWorkersListFile());
+        ph.displayOnConsole();
+        ph.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
 
         ListGeneratorModel c = new AllEmployeeDetailsJson();
         c.generate();
-        c.createJSONList(getAllEmployeeListFile());
+        //c.displayOnConsole();
+        c.createJSONList(ALL_EMP_WORKERS_LIST);
 
         ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
         od.generate();
        // od.displayOnConsole();
-        od.createJSONList(getDiscrepancyListFile());
+        od.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
 
         ListGeneratorModel ow = new WeekendWorkerJson();
         ow.generate();
-        ow.displayOnConsole();
-        ow.createJSONList(getWeekendWorkersListFile());
+        //ow.displayOnConsole();
+        ow.createJSONList(WEEKEND_WORKERS_LIST);
     }
 }

@@ -15,6 +15,9 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
+import static core.model.ProjectConstants.*;
+import static core.model.attendence.AttendanceStatusType.*;
+
 /**
  * Created by Saurabh on 2/10/2016. updated on 2/13/2016
  */
@@ -32,7 +35,7 @@ public class BiometricFileWorker implements FileOperations {
 
     @Override
     public void displayFile() {
-        System.out.println(TimeManager.getMonth());
+        System.out.println(getMONTH());
         empList.values().forEach(EmpBiometricDetails::printEmpBiometricDetails);
     }
 
@@ -50,13 +53,13 @@ public class BiometricFileWorker implements FileOperations {
         StringTokenizer st;
         AttendanceStatusType attendanceStatus;
 
-        int noOfDaysInThatMonth = TimeManager.getMonth().maxLength();
+        int noOfDaysInThatMonth = getMONTH().maxLength();
 
         for (int k = 0; k < noOfDaysInThatMonth; k++) {
-            LocalDate tempDate = LocalDate.of(TimeManager.getYear().getValue(), TimeManager.getMonth(), (k + 1));
+            LocalDate tempDate = LocalDate.of(getYEAR().getValue(), getMONTH(), (k + 1));
             attendanceOfDate[k] = new AttendanceOfDate();
             attendanceOfDate[k].setCurrentDate(tempDate);
-            attendanceStatus = AttendanceStatusType.NOT_AN_EMPLOYEE; // default
+            attendanceStatus = NOT_AN_EMPLOYEE; // default
             // status
             // for
             // an
@@ -76,16 +79,16 @@ public class BiometricFileWorker implements FileOperations {
                         case "A/A":
                         case "P/A":
                         case "A/P":
-                            attendanceStatus = AttendanceStatusType.ABSENT;
+                            attendanceStatus = ABSENT;
                             break lb;
 
                         case "W":
                             // case when employee checks in on weekend
-                            attendanceStatus = AttendanceStatusType.WEEKEND_HOLIDAY;
+                            attendanceStatus = WEEKEND_HOLIDAY;
                             break lb;
 
                         case "P":
-                            attendanceStatus = AttendanceStatusType.PRESENT;
+                            attendanceStatus = PRESENT;
                             break lb;
 
                         default:
@@ -110,11 +113,11 @@ public class BiometricFileWorker implements FileOperations {
         String monthYear = getCustomCellContent(13, 7);
         String[] st = monthYear.split("   ");
 
-        TimeManager.setMonth(Month.valueOf(st[0].toUpperCase()));
-        TimeManager.setYear(Year.parse(st[1]));
+        setMONTH(Month.valueOf(st[0].toUpperCase()));
+        setYEAR(Year.parse(st[1]));
 
         for (int i = 0; i < numberOfRowsInBio; i++) {
-            attendanceOfDate = new AttendanceOfDate[TimeManager.getMonth().maxLength()];
+            attendanceOfDate = new AttendanceOfDate[getMONTH().maxLength()];
             getMonthlyAttendanceOfEmployee(attendanceOfDate); // referenced
 
             empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));

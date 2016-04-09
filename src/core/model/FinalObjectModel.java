@@ -9,6 +9,8 @@ import core.model.uploadedfiles.HrnetDetails;
 import java.time.LocalTime;
 import java.util.ArrayList;
 
+import static core.model.ProjectConstants.*;
+
 /**
  * Created by kumars on 2/19/2016.
  */
@@ -49,14 +51,14 @@ public class FinalObjectModel extends BasicEmployeeDetails {
     }
 
     public void displayFinalList() {
-        System.out.println("Name: " + this.getName());
-        System.out.println("Employee ID: " + this.getEmpId());
-        System.out.println("Avg In Time " + this.getAvgInTime());
-        System.out.println("Avg Out Time " + this.getAvgOutTime());
-        System.out.println("Work Hours for day: " + this.getAverageNumberOfHoursMonthly());
+        System.out.println(EMP_NAME + " : " + this.getName());
+        System.out.println(EMP_REVAL_IND_ID + " : " + this.getEmpId());
+        System.out.println(EMP_AVERAGE_MONTHLY_CHECK_IN + " : " + this.getAvgInTime());
+        System.out.println(EMP_AVERAGE_MONTHLY_CHECK_OUT + " : " + this.getAvgOutTime());
+        System.out.println(EMP_AVERAGE_MONTHLY_WORK_HOURS + " : " + this.getAverageNumberOfHoursMonthly());
         System.out.println();
 
-        System.out.println("Number Of Leaves Applied: " + this.numberOfEntriesInHrNet);
+        System.out.println(EMP_NUM_LEAVE_REQUESTED + " : " + this.numberOfEntriesInHrNet);
         if (this.hrnetDetails != null) {
             this.displayArrayList();
         }
@@ -70,12 +72,12 @@ public class FinalObjectModel extends BasicEmployeeDetails {
         System.out.println("Number of Half Days " + this.getCount(4));
 
         System.out.println("\nBiometric Data for Each Day: ");
-        for (int j = 0; j < TimeManager.getMonth().maxLength(); j++) {
+        for (int j = 0; j < getMONTH().maxLength(); j++) {
             System.out.print(this.attendanceOfDate[j].getCurrentDate());
-            System.out.print("\tIn Time: " + this.attendanceOfDate[j].getCheckIn());
-            System.out.print("\tOut Time: " + this.attendanceOfDate[j].getCheckOut());
-            System.out.print("\tStatus: " + this.attendanceOfDate[j].getAttendanceStatusType() + "\n");
-            System.out.print("\tWorkhours: " + this.attendanceOfDate[j].getWorkTimeForDay() + "\n");
+            System.out.print("\t" + EMP_CHECK_IN + " : " + this.attendanceOfDate[j].getCheckIn());
+            System.out.print("\t" + EMP_CHECK_OUT + " : " + this.attendanceOfDate[j].getCheckOut());
+            System.out.print("\t" + EMP_ATTENDANCE_STATUS_TYPE + " : " + this.attendanceOfDate[j].getAttendanceStatusType() + "\n");
+            System.out.print("\t" + EMP_WORK_HOURS_FOR_THIS_DAY + " : " + this.attendanceOfDate[j].getWorkTimeForDay() + "\n");
         }
 
         System.out.println();
@@ -103,11 +105,11 @@ public class FinalObjectModel extends BasicEmployeeDetails {
     }
 
     private LocalTime setAvgInTime() {
-        return TimeManager.calculateAverageOfTime("AverageCheckInTime", attendanceOfDate);
+        return TimeManager.calculateAverageOfTime(EMP_AVERAGE_MONTHLY_CHECK_IN, attendanceOfDate);
     }
 
     private LocalTime setAvgOutTime() {
-        return TimeManager.calculateAverageOfTime("AverageCheckOutTime", attendanceOfDate);
+        return TimeManager.calculateAverageOfTime(EMP_AVERAGE_MONTHLY_CHECK_OUT, attendanceOfDate);
     }
 
     public LocalTime setAverageNumberOfHoursMonthly() {

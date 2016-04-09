@@ -11,6 +11,38 @@ import java.time.Year;
  */
 public class ProjectConstants {
 
+    public static final int MINUTES_PER_HOUR = 60;
+    public static final int SECONDS_PER_MINUTE = 60;
+    public static final int SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
+    public final static String EMP_REVAL_IND_ID = "Emp Reval Id";
+    public final static String EMP_FINANCIAL_FORCE_ID = "Emp FinancialForce Id";
+    public final static String EMP_CHECK_IN = "Check In";
+    public final static String EMP_CHECK_OUT = "Check Out";
+    public final static String CURRENT_DATE = "Current Date";
+    public final static String EMP_WORK_HOURS_FOR_THIS_DAY = "Work Hours";
+    public final static String EMP_LEAVE_START_DATE = "Leave Start Date";
+    public final static String EMP_LEAVE_END_DATE = "Leave End Date";
+    public final static String EMP_NUM_LEAVE_REQUESTED = "Number of Leave Requested";
+    public final static String EMP_ATTENDANCE_STATUS_TYPE = "Attendance Status";
+    public final static String EMP_LEAVE_REQUEST_TYPE = "Leave Request";
+    public final static String EMP_AVERAGE_MONTHLY_WORK_HOURS = "Avg Monthly Work Hours";
+    public final static String EMP_AVERAGE_MONTHLY_CHECK_IN = "Avg Monthly Check In Time";
+    public final static String EMP_AVERAGE_MONTHLY_CHECK_OUT = "Avg Monthly Check Out Time";
+    public final static String CLARIFICATION_NEEDED = "Clarification Needed";
+    public final static String UNDEFINED = "NA";
+
+    public final static String EMP_NAME = "Emp Name";
+    public final static String EMP_EMAIL_ID = "Emp Email Id";
+    public static String BIOMETRIC_FILE_PATH = ".\\ExcelFiles\\march 8.xls";
+    public static String FINANCIAL_FORCE_FILE_PATH = ".\\ExcelFiles\\March FF report Final.xlsx";
+    public static String ALL_EMPLOYEE_RECORD_FILE_PATH = ".\\ExcelFiles\\Emails.xlsx";
+    private static String BIOMETRIC_FILE_NAME;
+    private static String FINANCIAL_FORCE_FILE_NAME;
+    private static String EMPLOYEE_RECORD_FILE_NAME;
+    private static String PUBLIC_HOLIDAY_LIST_FILE = "NOT AVAILABLE FOR NOW";
+    private static Year YEAR;
+    private static Month MONTH;
+
     public static String getBiometricFileName() {
         return BIOMETRIC_FILE_NAME;
     }
@@ -35,48 +67,34 @@ public class ProjectConstants {
         EMPLOYEE_RECORD_FILE_NAME = employeeRecordFileName;
     }
 
-
-
     public static String getPublicHolidayListFile() {
         return PUBLIC_HOLIDAY_LIST_FILE;
     }
 
 
+    public static String ALL_EMP_WORKERS_LIST= "AllWorkers";
 
-    private static String BIOMETRIC_FILE_NAME;
-    private static String FINANCIAL_FORCE_FILE_NAME;
-    private static String EMPLOYEE_RECORD_FILE_NAME;
-    private static String PUBLIC_HOLIDAY_LIST_FILE = "NOT AVAILABLE FOR NOW";
+    public static String DISCREPANCY_IN_WORKERS_LIST= "DiscrepancyInWorkers";
 
-    public static String BIOMETRIC_FILE_PATH=".\\ExcelFiles\\march 8.xls";
-    public static String FINANCIAL_FORCE_FILE=".\\ExcelFiles\\March FF report Final.xlsx";
-    public static String ALL_EMPLOYEE_RECORD_FILE=".\\ExcelFiles\\Emails.xlsx";
-    @NotNull
-    @Contract(pure = true)
-    public static String getAllEmployeeListFile() {
-        return "AllWorkers";
-    }
-    @NotNull
-    @Contract(pure = true)
-    public static String getDiscrepancyListFile() {
-        return "DiscrepancyInWorkers";
-    }
-    @NotNull
-    @Contract(pure = true)
-    public static String getWeekendWorkersListFile() {
-        return "WeekendWorkers";
-    }
-    @NotNull
-    @Contract(pure = true)
-    public static String getPublicHolidayWorkersListFile() {
-        return "PublicHolidayWorkers";
+    public static String WEEKEND_WORKERS_LIST= "WeekendWorkers";
+
+    public static String PUBLIC_HOLIDAY_WORKER_LIST= "PublicHolidayWorkers";
+
+    public static Month getMONTH() {
+        return MONTH;
     }
 
-    public static final int MINUTES_PER_HOUR = 60;
-    public static final int SECONDS_PER_MINUTE = 60;
-    public static final int SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
-    public static Year YEAR;
-    public static Month MONTH;
+    public static void setMONTH(Month MONTH) {
+        ProjectConstants.MONTH = MONTH;
+    }
+
+    public static Year getYEAR() {
+        return YEAR;
+    }
+
+    public static void setYEAR(Year YEAR) {
+        ProjectConstants.YEAR = YEAR;
+    }
 
 
 }

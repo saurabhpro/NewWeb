@@ -2,10 +2,7 @@ package core.view;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import core.jxcel.TimeManager;
-import core.model.FinalObjectModel;
-import core.model.HolidayWorkerModel;
-import core.model.ListGeneratorModel;
-import core.model.WebJSONModel;
+import core.model.*;
 import core.model.attendence.HolidaysList;
 
 import java.io.File;
@@ -28,7 +25,7 @@ public class PublicHolidayWorkerJson extends ListGeneratorModel {
             for (HolidaysList h : HolidaysList.values()) {
                 Month curMnth = h.getDate().getMonth();
                 int changeOnDate = h.getDate().getDayOfMonth() - 1;
-                if (curMnth == TimeManager.getMonth() &&
+                if (curMnth == ProjectConstants.getMONTH() &&
                         finalObjectModel.attendanceOfDate[changeOnDate].getAttendanceStatusType() == PUBLIC_HOLIDAY &&
                         finalObjectModel.attendanceOfDate[changeOnDate].getCheckIn() != null) {
                     HolidayWorkerModel h1 = new WebJSONModel(finalObjectModel).getHolidayWorkerObjForThisDate(changeOnDate);

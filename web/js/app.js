@@ -12,6 +12,12 @@ sampleApp.config(['$routeProvider',
         }).when('/GenerateDiscrepancy', {
             templateUrl: '../GenerateDiscrepancy.html',
             controller: 'GenerateDiscrepancyController'
+        }).when('/GenerateWeekendHoliday', {
+            templateUrl: '../GenerateWeekendHoliday.html',
+            controller: 'GenerateWeekendHolidayController'
+        }).when('/GeneratePublicHoliday', {
+            templateUrl: '../GeneratePublicHoliday.html',
+            controller: 'GeneratePublicHolidayController'
         }).when('/uploadBiometric', {
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
@@ -29,7 +35,7 @@ sampleApp.config(['$routeProvider',
 
 
 sampleApp.controller("ReportController", function ($scope, $http) {
-    $http.get("./json/WebDetails.json").then(function (response) {
+    $http.get("./json/AllWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
@@ -52,7 +58,7 @@ sampleApp.controller("ReportController", function ($scope, $http) {
 });
 
 sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $uibModal, $log) {
-    $http.get("./json/Discrepancy.json").then(function (response) {
+    $http.get("./json/DiscrepancyInWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
@@ -197,8 +203,8 @@ angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $ui
     };
 });
 
-sampleApp.controller("GenerateReportController", function ($scope, $http, $uibModal, $log) {
-    $http.get("./json/WebDetails.json").then(function (response) {
+sampleApp.controller("GenerateWeekendHolidayController", function ($scope, $http, $uibModal, $log) {
+    $http.get("./json/WeekendWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
@@ -257,6 +263,125 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
 
 });
 
+sampleApp.controller("GenerateReportController", function ($scope, $http, $uibModal, $log) {
+    $http.get("./json/AllWorkers.json").then(function (response) {
+        $scope.rowCollection = response.data;
+    });
+
+    $scope.checkAll = function () {
+        if ($scope.selectedAll) {
+            $scope.selectedAll = true;
+        } else {
+            $scope.selectedAll = false;
+        }
+        angular.forEach($scope.rowCollection, function (item) {
+            item.Selected = $scope.selectedAll;
+        });
+
+    };
+
+    $scope.checkStatus= function() {
+        var checkCount = 0;
+        var length =0;
+        angular.forEach($scope.rowCollection, function(item) {
+            length++;
+        });
+        angular.forEach($scope.rowCollection, function(item) {
+            if(item.Selected) checkCount++;
+
+        });
+        $log.info('New Flag ' + new Date() + checkCount + length);
+        $scope.selectedAll = ( checkCount === length);
+    };
+
+    $scope.open = function (items, size) {
+        $log.info('Items24 ' + new Date()+ items.empRevalId);
+        var modalInstance = $uibModal.open({
+            templateUrl: 'RowDetail2.html',
+            controller: 'ModalInstanceCtrl',
+            size:size,
+            resolve: {
+                items: function () {
+                    return items;
+                }
+            }
+
+        });
+        $log.info('Items25 ' + new Date()+ items.empName);
+
+        modalInstance.result.then(function (items) {
+            $scope.items = items;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    $scope.showMe = false;
+    $scope.clickFunc = function () {
+        $scope.showMe = !$scope.showMe;
+    };
+
+});
+
+sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http, $uibModal, $log) {
+    $http.get("./json/PublicHolidayWorkers.json").then(function (response) {
+        $scope.rowCollection = response.data;
+    });
+
+    $scope.checkAll = function () {
+        if ($scope.selectedAll) {
+            $scope.selectedAll = true;
+        } else {
+            $scope.selectedAll = false;
+        }
+        angular.forEach($scope.rowCollection, function (item) {
+            item.Selected = $scope.selectedAll;
+        });
+
+    };
+
+    $scope.checkStatus= function() {
+        var checkCount = 0;
+        var length =0;
+        angular.forEach($scope.rowCollection, function(item) {
+            length++;
+        });
+        angular.forEach($scope.rowCollection, function(item) {
+            if(item.Selected) checkCount++;
+
+        });
+        $log.info('New Flag ' + new Date() + checkCount + length);
+        $scope.selectedAll = ( checkCount === length);
+    };
+
+    $scope.open = function (items, size) {
+        $log.info('Items24 ' + new Date()+ items.empRevalId);
+        var modalInstance = $uibModal.open({
+            templateUrl: 'RowDetail2.html',
+            controller: 'ModalInstanceCtrl',
+            size:size,
+            resolve: {
+                items: function () {
+                    return items;
+                }
+            }
+
+        });
+        $log.info('Items25 ' + new Date()+ items.empName);
+
+        modalInstance.result.then(function (items) {
+            $scope.items = items;
+        }, function () {
+            $log.info('Modal dismissed at: ' + new Date());
+        });
+    };
+
+    $scope.showMe = false;
+    $scope.clickFunc = function () {
+        $scope.showMe = !$scope.showMe;
+    };
+
+});
 sampleApp.controller("UploadFilesController", function ($scope, $http) {
     $scope.A = function(){
         console.log('you click A on ', Date());

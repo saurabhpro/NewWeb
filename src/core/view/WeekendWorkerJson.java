@@ -2,6 +2,7 @@ package core.view;
 
 import core.model.FinalObjectModel;
 import core.model.ListGeneratorModel;
+import core.model.ProjectConstants;
 import core.model.WebJSONModel;
 import core.model.attendence.AttendanceOfDate;
 
@@ -21,7 +22,7 @@ public class WeekendWorkerJson extends ListGeneratorModel {
             for (AttendanceOfDate a : f.attendanceOfDate) {
                 if (a.getAttendanceStatusType().equals(WEEKEND_HOLIDAY) && a.getWorkTimeForDay() != null) {
                     //advantage of this check is additional redundant objects are not stored in the filteredEmpDetails
-                    webJSONModel = new WebJSONModel(f, "Weekend");
+                    webJSONModel = new WebJSONModel(f, ProjectConstants.WEEKEND_WORKERS_LIST);
                     filteredEmpDetails.put(f.getEmpId(), webJSONModel);
                 }
             }

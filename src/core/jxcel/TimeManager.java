@@ -2,15 +2,18 @@ package core.jxcel;
 
 import core.model.ProjectConstants;
 import core.model.attendence.AttendanceOfDate;
-import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
 
-import java.time.*;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
+import static core.model.ProjectConstants.*;
 import static core.model.ProjectConstants.SECONDS_PER_HOUR;
 import static core.model.ProjectConstants.SECONDS_PER_MINUTE;
-import static core.model.ProjectConstants.YEAR;
 
 /**
  * Created by SaurabhK on 09-02-2016.
@@ -28,7 +31,7 @@ public class TimeManager {
         for (AttendanceOfDate date : ofDates) {
             if (date.getCheckIn() != null && !date.getCheckOut().equals(LocalTime.MIDNIGHT)) {
                 switch (type) {
-                    case "AverageCheckInTime":
+                    case EMP_AVERAGE_MONTHLY_CHECK_IN:
                         if (date.getCheckIn() != null) {
                             minsTotal += date.getCheckIn().getHour() * 60;
                             minsTotal += date.getCheckIn().getMinute();
@@ -36,7 +39,7 @@ public class TimeManager {
                         }
                         break;
 
-                    case "AverageCheckOutTime":
+                    case EMP_AVERAGE_MONTHLY_CHECK_OUT:
                         if (date.getCheckOut() != null) {
                             minsTotal += date.getCheckOut().getHour() * 60;
                             minsTotal += date.getCheckOut().getMinute();
@@ -93,6 +96,7 @@ public class TimeManager {
         return time;
     }
 
+    @NotNull
     public static LocalDate convertToLocalDate(String date) {
         int year;
         int month;
@@ -111,14 +115,6 @@ public class TimeManager {
         return LocalTime.of((int) hr, (int) min);
     }
 
-    public static Month getMonth() {
-        return ProjectConstants.MONTH;
-    }
-
-    public static void setMonth(Month month) {
-        ProjectConstants.MONTH = month;
-    }
-
     private static LocalTime getTime(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
         Duration duration = Duration.between(fromDateTime, toDateTime);
 
@@ -130,14 +126,5 @@ public class TimeManager {
 
         return convertToTime(hours, minutes);
 
-    }
-
-    @Contract(pure = true)
-    public static Year getYear() {
-        return YEAR;
-    }
-
-    public static void setYear(Year YEAR) {
-        ProjectConstants.YEAR = YEAR;
     }
 }

@@ -2,15 +2,19 @@ package core.jxcel;
 
 import core.factory.XLSXSheetAndCell;
 import core.model.FileOperations;
+import core.model.ProjectConstants;
 import core.model.attendence.AttendanceOfLeave;
 import core.model.attendence.LeaveType;
 import core.model.uploadedfiles.HrnetDetails;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
+import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.*;
+
+import static core.model.ProjectConstants.*;
 
 /**
  * Created by Saurabh on 2/10/2016.
@@ -40,6 +44,7 @@ public class HrnetFileWorker implements FileOperations {
             return Objects.toString((int) cell.getNumericCellValue());
     }
 
+    @NotNull
     private LocalDate getLocalDate(Cell cell) {
         if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)
             return TimeManager.convertToLocalDate(new SimpleDateFormat("dd/MM/yyyy").format(cell.getDateCellValue()));
@@ -56,7 +61,6 @@ public class HrnetFileWorker implements FileOperations {
 
         String empName = null;
         String salesForceID = null;
-        String empRequest = null;
         LocalDate tempDate;
 
         int numberOfRowsInHr = sheet.getPhysicalNumberOfRows();
@@ -130,26 +134,26 @@ public class HrnetFileWorker implements FileOperations {
          * case where leave applied from 29th jan to 5th feb, and we are
          * calculating for Feb
          */
-        if (attendanceOfLeave.getEndDate().getMonth().equals(TimeManager.getMonth())
-                && !attendanceOfLeave.getStartDate().getMonth().equals(TimeManager.getMonth()))
+        if (attendanceOfLeave.getEndDate().getMonth().equals(getMONTH())
+                && !attendanceOfLeave.getStartDate().getMonth().equals(getMONTH()))
             attendanceOfLeave
-                    .setStartDate(LocalDate.of(TimeManager.getYear().getValue(), TimeManager.getMonth(), 1));
+                    .setStartDate(LocalDate.of(getYEAR().getValue(), getMONTH(), 1));
 
         /**
          * case where leave applied from 29th jan to 5th feb, and we are
          * calculating for Jan
          */
-        else if (attendanceOfLeave.getStartDate().getMonth().equals(TimeManager.getMonth())
-                && !attendanceOfLeave.getEndDate().getMonth().equals(TimeManager.getMonth()))
-            attendanceOfLeave.setEndDate(LocalDate.of(TimeManager.getYear().getValue(), TimeManager.getMonth(),
-                    TimeManager.getMonth().maxLength()));
+        else if (attendanceOfLeave.getStartDate().getMonth().equals(getMONTH())
+                && !attendanceOfLeave.getEndDate().getMonth().equals(getMONTH()))
+            attendanceOfLeave.setEndDate(LocalDate.of(getYEAR().getValue(), getMONTH(),
+                    getMONTH().maxLength()));
 
         /**
          * case where leave applied from 8th jan to 14th jan, and we are
          * calculating for feb
          */
-        else if (!attendanceOfLeave.getStartDate().getMonth().equals(TimeManager.getMonth())
-                && !attendanceOfLeave.getEndDate().getMonth().equals(TimeManager.getMonth()))
+        else if (!attendanceOfLeave.getStartDate().getMonth().equals(getMONTH())
+                && !attendanceOfLeave.getEndDate().getMonth().equals(getMONTH()))
             attendanceOfLeave.setStartDate(null);
 
     }

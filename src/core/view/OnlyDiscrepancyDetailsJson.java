@@ -2,6 +2,7 @@ package core.view;
 
 import core.model.FinalObjectModel;
 import core.model.ListGeneratorModel;
+import core.model.ProjectConstants;
 import core.model.WebJSONModel;
 
 import java.util.TreeMap;
@@ -16,7 +17,7 @@ public class OnlyDiscrepancyDetailsJson extends ListGeneratorModel {
         filteredEmpDetails = new TreeMap<>();
         for (FinalObjectModel f : allEmpDetails.values()) {
             if (f.getIfClarificationNeeded()) {
-                webJSONModel = new WebJSONModel(f, "Discrepancy");
+                webJSONModel = new WebJSONModel(f, ProjectConstants.DISCREPANCY_IN_WORKERS_LIST);
                 filteredEmpDetails.put(f.getEmpId(), webJSONModel);
             }
         }
