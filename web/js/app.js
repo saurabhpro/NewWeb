@@ -35,7 +35,7 @@ sampleApp.config(['$routeProvider',
 
 
 sampleApp.controller("ReportController", function ($scope, $http) {
-    $http.get("./json/AllWorkers.json").then(function (response) {
+    $http.get("./JsonFiles/AllWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
@@ -58,7 +58,7 @@ sampleApp.controller("ReportController", function ($scope, $http) {
 });
 
 sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $uibModal, $log) {
-    $http.get("./json/DiscrepancyInWorkers.json").then(function (response) {
+    $http.get("./JsonFiles/DiscrepancyInWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
@@ -213,7 +213,7 @@ angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $ui
 });
 
 sampleApp.controller("GenerateWeekendHolidayController", function ($scope, $http, $uibModal, $log) {
-    $http.get("./json/WeekendWorkers.json").then(function (response) {
+    $http.get("./JsonFiles/WeekendWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
@@ -273,7 +273,7 @@ sampleApp.controller("GenerateWeekendHolidayController", function ($scope, $http
 });
 
 sampleApp.controller("GenerateReportController", function ($scope, $http, $uibModal, $log) {
-    $http.get("./json/AllWorkers.json").then(function (response) {
+    $http.get("./JsonFiles/AllWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
@@ -333,7 +333,7 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
 });
 
 sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http, $uibModal, $log) {
-    $http.get("./json/PublicHolidayWorkers.json").then(function (response) {
+    $http.get("./JsonFiles/PublicHolidayWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
 
