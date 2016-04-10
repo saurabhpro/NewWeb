@@ -28,7 +28,6 @@ public class MarkDiscrepancy {
                 for (int j = 0; j < ProjectConstants.getMONTH().maxLength(); j++) {
                     if ((finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
                             || (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))) {
-                        //  System.out.println("Null List- MarkDiscrepancy Set for " + finalObjectModel.getName() + " Date: " + (j + 1));
                         finalObjectModel.setIfClarificationNeeded(true);
                     }
                 }
@@ -50,7 +49,6 @@ public class MarkDiscrepancy {
                                 break;
                         }
                         if (flag == 0) {
-                            //  System.out.println("MarkDiscrepancy Set for " + finalObjectModel.getName() + " Date: " + (j + 1));
                             finalObjectModel.setIfClarificationNeeded(true);
                         }
                     }
@@ -67,6 +65,7 @@ public class MarkDiscrepancy {
                     // for less than four hours.
                     else if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY)) {
 
+                        //Half day worked but no leave applied
                         if (finalObjectModel.attendanceOfDate[j].getLeaveTypeForThisDate().equals(NO_LEAVE))
                             finalObjectModel.setIfClarificationNeeded(true);
                         else
