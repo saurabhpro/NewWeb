@@ -63,6 +63,14 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
     });
 
 
+    $scope.countChecked = function(){
+        var count = 0;
+        angular.forEach($scope.items.allDateDetailsList, function(day){
+            if (day.Selected) count++;
+        });
+
+        return count;
+    }
 
     $scope.checkAll = function () {
         if ($scope.selectedAll) {
@@ -138,6 +146,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
     };
 
     $scope.openEmailDialog = function (items,day,size) {
+
         $log.info('Items24 ' + new Date());
         var modalInstance = $uibModal.open({
             templateUrl: 'compose.html',
