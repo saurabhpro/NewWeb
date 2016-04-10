@@ -88,13 +88,22 @@
                 <input type="text" name="myId" >
                 <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
             </form> -->
-            <form action="filegen">
+            <form action="temp">
                 <input type="hidden" name="id" value={{items.empRevalId}}>
                 <input type="hidden" name="fileToUse"  value="DiscrepancyInWorkers">
                 <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
+
+                <ul>
+                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true}))">{{day.checkIn}}</li>
+                </ul>
+                <input type="text" name="filteredArray" value="{{filteredArray}}">
             </form>
             <br/>
-            <button class="btn btn-danger" ng-click="openEmailDialog(items,day,'lg')">Compose Email</button>
+
+            <ul>
+                <li ng-repeat="day in filteredArray">{{day.checkIn}}</li>
+            </ul>
+            <button class="btn btn-danger" ng-disabled="countChecked() == 0" ng-click="openEmailDialog(items,day,'lg')">Compose Email</button>
         </div>
     </div>
 </script>
