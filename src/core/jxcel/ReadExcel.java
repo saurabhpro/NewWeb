@@ -59,7 +59,7 @@ public class ReadExcel {
 
         ListGeneratorModel ph = new PublicHolidayWorkerJson();
         ph.generate();
-        ph.displayOnConsole();
+        //ph.displayOnConsole();
         ph.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
 
         ListGeneratorModel c = new AllEmployeeDetailsJson();
@@ -69,7 +69,7 @@ public class ReadExcel {
 
         ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
         od.generate();
-       // od.displayOnConsole();
+        od.displayOnConsole();
         od.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
 
         ListGeneratorModel ow = new WeekendWorkerJson();
