@@ -4,7 +4,6 @@
 
 package core.model.uploadedfiles;
 
-import core.model.ProjectConstants;
 import core.model.attendence.AttendanceOfDate;
 import core.model.empl.BasicEmployeeDetails;
 

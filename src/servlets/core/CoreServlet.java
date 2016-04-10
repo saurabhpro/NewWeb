@@ -25,30 +25,10 @@ import static core.model.ProjectConstants.*;
 /**
  * Created by kumars on 4/5/2016.
  */
-@WebServlet(name = "CoreServlet", urlPatterns = {"/src/core"})
+@WebServlet(name = "CoreServlet", urlPatterns = {"/core"})
 public class CoreServlet extends HttpServlet {
 
-    private static String biometricFile;
-    private static String hrNetFile;
-    private static String empListID;
-
-    private static void setBiometricFile(String biometricFile) {
-        CoreServlet.biometricFile = biometricFile;
-    }
-
-    private static void setEmpListID(String empListID) {
-        CoreServlet.empListID = empListID;
-    }
-
-    private static void setHrNetFile(String hrNetFile) {
-        CoreServlet.hrNetFile = hrNetFile;
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             Object fileWorker;
             SheetFactory sheetFactory = new SheetFactory();

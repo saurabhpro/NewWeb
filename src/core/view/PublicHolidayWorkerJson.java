@@ -1,7 +1,6 @@
 package core.view;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import core.jxcel.TimeManager;
 import core.model.*;
 import core.model.attendence.HolidaysList;
 
@@ -11,6 +10,7 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
+import static core.model.ProjectConstants.FILE_PATH;
 import static core.model.attendence.AttendanceStatusType.PUBLIC_HOLIDAY;
 
 /**
@@ -51,8 +51,9 @@ public class PublicHolidayWorkerJson extends ListGeneratorModel {
         List<HolidayWorkerModel> user = holidayWorkerList;
 
         try {
-            File jfile = new File("./web/json/" + fileName + ".json");
+            File jfile = new File(FILE_PATH + "JsonFiles\\" + fileName + ".json");
             // Convert object to JSON string and save into file directly
+            System.out.println(jfile.getAbsolutePath());
             mapper.writeValue(jfile, user);
 
         } catch (IOException e) {

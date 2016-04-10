@@ -11,6 +11,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Map;
 
+import static core.model.ProjectConstants.FILE_PATH;
+
 /**
  * Created by Saurabh on 2/14/2016.
  */
@@ -29,7 +31,7 @@ public class JsonMapper {
 
         FileWriter file;
         try {
-            file = new FileWriter(new File(".\\JSON files\\formattedJson.json"));
+            file = new FileWriter(new File(FILE_PATH + "JsonFiles\\formattedJson.json"));
             file.write(jsonInString);
             // System.out.println(jsonInString);
         } catch (IOException e) {
@@ -43,7 +45,7 @@ public class JsonMapper {
 
         // read JSON from a file
         try {
-            mapper.readValue(new File("c:\\user.json"), new TypeReference<Map<String, Object>>() {
+            mapper.readValue(new File(FILE_PATH + "JsonFiles\\user.json"), new TypeReference<Map<String, Object>>() {
             });
         } catch (IOException e) {
             e.printStackTrace();
@@ -57,7 +59,7 @@ public class JsonMapper {
         user = CombineFile.EmpCombinedMap;
 
         try {
-            File jfile = new File(".\\JSON files\\unformattedJson.json");
+            File jfile = new File(FILE_PATH + "JsonFiles\\unformattedJson.json");
             // Convert object to JSON string and save into file directly
             mapper.writeValue(jfile, user);
 

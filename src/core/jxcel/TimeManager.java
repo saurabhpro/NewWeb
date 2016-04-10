@@ -1,6 +1,5 @@
 package core.jxcel;
 
-import core.model.ProjectConstants;
 import core.model.attendence.AttendanceOfDate;
 import org.jetbrains.annotations.NotNull;
 
@@ -12,8 +11,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static core.model.ProjectConstants.*;
-import static core.model.ProjectConstants.SECONDS_PER_HOUR;
-import static core.model.ProjectConstants.SECONDS_PER_MINUTE;
 
 /**
  * Created by SaurabhK on 09-02-2016.

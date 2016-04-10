@@ -11,7 +11,7 @@ import org.json.simple.parser.ParseException;
 import java.io.*;
 import java.util.Set;
 
-import static core.model.ProjectConstants.JSON_FILE_PATH;
+import static core.model.ProjectConstants.FILE_PATH;
 
 /**
  * Created by kumars on 4/6/2016.
@@ -59,7 +59,7 @@ public class JsonToExcel {
 
             JSONParser parser = new JSONParser();
 
-            Object a = parser.parse(new FileReader(JSON_FILE_PATH + fileToUse + ".json"));
+            Object a = parser.parse(new FileReader(FILE_PATH+"JsonFiles\\" + fileToUse + ".json"));
             JSONObject jsonObject = (JSONObject) a;
             Set s = jsonObject.keySet();
 
@@ -120,5 +120,3 @@ public class JsonToExcel {
         }
     }
 }
-
-

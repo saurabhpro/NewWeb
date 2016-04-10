@@ -13,6 +13,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
+import static core.model.ProjectConstants.FILE_PATH;
+
 /**
  * Created by kumars on 3/1/2016. this contains all employees basic records
  */
@@ -23,9 +25,8 @@ public class EmployeeMasterData implements FileOperations {
     private Sheet sheet = null;
 
     public EmployeeMasterData(String empListID) {
-        sheet = new XLSXSheetAndCell().ApacheXLSXSheet(empListID); // Get the
-        // first
-        // sheet
+        sheet = new XLSXSheetAndCell().ApacheXLSXSheet(empListID);
+        // Get the first sheet
         numberOfRowsInBio = sheet.getPhysicalNumberOfRows();
     }
 
@@ -63,7 +64,7 @@ public class EmployeeMasterData implements FileOperations {
         Map<String, BasicEmployeeDetails> user = allEmployeeRecordMap;
 
         try {
-            File jfile = new File("./web/json/Emails.json");
+            File jfile = new File(FILE_PATH + "JsonFiles\\Emails.json");
             // Convert object to JSON string and save into file directly
             mapper.writeValue(jfile, user);
 

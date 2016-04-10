@@ -13,7 +13,7 @@ import static core.model.attendence.LeaveType.WORK_FROM_HOME_IND;
 /**
  * Created by Saurabh on 4/10/2016.
  */
-public class MarkDiscrepancyHelperUtility {
+class MarkDiscrepancyHelperUtility {
     private MarkDiscrepancyHelperUtility() {
     }
 
@@ -66,6 +66,16 @@ public class MarkDiscrepancyHelperUtility {
         if (f.attendanceOfDate[j].getLeaveTypeForThisDate().equals(NO_LEAVE))
             f.setIfClarificationNeeded(true);
         else
+        /*
+         for (HrnetDetails hrnetDetail : f.hrnetDetails) {
+         if (hrnetDetail.attendanceOfLeave.getStartDate().getDayOfMonth() == j + 1) {
+         if ((f.attendanceOfDate[j].getWorkTimeForDay() == null)
+         || (f.attendanceOfDate[j].getWorkTimeForDay().getHour() < 4)) {
+         f.setIfClarificationNeeded(true);
+         }
+         }
+         }
+         */
             f.hrnetDetails.stream()
                     .filter(hrnet -> hrnet.attendanceOfLeave.getStartDate().getDayOfMonth() == j + 1)
                     .filter(hrnet -> (f.attendanceOfDate[j].getWorkTimeForDay() == null)

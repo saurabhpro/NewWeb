@@ -22,7 +22,7 @@ import static core.model.attendence.AttendanceStatusType.*;
 /**
  * Created by Saurabh on 4/9/2016.
  */
-public class CombineFileHelperUtility {
+class CombineFileHelperUtility {
     private CombineFileHelperUtility() {
     }
 
@@ -87,9 +87,7 @@ public class CombineFileHelperUtility {
             // 06-03-2016 changed the Type from ABSENT to UNACCOUNTED_ABSENCE.
             if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(ABSENT)) {
                 empObj.attendanceOfDate[i].setAttendanceStatusType(UNACCOUNTED_ABSENCE);
-            }
-
-            else if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(HALF_DAY)) {
+            } else if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(HALF_DAY)) {
                 LocalTime time = empObj.attendanceOfDate[i].getWorkTimeForDay();
                 if (time == null)
                     empObj.attendanceOfDate[i].setWorkTimeForDay(LocalTime.of(4, 0));

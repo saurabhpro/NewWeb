@@ -2,7 +2,6 @@ package filegen;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
-import com.itextpdf.text.pdf.PdfPHeaderCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.jetbrains.annotations.Nullable;
@@ -20,7 +19,7 @@ import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
-import static core.model.ProjectConstants.JSON_FILE_PATH;
+import static core.model.ProjectConstants.FILE_PATH;
 
 /**
  * Created by kumars on 4/5/2016.
@@ -35,7 +34,7 @@ public class CreateSingleRecordPDF {
     public static FileCreatorModel setDataInObject(String key, FileCreatorModel ob, String fileToUse) {
         try {
             JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader(JSON_FILE_PATH + fileToUse + ".json"));
+            Object a = parser.parse(new FileReader(FILE_PATH+"JsonFiles\\" + fileToUse + ".json"));
             JSONObject jsonObject = (JSONObject) a;
             Set s = jsonObject.keySet();
 

@@ -12,7 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-import static core.model.ProjectConstants.*;
+import static core.model.ProjectConstants.getMONTH;
 import static core.model.attendence.AttendanceStatusType.*;
 
 /**
