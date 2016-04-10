@@ -20,6 +20,8 @@ import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
 
+import static core.model.ProjectConstants.JSON_FILE_PATH;
+
 /**
  * Created by kumars on 4/5/2016.
  */
@@ -33,7 +35,7 @@ public class CreateSingleRecordPDF {
     public static FileCreatorModel setDataInObject(String key, FileCreatorModel ob, String fileToUse) {
         try {
             JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + fileToUse + ".json"));
+            Object a = parser.parse(new FileReader(JSON_FILE_PATH + fileToUse + ".json"));
             JSONObject jsonObject = (JSONObject) a;
             Set s = jsonObject.keySet();
 

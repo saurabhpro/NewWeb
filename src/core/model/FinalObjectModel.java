@@ -112,7 +112,7 @@ public class FinalObjectModel extends BasicEmployeeDetails {
         return TimeManager.calculateAverageOfTime(EMP_AVERAGE_MONTHLY_CHECK_OUT, attendanceOfDate);
     }
 
-    public LocalTime setAverageNumberOfHoursMonthly() {
+    private LocalTime setAverageNumberOfHoursMonthly() {
         return TimeManager.calculateAverageTimeOfMonth(this.attendanceOfDate);
     }
 

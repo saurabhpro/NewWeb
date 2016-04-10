@@ -2,7 +2,11 @@ package core.model;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.Month;
 import java.time.Year;
 
@@ -42,6 +46,29 @@ public class ProjectConstants {
     private static String PUBLIC_HOLIDAY_LIST_FILE = "NOT AVAILABLE FOR NOW";
     private static Year YEAR;
     private static Month MONTH;
+
+    @Nullable
+    private static String getJsonFilePath() {
+        try {
+            new FileWriter("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\" + "Test.txt");
+            return "C:\\Users\\kumars\\IdeaProjects\\NewWeb\\web\\json\\";
+        } catch (IOException e) {
+            try {
+                new FileWriter("C:\\Users\\Aroraa\\IdeaProjects\\NewWeb\\web\\json\\" + "Test.txt");
+                return "C:\\Users\\Aroraa\\IdeaProjects\\NewWeb\\web\\json\\";
+            } catch (IOException e1) {
+                try {
+                    new FileWriter("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\web\\json\\" + "Test.txt");
+                    return "C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\web\\json\\";
+                } catch (IOException e2) {
+                    e2.printStackTrace();
+                }
+            }
+        }
+        return null;
+    }
+
+    public static String JSON_FILE_PATH = getJsonFilePath() ;
 
     public static String getBiometricFileName() {
         return BIOMETRIC_FILE_NAME;

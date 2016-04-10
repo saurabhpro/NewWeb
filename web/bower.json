@@ -23,6 +23,7 @@
     "angular-animate": "^1.5.3",
     "jQuery-menu-aim": "*",
     "angular-bootstrap": "^1.2.5",
-    "angular-route": "^1.5.3"
+    "angular-route": "^1.5.3",
+    "bootstrap": "^3.3.6"
   }
 }

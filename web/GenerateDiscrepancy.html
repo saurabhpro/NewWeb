@@ -10,7 +10,7 @@
    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
   <!-- <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <!-- since there could be dependencies problem, maintain the inculsion order -->
   <script src="bower_components/angular/angular.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
@@ -67,7 +67,6 @@
           <th style="width: 200px">AVERAGE CHECK-IN</th>
           <th style="width: 200px">AVERAGE CHECK-OUT</th>
           <th style="width: 200px">AVERAGE WORK HOURS</th>
-          <th style="width: 400px">CLARIFICATION NEEDED</th>
         </tr>
         </thead>
         <tbody>
@@ -81,7 +80,6 @@
           <td>{{item.empAvgCheckInTimeForMonth}}</td>
           <td>{{item.empAvgCheckOutTimeForMonth}}</td>
           <td>{{item.empAvgWorkHoursForMonth}}</td>
-          <td>{{item.empIfClarificationNeeded}}</td>
           <td class="click" style="color: blue;" ng-click="open(item,'lg')">View</td>
 
         </tr>
