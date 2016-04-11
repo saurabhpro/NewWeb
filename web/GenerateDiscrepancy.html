@@ -38,12 +38,14 @@
     <h2 style="text-align: center">
       Discrepancy List
     </h2>
-    <form>
-      <br><br>
 
-      <button class="btn btn-danger" style="float: right;" type="submit" value="DOWNLOAD DISCREPANCY REP0RT"
-              onclick="location.href='./GenerateDiscrepancy.html';">DOWNLOAD DISCREPANCY REPORT
+    <form action="multigen" method="post">
+      <input type="hidden" name="fileToUse" value="DiscrepancyInWorkers">
+      <button class="btn btn-danger" style="float: right;" type="submit" value="DOWNLOAD DISCREPANCY REP0RT">
+        DOWNLOAD DISCREPANCY REPORT
       </button>
+    </form>
+    <form>
       <br/>
       <br/>
       <br/>
@@ -72,8 +74,8 @@
         <tbody>
         <tr ng-repeat="item in rowCollection">
 
-          <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="checkStatus()"></td>
-          <td> {{item.empRevalId}}</td>
+          <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="checkStatus()" ></td>
+          <td ng-model="item.empRevalId"> {{item.empRevalId}}</td>
           <td> {{item.empSalesforceId}}</td>
           <td>{{item.empName}}</td>
           <td>{{item.empEmailId}}</td>
@@ -85,7 +87,17 @@
         </tr>
         </tbody>
       </table>
+
+
     </form>
+    <ul>
+      <li>hello</li>
+      <button class="btn btn-danger" style="float: right;" type="submit" ng-click="showSelected()" value="generate">
+      </button>
+      {{itemsSelected}}
+    </ul>
+
+
   </div> <!-- .content-wrapper -->
 </main> <!-- .cd-main-content -->
 <script src="js/main.js"></script> <!-- Resource jQuery -->

@@ -63,22 +63,14 @@
                             </div>
                             <div class="form-group">
                                 <li ng-repeat="day in composeArray">{{day.checkOut}}</li>
-                                <!--<ul>
-                                    <li ng-repeat="day in items.allDateDetailsList  | filter:{Selected:true}">
-                                        {{day.checkIn}}
-                                    </li>
-                                </ul>
-                                ->
-                                <!--<textarea  id="compose-textarea" class="form-control" style="height: 300px">hello</textarea>-->
-                                <div name="message"  class="form-control" style="height: 300px" contenteditable="true">
-                                    <p>
+                                <textarea name="message"  class="form-control" style="height: 300px" contenteditable="true">
                                         Hi {{items.empName}},
 
                                         You have not entered the below leave days for the month of Jan on <span
-                                            style="font-weight: bold;">Financial Force</span>, and nor have you
+                                        style="font-weight: bold;">Financial Force</span>, and nor have you
                                         registered your attendance in the biometric system for these days:
-                                    </p>
-                                    <table style="font-weight: bold;">
+
+                                    <table style="border: 10px">
                                         <thead style="color: red;">
                                         <th>
                                             Full Day Leave
@@ -88,32 +80,14 @@
                                         </th>
                                         </thead>
                                         <tbody>
-                                        <td>
-                                            <tr>
+                                        <tr>
+                                            <td>22</td>
+                                            <td>24</td>
+                                        </tr>
 
-                                            </tr>
-                                        </td>
-                                        <td>
-                                            <tr>
-
-                                            </tr>
-                                        </td>
                                         </tbody>
                                     </table>
-                                    <p>
-                                        <span style="font-weight: bold;">Request you to apply for these days in Financial Force. </span>
-
-                                        Also you have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the <span style="font-weight: bold">Check-in/Check-out time</span> for these days.
-                                    </p>
-                                    <table style="font-weight: bold;">
-                                        <thead style="color: red;">
-                                        <th>
-                                            Days
-                                        </th>
-                                        </thead>
-
-                                    </table>
-                                </div>
+                                </textarea>
                             </div>
                         </div>
                         <!-- /.box-body -->

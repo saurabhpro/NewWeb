@@ -20,11 +20,31 @@
 
   <script src="js/app.js"></script>
   <script src="bower_components/modernizr/modernizr.js"></script> <!-- Modernizr -->
+  <script language="JavaScript" type="text/javascript">
+    window.history.forward(1);
+    document.write("Please Login");
+    function preventBack(){
+      window.history.forward();
+    }
+    setTimeout("preventBack()", 0);
+    window.onunload=function(){null};
+  </script>
 
   <title>Home Page</title>
 </head>
 <body>
 <header class="cd-main-header">
+  <%
+  response.setHeader("Cache-Control","no-cache");
+  response.setHeader("Cache-Control","no-store");
+  response.setHeader("Pragma","no-cache");
+  response.setDateHeader ("Expires", 0);
+
+  if(session.getAttribute("userName")==null)
+    response.sendRedirect("http://localhost:8081/signin.html");
+
+%>
+
   <nav class="cd-nav">
     <ul class="cd-top-nav">
       <li class="has-children account">

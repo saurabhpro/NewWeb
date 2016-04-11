@@ -42,12 +42,13 @@
         <div ng-model="message">
 
         </div>
-        <form>
-            <br><br>
-
-            <button class="btn btn-success" style="float: right;" type="submit" value="DOWNLOAD DAILY REP0RT"
-                    onclick="location.href='./GenerateReport.html';">DOWNLOAD DAILY REPORT
+        <form action="multigen" method="post">
+            <input type="hidden" name="fileToUse" value="AllWorkers">
+            <button class="btn btn-danger" style="float: right;" type="submit" value="DOWNLOAD REP0RT">
+                DOWNLOAD REPORT
             </button>
+        </form>
+        <form>
 
             <br/>
             <br/>

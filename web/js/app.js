@@ -62,6 +62,26 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         $scope.rowCollection = response.data;
     });
 
+    $scope.modelname = '<table style="border: 1px"> <thead><th>Full Day Leave</th> <th> Half Day Leave </th></thead> <tbody></tbody></table>';
+
+    $scope.countChecked = function(){
+        var count = 0;
+        angular.forEach($scope.items.allDateDetailsList, function(day){
+            if (day.Selected) count++;
+        });
+
+        return count;
+    }
+    $scope.showSelected = function(item) {
+
+        $scope.itemsSelected=[];
+        angular.forEach($scope.rowCollection, function (item) {
+            if(item.Selected){
+                $scope.itemsSelected.push(item.empRevalId);
+            }
+        });
+    };
+
 
     $scope.countChecked = function(){
         var count = 0;

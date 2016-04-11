@@ -59,6 +59,12 @@ public class SendEmailServlet extends HttpServlet  {
         PrintWriter out = response.getWriter();
 
         try {
+            MimeBodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setContent(message, "text/html; charset=utf-8");
+
+            // creates multi-part
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
             // Create a default MimeMessage object.
             MimeMessage message1 = new MimeMessage(mailSession);
             // Set From: header field of the header.
@@ -72,15 +78,16 @@ public class SendEmailServlet extends HttpServlet  {
             // Set Subject: header field
             message1.setSubject(subject);
             // Now set the actual message
-            message1.setText(message);
+            //message1.setText(message);
             // Send message
+            message1.setContent(multipart);
 
             Transport transport = mailSession.getTransport("smtp");
             transport.connect(host, from, pass);
             transport.sendMessage(message1, message1.getAllRecipients());
             transport.close();
             out.print(ANSI_GREEN + "Message Sent");
-            RequestDispatcher rd=request.getRequestDispatcher("./ThankYou.html");
+            RequestDispatcher rd=request.getRequestDispatcher("./mainPage.jsp#/GenerateDiscrepancy");
             rd.include(request,response);
 
         } catch (MessagingException mex) {
