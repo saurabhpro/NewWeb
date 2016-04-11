@@ -82,7 +82,7 @@ public class CoreServlet extends HttpServlet {
         } catch (Exception ignored) {
         }
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("mainPage.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
         requestDispatcher.forward(request, response);
     }
 

@@ -87,7 +87,7 @@ public class SendEmailServlet extends HttpServlet  {
             transport.sendMessage(message1, message1.getAllRecipients());
             transport.close();
             out.print(ANSI_GREEN + "Message Sent");
-            RequestDispatcher rd=request.getRequestDispatcher("./mainPage.jsp#/GenerateDiscrepancy");
+            RequestDispatcher rd=request.getRequestDispatcher("./MainPage.jsp#/GenerateDiscrepancy");
             rd.include(request,response);
 
         } catch (MessagingException mex) {

@@ -22,10 +22,10 @@ sampleApp.config(['$routeProvider',
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
         }).when('/UploadFiles',{
-            templateUrl: './uploadFiles.jsp',
+            templateUrl: './UploadFiles.jsp',
             controller: 'UploadFilesController'
         }).otherwise({
-            redirectTo: '/mainPage.jsp'
+            redirectTo: '/MainPage.jsp'
         });
 
     }]);
@@ -166,7 +166,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
 
         $log.info('Items24 ' + new Date());
         var modalInstance = $uibModal.open({
-            templateUrl: 'compose.html',
+            templateUrl: 'ComposeEmail.jsp',
             controller: 'DraftEmailController',
             size:size,
             resolve: {

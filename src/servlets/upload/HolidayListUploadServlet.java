@@ -30,7 +30,7 @@ public class HolidayListUploadServlet extends HttpServlet {
         String filename = m.getFilesystemName("holidayListFile");
         out.println(filename + "Successfully Uploaded");
 
-        response.sendRedirect("./mainPage.jsp#/UploadFiles");
+        response.sendRedirect("./MainPage.jsp#/UploadFiles");
         /*
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
         requestDispatcher.include(request, response);

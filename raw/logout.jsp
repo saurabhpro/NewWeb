@@ -19,7 +19,7 @@
 </head>
 <body>
 <h1>Thank You! You have successfully logged out of the system!</h1>
-<a href="signin.html">Click Here To Login</a>
+<a href="../web/signin.html">Click Here To Login</a>
 <%
     response.setHeader("Cache-Control","no-cache");
     response.setHeader("Cache-Control","no-store");

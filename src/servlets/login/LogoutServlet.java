@@ -29,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("./logout.html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("./Logout.html");
         dispatcher.include(request, response);
         out.close();
 

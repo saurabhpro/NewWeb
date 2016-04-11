@@ -30,7 +30,7 @@ public class EmailListServlet extends HttpServlet {
         String filename = m.getFilesystemName("emailListFile");
         out.println(filename + "Successfully Uploaded");
 
-        response.sendRedirect("./mainPage.jsp#/UploadFiles");
+        response.sendRedirect("./MainPage.jsp#/UploadFiles");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

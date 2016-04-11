@@ -40,7 +40,7 @@
   response.setDateHeader ("Expires", 0);
 
   if(session.getAttribute("userName")==null)
-    response.sendRedirect("./signin.html");
+    response.sendRedirect("./Signin.html");
 
 %>
 

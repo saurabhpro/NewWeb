@@ -34,7 +34,7 @@ public class BiometricServlet extends HttpServlet {
         System.out.println(biometricDate);
         String filename = m.getFilesystemName("biometricFile");
 
-        response.sendRedirect("./mainPage.jsp#/UploadFiles");
+        response.sendRedirect("./MainPage.jsp#/UploadFiles");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
