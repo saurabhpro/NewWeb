@@ -22,10 +22,10 @@ sampleApp.config(['$routeProvider',
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
         }).when('/UploadFiles',{
-            templateUrl: './uploadFiles.jsp',
+            templateUrl: './UploadFiles.jsp',
             controller: 'UploadFilesController'
         }).otherwise({
-            redirectTo: '/mainPage.jsp'
+            redirectTo: '/MainPage.jsp'
         });
 
     }]);
@@ -68,7 +68,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
 
         return count;
-    }
+    };
     $scope.showSelected = function(item) {
 
         $scope.itemsSelected=[];
@@ -88,20 +88,44 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
 
         return count;
     };
+    $scope.discrepancyFound =function(){
+
+        var temp=$scope.leaveNotApplied;
+        var temp2=$scope.halfDay;
+        $log.info('New Flag ' + new Date() + temp+ " Hi");
+        if(temp == "" && temp2 == "")
+            return false;
+        else
+            return true;
+    };
     $scope.leaveNotAppliedFunc =function(){
 
         var temp=$scope.leaveNotApplied;
         $log.info('New Flag ' + new Date() + temp+ " Hi");
         if(temp == "")
-        {
-            $log.info('hi');
             return false;
-        }
-
         else
           return true;
     };
+    $scope.halfDayFunc =function(){
 
+        var temp=$scope.halfDay;
+        $log.info('New Flag ' + new Date() + temp+ " Hi");
+        if(temp == "")
+            return false;
+        else
+            return true;
+    };
+
+    $scope.checkOutTimeNotApplicable =function(){
+
+        var temp=$scope.checkOutTime;
+        $log.info('New Flag ' + new Date() + temp+ " Hi");
+        if(temp == "")
+            return false;
+        else
+            return true;
+    };
     $scope.checkAll = function () {
         if ($scope.selectedAll) {
             $scope.selectedAll = true;
@@ -179,7 +203,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
 
         $log.info('Items24 ' + new Date());
         var modalInstance = $uibModal.open({
-            templateUrl: 'compose.html',
+            templateUrl: 'ComposeEmail.jsp',
             controller: 'DraftEmailController',
             size:size,
             resolve: {

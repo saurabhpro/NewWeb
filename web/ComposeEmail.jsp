@@ -80,52 +80,60 @@
                             </div>
                             <div class="form-group" class="form-control">
                                 <ul>
-                                      <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
+                                      <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
                                   </ul>
                                   <ul>
                                       <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
                                   </ul>
                                 <ul>
-                                    <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'NA'}))"></li>
+                                    <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
                                 </ul>
-                                <div ng-show=leaveNotAppliedFunc()>
-
-                                    {{leaveNotApplied}}
-                                    hello
+                                <div ng-show=discrepancyFound()>
+                                    <textarea type="text" name="message" id="editor" class="form-control"
+                                              style="outline: none; height: 85px; border: none; float: left;"
+                                              contenteditable="true">Hi {{items.empName}},You have not entered the below leave days for the month of Jan on Financial Force, and nor have you registered your attendance in the biometric system for these days:
+                                    </textarea>
                                 </div>
-                                <textarea type="text" name="message" id="editor" class="form-control"
-                                          style="outline: none; height: 85px; border: none; float: left;"
-                                          contenteditable="true">Hi {{items.empName}},You have not entered the below leave days for the month of Jan on Financial Force, and nor have you registered your attendance in the biometric system for these days:</textarea>
-                                <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
-                                       value="Full Day Leaves"/>
-                                <ul style="font-weight: bold; border: none;">
-                                        <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))">
+                                <div ng-show=leaveNotAppliedFunc()>
+                                    <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
+                                           value="Full Day Leaves"/>
+                                    <ul style="font-weight: bold; border: none;">
+                                        <li ng-repeat="day in leaveNotApplied">
                                             <input type="text" style="outline: none; border: none;" name="message"
                                                    value={{day.currentDate}}>
                                         </li>
                                     </ul>
-                                <ul style="font-weight: bold; border: none; ">
+                                </div>
+                                <div ng-show= halfDayFunc()>
                                     <input type="text" style="font-weight: bold; color: red; border: none;"
                                            name="message" value="Half Day Leaves"/>
-                                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))">
-                                        <input type="text" name="message" style="outline: none; border: none;"
-                                               value={{day.currentDate}}>
-                                    </li>
-                                </ul>
+                                    <ul style="font-weight: bold; border: none; ">
 
-                                <input name="message" class="form-control"
-                                       style="height: 40px; border: none; float: left; font-weight: bold; outline: none;"
-                                       value="Request you to apply for these days in Financial Force."/>
-                                <textarea name="message" class="form-control"
-                                          style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days.</textarea>
-                                <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
-                                       value="Days"/>
-                                <ul style="font-weight: bold; border: none; ">
-                                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: '00:00'}))">
-                                        <input type="text" name="message" style="outline: none; border: none;"
-                                               value={{day.currentDate}}>
+                                        <li ng-repeat="day in halfDay">
+                                            <input type="text" name="message" style="outline: none; border: none;"
+                                                   value={{day.currentDate}}>
                                         </li>
                                     </ul>
+                                </div>
+                                <div ng-show=discrepancyFound()>
+                                    <input name="message" class="form-control"
+                                           style="height: 40px; border: none; float: left; font-weight: bold; outline: none;"
+                                           value="Request you to apply for these days in Financial Force."/>
+
+                                </div>
+                                <div ng-show=checkOutTimeNotApplicable()>
+                                    <textarea name="message" class="form-control"
+                                              style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days: </textarea>
+                                    <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
+                                           value="Days"/>
+                                    <ul style="font-weight: bold; border: none; ">
+                                        <li ng-repeat="day in checkOutTime">
+                                            <input type="text" name="message" style="outline: none; border: none;"
+                                                   value={{day.currentDate}}>
+                                        </li>
+                                    </ul>
+
+                                </div>
 
                             </div>
                         </div>
