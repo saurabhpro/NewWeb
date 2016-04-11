@@ -59,7 +59,7 @@ public class JsonToExcel {
 
             JSONParser parser = new JSONParser();
 
-            Object a = parser.parse(new FileReader(FILE_PATH+"JsonFiles\\" + fileToUse + ".json"));
+            Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
             JSONObject jsonObject = (JSONObject) a;
             Set s = jsonObject.keySet();
 
