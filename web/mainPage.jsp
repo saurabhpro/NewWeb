@@ -22,7 +22,6 @@
   <script src="bower_components/modernizr/modernizr.js"></script> <!-- Modernizr -->
   <script language="JavaScript" type="text/javascript">
     window.history.forward(1);
-    document.write("Please Login");
     function preventBack(){
       window.history.forward();
     }
@@ -41,7 +40,7 @@
   response.setDateHeader ("Expires", 0);
 
   if(session.getAttribute("userName")==null)
-    response.sendRedirect("http://localhost:8081/signin.html");
+    response.sendRedirect("./signin.html");
 
 %>
 
