@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by kumars on 4/11/2016.
@@ -51,6 +53,25 @@ public class MultipleRecordServlet extends HttpServlet {
 
         final String temporaryFilePath = tempDirectory.getAbsolutePath();
 
+        String tmp = request.getParameter("listOfIds");
+        String[] temp2 = tmp.substring(1, tmp.length() - 1).split(",");
+        List<String> listOfIds = new ArrayList<>();
+        for (String t : temp2)
+            listOfIds.add(t.substring(1, t.length() - 1));
+
+
+/*
+Explanation:
+
+.*   - anything
+\\\" - quote (escaped)
+(.*) - anything (captured)
+\\\" - another quote
+.*   - anything
+However, it's a lot easier to not use regex:
+ */
+        //  String st = listOfIds.indexOf("\"");
+
         String fileToUse = request.getParameter("fileToUse");
 
         String fileName = "Generate_Report_All_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
@@ -60,7 +81,9 @@ public class MultipleRecordServlet extends HttpServlet {
         response.setHeader("Content-disposition", "attachment; " + "filename=" + fileName);
 
         try {
-            CreateMultipleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, fileToUse);
+            for (String s : listOfIds)
+                System.out.println(s);
+            CreateMultipleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, listOfIds, fileToUse);
             //JsonToExcel.fromJsonToExcel( fileToUse);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);

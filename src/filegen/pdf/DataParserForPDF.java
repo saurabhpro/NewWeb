@@ -15,6 +15,7 @@ import java.time.Month;
 import java.time.Year;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.List;
 
 import static core.model.ProjectConstants.FILE_PATH;
 
@@ -39,6 +40,34 @@ public class DataParserForPDF {
 
                 if (jKey.equals(key)) {
                     addData(jsonObject, ob, jKey);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void setMultipleObject(List<String> listOfIds, Document document, String fileToUse) {
+        FileCreatorModel ob;
+
+        try {
+            JSONParser parser = new JSONParser();
+            Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
+            JSONObject jsonObject = (JSONObject) a;
+            Set s = jsonObject.keySet();
+
+            for (Object value : s) {
+                String jKey = (String) value;
+
+                for (String keyFromList : listOfIds) {
+                    if (jKey.equals(keyFromList)) {
+
+                        ob = new FileCreatorModel();
+                        addData(jsonObject, ob, jKey);
+                        addTitlePage(document, ob, fileToUse);
+                        createTable(document, ob);
+                        document.newPage();
+                    }
                 }
             }
         } catch (Exception e) {

@@ -10,6 +10,7 @@ import org.json.simple.parser.JSONParser;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.util.List;
 import java.util.Set;
 
 import static core.model.ProjectConstants.FILE_PATH;
@@ -19,7 +20,7 @@ import static core.model.ProjectConstants.FILE_PATH;
  */
 public class CreateMultipleRecordPDF extends DataParserForPDF {
 
-    public static Document createPDF(String fileName, String fileToUse) {
+    public static Document createPDF(String fileName, List<String> listOfIds, String fileToUse) {
         Document document = null;
         FileCreatorModel ob;
         try {
@@ -29,29 +30,29 @@ public class CreateMultipleRecordPDF extends DataParserForPDF {
 
             addMetaData(document);
 
-            try {
-                JSONParser parser = new JSONParser();
-                Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
-                JSONObject jsonObject = (JSONObject) a;
-                Set s = jsonObject.keySet();
+            if (listOfIds == null) {
+                try {
+                    JSONParser parser = new JSONParser();
+                    Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
+                    JSONObject jsonObject = (JSONObject) a;
+                    Set s = jsonObject.keySet();
 
-                for (Object value : s) {
-                    ob = new FileCreatorModel();
-                    addData(jsonObject, ob, (String) value);
+                    for (Object value : s) {
+                        ob = new FileCreatorModel();
+                        addData(jsonObject, ob, (String) value);
 
-                    addTitlePage(document, ob, fileToUse);
+                        addTitlePage(document, ob, fileToUse);
 
-                    createTable(document, ob);
-                    document.newPage();
+                        createTable(document, ob);
+                        document.newPage();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            } else
+                DataParserForPDF.setMultipleObject(listOfIds, document, fileToUse);
 
             document.close();
-
         } catch (FileNotFoundException | DocumentException e) {
             e.printStackTrace();
         }

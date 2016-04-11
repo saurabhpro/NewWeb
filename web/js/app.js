@@ -21,9 +21,6 @@ sampleApp.config(['$routeProvider',
         }).when('/uploadBiometric', {
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
-        }).when('/Logout',{
-            //templateUrl: './UploadFiles/uploadHoliday.jsp',
-            controller: 'logoutController'
         }).when('/UploadFiles',{
             templateUrl: './uploadFiles.jsp',
             controller: 'UploadFilesController'
@@ -417,6 +414,3 @@ sampleApp.controller("UploadFilesController", function ($scope, $http) {
         $scope.button_A = Date();
     }
 });
-
-sampleApp.controller("logoutController", function($scope, $http){});
-

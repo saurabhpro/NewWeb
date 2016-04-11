@@ -27,7 +27,7 @@
     response.setDateHeader ("Expires", 0);
 
     if(session.getAttribute("userName")==null)
-        response.sendRedirect("http://localhost:8081/signin.html");
+        response.sendRedirect("./signin.html");
 
 %>
 </body>
