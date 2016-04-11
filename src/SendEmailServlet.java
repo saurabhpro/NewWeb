@@ -20,7 +20,8 @@ public class SendEmailServlet extends HttpServlet  {
 
     String subject;
     String to;
-    String message;
+    String[] message;
+    String finalMessage;
 
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_RED = "\u001B[31m";
@@ -30,8 +31,10 @@ public class SendEmailServlet extends HttpServlet  {
 
         subject=request.getParameter("subject");
         System.out.println(subject);
-        message=request.getParameter("message");
+        message=request.getParameterValues("message");
         System.out.println(message);
+        for( String st : message)
+        finalMessage+= st;
         to = "amrita.arora@reval.com";
         //to = request.getParameter("to");
         //String to = "amrita.arora.1192@gmail.com";
@@ -60,7 +63,7 @@ public class SendEmailServlet extends HttpServlet  {
 
         try {
             MimeBodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setContent(message, "text/html; charset=utf-8");
+            messageBodyPart.setContent(finalMessage, "text/html; charset=utf-8");
 
             // creates multi-part
             Multipart multipart = new MimeMultipart();

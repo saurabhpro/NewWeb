@@ -87,7 +87,20 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
 
         return count;
-    }
+    };
+    $scope.leaveNotAppliedFunc =function(){
+
+        var temp=$scope.leaveNotApplied;
+        $log.info('New Flag ' + new Date() + temp+ " Hi");
+        if(temp == "")
+        {
+            $log.info('hi');
+            return false;
+        }
+
+        else
+          return true;
+    };
 
     $scope.checkAll = function () {
         if ($scope.selectedAll) {

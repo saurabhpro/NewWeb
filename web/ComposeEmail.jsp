@@ -31,30 +31,25 @@
         table, td, th {
             border: 1px solid black;
         }
+
+        textarea {
+            border: none;
+            overflow: auto;
+            outline: none;
+        }
     </style>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script type="text/javascript">
-        function onloadPage() {
-            document.getElementById('textArea').style.display = "none";
-            document.getElementById('temp').innerHTML= "hello";
-        }
-        function submitForm() {
 
-            var editor = ace.edit("editor");
-            var code = editor.getSession().getValue();
-            document.getElementById('textArea').style.display = "block";
-            document.getElementById('textArea').value = code;
-        }
-    </script>
 </head>
-<body onload="return onloadPage();" style="background-color: white">
+<body style="background-color: white">
 <div id="temp"></div>
 
 <script type="text/ng-template" id="ComposeEmail.jsp">
+
     <div class="wrapper" ng-controller="GenerateDiscrepancyController">
 
         <!-- Content Wrapper. Contains page content -->
@@ -83,83 +78,58 @@
                                 <input class="form-control" placeholder="Subject:" name="subject"
                                        value="Mail Regarding Discrepancies">
                             </div>
-                            <div class="form-group">
-                                <!--  <ul>
-                                      <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"><td> {{day.currentDate | date}}</td></li>
+                            <div class="form-group" class="form-control">
+                                <ul>
+                                      <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
                                   </ul>
                                   <ul>
-                                      <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"><td> {{day.currentDate | date}}</td></li>
+                                      <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
                                   </ul>
-                                  -->
-                                <div id="editor" class="form-control" style="height: 300px" contenteditable="true">
+                                <ul>
+                                    <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'NA'}))"></li>
+                                </ul>
+                                <div ng-show=leaveNotAppliedFunc()>
 
-                                    Hi {{items.empName}},
-                                    <br/>
-                                    You have not entered the below leave days for the month of Jan on <span
-                                        style="font-weight: bold;">Financial Force</span>, and nor have you
-                                    registered your attendance in the biometric system for these days:
-
-                                    <p name = "message" style="font-weight: bold; color: red;">Full Day Leaves </p>
-                                    <ul style="font-weight: bold;">
-                                        <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))">
-                                            <td> {{day.currentDate | date}}</td>
-                                        </li>
-                                    </ul>
-                                    <p style="font-weight: bold; color: red;">Half Day Leaves </p>
-                                    <ul style="font-weight: bold;">
-                                        <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))">
-                                            <td> {{day.currentDate | date}}</td>
-                                        </li>
-                                    </ul>
-
-                                    <span style="font-weight: bold;" Request you to apply for these days in Financial
-                                          Force.></span>
-                                    You have not <span style="font-weight: bold">Checked In/Check Out </span> on the
-                                    below mentioned days through the biometric system. Request you to send the <span
-                                        style="font-weight: bold">Check-In/Check-out-time </span> for these days.
-                                    <br/>
-                                    <p style="font-weight: bold; color: red;">Days </p>
-                                    <ul style="font-weight: bold;">
-                                        <li ng-repeat="day in items.allDateDetailsList  | filter:{Selected:true, checkOut: '00:00'}">
-                                            <td> {{day.currentDate | date}}</td>
-                                        </li>
-                                    </ul>
+                                    {{leaveNotApplied}}
+                                    hello
                                 </div>
-                                <!--    <ul>
-                                        <li ng-repeat="day in items.allDateDetailsList  | filter:{Selected:true, checkOut: 00:00}">
-                                            <td> {{day.currentDate | date}}</td>
+                                <textarea type="text" name="message" id="editor" class="form-control"
+                                          style="outline: none; height: 85px; border: none; float: left;"
+                                          contenteditable="true">Hi {{items.empName}},You have not entered the below leave days for the month of Jan on Financial Force, and nor have you registered your attendance in the biometric system for these days:</textarea>
+                                <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
+                                       value="Full Day Leaves"/>
+                                <ul style="font-weight: bold; border: none;">
+                                        <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))">
+                                            <input type="text" style="outline: none; border: none;" name="message"
+                                                   value={{day.currentDate}}>
+                                        </li>
+                                    </ul>
+                                <ul style="font-weight: bold; border: none; ">
+                                    <input type="text" style="font-weight: bold; color: red; border: none;"
+                                           name="message" value="Half Day Leaves"/>
+                                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))">
+                                        <input type="text" name="message" style="outline: none; border: none;"
+                                               value={{day.currentDate}}>
+                                    </li>
+                                </ul>
+
+                                <input name="message" class="form-control"
+                                       style="height: 40px; border: none; float: left; font-weight: bold; outline: none;"
+                                       value="Request you to apply for these days in Financial Force."/>
+                                <textarea name="message" class="form-control"
+                                          style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days.</textarea>
+                                <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
+                                       value="Days"/>
+                                <ul style="font-weight: bold; border: none; ">
+                                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: '00:00'}))">
+                                        <input type="text" name="message" style="outline: none; border: none;"
+                                               value={{day.currentDate}}>
                                         </li>
                                     </ul>
 
-                                    <table name="message" style="border: 10px">
-                                        <thead style="color: red;">
-                                        <th>
-                                            <input type="text" width="10px" value="Full Day Leave"/>
-                                        </th>
-                                        <th>
-                                            <input type="text" width="10px" value="Half Day Leave"/>
-                                        </th>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td><input type="text" value="22"></td>
-                                            <td><input type="text" value="22"></td>
-                                        </tr>
-
-                                        </tbody>
-                                    </table>
-
-                                    <ul>
-                                        <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"><td> {{day.currentDate | date}}</td></li>
-                                    </ul>
-                                    -->
                             </div>
                         </div>
                     </div>
-                    <!-- /.box-body -->
-                    <textarea id="textArea">
-
-                    </textarea>
                     <div class="box-footer">
                         <div class="pull-right">
                             <!--     <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button> -->
@@ -172,10 +142,11 @@
                     <!-- /.box-footer -->
                 </div>
                 <!-- /. box -->
+            </form>
         </div>
         <!-- /.col -->
         <!-- /.row -->
-        </form>
+
         <div class="modal-footer">
             <button type="reset" ng-click="cancel()" class="btn btn-default"><i class="fa fa-times"></i>
                 Discard
