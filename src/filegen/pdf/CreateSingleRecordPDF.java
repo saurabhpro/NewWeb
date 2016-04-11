@@ -1,8 +1,9 @@
-package filegen;
+package filegen.pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
+import filegen.FileCreatorModel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
