@@ -33,8 +33,7 @@ public class SendEmailServlet extends HttpServlet  {
         System.out.println(subject);
         message=request.getParameterValues("message");
         System.out.println(message);
-        for( String st : message)
-        finalMessage+= st;
+
         to = "amrita.arora@reval.com";
         //to = request.getParameter("to");
         //String to = "amrita.arora.1192@gmail.com";
