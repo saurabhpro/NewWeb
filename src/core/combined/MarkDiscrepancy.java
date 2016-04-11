@@ -14,16 +14,11 @@ public class MarkDiscrepancy {
 
     public void findDiscrepancy() {
         EmpCombinedMap = CombineFile.EmpCombinedMap;
-        for (FinalObjectModel finalObjectModel : EmpCombinedMap.values()) {
-            // MarkDiscrepancy if an employee is absent and there is no entry in Hrnet file.
-            if (finalObjectModel.hrnetDetails == null) {
+        // MarkDiscrepancy if an employee is absent and there is no entry in Hrnet file.
+        for (FinalObjectModel finalObjectModel : EmpCombinedMap.values())
+            // case where there is an entry
+            if (finalObjectModel.hrnetDetails == null)
                 MarkDiscrepancyHelperUtility.setIfAbsentButNoLeaveApplied(finalObjectModel);
-            } else {
-                // case where there is an entry
-                MarkDiscrepancyHelperUtility.setIfEntryPresentInEither(finalObjectModel);
-            }
-        }
+            else MarkDiscrepancyHelperUtility.setIfEntryPresentInEither(finalObjectModel);
     }
-
-
 }
