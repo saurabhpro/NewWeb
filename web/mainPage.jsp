@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="sampleApp" ng-controller="ReportController" lang="en">
+<%@ page import="servlets.login.SignInServlet" %>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -21,14 +22,11 @@
   <script src="bower_components/modernizr/modernizr.js"></script> <!-- Modernizr -->
   <script language="JavaScript" type="text/javascript">
     window.history.forward(1);
-    document.write("Please Login");
-    function preventBack() {
+    function preventBack(){
       window.history.forward();
     }
     setTimeout("preventBack()", 0);
-    window.onunload = function () {
-      null
-    };
+    window.onunload=function(){null};
   </script>
 
   <title>Home Page</title>
@@ -42,7 +40,7 @@
   response.setDateHeader ("Expires", 0);
 
   if(session.getAttribute("userName")==null)
-    response.sendRedirect("./signin.html");
+    response.sendRedirect("./Signin.html");
 
 %>
 

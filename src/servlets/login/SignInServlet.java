@@ -55,11 +55,11 @@ public class SignInServlet extends HttpServlet implements java.io.Serializable {
 
         ServletConfig config = getServletConfig();
         if (password.equals(config.getInitParameter("password")) && userName.equals(config.getInitParameter("userName"))) {
-            dispatcher = request.getRequestDispatcher("./mainPage.jsp");
+            dispatcher = request.getRequestDispatcher("./MainPage.jsp");
             dispatcher.include(request, response);
         } else {
             out.println("<font color='red'><b>You have entered incorrect password or username</b></font>");
-            dispatcher = request.getRequestDispatcher("./signin.html");
+            dispatcher = request.getRequestDispatcher("./Signin.html");
             dispatcher.include(request, response);
         }
 
