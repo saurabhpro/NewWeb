@@ -69,11 +69,11 @@ public class ProjectConstants {
                     new FileWriter("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\web\\" + "Test.txt");
                     return "C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\web\\";
                 } catch (IOException e2) {
-                    try{
+                    try {
                         new FileWriter("C:\\Users\\AmritaArora\\IdeaProjects\\NewWeb\\web\\" + "Test.txt");
                         return "C:\\Users\\AmritaArora\\IdeaProjects\\NewWeb\\web\\";
 
-                    }catch (IOException e3){
+                    } catch (IOException e3) {
                         e3.printStackTrace();
                     }
                 }

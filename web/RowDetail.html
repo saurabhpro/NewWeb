@@ -68,7 +68,8 @@
             </thead>
             <tbody>
             <tr ng-repeat="day in items.allDateDetailsList">
-                <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="day.Selected" ng-click="discrepancyCheckStatus()"></td>
+                <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="day.Selected"
+                                               ng-click="discrepancyCheckStatus()"></td>
                 <td> {{day.currentDate | date}}</td>
                 <td ng-model="day.attendanceStatusType"> {{day.attendanceStatusType}}</td>
                 <td> {{day.leaveTypeForThisDate}}</td>
@@ -92,11 +93,13 @@
                  </form> -->
             <form action="filegen">
                 <input type="hidden" name="id" value={{items.empRevalId}}>
-                <input type="hidden" name="fileToUse"  value="DiscrepancyInWorkers">
+                <input type="hidden" name="fileToUse" value="DiscrepancyInWorkers">
                 <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
 
                 <ul>
-                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))">{{day.checkIn}}</li>
+                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))">
+                        {{day.checkIn}}
+                    </li>
                 </ul>
                 <input type="text" name="filteredArray" value="{{filteredArray}}">
             </form>
@@ -105,7 +108,9 @@
             <ul>
                 <li ng-repeat="day in filteredArray">{{day.checkIn}}</li>
             </ul>
-            <button class="btn btn-danger" ng-disabled="countChecked() == 0" ng-click="openEmailDialog(items,day,'lg')">Compose Email</button>
+            <button class="btn btn-danger" ng-disabled="countChecked() == 0" ng-click="openEmailDialog(items,day,'lg')">
+                Compose Email
+            </button>
         </div>
     </div>
 </script>

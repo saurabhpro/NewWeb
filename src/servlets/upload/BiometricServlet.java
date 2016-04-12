@@ -29,7 +29,7 @@ public class BiometricServlet extends HttpServlet {
 
         m = new MultipartRequest(request, biometricFilePath.toString());
 
-        String biometricDate= request.getParameter("biometricDate");
+        String biometricDate = request.getParameter("biometricDate");
 
         System.out.println(biometricDate);
         String filename = m.getFilesystemName("biometricFile");

@@ -64,7 +64,7 @@
 
         <li style="float: right;" class="has-children">
             <form action="core" method="post">
-                <input class="btn btn-success"  type="submit" value="Generate Jsons">
+                <input class="btn btn-success" type="submit" value="Generate Jsons">
             </form>
         </li>
     </div> <!-- .content-wrapper -->

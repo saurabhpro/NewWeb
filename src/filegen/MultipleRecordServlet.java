@@ -52,12 +52,17 @@ public class MultipleRecordServlet extends HttpServlet {
         final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 
         final String temporaryFilePath = tempDirectory.getAbsolutePath();
-
-        String tmp = request.getParameter("listOfIds");
-        String[] temp2 = tmp.substring(1, tmp.length() - 1).split(",");
         List<String> listOfIds = new ArrayList<>();
-        for (String t : temp2)
-            listOfIds.add(t.substring(1, t.length() - 1));
+        String tmp = request.getParameter("listOfIds");
+
+        String[] temp2 = tmp.substring(1, tmp.length() - 1).split(",");
+
+        for (String t : temp2) {
+            if (!t.equals(""))
+                listOfIds.add(t.substring(1, t.length() - 1));
+            else
+                listOfIds.add(null);
+        }
 
 
 /*
@@ -85,8 +90,7 @@ However, it's a lot easier to not use regex:
                 System.out.println(s);
             CreateMultipleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, listOfIds, fileToUse);
             //JsonToExcel.fromJsonToExcel( fileToUse);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
+            ByteArrayOutputStream baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
 
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);

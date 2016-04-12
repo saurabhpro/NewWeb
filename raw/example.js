@@ -2,7 +2,7 @@
  * Created by kumars on 4/4/2016.
  */
 angular.module('plunker', ['ui.bootstrap']);
-angular.module('plunker').controller('ModalDemoCtrl',function ($scope, $uibModal, $log) {
+angular.module('plunker').controller('ModalDemoCtrl', function ($scope, $uibModal, $log) {
 
     $scope.items = ['item1', 'item2', 'item3'];
 
@@ -26,7 +26,7 @@ angular.module('plunker').controller('ModalDemoCtrl',function ($scope, $uibModal
     };
 });
 
-angular.module('plunker').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, items) {
+angular.module('plunker').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, items) {
 
     $scope.items = items;
     $scope.selected = {

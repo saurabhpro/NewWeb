@@ -1,6 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="sampleApp" ng-controller="ReportController" lang="en">
-<%@ page import="servlets.login.SignInServlet" %>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,11 +21,13 @@
   <script src="bower_components/modernizr/modernizr.js"></script> <!-- Modernizr -->
   <script language="JavaScript" type="text/javascript">
     window.history.forward(1);
-    function preventBack(){
+    function preventBack() {
       window.history.forward();
     }
     setTimeout("preventBack()", 0);
-    window.onunload=function(){null};
+    window.onunload = function () {
+      null
+    };
   </script>
 
   <title>Home Page</title>
@@ -34,15 +35,15 @@
 <body>
 <header class="cd-main-header">
   <%
-  response.setHeader("Cache-Control","no-cache");
-  response.setHeader("Cache-Control","no-store");
-  response.setHeader("Pragma","no-cache");
-  response.setDateHeader ("Expires", 0);
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
 
-  if(session.getAttribute("userName")==null)
-    response.sendRedirect("./Signin.html");
+    if (session.getAttribute("userName") == null)
+      response.sendRedirect("./Signin.html");
 
-%>
+  %>
 
   <nav class="cd-nav">
     <ul class="cd-top-nav">
@@ -57,70 +58,70 @@
           <li><a href="logout">Logout</a></li>
         </ul>
       </li>
-    </ul>
+        </ul>
   </nav>
 </header> <!-- .cd-main-header -->
 
 <main class="cd-main-content">
   <nav class="cd-side-nav">
-    <ul>
-      <li class="cd-label">Main</li>
-      <li class="has-children comments">
-        <a href="#0">Overview</a>
-      </li>
-      <li class="has-children overview">
-        <a href="#UploadFiles" id="upload">Upload Files</a>
-      </li>
-
-       <!--<li class="has-children overview">
-       <a href="">Reports</a>
         <ul>
-          <li><a href="#GenerateReport">Daily Report</a></li>
-          <li><a href="#GenerateDiscrepancy">Discrepancy Report</a></li>
+          <li class="cd-label">Main</li>
+          <li class="has-children comments">
+            <a href="#0">Overview</a>
+          </li>
+          <li class="has-children overview">
+            <a href="#UploadFiles" id="upload">Upload Files</a>
+          </li>
+
+          <!--<li class="has-children overview">
+          <a href="">Reports</a>
+           <ul>
+             <li><a href="#GenerateReport">Daily Report</a></li>
+             <li><a href="#GenerateDiscrepancy">Discrepancy Report</a></li>
+           </ul>
+
+         </li>
+         -->
+          <li class="has-children notifications active upload">
+
+            <a href="" id="reports" ng-click="clickFunc()">Reports</a>
+
+            <ul ng-show="showMe">
+              <li><a href="#GenerateReport">Monthly Report</a></li>
+              <li><a href="#GenerateDiscrepancy">Discrepancy Report</a></li>
+              <li><a href="#GenerateWeekendHoliday">Weekend Holiday</a></li>
+              <li><a href="#GeneratePublicHoliday">Public Holiday</a></li>
+
+              <!--<li><a href="#uploadBiometric">Biometric File</a></li>
+              <li><a href="#uploadSalesforce">Financial Force File </a></li>
+              <li><a href="#uploadEmailList">Email List File</a></li>
+              <li><a href="#uploadHoliday">Holiday List File</a></li>
+              -->
+            </ul>
+
+          </li>
+
+
+          <li class="has-children comments">
+            <a href="#0">Sent Email</a>
+
+
+          </li>
         </ul>
-
-      </li>
-      -->
-      <li class="has-children notifications active upload">
-
-        <a href="" id="reports" ng-click="clickFunc()">Reports</a>
-
-        <ul ng-show="showMe">
-          <li><a href="#GenerateReport">Monthly Report</a></li>
-          <li><a href="#GenerateDiscrepancy">Discrepancy Report</a></li>
-          <li><a href="#GenerateWeekendHoliday">Weekend Holiday</a></li>
-          <li><a href="#GeneratePublicHoliday">Public Holiday</a></li>
-
-          <!--<li><a href="#uploadBiometric">Biometric File</a></li>
-          <li><a href="#uploadSalesforce">Financial Force File </a></li>
-          <li><a href="#uploadEmailList">Email List File</a></li>
-          <li><a href="#uploadHoliday">Holiday List File</a></li>
-          -->
-        </ul>
-
-      </li>
-
-
-      <li class="has-children comments">
-        <a href="#0">Sent Email</a>
-
-
-      </li>
-    </ul>
-
-    <ul>
-      <li class="cd-label">Secondary</li>
-
-      <li class="has-children users">
-        <a href="#0">Users</a>
 
         <ul>
-          <li><a href="#0">All Users</a></li>
-          <li><a href="#0">Edit User</a></li>
-          <li><a href="#0">Add User</a></li>
+          <li class="cd-label">Secondary</li>
+
+          <li class="has-children users">
+            <a href="#0">Users</a>
+
+            <ul>
+              <li><a href="#0">All Users</a></li>
+              <li><a href="#0">Edit User</a></li>
+              <li><a href="#0">Add User</a></li>
+            </ul>
+          </li>
         </ul>
-      </li>
-    </ul>
 
   </nav>
   <div ng-view></div>

@@ -80,11 +80,11 @@
                             </div>
                             <div class="form-group" class="form-control">
                                 <ul>
-                                      <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
-                                  </ul>
-                                  <ul>
-                                      <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
-                                  </ul>
+                                    <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
+                                </ul>
+                                <ul>
+                                    <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
+                                </ul>
                                 <ul>
                                     <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
                                 </ul>
@@ -95,7 +95,8 @@
                                     </textarea>
                                 </div>
                                 <div ng-show=leaveNotAppliedFunc()>
-                                    <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
+                                    <input type="text" style="font-weight: bold; color: red; border: none;"
+                                           name="message"
                                            value="Full Day Leaves"/>
                                     <ul style="font-weight: bold; border: none;">
                                         <li ng-repeat="day in leaveNotApplied">
@@ -104,7 +105,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div ng-show= halfDayFunc()>
+                                <div ng-show=halfDayFunc()>
                                     <input type="text" style="font-weight: bold; color: red; border: none;"
                                            name="message" value="Half Day Leaves"/>
                                     <ul style="font-weight: bold; border: none; ">
@@ -124,7 +125,8 @@
                                 <div ng-show=checkOutTimeNotApplicable()>
                                     <textarea name="message" class="form-control"
                                               style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days: </textarea>
-                                    <input type="text" style="font-weight: bold; color: red; border: none;" name="message"
+                                    <input type="text" style="font-weight: bold; color: red; border: none;"
+                                           name="message"
                                            value="Days"/>
                                     <ul style="font-weight: bold; border: none; ">
                                         <li ng-repeat="day in checkOutTime">

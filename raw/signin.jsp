@@ -7,7 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<jsp:useBean id="sessionID" class="login.SignInServlet" scope="session" />
+<jsp:useBean id="sessionID" class="login.SignInServlet" scope="session"/>
 
 <head>
     <meta charset="UTF-8">
@@ -25,7 +25,7 @@
         </ul>
         <div class="logo">
             <a href="http://www.reval.com/">
-                <img src="../web/img/RevalLogo.jpg" />
+                <img src="../web/img/RevalLogo.jpg"/>
             </a>
         </div>
         <!--      <section class="top-bar-section">
@@ -54,6 +54,7 @@
                     <label>Password
                         <input type="password" placeholder="Password" name="password" required>
                         <jsp:setProperty name="sessionID" property="password" value=""
+
                     </label>
                     <input id="show-password" type="checkbox"><label for="show-password">Show password</label>
                     <p><input type="submit" class="button" style="width: 100%" value="Log In"></p>

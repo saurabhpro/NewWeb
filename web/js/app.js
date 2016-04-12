@@ -1,5 +1,5 @@
 //Define an angular module for our app
-var sampleApp = angular.module('sampleApp', [ 'ui.bootstrap' , 'ngRoute']);
+var sampleApp = angular.module('sampleApp', ['ui.bootstrap', 'ngRoute']);
 
 //Define Routing for app
 //Uri /AddNewOrder -> template AddOrder.html and Controller AddOrderController
@@ -21,7 +21,7 @@ sampleApp.config(['$routeProvider',
         }).when('/uploadBiometric', {
             templateUrl: './UploadFiles/uploadBiometric.jsp',
             controller: 'uploadBiometricController'
-        }).when('/UploadFiles',{
+        }).when('/UploadFiles', {
             templateUrl: './UploadFiles.jsp',
             controller: 'UploadFilesController'
         }).otherwise({
@@ -61,67 +61,67 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
 
     $scope.modelname = '<table style="border: 1px"> <thead><th>Full Day Leave</th> <th> Half Day Leave </th></thead> <tbody></tbody></table>';
 
-    $scope.countChecked = function(){
+    $scope.countChecked = function () {
         var count = 0;
-        angular.forEach($scope.items.allDateDetailsList, function(day){
+        angular.forEach($scope.items.allDateDetailsList, function (day) {
             if (day.Selected) count++;
         });
 
         return count;
     };
-    $scope.showSelected = function(item) {
+    $scope.showSelected = function (item) {
 
-        $scope.itemsSelected=[];
+        $scope.itemsSelected = [];
         angular.forEach($scope.rowCollection, function (item) {
-            if(item.Selected){
+            if (item.Selected) {
                 $scope.itemsSelected.push(item.empRevalId);
             }
         });
     };
 
 
-    $scope.countChecked = function(){
+    $scope.countChecked = function () {
         var count = 0;
-        angular.forEach($scope.items.allDateDetailsList, function(day){
+        angular.forEach($scope.items.allDateDetailsList, function (day) {
             if (day.Selected) count++;
         });
 
         return count;
     };
-    $scope.discrepancyFound =function(){
+    $scope.discrepancyFound = function () {
 
-        var temp=$scope.leaveNotApplied;
-        var temp2=$scope.halfDay;
-        $log.info('New Flag ' + new Date() + temp+ " Hi");
-        if(temp == "" && temp2 == "")
+        var temp = $scope.leaveNotApplied;
+        var temp2 = $scope.halfDay;
+        $log.info('New Flag ' + new Date() + temp + " Hi");
+        if (temp == "" && temp2 == "")
             return false;
         else
             return true;
     };
-    $scope.leaveNotAppliedFunc =function(){
+    $scope.leaveNotAppliedFunc = function () {
 
-        var temp=$scope.leaveNotApplied;
-        $log.info('New Flag ' + new Date() + temp+ " Hi");
-        if(temp == "")
+        var temp = $scope.leaveNotApplied;
+        $log.info('New Flag ' + new Date() + temp + " Hi");
+        if (temp == "")
             return false;
         else
-          return true;
+            return true;
     };
-    $scope.halfDayFunc =function(){
+    $scope.halfDayFunc = function () {
 
-        var temp=$scope.halfDay;
-        $log.info('New Flag ' + new Date() + temp+ " Hi");
-        if(temp == "")
+        var temp = $scope.halfDay;
+        $log.info('New Flag ' + new Date() + temp + " Hi");
+        if (temp == "")
             return false;
         else
             return true;
     };
 
-    $scope.checkOutTimeNotApplicable =function(){
+    $scope.checkOutTimeNotApplicable = function () {
 
-        var temp=$scope.checkOutTime;
-        $log.info('New Flag ' + new Date() + temp+ " Hi");
-        if(temp == "")
+        var temp = $scope.checkOutTime;
+        $log.info('New Flag ' + new Date() + temp + " Hi");
+        if (temp == "")
             return false;
         else
             return true;
@@ -138,14 +138,14 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
 
     };
 
-    $scope.checkStatus= function() {
+    $scope.checkStatus = function () {
         var checkCount = 0;
-        var length =0;
-        angular.forEach($scope.rowCollection, function(item) {
+        var length = 0;
+        angular.forEach($scope.rowCollection, function (item) {
             length++;
         });
-        angular.forEach($scope.rowCollection, function(item) {
-            if(item.Selected) checkCount++;
+        angular.forEach($scope.rowCollection, function (item) {
+            if (item.Selected) checkCount++;
 
         });
         $log.info('New Flag ' + new Date() + checkCount + length);
@@ -159,38 +159,38 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
             $scope.discrepancySelectedAll = false;
         }
         angular.forEach($scope.items.allDateDetailsList, function (day) {
-            day.Selected= $scope.discrepancySelectedAll;
+            day.Selected = $scope.discrepancySelectedAll;
         });
 
     };
 
-    $scope.discrepancyCheckStatus= function() {
+    $scope.discrepancyCheckStatus = function () {
         var checkCount = 0;
-        var length =0;
-        angular.forEach($scope.items.allDateDetailsList, function(day) {
+        var length = 0;
+        angular.forEach($scope.items.allDateDetailsList, function (day) {
             length++;
         });
-        angular.forEach($scope.items.allDateDetailsList, function(day) {
-            if(day.Selected) checkCount++;
+        angular.forEach($scope.items.allDateDetailsList, function (day) {
+            if (day.Selected) checkCount++;
 
         });
         $log.info('New Flag ' + new Date() + checkCount + length);
         $scope.discrepancySelectedAll = ( checkCount === length);
     };
 
-    $scope.open = function (items,size) {
-        $log.info('Items24 ' + new Date()+ items.empRevalId);
+    $scope.open = function (items, size) {
+        $log.info('Items24 ' + new Date() + items.empRevalId);
         var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail.html',
             controller: 'ModalInstanceCtrl',
-            size:size,
+            size: size,
             resolve: {
                 items: function () {
                     return items;
                 }
             }
         });
-        $log.info('Items25 ' + new Date()+ items.empName);
+        $log.info('Items25 ' + new Date() + items.empName);
 
         modalInstance.result.then(function (items) {
             $scope.items = items;
@@ -199,13 +199,13 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
     };
 
-    $scope.openEmailDialog = function (items,day,size) {
+    $scope.openEmailDialog = function (items, day, size) {
 
         $log.info('Items24 ' + new Date());
         var modalInstance = $uibModal.open({
             templateUrl: 'ComposeEmail.jsp',
             controller: 'DraftEmailController',
-            size:size,
+            size: size,
             resolve: {
                 items: function () {
                     return items;
@@ -217,7 +217,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         });
         $log.info('Items25 ' + new Date());
 
-        modalInstance.result.then(function (items,day) {
+        modalInstance.result.then(function (items, day) {
             $scope.items = items;
             $scope.day = day;
         }, function () {
@@ -229,7 +229,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         $scope.showMe = !$scope.showMe;
     };
 });
-angular.module('sampleApp').controller('DraftEmailController',function ($scope, $uibModalInstance, $log,items, day) {
+angular.module('sampleApp').controller('DraftEmailController', function ($scope, $uibModalInstance, $log, items, day) {
 
     $scope.items = items;
     $scope.day = day;
@@ -241,25 +241,25 @@ angular.module('sampleApp').controller('DraftEmailController',function ($scope, 
         $uibModalInstance.close($scope.day);
     };
 
-    $log.info('Items ' + new Date()+ $scope.items);
+    $log.info('Items ' + new Date() + $scope.items);
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 
 });
-angular.module('sampleApp').controller('ModalInstanceCtrl',function ($scope, $uibModalInstance, $log, items) {
+angular.module('sampleApp').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, $log, items) {
 
     $scope.items = items;
-  /*  $scope.selected = {
-        item: $scope.items[0]
-    };*/
+    /*  $scope.selected = {
+     item: $scope.items[0]
+     };*/
 
     $scope.ok = function () {
         $uibModalInstance.close($scope.items);
     };
 
-    $log.info('Items ' + new Date()+ $scope.items);
+    $log.info('Items ' + new Date() + $scope.items);
 
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
@@ -270,6 +270,16 @@ sampleApp.controller("GenerateWeekendHolidayController", function ($scope, $http
     $http.get("./JsonFiles/WeekendWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
     });
+
+    $scope.showSelected = function (item) {
+
+        $scope.itemsSelected = [];
+        angular.forEach($scope.rowCollection, function (item) {
+            if (item.Selected) {
+                $scope.itemsSelected.push(item.empRevalId);
+            }
+        });
+    };
 
     $scope.checkAll = function () {
         if ($scope.selectedAll) {
@@ -283,14 +293,14 @@ sampleApp.controller("GenerateWeekendHolidayController", function ($scope, $http
 
     };
 
-    $scope.checkStatus= function() {
+    $scope.checkStatus = function () {
         var checkCount = 0;
-        var length =0;
-        angular.forEach($scope.rowCollection, function(item) {
+        var length = 0;
+        angular.forEach($scope.rowCollection, function (item) {
             length++;
         });
-        angular.forEach($scope.rowCollection, function(item) {
-            if(item.Selected) checkCount++;
+        angular.forEach($scope.rowCollection, function (item) {
+            if (item.Selected) checkCount++;
 
         });
         $log.info('New Flag ' + new Date() + checkCount + length);
@@ -298,11 +308,11 @@ sampleApp.controller("GenerateWeekendHolidayController", function ($scope, $http
     };
 
     $scope.open = function (items, size) {
-        $log.info('Items24 ' + new Date()+ items.empRevalId);
+        $log.info('Items24 ' + new Date() + items.empRevalId);
         var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail2.html',
             controller: 'ModalInstanceCtrl',
-            size:size,
+            size: size,
             resolve: {
                 items: function () {
                     return items;
@@ -310,7 +320,7 @@ sampleApp.controller("GenerateWeekendHolidayController", function ($scope, $http
             }
 
         });
-        $log.info('Items25 ' + new Date()+ items.empName);
+        $log.info('Items25 ' + new Date() + items.empName);
 
         modalInstance.result.then(function (items) {
             $scope.items = items;
@@ -343,14 +353,24 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
 
     };
 
-    $scope.checkStatus= function() {
+    $scope.showSelected = function (item) {
+
+        $scope.itemsSelected = [];
+        angular.forEach($scope.rowCollection, function (item) {
+            if (item.Selected) {
+                $scope.itemsSelected.push(item.empRevalId);
+            }
+        });
+    };
+
+    $scope.checkStatus = function () {
         var checkCount = 0;
-        var length =0;
-        angular.forEach($scope.rowCollection, function(item) {
+        var length = 0;
+        angular.forEach($scope.rowCollection, function (item) {
             length++;
         });
-        angular.forEach($scope.rowCollection, function(item) {
-            if(item.Selected) checkCount++;
+        angular.forEach($scope.rowCollection, function (item) {
+            if (item.Selected) checkCount++;
 
         });
         $log.info('New Flag ' + new Date() + checkCount + length);
@@ -358,11 +378,11 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
     };
 
     $scope.open = function (items, size) {
-        $log.info('Items24 ' + new Date()+ items.empRevalId);
+        $log.info('Items24 ' + new Date() + items.empRevalId);
         var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail2.html',
             controller: 'ModalInstanceCtrl',
-            size:size,
+            size: size,
             resolve: {
                 items: function () {
                     return items;
@@ -370,7 +390,7 @@ sampleApp.controller("GenerateReportController", function ($scope, $http, $uibMo
             }
 
         });
-        $log.info('Items25 ' + new Date()+ items.empName);
+        $log.info('Items25 ' + new Date() + items.empName);
 
         modalInstance.result.then(function (items) {
             $scope.items = items;
@@ -391,6 +411,16 @@ sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http,
         $scope.rowCollection = response.data;
     });
 
+    $scope.showSelected = function (item) {
+
+        $scope.itemsSelected = [];
+        angular.forEach($scope.rowCollection, function (item) {
+            if (item.Selected) {
+                $scope.itemsSelected.push(item.empRevalId);
+            }
+        });
+    };
+
     $scope.checkAll = function () {
         if ($scope.selectedAll) {
             $scope.selectedAll = true;
@@ -403,14 +433,14 @@ sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http,
 
     };
 
-    $scope.checkStatus= function() {
+    $scope.checkStatus = function () {
         var checkCount = 0;
-        var length =0;
-        angular.forEach($scope.rowCollection, function(item) {
+        var length = 0;
+        angular.forEach($scope.rowCollection, function (item) {
             length++;
         });
-        angular.forEach($scope.rowCollection, function(item) {
-            if(item.Selected) checkCount++;
+        angular.forEach($scope.rowCollection, function (item) {
+            if (item.Selected) checkCount++;
 
         });
         $log.info('New Flag ' + new Date() + checkCount + length);
@@ -418,11 +448,11 @@ sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http,
     };
 
     $scope.open = function (items, size) {
-        $log.info('Items24 ' + new Date()+ items.empRevalId);
+        $log.info('Items24 ' + new Date() + items.empRevalId);
         var modalInstance = $uibModal.open({
             templateUrl: 'RowDetail2.html',
             controller: 'ModalInstanceCtrl',
-            size:size,
+            size: size,
             resolve: {
                 items: function () {
                     return items;
@@ -430,7 +460,7 @@ sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http,
             }
 
         });
-        $log.info('Items25 ' + new Date()+ items.empName);
+        $log.info('Items25 ' + new Date() + items.empName);
 
         modalInstance.result.then(function (items) {
             $scope.items = items;
@@ -446,7 +476,7 @@ sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http,
 
 });
 sampleApp.controller("UploadFilesController", function ($scope, $http) {
-    $scope.A = function(){
+    $scope.A = function () {
         console.log('you click A on ', Date());
         $scope.button_A = Date();
     }

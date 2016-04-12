@@ -5,30 +5,25 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
 
-    <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-    <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+     <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+    <!-- <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- since there could be dependencies problem, maintain the inculsion order -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <script src="js/app.js"></script>
     <style type="text/css" media="screen">
-        .click:hover{
+        .click:hover {
             text-decoration: underline;
         }
     </style>
-
-
-    <!-- Optional theme -->
-
-    <!--   <script src ="bower_components/angular-smart-table/dist/smart-table.js"></script> -->
-    <title>Employee List</title>
+    <title> Monthly Report of All Employees</title>
 
 </head>
 <body>
@@ -37,16 +32,15 @@
     <div class="content-wrapper">
         <br>
         <h2 style="text-align: center">
-            List of All Employees
+            Monthly Report of All Employees
         </h2>
-        <div ng-model="message">
-
-        </div>
         <form action="multigen" method="post">
             <input type="hidden" name="fileToUse" value="AllWorkers">
-            <button class="btn btn-danger" style="float: right;" type="submit" value="DOWNLOAD REP0RT">
-                DOWNLOAD REPORT
+            <button class="btn btn-danger" style="float: right;" type="submit" ng-click="showSelected()"
+                    value="DOWNLOAD MONTHLY REP0RT">
+                DOWNLOAD MONTHLY REPORT
             </button>
+            <input type="hidden" name="listOfIds" value={{itemsSelected}}>
         </form>
         <form>
 
@@ -54,35 +48,40 @@
             <br/>
             <br/>
 
-            <table st-table="rowCollection" name="empListTable" class="table table-striped">
-                <thead>
+            <table st-table="rowCollection" name="empListTable" class="table table-responsive table-striped">
+                <thead class="thead-inverse">
                 <tr style="font-weight:bolder;">
                     <th style="width: 40px">
                         <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/>
                     </th>
-                    <th style="width: 200px">EMPLOYEE ID</th>
-                    <th style="width: 200px">SALESFORCE ID</th>
-                    <th style="width: 200px">EMPLOYEE NAMES</th>
-                    <th style="width: 400px">EMPLOYEE EMAILS</th>
-                    <th style="width: 200px">AVERAGE CHECK-IN</th>
-                    <th style="width: 200px">AVERAGE CHECK-OUT</th>
-                    <th style="width: 200px">AVERAGE WORK HOURS</th>
-                    <th style="width: 400px">CLARIFICATION NEEDED</th>
+                    <th style="width: 1em">EMPLOYEE ID</th>
+                    <th style="width: 1em">SALESFORCE ID</th>
+                    <th style="width: 1em">EMPLOYEE NAMES</th>
+                    <th style="width: 2em">EMPLOYEE EMAILS</th>
+                    <th style="width: 1em">AVERAGE CHECK-IN</th>
+                    <th style="width: 1em">AVERAGE CHECK-OUT</th>
+                    <th style="width: 1em">AVERAGE WORK HOURS</th>
+                    <th style="width: 1em">CLARIFICATION NEEDED</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in rowCollection">
 
-                    <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="checkStatus()"></td>
-                    <td> {{item.empRevalId}}</td>
-                    <td> {{item.empSalesforceId}}</td>
-                    <td style="width: 200px">{{item.empName}}</td>
-                    <td style="width: 400px">{{item.empEmailId}}</td>
-                    <td style="width: 400px">{{item.empAvgCheckInTimeForMonth}}</td>
-                    <td style="width: 400px">{{item.empAvgCheckOutTimeForMonth}}</td>
-                    <td style="width: 400px">{{item.empAvgWorkHoursForMonth}}</td>
-                    <td style="width: 400px">{{item.empIfClarificationNeeded}}</td>
-                    <td class="click" style="color: blue;" ng-click="open(item,'lg')">View</td>
+                    <td><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="checkStatus()">
+                    </td>
+                    <td ng-model="item.empRevalId">{{item.empRevalId}}</td>
+                    <td>{{item.empSalesforceId}}</td>
+                    <td>{{item.empName}}</td>
+                    <td>{{item.empEmailId}}</td>
+                    <td>{{item.empAvgCheckInTimeForMonth}}</td>
+                    <td>{{item.empAvgCheckOutTimeForMonth}}</td>
+                    <td>{{item.empAvgWorkHoursForMonth}}</td>
+                    <td>{{item.empIfClarificationNeeded}}</td>
+                    <td>
+                        <button type="button" class="btn btn-info-outline" value="View Details"
+                                ng-click="open(item,'lg')">View Details
+                        </button>
+                    </td>
 
                 </tr>
                 </tbody>

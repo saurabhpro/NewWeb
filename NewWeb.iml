@@ -25,10 +25,6 @@
     <orderEntry type="library" name="cos" level="project" />
     <orderEntry type="library" name="core-lib" level="project" />
     <orderEntry type="library" name="filegen-lib" level="project" />
-    <orderEntry type="library" name="bootstrap" level="application" />
-    <orderEntry type="library" name="respond" level="application" />
-    <orderEntry type="library" name="html5shiv" level="application" />
-    <orderEntry type="library" name="bootstrap" level="application" />
-    <orderEntry type="library" name="angular-sanitize" level="application" />
+    <orderEntry type="library" name="commons-io-2.4" level="project" />
   </component>
 </module>

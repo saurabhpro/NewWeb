@@ -19,7 +19,7 @@
 
     <script src="js/app.js"></script>
     <style type="text/css" media="screen">
-        .click:hover{
+        .click:hover {
             text-decoration: underline;
         }
     </style>
@@ -28,7 +28,7 @@
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">-->
 
     <!--    <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>-->
-    <title>Discrepancy Employee List</title>
+    <title>List of Employees Who Worked on Weekend</title>
 </head>
 <body>
 
@@ -36,14 +36,17 @@
     <div class="content-wrapper">
         <br>
         <h2 style="text-align: center">
-            Discrepancy List
+            List of Employees Who Worked on Weekend
         </h2>
-        <form>
-            <br><br>
-
-            <button class="btn btn-danger" style="float: right;" type="submit" value="DOWNLOAD DISCREPANCY REP0RT"
-                    onclick="location.href='./GenerateDiscrepancy.html';">DOWNLOAD DISCREPANCY REPORT
+        <form action="multigen" method="post">
+            <input type="hidden" name="fileToUse" value="WeekendWorkers">
+            <button class="btn btn-danger" style="float: right;" type="submit" ng-click="showSelected()"
+                    value="DOWNLOAD WEEKEND REP0RT">
+                <input type="hidden" name="listOfIds" value={{itemsSelected}}>
+                DOWNLOAD WEEKEND REPORT
             </button>
+        </form>
+        <form>
             <br/>
             <br/>
             <br/>
@@ -54,27 +57,33 @@
             <br/>
             <br/>
 
-            <table name="empListTable" class="table table-striped table-condensed">
-                <thead>
+            <table name="empListTable" class="table table-responsive table-striped ">
+                <thead class="thead-inverse">
                 <tr style="font-weight:bolder;">
                     <th style="width: 40px">
                         <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/>
                     </th>
-                    <th style="width: 200px">EMPLOYEE ID</th>
-                    <th style="width: 200px">SALESFORCE ID</th>
-                    <th style="width: 200px">EMPLOYEE NAMES</th>
-                    <th style="width: 400px">EMPLOYEE EMAILS</th>
+                    <th style="width: 1em">EMPLOYEE ID</th>
+                    <th style="width: 1em">SALESFORCE ID</th>
+                    <th style="width: 1em">EMPLOYEE NAMES</th>
+                    <th style="width: 2em">EMPLOYEE EMAILS</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in rowCollection">
 
-                    <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="checkStatus()"></td>
-                    <td> {{item.empRevalId}}</td>
+                    <td><input type="checkbox" ng-bind="modelName" ng-model="item.Selected" ng-click="checkStatus()">
+                    </td>
+                    <td ng-model="item.empRevalId"> {{item.empRevalId}}</td>
                     <td> {{item.empSalesforceId}}</td>
                     <td>{{item.empName}}</td>
                     <td>{{item.empEmailId}}</td>
-                    <td class="click" style="color: blue;" ng-click="open(item,'lg')">View</td>
+                    <td>
+                        <button type="button" class="btn btn-info-outline" value="View Details"
+                                ng-click="open(item,'lg')">View Details
+                        </button>
+                    </td>
+
 
                 </tr>
                 </tbody>

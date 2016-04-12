@@ -11,6 +11,7 @@ import core.view.AllEmployeeDetailsJson;
 import core.view.OnlyDiscrepancyDetailsJson;
 import core.view.PublicHolidayWorkerJson;
 import core.view.WeekendWorkerJson;
+import org.apache.commons.io.FileUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
 
 import static core.model.ProjectConstants.*;
@@ -80,6 +82,16 @@ public class CoreServlet extends HttpServlet {
             //ow.displayOnConsole();
             ow.createJSONList(WEEKEND_WORKERS_LIST);
         } catch (Exception ignored) {
+        }
+
+
+        File source = new File(FILE_PATH + "JsonFiles");
+        //update this for amrita and home
+        File dest = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
+        try {
+            FileUtils.copyDirectory(source, dest);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");

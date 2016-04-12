@@ -1,4 +1,8 @@
-import javax.security.auth.Subject;
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -7,31 +11,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.*;
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
+import java.io.PrintWriter;
+import java.util.Properties;
+import java.util.StringTokenizer;
 
 /**
  * Created by AmritaArora on 4/6/2016.
  */
 @WebServlet(name = "SendEmailServlet", urlPatterns = {"/email"})
-public class SendEmailServlet extends HttpServlet  {
+public class SendEmailServlet extends HttpServlet {
 
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RED = "\u001B[31m";
     String subject;
     String to;
     String[] message;
     String finalMessage;
 
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_RED = "\u001B[31m";
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletConfig config = getServletConfig();
 
-        subject=request.getParameter("subject");
+        subject = request.getParameter("subject");
         System.out.println(subject);
-        message=request.getParameterValues("message");
+        message = request.getParameterValues("message");
         System.out.println(message);
 
         to = "amrita.arora@reval.com";
@@ -89,14 +91,14 @@ public class SendEmailServlet extends HttpServlet  {
             transport.sendMessage(message1, message1.getAllRecipients());
             transport.close();
             out.print(ANSI_GREEN + "Message Sent");
-            RequestDispatcher rd=request.getRequestDispatcher("./MainPage.jsp#/GenerateDiscrepancy");
-            rd.include(request,response);
+            RequestDispatcher rd = request.getRequestDispatcher("./MainPage.jsp#/GenerateDiscrepancy");
+            rd.include(request, response);
 
         } catch (MessagingException mex) {
             mex.printStackTrace();
-            out.print( ANSI_RED +"Error: unable to send message...." +mex);
-            RequestDispatcher rd=request.getRequestDispatcher("./ThankYou.html");
-            rd.include(request,response);
+            out.print(ANSI_RED + "Error: unable to send message...." + mex);
+            RequestDispatcher rd = request.getRequestDispatcher("./ThankYou.html");
+            rd.include(request, response);
         }
     }
 }

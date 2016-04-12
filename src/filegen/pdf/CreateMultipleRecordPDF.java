@@ -30,7 +30,7 @@ public class CreateMultipleRecordPDF extends DataParserForPDF {
 
             addMetaData(document);
 
-            if (listOfIds == null) {
+            if (listOfIds.get(0) == null) {
                 try {
                     JSONParser parser = new JSONParser();
                     Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));

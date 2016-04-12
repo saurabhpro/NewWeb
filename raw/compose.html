@@ -20,6 +20,7 @@
         table {
             border-collapse: collapse;
         }
+
         table, td, th {
             border: 1px solid black;
         }
@@ -45,7 +46,7 @@
             </section>
 
             <!-- Main content -->
-            <form action="email" method="post" >
+            <form action="email" method="post">
                 <!-- /.col -->
                 <div class="col-md-9">
                     <div class="box box-primary">
@@ -63,7 +64,8 @@
                             </div>
                             <div class="form-group">
                                 <li ng-repeat="day in composeArray">{{day.checkOut}}</li>
-                                <textarea name="message"  class="form-control" style="height: 300px" contenteditable="true">
+                                <textarea name="message" class="form-control" style="height: 300px"
+                                          contenteditable="true">
                                         Hi {{items.empName}},
 
                                         You have not entered the below leave days for the month of Jan on <span

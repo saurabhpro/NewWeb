@@ -12,21 +12,25 @@
     <title>Logged Out</title>
     <script language="JavaScript" type="text/javascript">
         window.history.forward(1);
-        function preventBack(){window.history.forward();}
+        function preventBack() {
+            window.history.forward();
+        }
         setTimeout("preventBack()", 0);
-        window.onunload=function(){null};
+        window.onunload = function () {
+            null
+        };
     </script>
 </head>
 <body>
 <h1>Thank You! You have successfully logged out of the system!</h1>
 <a href="../web/signin.html">Click Here To Login</a>
 <%
-    response.setHeader("Cache-Control","no-cache");
-    response.setHeader("Cache-Control","no-store");
-    response.setHeader("Pragma","no-cache");
-    response.setDateHeader ("Expires", 0);
+    response.setHeader("Cache-Control", "no-cache");
+    response.setHeader("Cache-Control", "no-store");
+    response.setHeader("Pragma", "no-cache");
+    response.setDateHeader("Expires", 0);
 
-    if(session.getAttribute("userName")==null)
+    if (session.getAttribute("userName") == null)
         response.sendRedirect("./signin.html");
 
 %>

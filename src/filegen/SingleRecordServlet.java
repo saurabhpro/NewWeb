@@ -62,10 +62,10 @@ public class SingleRecordServlet extends HttpServlet {
         response.setHeader("Content-disposition", "attachment; " + "filename=" + fileName);
 
         try {
+            System.out.println("Serv" + id);
             CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, id, fileToUse);
             JsonToExcel.fromJsonToExcel(id, fileToUse);
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
+            ByteArrayOutputStream baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
 
             OutputStream os = response.getOutputStream();
             baos.writeTo(os);

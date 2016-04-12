@@ -34,22 +34,22 @@ gulp.task('karma-CI', function (done) {
 
 gulp.task('uglify', function () {
     gulp.src(src)
-      .pipe(concat('smart-table.min.js'))
-      .pipe(sourcemaps.init())
-      .pipe(uglify())
-      .pipe(sourcemaps.write('.'))
-      .pipe(gulp.dest(disFolder));
+        .pipe(concat('smart-table.min.js'))
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest(disFolder));
 });
 
 gulp.task('concat', function () {
-    gulp.src(src, { base: '.' })
-      .pipe(concat('smart-table.js'))
-      .pipe(gulp.dest(disFolder));
+    gulp.src(src, {base: '.'})
+        .pipe(concat('smart-table.js'))
+        .pipe(gulp.dest(disFolder));
 });
 
 gulp.task('test', ['karma-CI']);
 
-gulp.task('build',['test', 'uglify', 'concat'], function () {
+gulp.task('build', ['test', 'uglify', 'concat'], function () {
 
     var version = packageJson.version;
     var string = '/** \n* @version ' + version + '\n* @license MIT\n*/\n';
