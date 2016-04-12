@@ -78,65 +78,69 @@
                                 <input class="form-control" placeholder="Subject:" name="subject"
                                        value="Mail Regarding Discrepancies">
                             </div>
+                            <input type="hidden" name="message" value={{items.empName}}>
                             <div class="form-group" class="form-control">
+                                Hi {{items.empName}},
                                 <ul>
-                                    <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
-                                </ul>
-                                <ul>
-                                    <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
-                                </ul>
+                                      <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
+                                  </ul>
+                                  <ul>
+                                      <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
+                                  </ul>
                                 <ul>
                                     <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
                                 </ul>
-                                <div ng-show=discrepancyFound()>
-                                    <textarea type="text" name="message" id="editor" class="form-control"
+<!--
+                                <input type="text" name="message" style="width: 20px; border: none; outline: none; "
+                                       value="Hi">
+                                <input type="text" name="message" style="border: none; outline: none; "
+                                       value={{items.empName}}>
+-->
+
+
+                                <textarea ng-show=discrepancyFound() type="text" name="message2"
+                                              class="form-control"
                                               style="outline: none; height: 85px; border: none; float: left;"
-                                              contenteditable="true">Hi {{items.empName}},You have not entered the below leave days for the month of Jan on Financial Force, and nor have you registered your attendance in the biometric system for these days:
-                                    </textarea>
-                                </div>
-                                <div ng-show=leaveNotAppliedFunc()>
-                                    <input type="text" style="font-weight: bold; color: red; border: none;"
-                                           name="message"
-                                           value="Full Day Leaves"/>
-                                    <ul style="font-weight: bold; border: none;">
+                                              contenteditable="true">You have not entered the below leave days on Financial Force, and nor have you registered your attendance in the biometric system for these days:
+                                </textarea>
+
+                                <input type="text" ng-show=leaveNotAppliedFunc()
+                                       style="font-weight: bold; color: red; border: none; position: relative;" name="message3"
+                                       value="Full Day Leaves"/>
+                                <ul ng-show=leaveNotAppliedFunc()
+                                    style="font-weight: bold; border: none; position: relative;">
                                         <li ng-repeat="day in leaveNotApplied">
-                                            <input type="text" style="outline: none; border: none;" name="message"
+                                            <input type="text" style="outline: none; border: none;" name="message4"
                                                    value={{day.currentDate}}>
                                         </li>
                                     </ul>
-                                </div>
-                                <div ng-show=halfDayFunc()>
-                                    <input type="text" style="font-weight: bold; color: red; border: none;"
-                                           name="message" value="Half Day Leaves"/>
-                                    <ul style="font-weight: bold; border: none; ">
+
+                                <input ng-show=halfDayFunc() type="text"
+                                       style="font-weight: bold; color: red; border: none;"
+                                       name="message5" value="Half Day Leaves"/>
+                                <ul ng-show=halfDayFunc() style="font-weight: bold; border: none; ">
 
                                         <li ng-repeat="day in halfDay">
-                                            <input type="text" name="message" style="outline: none; border: none;"
+                                            <input type="text" name="message6" style="outline: none; border: none;"
                                                    value={{day.currentDate}}>
                                         </li>
                                     </ul>
-                                </div>
-                                <div ng-show=discrepancyFound()>
-                                    <input name="message" class="form-control"
+
+                                <input ng-show=discrepancyFound() name="message7" class="form-control"
                                            style="height: 40px; border: none; float: left; font-weight: bold; outline: none;"
                                            value="Request you to apply for these days in Financial Force."/>
 
-                                </div>
-                                <div ng-show=checkOutTimeNotApplicable()>
-                                    <textarea name="message" class="form-control"
+                                    <textarea ng-show=checkOutTimeNotApplicable() name="message8" class="form-control"
                                               style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days: </textarea>
-                                    <input type="text" style="font-weight: bold; color: red; border: none;"
-                                           name="message"
-                                           value="Days"/>
-                                    <ul style="font-weight: bold; border: none; ">
+                                <input ng-show=checkOutTimeNotApplicable() type="text"
+                                       style="font-weight: bold; color: red; border: none;" name="message9"
+                                       value="Days"/>
+                                <ul ng-show=checkOutTimeNotApplicable() style="font-weight: bold; border: none; ">
                                         <li ng-repeat="day in checkOutTime">
-                                            <input type="text" name="message" style="outline: none; border: none;"
+                                            <input type="text" name="message10" style="outline: none; border: none;"
                                                    value={{day.currentDate}}>
                                         </li>
                                     </ul>
-
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -153,15 +157,14 @@
                 </div>
                 <!-- /. box -->
             </form>
+            <div class="modal-footer">
+                <button type="reset" ng-click="cancel()" class="btn btn-default"><i class="fa fa-times"></i>
+                    Discard
+                </button>
+            </div>
         </div>
         <!-- /.col -->
         <!-- /.row -->
-
-        <div class="modal-footer">
-            <button type="reset" ng-click="cancel()" class="btn btn-default"><i class="fa fa-times"></i>
-                Discard
-            </button>
-        </div>
         <!-- /.content -->
     </div>
 
