@@ -24,7 +24,7 @@ import static core.model.ProjectConstants.*;
 public class ReadExcel {
 
     public static void main(String[] args) throws IOException, ParseException {
-        Object fileWorker;
+        Object fileWorker; //add fileoperations
         SheetFactory sheetFactory = new SheetFactory();
 
         setEmployeeRecordFileName(ALL_EMPLOYEE_RECORD_FILE_PATH);
@@ -39,7 +39,7 @@ public class ReadExcel {
         fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
         if (fileWorker instanceof BiometricFileWorker) {
             ((BiometricFileWorker) fileWorker).readFile();
-        }
+        }//remove
 
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
@@ -53,7 +53,7 @@ public class ReadExcel {
         //new JsonMapper().toJsonFile(null).fromJsonToFormattedJson(null);
 
         //displayAllDates Combined Files
-        //combineFile.displayCombineFiles();
+        combineFile.displayCombineFiles();
 
         // remove discrepancies
         MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();

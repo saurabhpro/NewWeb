@@ -48,12 +48,12 @@ public class ProjectConstants {
     public static String DISCREPANCY_IN_WORKERS_LIST = "DiscrepancyInWorkers";
     public static String WEEKEND_WORKERS_LIST = "WeekendWorkers";
     public static String PUBLIC_HOLIDAY_WORKER_LIST = "PublicHolidayWorkers";
+    public static Year YEAR;
+    public static Month MONTH;
     private static String BIOMETRIC_FILE_NAME;
     private static String FINANCIAL_FORCE_FILE_NAME;
     private static String EMPLOYEE_RECORD_FILE_NAME;
     private static String PUBLIC_HOLIDAY_LIST_FILE = "NOT AVAILABLE FOR NOW";
-    private static Year YEAR;
-    private static Month MONTH;
 
     @Nullable
     private static String getJsonFilePath() {

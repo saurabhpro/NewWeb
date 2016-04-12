@@ -123,6 +123,7 @@ public class BiometricFileWorker implements FileOperations {
             empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));
             empId = getCustomCellContent(3, 15 + (18 * ADD_ROW_STEPS));
 
+            //name change
             empList.put(empId, new EmpBiometricDetails(empId, empName, attendanceOfDate));
 
             ADD_ROW_STEPS++;

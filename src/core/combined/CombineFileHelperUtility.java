@@ -131,6 +131,7 @@ class CombineFileHelperUtility {
 
             //update the AttendanceStatusType to ON_LEAVE for leavs applied on salesforce
             empObj.attendanceOfDate[changeDatesRange].setAttendanceStatusType(AttendanceStatusType.ON_LEAVE);
+
             if (tempStart.equals(tempEnd))
                 break;
 

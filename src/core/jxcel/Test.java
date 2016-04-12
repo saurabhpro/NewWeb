@@ -1,5 +1,7 @@
 package core.jxcel;
 
+import filegen.excel.JsonToExcel;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -16,7 +18,7 @@ public class Test {
     }
 
     public static void main(String[] s) throws IOException {
-        File file = new File(new File("test.txt").getAbsolutePath());
+      /*  File file = new File(new File("test.txt").getAbsolutePath());
         String parent = file.getParent();
         File parentFile = new File(parent);
         String parentName = parentFile.getName();
@@ -35,6 +37,8 @@ public class Test {
                 + File.separator + parentName
                 + File.separator + ".."
                 + File.separator + parentName
-                + File.separator + "test.txt");
+                + File.separator + "test.txt");*/
+
+        JsonToExcel.fromJsonToExcel("R1", "AllWorkers");
     }
 }

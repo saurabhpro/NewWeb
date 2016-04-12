@@ -23,6 +23,7 @@ public class CombineFile {
 
     // Comparator needs string as Type
     public static Map<String, FinalObjectModel> EmpCombinedMap;
+
     static Map<String, ArrayList<HrnetDetails>> empHrnetDetails;
     static Map<String, EmpBiometricDetails> empBiometricDetails;
 
