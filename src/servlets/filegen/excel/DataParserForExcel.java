@@ -1,6 +1,6 @@
-package filegen.excel;
+package servlets.filegen.excel;
 
-import filegen.FileCreatorModel;
+import servlets.filegen.FileCreatorModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -27,7 +27,7 @@ public class DataParserForExcel {
     static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
     static SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
 
-    public static void createDailyData(XSSFWorkbook workbook, XSSFSheet sheet, JSONObject jsonObject, CreationHelper createHelper, int ro, String jKey) {
+    public static int createDailyData(XSSFWorkbook workbook, XSSFSheet sheet, JSONObject jsonObject, CreationHelper createHelper, int ro, String jKey) {
         CellStyle cellStyleForDate = workbook.createCellStyle();
         cellStyleForDate.setDataFormat(createHelper.createDataFormat().getFormat("yyyy-MM-dd"));
 
@@ -45,6 +45,7 @@ public class DataParserForExcel {
             ro++;
         }
 
+        return ro;
     }
 
     static void createHeaderRowForMonthlyData(XSSFSheet sheet, int ro, int co) {

@@ -9,6 +9,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static core.model.ProjectConstants.*;
 
@@ -65,8 +67,6 @@ public class TimeManager {
                 minsTotal += date.getWorkTimeForDay().getHour() * 60;
                 minsTotal += date.getWorkTimeForDay().getMinute();
                 presentDays++;
-
-
             }
         }
         int t = presentDays > 0 ? presentDays : 1;
@@ -95,17 +95,17 @@ public class TimeManager {
 
     @NotNull
     public static LocalDate convertToLocalDate(String date) {
-        int year;
-        int month;
-        int day;
+        AtomicInteger year = new AtomicInteger();
+        AtomicInteger month = new AtomicInteger();
+        AtomicInteger day = new AtomicInteger();
 
         String[] st = date.split("/");
 
-        month = Integer.parseInt(st[0]);
-        day = Integer.parseInt(st[1]);
-        year = Integer.parseInt(st[2]);
+        month.set(Integer.parseInt(st[0]));
+        day.set(Integer.parseInt(st[1]));
+        year.set(Integer.parseInt(st[2]));
 
-        return LocalDate.of(year, month, day);
+        return LocalDate.of(year.get(), month.get(), day.get());
     }
 
     private static LocalTime convertToTime(long hr, long min) {
@@ -115,13 +115,13 @@ public class TimeManager {
     private static LocalTime getTime(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
         Duration duration = Duration.between(fromDateTime, toDateTime);
 
-        long seconds = duration.getSeconds();
+        AtomicLong seconds = new AtomicLong(duration.getSeconds());
 
-        long hours = seconds / SECONDS_PER_HOUR;
-        long minutes = ((seconds % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE);
+        AtomicLong hours = new AtomicLong(seconds.get() / SECONDS_PER_HOUR);
+        AtomicLong minutes = new AtomicLong(((seconds.get() % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE));
         // long secs = (seconds % SECONDS_PER_MINUTE);
 
-        return convertToTime(hours, minutes);
+        return convertToTime(hours.get(), minutes.get());
 
     }
 }

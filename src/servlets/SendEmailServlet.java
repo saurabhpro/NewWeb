@@ -1,3 +1,5 @@
+package servlets;
+
 import javax.security.auth.Subject;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -15,7 +17,7 @@ import javax.mail.internet.*;
 /**
  * Created by AmritaArora on 4/6/2016.
  */
-@WebServlet(name = "SendEmailServlet", urlPatterns = {"/email"})
+@WebServlet(name = "servlets.SendEmailServlet", urlPatterns = {"/email"})
 public class SendEmailServlet extends HttpServlet  {
 
     String subject;

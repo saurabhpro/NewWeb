@@ -4,15 +4,19 @@ import core.combined.CombineFile;
 import core.combined.MarkDiscrepancy;
 import core.emplmasterrecord.EmployeeMasterData;
 import core.factory.SheetFactory;
+import core.model.FileOperations;
 import core.model.ListGeneratorModel;
 import core.model.Version;
 import core.view.AllEmployeeDetailsJson;
 import core.view.OnlyDiscrepancyDetailsJson;
 import core.view.PublicHolidayWorkerJson;
 import core.view.WeekendWorkerJson;
+import servlets.filegen.excel.CreateMultiRecordExcel;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static core.model.ProjectConstants.*;
 
@@ -24,7 +28,7 @@ import static core.model.ProjectConstants.*;
 public class ReadExcel {
 
     public static void main(String[] args) throws IOException, ParseException {
-        Object fileWorker; //add fileoperations
+        FileOperations fileWorker;
         SheetFactory sheetFactory = new SheetFactory();
 
         setEmployeeRecordFileName(ALL_EMPLOYEE_RECORD_FILE_PATH);
@@ -37,20 +41,14 @@ public class ReadExcel {
 
         // read Biometric Excel File
         fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
-        if (fileWorker instanceof BiometricFileWorker) {
-            ((BiometricFileWorker) fileWorker).readFile();
-        }//remove
+        fileWorker.readFile();      //TODO readFile argument should also be a factory
 
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
-        if (fileWorker instanceof HrnetFileWorker) {
-            ((HrnetFileWorker) fileWorker).readFile();
-            //   ((HrnetFileWorker) fileWorker).displayFile();
-        }
+        fileWorker.readFile();      //TODO readFile argument should also be a factory
 
         CombineFile combineFile = new CombineFile();
         combineFile.combineFiles();
-        //new JsonMapper().toJsonFile(null).fromJsonToFormattedJson(null);
 
         //displayAllDates Combined Files
         combineFile.displayCombineFiles();
@@ -59,24 +57,31 @@ public class ReadExcel {
         MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
         markDiscrepancy.findDiscrepancy();
 
-        ListGeneratorModel ph = new PublicHolidayWorkerJson();
-        ph.generate();
+        ListGeneratorModel ob = new PublicHolidayWorkerJson();
+        ob.generate();
         //ph.displayOnConsole();
-        ph.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
+        ob.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
 
-        ListGeneratorModel c = new AllEmployeeDetailsJson();
-        c.generate();
+        ob = new AllEmployeeDetailsJson();
+        ob.generate();
         //c.displayOnConsole();
-        c.createJSONList(ALL_EMP_WORKERS_LIST);
+        ob.createJSONList(ALL_EMP_WORKERS_LIST);
 
-        ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
-        od.generate();
-        od.displayOnConsole();
-        od.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
+        ob = new OnlyDiscrepancyDetailsJson();
+        ob.generate();
+        //ob.displayOnConsole();
+        ob.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
 
-        ListGeneratorModel ow = new WeekendWorkerJson();
-        ow.generate();
+        ob = new WeekendWorkerJson();
+        ob.generate();
         //ow.displayOnConsole();
-        ow.createJSONList(WEEKEND_WORKERS_LIST);
+        ob.createJSONList(WEEKEND_WORKERS_LIST);
+
+        List<String> nme = new ArrayList<>();
+        nme.add("Saurabh");
+        nme.add("homr");
+        nme.add("emai");
+
+        CreateMultiRecordExcel.fromJsonToExcel(nme,"AllWorkers");
     }
 }

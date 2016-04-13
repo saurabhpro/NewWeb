@@ -1,9 +1,9 @@
-package filegen.pdf;
+package servlets.filegen.pdf;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import filegen.FileCreatorModel;
+import servlets.filegen.FileCreatorModel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;

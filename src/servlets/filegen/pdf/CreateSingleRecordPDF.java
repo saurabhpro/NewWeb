@@ -1,9 +1,9 @@
-package filegen.pdf;
+package servlets.filegen.pdf;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
-import filegen.FileCreatorModel;
+import servlets.filegen.FileCreatorModel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

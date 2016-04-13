@@ -1,7 +1,7 @@
-package filegen;
+package servlets.filegen;
 
-import filegen.excel.JsonToExcel;
-import filegen.pdf.CreateSingleRecordPDF;
+import servlets.filegen.excel.CreateSingleRecordExcel;
+import servlets.filegen.pdf.CreateSingleRecordPDF;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,7 +14,7 @@ import java.io.*;
 /**
  * Created by kumars on 4/5/2016.
  */
-@WebServlet(name = "SingleRecordServlet", urlPatterns = {"/filegen"})
+@WebServlet(name = "SingleRecordServlet", urlPatterns = {"/servlets/filegen"})
 public class SingleRecordServlet extends HttpServlet {
     private static ByteArrayOutputStream convertPDFToByteArrayOutputStream(String fileName) {
         InputStream inputStream = null;
@@ -55,20 +55,33 @@ public class SingleRecordServlet extends HttpServlet {
 
         String id = request.getParameter("id");
         String fileToUse = request.getParameter("fileToUse");
+        String excelOrPdf = request.getParameter("fileType");
 
-        String fileName = "Generate_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
+        String pdfFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
+        String excelFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".xlsx";
+
         response.setContentType("application/pdf");
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Cache-Control", "max-age=0");
-        response.setHeader("Content-disposition", "attachment; " + "filename=" + fileName);
+        response.setHeader("Content-disposition", "attachment; " + "filename=" + pdfFileName);
 
         try {
             System.out.println("Serv" + id);
-            CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, id, fileToUse);
-            JsonToExcel.fromJsonToExcel(id, fileToUse);
-            ByteArrayOutputStream baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            OutputStream os = null;
 
-            OutputStream os = response.getOutputStream();
+            if (excelOrPdf.equals("PDF")) {
+                CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + pdfFileName, id, fileToUse);
+                baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + pdfFileName);
+                os = response.getOutputStream();
+
+            } else if (excelOrPdf.equals("EXCEL")) {
+                CreateSingleRecordExcel.fromJsonToExcel(id, fileToUse);
+                baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + excelFileName);
+                os = response.getOutputStream();
+            }
+
+            assert os != null;
             baos.writeTo(os);
             os.flush();
         } catch (Exception e1) {

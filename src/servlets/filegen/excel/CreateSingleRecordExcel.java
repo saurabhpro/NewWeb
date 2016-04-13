@@ -1,4 +1,4 @@
-package filegen.excel;
+package servlets.filegen.excel;
 
 import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -18,7 +18,7 @@ import static core.model.ProjectConstants.FILE_PATH;
 /**
  * Created by kumars on 4/6/2016.
  */
-public class JsonToExcel {
+public class CreateSingleRecordExcel {
 
     public static void fromJsonToExcel(String key, String fileToUse) {
         try {

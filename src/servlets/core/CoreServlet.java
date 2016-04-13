@@ -6,6 +6,7 @@ import core.emplmasterrecord.EmployeeMasterData;
 import core.factory.SheetFactory;
 import core.jxcel.BiometricFileWorker;
 import core.jxcel.HrnetFileWorker;
+import core.model.FileOperations;
 import core.model.ListGeneratorModel;
 import core.view.AllEmployeeDetailsJson;
 import core.view.OnlyDiscrepancyDetailsJson;
@@ -32,7 +33,7 @@ public class CoreServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            Object fileWorker;
+            FileOperations fileWorker;
             SheetFactory sheetFactory = new SheetFactory();
 
             setEmployeeRecordFileName(ALL_EMPLOYEE_RECORD_FILE_PATH);
@@ -45,48 +46,48 @@ public class CoreServlet extends HttpServlet {
 
             // read Biometric Excel File
             fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
-            if (fileWorker instanceof BiometricFileWorker) {
-                ((BiometricFileWorker) fileWorker).readFile();
-            }
+            fileWorker.readFile();      //TODO readFile argument should also be a factory
 
             // read HRNet Excel File
             fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
-            if (fileWorker instanceof HrnetFileWorker) {
-                ((HrnetFileWorker) fileWorker).readFile();
-            }
+            fileWorker.readFile();      //TODO readFile argument should also be a factory
 
             CombineFile combineFile = new CombineFile();
             combineFile.combineFiles();
+
+            //displayAllDates Combined Files
+            //combineFile.displayCombineFiles();
 
             // remove discrepancies
             MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
             markDiscrepancy.findDiscrepancy();
 
-            ListGeneratorModel ph = new PublicHolidayWorkerJson();
-            ph.generate();
+            ListGeneratorModel ob = new PublicHolidayWorkerJson();
+            ob.generate();
             //ph.displayOnConsole();
-            ph.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
+            ob.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
 
-            ListGeneratorModel c = new AllEmployeeDetailsJson();
-            c.generate();
+            ob = new AllEmployeeDetailsJson();
+            ob.generate();
             //c.displayOnConsole();
-            c.createJSONList(ALL_EMP_WORKERS_LIST);
+            ob.createJSONList(ALL_EMP_WORKERS_LIST);
 
-            ListGeneratorModel od = new OnlyDiscrepancyDetailsJson();
-            od.generate();
-            // od.displayOnConsole();
-            od.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
+            ob = new OnlyDiscrepancyDetailsJson();
+            ob.generate();
+            //ob.displayOnConsole();
+            ob.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
 
-            ListGeneratorModel ow = new WeekendWorkerJson();
-            ow.generate();
+            ob = new WeekendWorkerJson();
+            ob.generate();
             //ow.displayOnConsole();
-            ow.createJSONList(WEEKEND_WORKERS_LIST);
+            ob.createJSONList(WEEKEND_WORKERS_LIST);
         } catch (Exception ignored) {
         }
 
 
         File source = new File(FILE_PATH + "JsonFiles");
         //update this for amrita and home
+        //TODO when deploying on actual server, use this to copy the JSon files directory
         File dest = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
         try {
             FileUtils.copyDirectory(source, dest);

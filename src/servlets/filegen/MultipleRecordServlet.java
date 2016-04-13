@@ -1,6 +1,7 @@
-package filegen;
+package servlets.filegen;
 
-import filegen.pdf.CreateMultipleRecordPDF;
+import servlets.filegen.excel.CreateMultiRecordExcel;
+import servlets.filegen.pdf.CreateMultipleRecordPDF;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -76,23 +77,37 @@ Explanation:
 However, it's a lot easier to not use regex:
  */
         //  String st = listOfIds.indexOf("\"");
-
         String fileToUse = request.getParameter("fileToUse");
+        String excelOrPdf = request.getParameter("fileType");
 
-        String fileName = "Generate_Report_All_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
+        String pdfFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
+        String excelFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".xlsx";
         response.setContentType("application/pdf");
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Cache-Control", "max-age=0");
-        response.setHeader("Content-disposition", "attachment; " + "filename=" + fileName);
+        response.setHeader("Content-disposition", "attachment; " + "filename=" + pdfFileName);
 
         try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            OutputStream os = null;
+
             for (String s : listOfIds)
                 System.out.println(s);
-            CreateMultipleRecordPDF.createPDF(temporaryFilePath + "\\" + fileName, listOfIds, fileToUse);
-            //JsonToExcel.fromJsonToExcel( fileToUse);
-            ByteArrayOutputStream baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + fileName);
 
-            OutputStream os = response.getOutputStream();
+            if (excelOrPdf.equals("PDF")) {
+                CreateMultipleRecordPDF.createPDF(temporaryFilePath + "\\" + pdfFileName, listOfIds, fileToUse);
+                baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + pdfFileName);
+                os = response.getOutputStream();
+
+            } else if (excelOrPdf.equals("EXCEL")) {
+                CreateMultiRecordExcel.fromJsonToExcel(listOfIds, fileToUse);
+                baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + excelFileName);
+                os = response.getOutputStream();
+            }
+
+            assert os != null;
+            baos.writeTo(os);
+            os.flush();
             baos.writeTo(os);
             os.flush();
         } catch (Exception e1) {

@@ -1,6 +1,6 @@
 package core.jxcel;
 
-import filegen.excel.JsonToExcel;
+import servlets.filegen.excel.CreateSingleRecordExcel;
 
 import java.io.File;
 import java.io.IOException;
@@ -39,6 +39,6 @@ public class Test {
                 + File.separator + parentName
                 + File.separator + "test.txt");*/
 
-        JsonToExcel.fromJsonToExcel("R1", "AllWorkers");
+        CreateSingleRecordExcel.fromJsonToExcel("R1", "AllWorkers");
     }
 }
