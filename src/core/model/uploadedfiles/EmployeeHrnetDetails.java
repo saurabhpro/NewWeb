@@ -8,10 +8,10 @@ import static core.model.ProjectConstants.*;
 /**
  * Created by AroraA on 09-02-2016.
  */
-public class HrnetDetails extends BasicEmployeeDetails {
+public class EmployeeHrnetDetails extends BasicEmployeeDetails {
     public final AttendanceOfLeave attendanceOfLeave;
 
-    public HrnetDetails(String empId, String name, AttendanceOfLeave attendanceOfLeave) {
+    public EmployeeHrnetDetails(String empId, String name, AttendanceOfLeave attendanceOfLeave) {
         setEmpId(empId);
         setName(name);
         this.attendanceOfLeave = attendanceOfLeave;

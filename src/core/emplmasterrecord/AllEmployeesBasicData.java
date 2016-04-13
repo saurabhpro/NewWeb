@@ -18,13 +18,13 @@ import static core.model.ProjectConstants.FILE_PATH;
 /**
  * Created by kumars on 3/1/2016. this contains all employees basic records
  */
-public class EmployeeMasterData implements FileOperations {
+public class AllEmployeesBasicData implements FileOperations {
 
     public static Map<String, BasicEmployeeDetails> allEmployeeRecordMap;
     private final int numberOfRowsInBio;
     private Sheet sheet = null;
 
-    public EmployeeMasterData(String empListID) {
+    public AllEmployeesBasicData(String empListID) {
         sheet = new XLSXSheetAndCell().ApacheXLSXSheet(empListID);
         // Get the first sheet
         numberOfRowsInBio = sheet.getPhysicalNumberOfRows();
@@ -49,6 +49,7 @@ public class EmployeeMasterData implements FileOperations {
 
         for (int row = 0; row < numberOfRowsInBio; row++) {
             BasicEmployeeDetails b = new BasicEmployeeDetails();
+
             b.setName(getCustomCellContent(0, row));
             b.setEmailId(getCustomCellContent(1, row));
             b.setEmpId(getCustomCellContent(2, row));

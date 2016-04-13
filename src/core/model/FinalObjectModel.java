@@ -1,10 +1,10 @@
 package core.model;
 
-import core.emplmasterrecord.EmployeeMasterData;
+import core.emplmasterrecord.AllEmployeesBasicData;
 import core.jxcel.TimeManager;
 import core.model.attendence.AttendanceOfDate;
 import core.model.empl.BasicEmployeeDetails;
-import core.model.uploadedfiles.HrnetDetails;
+import core.model.uploadedfiles.EmployeeHrnetDetails;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -16,7 +16,7 @@ import static core.model.ProjectConstants.*;
  */
 public class FinalObjectModel extends BasicEmployeeDetails {
     public final AttendanceOfDate[] attendanceOfDate;
-    public final ArrayList<HrnetDetails> hrnetDetails;
+    public final ArrayList<EmployeeHrnetDetails> employeeHrnetDetails;
     private final LocalTime avgInTime;
     private final LocalTime avgOutTime;
     private final int numberOfEntriesInHrNet;
@@ -26,10 +26,10 @@ public class FinalObjectModel extends BasicEmployeeDetails {
     // Weekend_Holiday, Half_Day
     private boolean ifClarificationNeeded = false;
 
-    public FinalObjectModel(String EmployeeID, int numberOfEntriesInHrNet, AttendanceOfDate[] a, ArrayList<HrnetDetails> hr1) {
+    public FinalObjectModel(String EmployeeID, int numberOfEntriesInHrNet, AttendanceOfDate[] a, ArrayList<EmployeeHrnetDetails> hr1) {
         this.setEmpId(EmployeeID);
 
-        BasicEmployeeDetails b = EmployeeMasterData.allEmployeeRecordMap.get(EmployeeID);
+        BasicEmployeeDetails b = AllEmployeesBasicData.allEmployeeRecordMap.get(EmployeeID);
 
         if (b != null) {
             this.setName(b.getName());
@@ -39,7 +39,7 @@ public class FinalObjectModel extends BasicEmployeeDetails {
         this.attendanceOfDate = a;
         this.numberOfEntriesInHrNet = numberOfEntriesInHrNet;
         // this.needClarificationFromEmployee = needClarificationFromEmployee;
-        this.hrnetDetails = hr1;
+        this.employeeHrnetDetails = hr1;
 
         avgInTime = setAvgInTime();
         avgOutTime = setAvgOutTime();
@@ -47,7 +47,7 @@ public class FinalObjectModel extends BasicEmployeeDetails {
     }
 
     private void displayArrayList() {
-        hrnetDetails.forEach(HrnetDetails::printHrNetDetail);
+        employeeHrnetDetails.forEach(EmployeeHrnetDetails::printHrNetDetail);
     }
 
     public void displayFinalList() {
@@ -59,7 +59,7 @@ public class FinalObjectModel extends BasicEmployeeDetails {
         System.out.println();
 
         System.out.println(EMP_NUM_LEAVE_REQUESTED + " : " + this.numberOfEntriesInHrNet);
-        if (this.hrnetDetails != null) {
+        if (this.employeeHrnetDetails != null) {
             this.displayArrayList();
         }
 

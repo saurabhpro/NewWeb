@@ -19,7 +19,6 @@ import static core.model.ProjectConstants.*;
  */
 public class TimeManager {
 
-
     private TimeManager() {
     }
 

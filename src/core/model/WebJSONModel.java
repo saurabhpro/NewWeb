@@ -23,7 +23,7 @@ public class WebJSONModel {
     private String empAvgCheckOutTimeForMonth;
     private String empAvgWorkHoursForMonth;
     private AttendanceOfDate[] attendanceOfDates;
-    private ArrayList<SubMenuAttendanceOfDate> allDateDetailsList;
+    private ArrayList<PerDayAttendanceRecord> allDateDetailsList;
     private Boolean empIfClarificationNeeded;
 
     public WebJSONModel(FinalObjectModel f) {
@@ -53,7 +53,7 @@ public class WebJSONModel {
     public void setAllDateDetailsList() {
         allDateDetailsList = new ArrayList<>();
         for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
-            this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
+            this.allDateDetailsList.add(new PerDayAttendanceRecord(attendanceOfDate));
         }
     }
 
@@ -93,39 +93,39 @@ public class WebJSONModel {
         return empAvgCheckInTimeForMonth;
     }
 
-    public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
-        this.empAvgCheckInTimeForMonth = a.toString();
-    }
-
     public void setEmpAvgCheckInTimeForMonth(String a) {
         this.empAvgCheckInTimeForMonth = a;
+    }
+
+    public void setEmpAvgCheckInTimeForMonth(LocalTime a) {
+        this.empAvgCheckInTimeForMonth = a.toString();
     }
 
     public String getEmpAvgCheckOutTimeForMonth() {
         return empAvgCheckOutTimeForMonth;
     }
 
-    public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
-        this.empAvgCheckOutTimeForMonth = a.toString();
-    }
-
     public void setEmpAvgCheckOutTimeForMonth(String a) {
         this.empAvgCheckOutTimeForMonth = a;
+    }
+
+    public void setEmpAvgCheckOutTimeForMonth(LocalTime a) {
+        this.empAvgCheckOutTimeForMonth = a.toString();
     }
 
     public String getEmpAvgWorkHoursForMonth() {
         return empAvgWorkHoursForMonth;
     }
 
-    public void setEmpAvgWorkHoursForMonth(LocalTime a) {
-        this.empAvgWorkHoursForMonth = a.toString();
-    }
-
     public void setEmpAvgWorkHoursForMonth(String a) {
         this.empAvgWorkHoursForMonth = a;
     }
 
-    public ArrayList<SubMenuAttendanceOfDate> getAllDateDetailsList() {
+    public void setEmpAvgWorkHoursForMonth(LocalTime a) {
+        this.empAvgWorkHoursForMonth = a.toString();
+    }
+
+    public ArrayList<PerDayAttendanceRecord> getAllDateDetailsList() {
         return allDateDetailsList;
     }
 
@@ -135,16 +135,16 @@ public class WebJSONModel {
             for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
 
                 if (attendanceOfDate.getAttendanceStatusType().equals(AttendanceStatusType.UNACCOUNTED_ABSENCE))
-                    this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
+                    this.allDateDetailsList.add(new PerDayAttendanceRecord(attendanceOfDate));
                 else if (attendanceOfDate.getAttendanceStatusType().equals(AttendanceStatusType.HALF_DAY)
                         && attendanceOfDate.getLeaveTypeForThisDate().equals(LeaveType.NO_LEAVE))
-                    this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
+                    this.allDateDetailsList.add(new PerDayAttendanceRecord(attendanceOfDate));
 
             }
         } else if (Type.equals(WEEKEND_WORKERS_LIST)) {
             for (AttendanceOfDate attendanceOfDate : attendanceOfDates) {
                 if (attendanceOfDate.getAttendanceStatusType().equals(WEEKEND_HOLIDAY) && attendanceOfDate.getWorkTimeForDay() != null) {
-                    this.allDateDetailsList.add(new SubMenuAttendanceOfDate(attendanceOfDate));
+                    this.allDateDetailsList.add(new PerDayAttendanceRecord(attendanceOfDate));
                 }
             }
         }
@@ -172,19 +172,19 @@ public class WebJSONModel {
 
     public void displayAllDates() {
         displayBasicDetails();
-        getAllDateDetailsList().forEach(SubMenuAttendanceOfDate::displaySub);
+        getAllDateDetailsList().forEach(PerDayAttendanceRecord::displaySub);
 
     }
 
     public HolidayWorkerModel getHolidayWorkerObjForThisDate(int date) {
-        SubMenuAttendanceOfDate s = allDateDetailsList.get(date);
+        PerDayAttendanceRecord s = allDateDetailsList.get(date);
         if (s.getCheckIn() != null)
             return new HolidayWorkerModel(new BasicEmployeeDetails(empName, empRevalId, empSalesforceId, empEmailId), s);
 
         return null;
     }
 
-    public static class SubMenuAttendanceOfDate {
+    public static class PerDayAttendanceRecord {
         final String currentDate;
         final AttendanceStatusType attendanceStatusType;
         final LeaveType leaveTypeForThisDate;
@@ -192,7 +192,7 @@ public class WebJSONModel {
         String checkOut;
         String workTimeForDay;
 
-        public SubMenuAttendanceOfDate(AttendanceOfDate attendance) {
+        public PerDayAttendanceRecord(AttendanceOfDate attendance) {
             currentDate = attendance.getCurrentDate().toString();
             if (attendance.getCheckIn() != null) checkIn = attendance.getCheckIn().toString();
             if (attendance.getCheckOut() != null) checkOut = attendance.getCheckOut().toString();

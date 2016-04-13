@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 /**
  * Created by Saurabh on 4/3/2016.
  */
-@WebServlet(name = "SignInServlet", urlPatterns = {"/signin"})
+@WebServlet(name = "SignInServlet")
 public class SignInServlet extends HttpServlet implements java.io.Serializable {
 
     private String userName;

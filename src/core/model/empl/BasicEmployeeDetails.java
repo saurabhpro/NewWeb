@@ -1,6 +1,6 @@
 package core.model.empl;
 
-import core.emplmasterrecord.EmployeeMasterData;
+import core.emplmasterrecord.AllEmployeesBasicData;
 
 import static core.model.ProjectConstants.*;
 
@@ -63,7 +63,7 @@ public class BasicEmployeeDetails {
     }
 
     public String getSalesForceId(String empId) {
-        BasicEmployeeDetails tempSalesForceId = EmployeeMasterData.allEmployeeRecordMap.get(empId);
+        BasicEmployeeDetails tempSalesForceId = AllEmployeesBasicData.allEmployeeRecordMap.get(empId);
         if (tempSalesForceId != null && tempSalesForceId.getSalesForceId() != null)
             return tempSalesForceId.getSalesForceId();
         else

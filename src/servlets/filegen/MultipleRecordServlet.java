@@ -1,6 +1,5 @@
 package servlets.filegen;
 
-import servlets.filegen.excel.CreateMultiRecordExcel;
 import servlets.filegen.pdf.CreateMultipleRecordPDF;
 
 import javax.servlet.ServletContext;
@@ -94,16 +93,16 @@ However, it's a lot easier to not use regex:
             for (String s : listOfIds)
                 System.out.println(s);
 
-            if (excelOrPdf.equals("PDF")) {
+
                 CreateMultipleRecordPDF.createPDF(temporaryFilePath + "\\" + pdfFileName, listOfIds, fileToUse);
                 baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + pdfFileName);
                 os = response.getOutputStream();
 
-            } else if (excelOrPdf.equals("EXCEL")) {
-                CreateMultiRecordExcel.fromJsonToExcel(listOfIds, fileToUse);
-                baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + excelFileName);
-                os = response.getOutputStream();
-            }
+
+            //  CreateMultiRecordExcel.fromJsonToExcel(listOfIds, fileToUse);
+            //  baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + excelFileName);
+            ///   os = response.getOutputStream();
+
 
             assert os != null;
             baos.writeTo(os);

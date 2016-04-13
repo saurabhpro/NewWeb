@@ -1,6 +1,5 @@
 package servlets.filegen.excel;
 
-import servlets.filegen.FileCreatorModel;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.CreationHelper;
@@ -9,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import servlets.filegen.FileCreatorModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,14 +25,14 @@ import static core.model.ProjectConstants.*;
 public class DataParserForExcel {
     static Date time;
     static SimpleDateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-    static SimpleDateFormat timeFormatter = new SimpleDateFormat("hh:mm");
+    static SimpleDateFormat timeFormatter = new SimpleDateFormat("HH:mm");
 
     public static int createDailyData(XSSFWorkbook workbook, XSSFSheet sheet, JSONObject jsonObject, CreationHelper createHelper, int ro, String jKey) {
         CellStyle cellStyleForDate = workbook.createCellStyle();
         cellStyleForDate.setDataFormat(createHelper.createDataFormat().getFormat("yyyy-MM-dd"));
 
         CellStyle cellStyleForTime = workbook.createCellStyle();
-        cellStyleForTime.setDataFormat(createHelper.createDataFormat().getFormat("hh:mm"));
+        cellStyleForTime.setDataFormat(createHelper.createDataFormat().getFormat("HH:mm"));
 
         int co = 0;
 

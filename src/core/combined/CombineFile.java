@@ -4,8 +4,8 @@ import core.jxcel.BiometricFileWorker;
 import core.jxcel.HrnetFileWorker;
 import core.model.FinalObjectModel;
 import core.model.empl.BasicEmployeeDetails;
-import core.model.uploadedfiles.EmpBiometricDetails;
-import core.model.uploadedfiles.HrnetDetails;
+import core.model.uploadedfiles.EmployeeBiometricDetails;
+import core.model.uploadedfiles.EmployeeHrnetDetails;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -24,8 +24,8 @@ public class CombineFile {
     // Comparator needs string as Type
     public static Map<String, FinalObjectModel> EmpCombinedMap;
 
-    static Map<String, ArrayList<HrnetDetails>> empHrnetDetails;
-    static Map<String, EmpBiometricDetails> empBiometricDetails;
+    static Map<String, ArrayList<EmployeeHrnetDetails>> empHrnetDetails;
+    static Map<String, EmployeeBiometricDetails> empBiometricDetails;
 
     public CombineFile() {
         EmpCombinedMap = new TreeMap<>(String::compareTo);
@@ -41,7 +41,7 @@ public class CombineFile {
         BiometricFileWorker.empList = empBiometricDetails;
 
         // Combine Hrnet and Biometric Files
-        for (EmpBiometricDetails empObj : empBiometricDetails.values()) {
+        for (EmployeeBiometricDetails empObj : empBiometricDetails.values()) {
             if (empObj.getNumberOfEntriesInHrNet() == 0) {
                 EmpCombinedMap.put(empObj.getEmpId(),
                         new FinalObjectModel(empObj.getEmpId(), empObj.numberOfEntriesInHrNet, empObj.attendanceOfDate, null));
@@ -53,7 +53,7 @@ public class CombineFile {
 
                     if (tempSalesForceId != null && hrKey.equals(tempSalesForceId)) {
 
-                        ArrayList<HrnetDetails> hrnet = empHrnetDetails.get(hrKey);
+                        ArrayList<EmployeeHrnetDetails> hrnet = empHrnetDetails.get(hrKey);
                         EmpCombinedMap.put(empObj.getEmpId(), new FinalObjectModel(empObj.getEmpId(), empObj.numberOfEntriesInHrNet,
                                 empObj.attendanceOfDate, hrnet));
                     }

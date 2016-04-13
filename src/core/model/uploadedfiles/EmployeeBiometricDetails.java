@@ -11,11 +11,11 @@ import java.time.LocalTime;
 
 import static core.model.ProjectConstants.*;
 
-public class EmpBiometricDetails extends BasicEmployeeDetails {
+public class EmployeeBiometricDetails extends BasicEmployeeDetails {
     public final AttendanceOfDate[] attendanceOfDate;
     public int numberOfEntriesInHrNet = 0; // To check how many leaves have been applied
 
-    public EmpBiometricDetails(String eID, String eName, AttendanceOfDate[] attendanceOfDate) {
+    public EmployeeBiometricDetails(String eID, String eName, AttendanceOfDate[] attendanceOfDate) {
         setName(eName);
         setEmpId(eID);
         this.attendanceOfDate = attendanceOfDate;

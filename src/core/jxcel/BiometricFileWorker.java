@@ -2,9 +2,10 @@ package core.jxcel;
 
 import core.factory.JXLSSheetAndCell;
 import core.model.FileOperations;
+import core.model.ProjectConstants;
 import core.model.attendence.AttendanceOfDate;
 import core.model.attendence.AttendanceStatusType;
-import core.model.uploadedfiles.EmpBiometricDetails;
+import core.model.uploadedfiles.EmployeeBiometricDetails;
 import jxl.Sheet;
 
 import java.time.LocalDate;
@@ -15,7 +16,6 @@ import java.util.Map;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
-import static core.model.ProjectConstants.*;
 import static core.model.attendence.AttendanceStatusType.*;
 
 /**
@@ -23,7 +23,7 @@ import static core.model.attendence.AttendanceStatusType.*;
  */
 public class BiometricFileWorker implements FileOperations {
 
-    public static Map<String, EmpBiometricDetails> empList = null;
+    public static Map<String, EmployeeBiometricDetails> empList = null;
     private final int numberOfRowsInBio;
     private Sheet sheet = null;
     private int ADD_ROW_STEPS = 0;
@@ -35,8 +35,8 @@ public class BiometricFileWorker implements FileOperations {
 
     @Override
     public void displayFile() {
-        System.out.println(getMONTH());
-        empList.values().forEach(EmpBiometricDetails::printEmpBiometricDetails);
+        System.out.println(ProjectConstants.getMONTH());
+        empList.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
     }
 
     /**
@@ -53,10 +53,10 @@ public class BiometricFileWorker implements FileOperations {
         StringTokenizer st;
         AttendanceStatusType attendanceStatus;
 
-        int noOfDaysInThatMonth = getMONTH().maxLength();
+        int noOfDaysInThatMonth = ProjectConstants.getMONTH().maxLength();
 
         for (int k = 0; k < noOfDaysInThatMonth; k++) {
-            LocalDate tempDate = LocalDate.of(getYEAR().getValue(), getMONTH(), (k + 1));
+            LocalDate tempDate = LocalDate.of(ProjectConstants.getYEAR().getValue(), ProjectConstants.getMONTH(), (k + 1));
             attendanceOfDate[k] = new AttendanceOfDate();
             attendanceOfDate[k].setCurrentDate(tempDate);
             attendanceStatus = NOT_AN_EMPLOYEE; // default
@@ -113,18 +113,18 @@ public class BiometricFileWorker implements FileOperations {
         String monthYear = getCustomCellContent(13, 7);
         String[] st = monthYear.split("   ");
 
-        setMONTH(Month.valueOf(st[0].toUpperCase()));
-        setYEAR(Year.parse(st[1]));
+        ProjectConstants.setMONTH(Month.valueOf(st[0].toUpperCase()));
+        ProjectConstants.setYEAR(Year.parse(st[1]));
 
         for (int i = 0; i < numberOfRowsInBio; i++) {
-            attendanceOfDate = new AttendanceOfDate[getMONTH().maxLength()];
+            attendanceOfDate = new AttendanceOfDate[ProjectConstants.getMONTH().maxLength()];
             getMonthlyAttendanceOfEmployee(attendanceOfDate); // referenced
 
             empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));
             empId = getCustomCellContent(3, 15 + (18 * ADD_ROW_STEPS));
 
             //name change
-            empList.put(empId, new EmpBiometricDetails(empId, empName, attendanceOfDate));
+            empList.put(empId, new EmployeeBiometricDetails(empId, empName, attendanceOfDate));
 
             ADD_ROW_STEPS++;
         }

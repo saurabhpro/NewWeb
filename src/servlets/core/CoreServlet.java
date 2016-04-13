@@ -2,10 +2,8 @@ package servlets.core;
 
 import core.combined.CombineFile;
 import core.combined.MarkDiscrepancy;
-import core.emplmasterrecord.EmployeeMasterData;
+import core.emplmasterrecord.AllEmployeesBasicData;
 import core.factory.SheetFactory;
-import core.jxcel.BiometricFileWorker;
-import core.jxcel.HrnetFileWorker;
 import core.model.FileOperations;
 import core.model.ListGeneratorModel;
 import core.view.AllEmployeeDetailsJson;
@@ -40,9 +38,9 @@ public class CoreServlet extends HttpServlet {
             setBiometricFileName(BIOMETRIC_FILE_PATH);
             setFinancialForceFileName(FINANCIAL_FORCE_FILE_PATH);
 
-            EmployeeMasterData employeeMasterData = new EmployeeMasterData(getEmployeeRecordFileName());
-            employeeMasterData.readFile();
-            employeeMasterData.toJsonFile();
+            AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
+            allEmployeesBasicData.readFile();
+            allEmployeesBasicData.toJsonFile();
 
             // read Biometric Excel File
             fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());

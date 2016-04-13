@@ -2,7 +2,7 @@ package core.jxcel;
 
 import core.combined.CombineFile;
 import core.combined.MarkDiscrepancy;
-import core.emplmasterrecord.EmployeeMasterData;
+import core.emplmasterrecord.AllEmployeesBasicData;
 import core.factory.SheetFactory;
 import core.model.FileOperations;
 import core.model.ListGeneratorModel;
@@ -35,9 +35,9 @@ public class ReadExcel {
         setBiometricFileName(BIOMETRIC_FILE_PATH);
         setFinancialForceFileName(FINANCIAL_FORCE_FILE_PATH);
 
-        EmployeeMasterData employeeMasterData = new EmployeeMasterData(getEmployeeRecordFileName());
-        employeeMasterData.readFile();
-        employeeMasterData.toJsonFile();
+        AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
+        allEmployeesBasicData.readFile();
+        allEmployeesBasicData.toJsonFile();      //Writes Emails.json
 
         // read Biometric Excel File
         fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
@@ -49,7 +49,6 @@ public class ReadExcel {
 
         CombineFile combineFile = new CombineFile();
         combineFile.combineFiles();
-
         //displayAllDates Combined Files
         combineFile.displayCombineFiles();
 

@@ -9,19 +9,19 @@ import core.model.empl.BasicEmployeeDetails;
 public class HolidayWorkerModel {
     HolidaysList holiday;
     BasicEmployeeDetails basicEmployeeDetails;
-    WebJSONModel.SubMenuAttendanceOfDate subMenuAttendanceOfDate;
+    WebJSONModel.PerDayAttendanceRecord perDayAttendanceRecord;
 
-    public HolidayWorkerModel(BasicEmployeeDetails b, WebJSONModel.SubMenuAttendanceOfDate s) {
+    public HolidayWorkerModel(BasicEmployeeDetails b, WebJSONModel.PerDayAttendanceRecord s) {
         this.basicEmployeeDetails = b;
-        this.subMenuAttendanceOfDate = s;
+        this.perDayAttendanceRecord = s;
     }
 
     public BasicEmployeeDetails getBasicEmployeeDetails() {
         return basicEmployeeDetails;
     }
 
-    public WebJSONModel.SubMenuAttendanceOfDate getSubMenuAttendanceOfDate() {
-        return subMenuAttendanceOfDate;
+    public WebJSONModel.PerDayAttendanceRecord getPerDayAttendanceRecord() {
+        return perDayAttendanceRecord;
     }
 
     public HolidaysList getHoliday() {
@@ -35,7 +35,7 @@ public class HolidayWorkerModel {
     public void display() {
         System.out.println();
         basicEmployeeDetails.displayBasicInfo();
-        subMenuAttendanceOfDate.displaySub();
+        perDayAttendanceRecord.displaySub();
         if (holiday != null)
             System.out.println("Holiday is " + holiday.name());
     }

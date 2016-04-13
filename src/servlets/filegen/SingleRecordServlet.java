@@ -14,7 +14,7 @@ import java.io.*;
 /**
  * Created by kumars on 4/5/2016.
  */
-@WebServlet(name = "SingleRecordServlet", urlPatterns = {"/servlets/filegen"})
+@WebServlet(name = "SingleRecordServlet", urlPatterns = {"/filegen"})
 public class SingleRecordServlet extends HttpServlet {
     private static ByteArrayOutputStream convertPDFToByteArrayOutputStream(String fileName) {
         InputStream inputStream = null;
@@ -69,7 +69,7 @@ public class SingleRecordServlet extends HttpServlet {
             System.out.println("Serv" + id);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             OutputStream os = null;
-
+            excelOrPdf = "PDF";
             if (excelOrPdf.equals("PDF")) {
                 CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + pdfFileName, id, fileToUse);
                 baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + pdfFileName);

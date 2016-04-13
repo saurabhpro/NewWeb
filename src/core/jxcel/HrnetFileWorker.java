@@ -4,7 +4,7 @@ import core.factory.XLSXSheetAndCell;
 import core.model.FileOperations;
 import core.model.attendence.AttendanceOfLeave;
 import core.model.attendence.LeaveType;
-import core.model.uploadedfiles.HrnetDetails;
+import core.model.uploadedfiles.EmployeeHrnetDetails;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.jetbrains.annotations.NotNull;
@@ -21,7 +21,7 @@ import static core.model.ProjectConstants.getYEAR;
  */
 public class HrnetFileWorker implements FileOperations {
 
-    public static Map<String, ArrayList<HrnetDetails>> hrnetDetails;
+    public static Map<String, ArrayList<EmployeeHrnetDetails>> hrnetDetails;
     private final Sheet sheet;
 
     public HrnetFileWorker(String hrNetFile) {
@@ -30,10 +30,10 @@ public class HrnetFileWorker implements FileOperations {
 
     @Override
     public void displayFile() {
-        Set<Map.Entry<String, ArrayList<HrnetDetails>>> s = hrnetDetails.entrySet();
+        Set<Map.Entry<String, ArrayList<EmployeeHrnetDetails>>> s = hrnetDetails.entrySet();
 
-        for (Map.Entry<String, ArrayList<HrnetDetails>> entry : s) {
-            entry.getValue().forEach(HrnetDetails::printHrNetDetail);
+        for (Map.Entry<String, ArrayList<EmployeeHrnetDetails>> entry : s) {
+            entry.getValue().forEach(EmployeeHrnetDetails::printHrNetDetail);
         }
     }
 
@@ -67,7 +67,7 @@ public class HrnetFileWorker implements FileOperations {
         hrnetDetails = new TreeMap<>();
 
         for (int i = 1; i < numberOfRowsInHr; i++) {
-            ArrayList<HrnetDetails> tempArrLst;
+            ArrayList<EmployeeHrnetDetails> tempArrLst;
             attendanceOfLeave = new AttendanceOfLeave();
 
             for (int j = 0; j < 7; j++) {
@@ -116,12 +116,12 @@ public class HrnetFileWorker implements FileOperations {
             if (attendanceOfLeave.getStartDate() != null && attendanceOfLeave.getLeaveType() != null) {
                 if (hrnetDetails.containsKey(salesForceID)) {
                     tempArrLst = hrnetDetails.get(salesForceID);
-                    tempArrLst.add(new HrnetDetails(salesForceID, empName, attendanceOfLeave));
+                    tempArrLst.add(new EmployeeHrnetDetails(salesForceID, empName, attendanceOfLeave));
                     hrnetDetails.put(salesForceID, tempArrLst);
 
                 } else {
                     tempArrLst = new ArrayList<>();
-                    tempArrLst.add(new HrnetDetails(salesForceID, empName, attendanceOfLeave));
+                    tempArrLst.add(new EmployeeHrnetDetails(salesForceID, empName, attendanceOfLeave));
                     hrnetDetails.put(salesForceID, tempArrLst);
                 }
             }

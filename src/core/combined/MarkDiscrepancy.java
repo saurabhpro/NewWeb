@@ -17,7 +17,7 @@ public class MarkDiscrepancy {
         // MarkDiscrepancy if an employee is absent and there is no entry in Hrnet file.
         for (FinalObjectModel finalObjectModel : EmpCombinedMap.values())
             // case where there is an entry
-            if (finalObjectModel.hrnetDetails == null)
+            if (finalObjectModel.employeeHrnetDetails == null)
                 MarkDiscrepancyHelperUtility.setIfAbsentButNoLeaveApplied(finalObjectModel);
             else MarkDiscrepancyHelperUtility.setIfEntryPresentInEither(finalObjectModel);
     }

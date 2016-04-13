@@ -2,7 +2,7 @@ package core.combined;
 
 import core.model.FinalObjectModel;
 import core.model.ProjectConstants;
-import core.model.uploadedfiles.HrnetDetails;
+import core.model.uploadedfiles.EmployeeHrnetDetails;
 
 import java.time.LocalDate;
 
@@ -25,7 +25,7 @@ class MarkDiscrepancyHelperUtility {
             if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE)) {
 
                 int[] temp;
-                for (HrnetDetails hrnetDetail : finalObjectModel.hrnetDetails) {
+                for (EmployeeHrnetDetails hrnetDetail : finalObjectModel.employeeHrnetDetails) {
                     temp = setClarificationStatus(j, finalObjectModel, hrnetDetail, "AbsentInOneNotInOther", 0);
                     j = temp[0];
                     flag = temp[1];
@@ -40,7 +40,7 @@ class MarkDiscrepancyHelperUtility {
             // MarkDiscrepancy if there is an entry for an employee in both
             // Biometric and Hrnet file.
             else if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(PRESENT)) {
-                for (HrnetDetails hrnetDetail : finalObjectModel.hrnetDetails)
+                for (EmployeeHrnetDetails hrnetDetail : finalObjectModel.employeeHrnetDetails)
                     setClarificationStatus(j, finalObjectModel, hrnetDetail, "PresentInBoth", 0);
             }
 
@@ -67,7 +67,7 @@ class MarkDiscrepancyHelperUtility {
             f.setIfClarificationNeeded(true);
         else
         /*
-         for (HrnetDetails hrnetDetail : f.hrnetDetails) {
+         for (EmployeeHrnetDetails hrnetDetail : f.employeeHrnetDetails) {
          if (hrnetDetail.attendanceOfLeave.getStartDate().getDayOfMonth() == j + 1) {
          if ((f.attendanceOfDate[j].getWorkTimeForDay() == null)
          || (f.attendanceOfDate[j].getWorkTimeForDay().getHour() < 4)) {
@@ -76,7 +76,7 @@ class MarkDiscrepancyHelperUtility {
          }
          }
          */
-            f.hrnetDetails.stream()
+            f.employeeHrnetDetails.stream()
                     .filter(hrnet -> hrnet.attendanceOfLeave.getStartDate().getDayOfMonth() == j + 1)
                     .filter(hrnet -> (f.attendanceOfDate[j].getWorkTimeForDay() == null)
                             || (f.attendanceOfDate[j].getWorkTimeForDay().getHour() < 4))
@@ -86,7 +86,7 @@ class MarkDiscrepancyHelperUtility {
 
     }
 
-    private static int[] setClarificationStatus(int j, FinalObjectModel finalObjectModel, HrnetDetails hrnetDetail, String type, int flag) {
+    private static int[] setClarificationStatus(int j, FinalObjectModel finalObjectModel, EmployeeHrnetDetails hrnetDetail, String type, int flag) {
         LocalDate startDate = hrnetDetail.attendanceOfLeave.getStartDate();
         LocalDate endDate = hrnetDetail.attendanceOfLeave.getEndDate();
 

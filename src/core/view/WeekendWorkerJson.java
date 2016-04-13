@@ -19,6 +19,7 @@ public class WeekendWorkerJson extends ListGeneratorModel {
         WebJSONModel webJSONModel;
         filteredEmpDetails = new TreeMap<>();
         for (FinalObjectModel f : allEmpDetails.values()) {
+            //TODO remove the redundant double check
             for (AttendanceOfDate a : f.attendanceOfDate) {
                 if (a.getAttendanceStatusType().equals(WEEKEND_HOLIDAY) && a.getWorkTimeForDay() != null) {
                     //advantage of this check is additional redundant objects are not stored in the filteredEmpDetails
