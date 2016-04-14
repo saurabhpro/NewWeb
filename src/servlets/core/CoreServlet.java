@@ -4,6 +4,7 @@ import core.combined.CombineFile;
 import core.combined.MarkDiscrepancy;
 import core.emplmasterrecord.AllEmployeesBasicData;
 import core.factory.SheetFactory;
+import core.jxcel.FileFolderWorker;
 import core.model.FileOperations;
 import core.model.ListGeneratorModel;
 import core.view.AllEmployeeDetailsJson;
@@ -34,9 +35,9 @@ public class CoreServlet extends HttpServlet {
             FileOperations fileWorker;
             SheetFactory sheetFactory = new SheetFactory();
 
-            setEmployeeRecordFileName(ALL_EMPLOYEE_RECORD_FILE_PATH);
-            setBiometricFileName(BIOMETRIC_FILE_PATH);
-            setFinancialForceFileName(FINANCIAL_FORCE_FILE_PATH);
+            setEmployeeRecordFileName(FileFolderWorker.getPathToFile(ALL_EMPLOYEE_RECORD_FILE_PATH));
+            setBiometricFileName(FileFolderWorker.getPathToFile(BIOMETRIC_FILE_PATH));
+            setFinancialForceFileName(FileFolderWorker.getPathToFile(FINANCIAL_FORCE_FILE_PATH));
 
             AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
             allEmployeesBasicData.readFile();
@@ -86,7 +87,8 @@ public class CoreServlet extends HttpServlet {
         File source = new File(FILE_PATH + "JsonFiles");
         //update this for amrita and home
         //TODO when deploying on actual server, use this to copy the JSon files directory
-        File dest = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
+        // File dest = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
+        File dest = new File("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
         try {
             FileUtils.copyDirectory(source, dest);
         } catch (IOException e) {

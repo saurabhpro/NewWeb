@@ -3,9 +3,9 @@ package servlets.filegen.pdf;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
-import servlets.filegen.FileCreatorModel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import servlets.filegen.FileCreatorModel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

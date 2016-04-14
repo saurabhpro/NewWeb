@@ -42,10 +42,16 @@
         <form action="multigen" method="post">
             <input type="hidden" name="fileToUse" value="DiscrepancyInWorkers">
             <button class="btn btn-danger" style="float: right;" type="submit" ng-click="showSelected()"
-                    value="DOWNLOAD DISCREPANCY REP0RT">
-                <input type="hidden" name="listOfIds" value={{itemsSelected}}>
-                DOWNLOAD DISCREPANCY REPORT
+                    name="DownloadButtonType"
+                    value="DOWNLOAD_PDF">
+                DOWNLOAD PDF
             </button>
+            <button class="btn btn-success" style="float: right;" type="submit" ng-click="showSelected()"
+                    name="DownloadButtonType"
+                    value="DOWNLOAD_EXCEL">
+                DOWNLOAD EXCEL
+            </button>
+            <input type="hidden" name="listOfIds" value={{itemsSelected}}>
         </form>
         <form>
             <br/>

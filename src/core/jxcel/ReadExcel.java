@@ -50,7 +50,7 @@ public class ReadExcel {
         CombineFile combineFile = new CombineFile();
         combineFile.combineFiles();
         //displayAllDates Combined Files
-        combineFile.displayCombineFiles();
+        //combineFile.displayCombineFiles();
 
         // remove discrepancies
         MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
@@ -77,10 +77,10 @@ public class ReadExcel {
         ob.createJSONList(WEEKEND_WORKERS_LIST);
 
         List<String> nme = new ArrayList<>();
-        nme.add("Saurabh");
-        nme.add("homr");
-        nme.add("emai");
+        nme.add("R100");
+        nme.add("R139");
+        nme.add("R136");
 
-        CreateMultiRecordExcel.fromJsonToExcel(nme,"AllWorkers");
+        CreateMultiRecordExcel.fromJsonToExcel("C:\\ProjectFiles\\Test1.xlsx", nme, "AllWorkers");
     }
 }

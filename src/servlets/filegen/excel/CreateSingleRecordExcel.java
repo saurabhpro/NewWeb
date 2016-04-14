@@ -1,6 +1,5 @@
 package servlets.filegen.excel;
 
-import org.apache.poi.ss.usermodel.CreationHelper;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.simple.JSONObject;
@@ -20,22 +19,12 @@ import static core.model.ProjectConstants.FILE_PATH;
  */
 public class CreateSingleRecordExcel {
 
-    public static void fromJsonToExcel(String key, String fileToUse) {
+    public static void fromJsonToExcel(String fileName, String key, String fileToUse) {
         try {
             FileOutputStream fos;
 
             XSSFWorkbook workbook = new XSSFWorkbook();
             XSSFSheet sheet = workbook.createSheet("Employee Record");
-
-            CreationHelper createHelper = workbook.getCreationHelper();
-
-            int ro, co;
-            ro = co = 0;
-
-            /*
-            First Row for Each Employee
-             */
-            DataParserForExcel.createHeaderRowForMonthlyData(sheet, ro, co);
 
             JSONParser parser = new JSONParser();
             Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
@@ -44,12 +33,18 @@ public class CreateSingleRecordExcel {
 
             for (Object value : s) {
                 String jKey = (String) value;
-                ro = 0;
+
                 if (jKey.equals(key)) {
-                    DataParserForExcel.createDailyData(workbook, sheet, jsonObject, createHelper, ro, jKey);
+                    int ro = 0;
+                    /*
+                        First Row for Each Employee
+                    */
+                    DataParserForExcel.setStyles(workbook);
+                    DataParserForExcel.createHeaderRowForMonthlyData(sheet, ro);
+                    DataParserForExcel.createDailyData(sheet, jsonObject, ro, jKey);
                 }
 
-                fos = new FileOutputStream(new File("C:\\ProjectFiles\\test1.xlsx"));
+                fos = new FileOutputStream(new File(fileName));
                 workbook.write(fos);
                 fos.flush();
                 fos.close();

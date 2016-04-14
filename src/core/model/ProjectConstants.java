@@ -40,9 +40,9 @@ public class ProjectConstants {
     public final static String UNDEFINED = "NA";
 
     public static String FILE_PATH = getJsonFilePath();
-    public static String BIOMETRIC_FILE_PATH = "C:\\ProjectFiles\\Biometric\\march 8.xls";
-    public static String FINANCIAL_FORCE_FILE_PATH = "C:\\ProjectFiles\\Salesforce\\March FF report Final.xlsx";
-    public static String ALL_EMPLOYEE_RECORD_FILE_PATH = "C:\\ProjectFiles\\EmailList\\Emails.xlsx";
+    public static String BIOMETRIC_FILE_PATH = "C:\\ProjectFiles\\Biometric\\";
+    public static String FINANCIAL_FORCE_FILE_PATH = "C:\\ProjectFiles\\Salesforce\\";
+    public static String ALL_EMPLOYEE_RECORD_FILE_PATH = "C:\\ProjectFiles\\EmailList\\";
 
     public static String ALL_EMP_WORKERS_LIST = "AllWorkers";
     public static String DISCREPANCY_IN_WORKERS_LIST = "DiscrepancyInWorkers";

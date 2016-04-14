@@ -39,6 +39,6 @@ public class Test {
                 + File.separator + parentName
                 + File.separator + "test.txt");*/
 
-        CreateSingleRecordExcel.fromJsonToExcel("R1", "AllWorkers");
+        CreateSingleRecordExcel.fromJsonToExcel("C:\\ProjectFiles\\text.xlsx", "R1", "AllWorkers");
     }
 }

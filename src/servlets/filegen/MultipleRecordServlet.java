@@ -1,5 +1,6 @@
 package servlets.filegen;
 
+import servlets.filegen.excel.CreateMultiRecordExcel;
 import servlets.filegen.pdf.CreateMultipleRecordPDF;
 
 import javax.servlet.ServletContext;
@@ -55,6 +56,7 @@ public class MultipleRecordServlet extends HttpServlet {
         List<String> listOfIds = new ArrayList<>();
         String tmp = request.getParameter("listOfIds");
 
+
         String[] temp2 = tmp.substring(1, tmp.length() - 1).split(",");
 
         for (String t : temp2) {
@@ -77,14 +79,7 @@ However, it's a lot easier to not use regex:
  */
         //  String st = listOfIds.indexOf("\"");
         String fileToUse = request.getParameter("fileToUse");
-        String excelOrPdf = request.getParameter("fileType");
-
-        String pdfFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
-        String excelFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".xlsx";
-        response.setContentType("application/pdf");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setHeader("Cache-Control", "max-age=0");
-        response.setHeader("Content-disposition", "attachment; " + "filename=" + pdfFileName);
+        String excelOrPdf = request.getParameter("DownloadButtonType");
 
         try {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -93,20 +88,31 @@ However, it's a lot easier to not use regex:
             for (String s : listOfIds)
                 System.out.println(s);
 
+            if (excelOrPdf.equals("DOWNLOAD_PDF")) {
+
+                String pdfFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
+
+                response.setContentType("application/pdf");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Cache-Control", "max-age=0");
+                response.setHeader("Content-disposition", "attachment; " + "filename=" + pdfFileName);
 
                 CreateMultipleRecordPDF.createPDF(temporaryFilePath + "\\" + pdfFileName, listOfIds, fileToUse);
                 baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + pdfFileName);
                 os = response.getOutputStream();
 
+            } else if (excelOrPdf.equals("DOWNLOAD_EXCEL")) {
 
-            //  CreateMultiRecordExcel.fromJsonToExcel(listOfIds, fileToUse);
-            //  baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + excelFileName);
-            ///   os = response.getOutputStream();
+                String excelFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".xlsx";
 
+                response.setContentType("application/vnd.ms-excel");
+                response.setHeader("Content-Disposition", "attachment; filename=" + excelFileName);
+                CreateMultiRecordExcel.fromJsonToExcel(temporaryFilePath + "\\" + excelFileName, listOfIds, fileToUse);
+                baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + excelFileName);
+                os = response.getOutputStream();
+            }
 
             assert os != null;
-            baos.writeTo(os);
-            os.flush();
             baos.writeTo(os);
             os.flush();
         } catch (Exception e1) {

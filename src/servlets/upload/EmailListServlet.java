@@ -1,6 +1,7 @@
 package servlets.upload;
 
 import com.oreilly.servlet.MultipartRequest;
+import core.jxcel.FileFolderWorker;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static core.model.ProjectConstants.ALL_EMPLOYEE_RECORD_FILE_PATH;
+
 /**
  * Created by AroraA on 07-03-2016.
  */
@@ -19,9 +22,11 @@ public class EmailListServlet extends HttpServlet {
     MultipartRequest m;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        File emailListFilePath = new File("C:\\ProjectFiles\\EmailList");
+        File emailListFilePath = new File(ALL_EMPLOYEE_RECORD_FILE_PATH);
         if (!emailListFilePath.exists()) {
             emailListFilePath.mkdirs();
+        } else {
+            FileFolderWorker.cleanDirectory(emailListFilePath);
         }
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

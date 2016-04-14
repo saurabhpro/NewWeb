@@ -3,10 +3,10 @@ package servlets.filegen.pdf;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import servlets.filegen.FileCreatorModel;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
+import servlets.filegen.FileCreatorModel;
 
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
@@ -25,10 +25,10 @@ import static core.model.ProjectConstants.FILE_PATH;
 public class DataParserForPDF {
     static Month MONTH = null;
     static Year YEAR = null;
-    static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
-    static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD);
+    private static Font TIME_ROMAN = new Font(Font.FontFamily.TIMES_ROMAN, 18, Font.BOLD);
+    private static Font TIME_ROMAN_SMALL = new Font(Font.FontFamily.HELVETICA, 11, Font.BOLD);
 
-    public static void setSingleObjectData(String key, FileCreatorModel ob, String fileToUse) {
+    static void setSingleObjectData(String key, FileCreatorModel ob, String fileToUse) {
         try {
             JSONParser parser = new JSONParser();
             Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
@@ -155,7 +155,7 @@ public class DataParserForPDF {
 
     }
 
-    static void creteEmptyLine(Paragraph paragraph, int number) {
+    private static void creteEmptyLine(Paragraph paragraph, int number) {
         for (int i = 0; i < number; i++) {
             paragraph.add(new Paragraph(" "));
         }

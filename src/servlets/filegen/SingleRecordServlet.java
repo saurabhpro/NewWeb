@@ -57,13 +57,6 @@ public class SingleRecordServlet extends HttpServlet {
         String fileToUse = request.getParameter("fileToUse");
         String excelOrPdf = request.getParameter("fileType");
 
-        String pdfFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
-        String excelFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".xlsx";
-
-        response.setContentType("application/pdf");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setHeader("Cache-Control", "max-age=0");
-        response.setHeader("Content-disposition", "attachment; " + "filename=" + pdfFileName);
 
         try {
             System.out.println("Serv" + id);
@@ -71,12 +64,22 @@ public class SingleRecordServlet extends HttpServlet {
             OutputStream os = null;
             excelOrPdf = "PDF";
             if (excelOrPdf.equals("PDF")) {
+
+                String pdfFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".pdf";
+
+                response.setContentType("application/pdf");
+                response.setHeader("Cache-Control", "no-cache");
+                response.setHeader("Cache-Control", "max-age=0");
+                response.setHeader("Content-disposition", "attachment; " + "filename=" + pdfFileName);
+
                 CreateSingleRecordPDF.createPDF(temporaryFilePath + "\\" + pdfFileName, id, fileToUse);
                 baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + pdfFileName);
                 os = response.getOutputStream();
 
             } else if (excelOrPdf.equals("EXCEL")) {
-                CreateSingleRecordExcel.fromJsonToExcel(id, fileToUse);
+                response.setContentType("application/vnd.ms-excel");
+                String excelFileName = "Generated_Report_" + fileToUse + "_" + System.currentTimeMillis() + ".xlsx";
+                CreateSingleRecordExcel.fromJsonToExcel(temporaryFilePath + "\\" + excelFileName, id, fileToUse);
                 baos = convertPDFToByteArrayOutputStream(temporaryFilePath + "\\" + excelFileName);
                 os = response.getOutputStream();
             }
