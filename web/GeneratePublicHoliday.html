@@ -65,9 +65,7 @@
             <table name="empListTable" class="table table-responsive table-striped">
                 <thead class="thead-inverse">
                 <tr style="font-weight:bolder;">
-                    <!--      <th style="width: 40px">
-                              <input type="checkbox" ng-model="selectedAll" ng-click="checkAll()"/>
-                          </th> -->
+
                     <th style="width: 2em">DATE [HOLIDAY]</th>
                     <th style="width: 1em">EMPLOYEE ID</th>
                     <th style="width: 1em">SALESFORCE ID</th>
@@ -80,10 +78,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in rowCollection">
-                    <!--
-                                        <td><input type="checkbox" ng-bind="modelName" ng-model="item.Selected"
-                                                   ng-click="checkStatus()"></td>
-                        -->
+
                     <td>{{item.subMenuAttendanceOfDate.currentDate}} <em>[{{item.holiday}}]</em></td>
                     <td ng-model="item.empRevalId">{{item.basicEmployeeDetails.empId}}</td>
                     <td>{{item.basicEmployeeDetails.salesForceId}}</td>
