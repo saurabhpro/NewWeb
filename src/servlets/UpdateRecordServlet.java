@@ -1,5 +1,7 @@
 package servlets;
 
+import core.UpdateObjectWithUIEntries;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,5 +31,7 @@ public class UpdateRecordServlet extends HttpServlet {
         System.out.println(currentDate);
         System.out.println(checkIn);
         System.out.println(checkOut);
+
+        new UpdateObjectWithUIEntries().updateObject(empRevalId, currentDate, checkIn, checkOut);
     }
 }
