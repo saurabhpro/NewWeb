@@ -9,6 +9,8 @@ import servlets.filegen.FileCreatorModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Map;
@@ -96,9 +98,10 @@ public class DataParserForExcel {
             Object ob = person.get("empSalesforceId");
             if (ob != null) {
                 Cell c01 = row2.createCell(columnNumber + 1);
-                tmp = ob.toString();
                 c01.setCellType(Cell.CELL_TYPE_NUMERIC);
-                c01.setCellValue(Integer.parseInt(tmp));
+                tmp = ob.toString();
+                if (!tmp.equals(""))
+                    c01.setCellValue(Integer.parseInt(tmp));
             }
 
             ob = person.get("empName");
@@ -110,9 +113,11 @@ public class DataParserForExcel {
 
             Cell c03 = row2.createCell(columnNumber + 3);
             tmp = (String) person.get("empEmailId");
-            //2nd way of handling null cases
-            //we can typecast null with String,
-            // but we cant call any method like toString() on null
+            /**
+             * 2nd way of handling null cases
+             * we can typecast null with String,
+             * but we cant call any method like toString() on null
+             * */
             c03.setCellValue(tmp);
 
             Cell c04 = row2.createCell(columnNumber + 4);
@@ -132,6 +137,7 @@ public class DataParserForExcel {
             Cell c06 = row2.createCell(columnNumber + 6);
             tmp = person.get("empAvgWorkHoursForMonth").toString();
             time = timeFormatter.parse(tmp);
+            //System.out.println(time);
             c06.setCellStyle(cellStyleForTime);
             c06.setCellValue(time);
         } catch (ParseException e) {
@@ -249,4 +255,33 @@ public class DataParserForExcel {
         font.setBoldweight(Font.BOLDWEIGHT_BOLD);//Make font bold
         cellStyleFont.setFont(font);//set it to bold
     }
+
+    private static int getMonthLength(JSONObject person) {
+        JSONArray allDateDetailsList = (JSONArray) person.get("allDateDetailsList");
+        String curr;
+
+        JSONObject day = (JSONObject) allDateDetailsList.get(0);
+        curr = (String) day.get("currentDate");
+        LocalDate date = LocalDate.parse(curr, DateTimeFormatter.ISO_LOCAL_DATE);
+        return date.getDayOfMonth();
+    }
 }
+
+
+/*
+BASIC_ISO_DATE	Basic ISO date	'20111203'
+ISO_LOCAL_DATE	ISO Local Date	'2011-12-03'
+ISO_OFFSET_DATE	ISO Date with offset	'2011-12-03+01:00'
+ISO_DATE	ISO Date with or without offset	'2011-12-03+01:00'; '2011-12-03'
+ISO_LOCAL_TIME	Time without offset	'10:15:30'
+ISO_OFFSET_TIME	Time with offset	'10:15:30+01:00'
+ISO_TIME	Time with or without offset	'10:15:30+01:00'; '10:15:30'
+ISO_LOCAL_DATE_TIME	ISO Local Date and Time	'2011-12-03T10:15:30'
+ISO_OFFSET_DATE_TIME	Date Time with Offset	2011-12-03T10:15:30+01:00'
+ISO_ZONED_DATE_TIME	Zoned Date Time	'2011-12-03T10:15:30+01:00[Europe/Paris]'
+ISO_DATE_TIME	Date and time with ZoneId	'2011-12-03T10:15:30+01:00[Europe/Paris]'
+ISO_ORDINAL_DATE	Year and day of year	'2012-337'
+ISO_WEEK_DATE	Year and Week	2012-W48-6'
+ISO_INSTANT	Date and Time of an Instant	'2011-12-03T10:15:30Z'
+RFC_1123_DATE_TIME	RFC 1123 / RFC 822	'Tue, 3 Jun 2008 11:05:30 GMT'
+ */
