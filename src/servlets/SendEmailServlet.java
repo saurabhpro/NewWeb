@@ -23,8 +23,8 @@ import java.util.StringTokenizer;
 @WebServlet(name = "SendEmailServlet", urlPatterns = {"/email"})
 public class SendEmailServlet extends HttpServlet {
 
-    public static final String ANSI_GREEN = "\u001B[32m";
-    public static final String ANSI_RED = "\u001B[31m";
+    //public static final String ANSI_GREEN = "\u001B[32m";
+    //public static final String ANSI_RED = "\u001B[31m";
     String subject;
     String to;
     String message;
@@ -57,7 +57,7 @@ public class SendEmailServlet extends HttpServlet {
         tempMessage9 = request.getParameter("message9");
         tempMessage10 = request.getParameter("message10");
         if ((tempMessage6 != "" && tempMessage6 != null) || (tempMessage4 != "" && tempMessage4 != null)) {
-            System.out.println(tempMessage6);
+          //  System.out.println(tempMessage6);
             finalMessage += "<br/>" + tempMessage2;
         }
         if (tempMessage4 != "" && tempMessage4 != null)
@@ -138,13 +138,13 @@ public class SendEmailServlet extends HttpServlet {
             transport.connect(host, from, pass);
             transport.sendMessage(message1, message1.getAllRecipients());
             transport.close();
-            out.print(ANSI_GREEN + "Message Sent");
+            out.print("Message Sent");
             RequestDispatcher rd = request.getRequestDispatcher("./email#/GenerateDiscrepancy");
             rd.include(request, response);
 
         } catch (MessagingException mex) {
             mex.printStackTrace();
-            out.print(ANSI_RED + "Error: unable to send message...." + mex);
+            out.print("Error: unable to send message...." + mex);
             RequestDispatcher rd = request.getRequestDispatcher("./ThankYou.html");
             rd.include(request, response);
         }

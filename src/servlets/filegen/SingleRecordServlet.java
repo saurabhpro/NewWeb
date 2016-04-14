@@ -59,7 +59,7 @@ public class SingleRecordServlet extends HttpServlet {
 
 
         try {
-            System.out.println("Serv" + id);
+          //  System.out.println("Serv" + id);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             OutputStream os = null;
             excelOrPdf = "PDF";

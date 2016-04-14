@@ -83,10 +83,10 @@
                                 Hi {{items.empName}},
                                 <ul>
                                       <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
-                                  </ul>
-                                  <ul>
+                                </ul>
+                                <ul>
                                       <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
-                                  </ul>
+                                </ul>
                                 <ul>
                                     <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
                                 </ul>

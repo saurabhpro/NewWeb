@@ -73,18 +73,36 @@
                 <td> {{day.currentDate | date}}</td>
                 <td ng-model="day.attendanceStatusType"> {{day.attendanceStatusType}}</td>
                 <td> {{day.leaveTypeForThisDate}}</td>
-                <td ng-model="day.checkIn"> {{day.checkIn}}</td>
-                <td>{{day.checkOut}}</td>
+                <td ng-model="day.checkIn"><input type="time" contenteditable="true" value={{day.checkIn}}></td>
+                <td><input type="time" contenteditable="true" value={{day.checkOut}}></td>
                 <td>{{day.workTimeForDay}}</td>
             </tr>
             </tbody>
         </table>
         <!--        <a ng-click="selected.item = item">{{ item }}</a> -->
         <!-- Selected: <b>{{ selected.item }}</b>-->
+        <ul>
+            <li ng-repeat="day in (selectedRecordsArray = (items.allDateDetailsList | filter: {Selected:true}))">
+            </li>
+        </ul>
 
 
         <div class="modal-footer">
-            <button class="btn btn-primary" ng-click="ok()">OK</button>
+            <form action="updateRecord">
+                <input type="text" style="outline: none; border: none;" name="empRevalId"
+                       value={{items.empRevalId}}>
+                <li ng-repeat="day in selectedRecordsArray">
+                    <input type="text" style="outline: none; border: none;" name="currentDate"
+                           value={{day.currentDate}}>
+                    <input type="text" style="outline: none; border: none;" name="checkIn"
+                           value={{day.checkIn}}>
+                    <input type="text" style="outline: none; border: none;" name="checkOut"
+                           value={{day.checkOut}}>
+                </li>
+
+                <button class="btn btn-primary" ng-click="update()" ng-disabled="countChecked() == 0">Update Record
+                </button>
+            </form>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
             <br/>
             <!--     <form action="core">
@@ -95,13 +113,6 @@
                 <input type="hidden" name="id" value={{items.empRevalId}}>
                 <input type="hidden" name="fileToUse"  value="DiscrepancyInWorkers">
                 <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
-
-                <!--
-                <ul>
-                    <li ng-repeat="day in (filteredArray = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))">{{day.checkIn}}</li>
-                </ul>
-                <input type="text" name="filteredArray" value="{{filteredArray}}">
-                -->
             </form>
             <br/>
 

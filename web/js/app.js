@@ -255,7 +255,8 @@ angular.module('sampleApp').controller('ModalInstanceCtrl', function ($scope, $u
      item: $scope.items[0]
      };*/
 
-    $scope.ok = function () {
+    $scope.update = function () {
+
         $uibModalInstance.close($scope.items);
     };
 
