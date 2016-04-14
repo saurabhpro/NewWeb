@@ -12,20 +12,11 @@ import java.util.List;
  * Created by Saurabh on 4/14/2016.
  */
 public class FileFolderWorker {
-    public static void main(String[] args) {
-        File currentDir = new File("C:\\ProjectFiles"); // current directory
-        //  getDirectoryContents(currentDir, extensions);
-        cleanDirectory(currentDir);
+    private FileFolderWorker() {
     }
 
     @Contract("_, _ -> !null")
     public static List<File> getDirectoryContents(File dir, String[] extensions) {
-        /* try{
-        for (File file : files) {
-            System.out.println("file: " + file.getCanonicalPath());
-        }} catch (IOException e) {
-            e.printStackTrace();
-        }*/
         return (List<File>) FileUtils.listFiles(dir, extensions, true);
     }
 
