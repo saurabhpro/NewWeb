@@ -57,7 +57,6 @@ public class SingleRecordServlet extends HttpServlet {
         String fileToUse = request.getParameter("fileToUse");
         String excelOrPdf = request.getParameter("fileType");
 
-
         try {
           //  System.out.println("Serv" + id);
             ByteArrayOutputStream baos = new ByteArrayOutputStream();

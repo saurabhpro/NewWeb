@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
@@ -31,13 +32,13 @@ public class SendEmailServlet extends HttpServlet {
     String finalMessage;
     String tempMessage2;
     String tempMessage3;
-    String tempMessage4;
+    String[] tempMessage4;
     String tempMessage5;
-    String tempMessage6;
+    String[] tempMessage6;
     String tempMessage7;
     String tempMessage8;
     String tempMessage9;
-    String tempMessage10;
+    String[] tempMessage10;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletConfig config = getServletConfig();
@@ -47,27 +48,41 @@ public class SendEmailServlet extends HttpServlet {
         message = request.getParameter("message");
 
         finalMessage = "Hi " + message + " ,<br/>";
-        tempMessage4 = request.getParameter("message4");
-        tempMessage6 = request.getParameter("message6");
+        tempMessage4 = request.getParameterValues("message4");
+        tempMessage6 = request.getParameterValues("message6");
         tempMessage2 = request.getParameter("message2");
         tempMessage3 = request.getParameter("message3");
         tempMessage5 = request.getParameter("message5");
         tempMessage7 = request.getParameter("message7");
         tempMessage8 = request.getParameter("message8");
         tempMessage9 = request.getParameter("message9");
-        tempMessage10 = request.getParameter("message10");
-        if ((tempMessage6 != "" && tempMessage6 != null) || (tempMessage4 != "" && tempMessage4 != null)) {
+        tempMessage10 = request.getParameterValues("message10");
+        if ((tempMessage6 != null) || (tempMessage4 != null)) {
           //  System.out.println(tempMessage6);
             finalMessage += "<br/>" + tempMessage2;
         }
-        if (tempMessage4 != "" && tempMessage4 != null)
-            finalMessage += "<br/>" + tempMessage3 + "<br/>" + tempMessage4;
-        if (tempMessage6 != "" && tempMessage6 != null)
-            finalMessage += "<br/>" + tempMessage5 + "<br/>" + tempMessage6;
-        if ((tempMessage6 != "" && tempMessage6 != null) || (tempMessage4 != "" && tempMessage4 != null))
+        if (tempMessage4 != null){
+            finalMessage += "<br/>" + tempMessage3 + "<br/>";
+            for (String str: tempMessage4) {
+                finalMessage+= str +"<br/>";
+            }
+        }
+        if (tempMessage6 != null)
+        {
+            finalMessage += "<br/>" + tempMessage5 + "<br/>";
+            for (String str: tempMessage6) {
+                finalMessage+= str +"<br/>";
+            }
+        }
+
+        if ((tempMessage6 != null) || (tempMessage4 != null))
             finalMessage += "<br/>" + tempMessage7;
-        if (tempMessage10 != "" && tempMessage10 != null)
-            finalMessage += "<br/>" + tempMessage8 + "<br/>" + tempMessage9 + "<br/>" + tempMessage10;
+        if (tempMessage10 != null){
+            finalMessage += "<br/>" + tempMessage8 + "<br/>" + tempMessage9 + "<br/>";
+            for (String str: tempMessage10) {
+                finalMessage+= str +"<br/>";
+            }
+        }
         System.out.println(finalMessage);
         /*
         if((message[5]!="" && message[5]!=null)||(message[7]!="" && message[7]!=null))
@@ -85,8 +100,9 @@ public class SendEmailServlet extends HttpServlet {
         for( String st : message)
         finalMessage+= st;
        */
+        to="amrita.arora@reval.com";
         //to = "saurabh.kumar@reval.com";
-        to = request.getParameter("to");
+        //to = request.getParameter("to");
         //String to = "amrita.arora.1192@gmail.com";
 
         String from = config.getInitParameter("from");

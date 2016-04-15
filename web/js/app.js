@@ -30,7 +30,19 @@ sampleApp.config(['$routeProvider',
 
     }]);
 
+sampleApp.controller('mainCtrl', ['$scope', function( $scope ) {
 
+    // Set the default value of inputType
+    $scope.inputType = 'password';
+
+    // Hide & show password function
+    $scope.hideShowPassword = function () {
+        if ($scope.inputType == 'password')
+            $scope.inputType = 'text';
+        else
+            $scope.inputType = 'password';
+    };
+}]);
 sampleApp.controller("ReportController", function ($scope, $http) {
     $http.get("./JsonFiles/AllWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
