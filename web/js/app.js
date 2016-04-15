@@ -189,6 +189,18 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
         $log.info('New Flag ' + new Date() + checkCount + length);
         $scope.discrepancySelectedAll = ( checkCount === length);
     };
+    $scope.updateValue = function (newTest) {
+
+        angular.forEach($scope.items.allDateDetailsList, function (day) {
+
+        });
+        angular.forEach($scope.items.allDateDetailsList, function (day) {
+            if (day.Selected) checkCount++;
+
+        });
+        $log.info('New Flag ' + new Date() + checkCount + length);
+        $scope.discrepancySelectedAll = ( checkCount === length);
+    };
 
     $scope.open = function (items, size) {
         $log.info('Items24 ' + new Date() + items.empRevalId);
@@ -210,6 +222,7 @@ sampleApp.controller("GenerateDiscrepancyController", function ($scope, $http, $
             $log.info('Modal dismissed at: ' + new Date());
         });
     };
+
 
     $scope.openEmailDialog = function (items, day, size) {
 

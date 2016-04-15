@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
@@ -21,11 +22,17 @@ public class UpdateRecordServlet extends HttpServlet {
     String[] checkIn;
     String[]  checkOut;
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
         empRevalId=request.getParameter("empRevalId");
         currentDate=request.getParameterValues("currentDate");
 
         checkIn=request.getParameterValues("checkIn");
         checkOut=request.getParameterValues("checkOut");
+        session.setAttribute("currentDate", currentDate);
+        session.setAttribute("empRevalId", empRevalId);
+        session.setAttribute("checkIn", checkIn);
+        session.setAttribute("checkOut", checkOut);
+
         PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         System.out.println(empRevalId);

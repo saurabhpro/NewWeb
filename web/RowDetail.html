@@ -28,6 +28,7 @@
         <h3>{{items.empName}}</h3>
     </div>
     <div ng-controller="GenerateDiscrepancyController">
+
         <table name="emplistTable" class="table table-striped table-condensed">
             <thead>
             <tr>
@@ -73,8 +74,8 @@
                 <td> {{day.currentDate | date}}</td>
                 <td ng-model="day.attendanceStatusType"> {{day.attendanceStatusType}}</td>
                 <td> {{day.leaveTypeForThisDate}}</td>
-                <td ng-model="day.checkIn"><input type="time" contenteditable="true" value={{day.checkIn}}></td>
-                <td><input type="time" contenteditable="true" value={{day.checkOut}}></td>
+                <td><input ng-model="day.checkIn" type="time" contenteditable="true" value={{day.checkIn}}>{{day.checkIn | date:"hh:mm a"}}</td>
+                <td><input ng-model="day.checkOut" type="time" contenteditable="true" value={{day.checkOut}}>{{day.checkOut | date:"hh:mm a"}}</td>
                 <td>{{day.workTimeForDay}}</td>
             </tr>
             </tbody>
@@ -82,7 +83,8 @@
         <!--        <a ng-click="selected.item = item">{{ item }}</a> -->
         <!-- Selected: <b>{{ selected.item }}</b>-->
         <ul>
-            <li ng-repeat="day in (selectedRecordsArray = (items.allDateDetailsList | filter: {Selected:true}))">
+            <li ng-repeat="selectedRecord in (selectedRecordsArray = (items.allDateDetailsList | filter: {Selected:true}))">
+
             </li>
         </ul>
 
@@ -91,18 +93,18 @@
             <form action="updateRecord" method="post">
                 <input type="text" style="outline: none; border: none;" name="empRevalId"
                        value={{items.empRevalId}}>
-                <li ng-repeat="day in selectedRecordsArray">
+                <li ng-repeat="selectedRecord in selectedRecordsArray">
                     <input type="text" style="outline: none; border: none;" name="currentDate"
-                           value={{day.currentDate}}>
+                           value={{selectedRecord.currentDate}}>
                     <input contenteditable="true" type="text" style="outline: none; border: none;" name="checkIn"
-                           value={{day.checkIn}}>
+                           value={{selectedRecord.checkIn}}>
                     <input contenteditable="true" type="text" style="outline: none; border: none;" name="checkOut"
-                           value={{day.checkOut}}>
+                           value={{selectedRecord.checkOut}}>
                 </li>
 
                 <button class="btn btn-primary" ng-click="update()" ng-disabled="countChecked() == 0">Update Record
                 </button>
-            </form>
+        </form>
             <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
             <br/>
             <!--     <form action="core">
@@ -123,7 +125,7 @@
             -->
             <button class="btn btn-danger" ng-disabled="countChecked() == 0" ng-click="openEmailDialog(items,day,'lg')">Compose Email</button>
         </div>
-    </div>
+        </div>
 </script>
 </body>
 </html>
