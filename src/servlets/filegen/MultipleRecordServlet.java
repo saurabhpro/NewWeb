@@ -55,8 +55,6 @@ public class MultipleRecordServlet extends HttpServlet {
         final String temporaryFilePath = tempDirectory.getAbsolutePath();
         List<String> listOfIds = new ArrayList<>();
         String tmp = request.getParameter("listOfIds");
-
-
         String[] temp2 = tmp.substring(1, tmp.length() - 1).split(",");
 
         for (String t : temp2) {

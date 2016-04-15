@@ -23,6 +23,7 @@ public class UpdateRecordServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         empRevalId=request.getParameter("empRevalId");
         currentDate=request.getParameterValues("currentDate");
+
         checkIn=request.getParameterValues("checkIn");
         checkOut=request.getParameterValues("checkOut");
         PrintWriter out = response.getWriter();
@@ -32,6 +33,7 @@ public class UpdateRecordServlet extends HttpServlet {
         System.out.println(Arrays.toString(checkIn));
         System.out.println(Arrays.toString(checkOut));
 
-       //new UpdateObjectWithUIEntries().updateObject(empRevalId, currentDate, checkIn, checkOut);
+        new UpdateObjectWithUIEntries().updateObjects(empRevalId, currentDate, checkIn, checkOut);
+
     }
 }
