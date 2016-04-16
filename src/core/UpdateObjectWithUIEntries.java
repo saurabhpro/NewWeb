@@ -1,13 +1,18 @@
 package core;
 
-import core.combined.MarkDiscrepancy;
-import core.model.FinalObjectModel;
+import core.jxcel.BiometricFileWorker;
+import core.jxcel.TimeManager;
+import core.model.attendence.AttendanceStatusType;
+import core.model.uploadedfiles.EmployeeBiometricDetails;
 import servlets.core.BackEndLogic;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Map;
+import java.util.TimeZone;
 
 import static core.model.ProjectConstants.UNDEFINED;
 
@@ -15,10 +20,11 @@ import static core.model.ProjectConstants.UNDEFINED;
  * Created by Saurabh on 4/14/2016.
  */
 public class UpdateObjectWithUIEntries {
-    private Map<String, FinalObjectModel> objectToBeUpdated;
+    private Map<String, EmployeeBiometricDetails> objectToBeUpdated;
 
     public UpdateObjectWithUIEntries() {
-        objectToBeUpdated = BackEndLogic.getFinalObject();
+        BackEndLogic.readDataFromSources();
+        objectToBeUpdated = BiometricFileWorker.empList;
     }
 
 
@@ -28,6 +34,7 @@ public class UpdateObjectWithUIEntries {
             updateObject(empRevalId, date, checkIn[i], checkOut[i]);
             i++;
         }
+        BackEndLogic.getFinalObject();
         BackEndLogic.generateReportsJson();
     }
 
@@ -39,12 +46,19 @@ public class UpdateObjectWithUIEntries {
             LocalTime checkOutTime = convertToProgramStandardTime(checkOut);
             update(empRevalId, date, checkInTime, checkOutTime);
 
-            MarkDiscrepancy.EmpCombinedMap = objectToBeUpdated;     //jugad wala kaam
+            BiometricFileWorker.empList = objectToBeUpdated;     //jugad wala kaam
         }
     }
 
     private LocalTime convertToProgramStandardTime(String time) {
-        return LocalTime.parse(time);
+        if (time.length() < 6)
+            return LocalTime.parse(time);
+
+        TimeZone tzone = TimeZone.getTimeZone("Asia/Calcutta");
+        ZonedDateTime zdt = ZonedDateTime.parse(time.substring(1, time.length() - 1));
+        LocalDateTime ldt = zdt.toLocalDateTime();
+
+        return ldt.toLocalTime();
     }
 
     private LocalDate convertToProgramStandardDate(String currentDate) {
@@ -52,12 +66,12 @@ public class UpdateObjectWithUIEntries {
     }
 
     private void update(String empRevalId, LocalDate date, LocalTime checkInTime, LocalTime checkOutTime) {
-        for (FinalObjectModel obj : objectToBeUpdated.values()) {
-            if (obj.getEmpId().equals(empRevalId)) {
-                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
-                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
-            }
-        }
+        objectToBeUpdated.values().stream().filter(obj -> obj.getEmpId().equals(empRevalId)).forEachOrdered(obj -> {
+            obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
+            obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
+            obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
+            obj.attendanceOfDate[date.getDayOfMonth() - 1].setWorkTimeForDay(TimeManager.calculateTimeDifference(checkOutTime, checkInTime, date));
+        });
     }
 
 

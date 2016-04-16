@@ -21,7 +21,7 @@ import static core.model.ProjectConstants.*;
  * Created by kumars on 4/15/2016.
  */
 public class BackEndLogic {
-    public static Map<String, FinalObjectModel> getFinalObject() {
+    public static void readDataFromSources() {
         FileOperations fileWorker;
         SheetFactory sheetFactory = new SheetFactory();
 
@@ -41,6 +41,9 @@ public class BackEndLogic {
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
         fileWorker.readFile();      //TODO readFile argument should also be a factory
 
+    }
+
+    public static Map<String, FinalObjectModel> getFinalObject() {
         CombineFile combineFile = new CombineFile();
         combineFile.combineFiles();
 
