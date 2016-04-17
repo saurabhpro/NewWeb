@@ -91,14 +91,14 @@
 
         <div class="modal-footer">
             <form action="updateRecord" method="post">
-                <input type="text" style="outline: none; border: none;" name="empRevalId"
+                <input type="hidden" style="outline: none; border: none;" name="empRevalId"
                        value={{items.empRevalId}}>
                 <li ng-repeat="selectedRecord in selectedRecordsArray">
-                    <input type="text" style="outline: none; border: none;" name="currentDate"
+                    <input type="hidden" style="outline: none; border: none;" name="currentDate"
                            value={{selectedRecord.currentDate}}>
-                    <input contenteditable="true" type="text" style="outline: none; border: none;" name="checkIn"
+                    <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkIn"
                            value={{selectedRecord.checkIn}}>
-                    <input contenteditable="true" type="text" style="outline: none; border: none;" name="checkOut"
+                    <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkOut"
                            value={{selectedRecord.checkOut}}>
                 </li>
 

@@ -26,11 +26,11 @@
         <servlet-class>servlets.SendEmailServlet</servlet-class>
         <init-param>
             <param-name>from</param-name>
-            <param-value>amrita.arora@reval.com</param-value>
+            <param-value>saurabh.kumar@reval.com</param-value>
         </init-param>
         <init-param>
             <param-name>password</param-name>
-            <param-value></param-value>
+            <param-value>secure16+x</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

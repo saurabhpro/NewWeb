@@ -44,20 +44,15 @@
                 <form action="multigen" method="post">
                     <input type="hidden" name="fileToUse" value="PublicHolidayWorkers">
                     <button class="btn btn-danger" style="float: right;" type="submit" ng-click="showSelected()"
-                            value="DOWNLOAD PUBLIC HOLIDAY REP0RT">
-                        <input type="hidden" name="listOfIds" value={{itemsSelected}}>
-                        DOWNLOAD PUBLIC HOLIDAY REPORT
+                            name="DownloadButtonType"
+                            value="DOWNLOAD_PDF">
+                        DOWNLOAD PDF
                     </button>
+                    <input type="hidden" name="listOfIds" value={{itemsSelected}}>
                 </form>
         -->
 
         <form>
-            <br/>
-            <br/>
-            <br/>
-            <!--     <button class="btn btn-primary" style="float: right;" type="submit" value="DOWNLOAD DISCREPANCY REP0RT"
-                         onclick="location.href='./GenerateDiscrepancy.jsp';">SEND EMAIL
-                 </button> -->
             <br/>
             <br/>
             <br/>
@@ -79,7 +74,7 @@
                 <tbody>
                 <tr ng-repeat="item in rowCollection">
 
-                    <td>{{item.subMenuAttendanceOfDate.currentDate}} <em>[{{item.holiday}}]</em></td>
+                    <td>{{item.subMenuAttendanceOfDate.currentDate}} <strong>[{{item.holiday}}]</strong></td>
                     <td ng-model="item.empRevalId">{{item.basicEmployeeDetails.empId}}</td>
                     <td>{{item.basicEmployeeDetails.salesForceId}}</td>
                     <td>{{item.basicEmployeeDetails.emailId}}</td>
