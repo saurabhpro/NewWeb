@@ -12,9 +12,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Arrays;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
@@ -39,6 +39,7 @@ public class SendEmailServlet extends HttpServlet {
     String tempMessage8;
     String tempMessage9;
     String[] tempMessage10;
+    String successfulMessage;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletConfig config = getServletConfig();
@@ -46,6 +47,7 @@ public class SendEmailServlet extends HttpServlet {
         subject = request.getParameter("subject");
         System.out.println(subject);
         message = request.getParameter("message");
+
 
         finalMessage = "Hi " + message + " ,<br/>";
         tempMessage4 = request.getParameterValues("message4");
@@ -97,8 +99,7 @@ public class SendEmailServlet extends HttpServlet {
             finalMessage+=message[9]+message[10];
         System.out.println(finalMessage);
 
-        for( String st : message)
-        finalMessage+= st;
+        for( String st : message)        finalMessage+= st;
        */
         to="amrita.arora@reval.com";
         //to = "saurabh.kumar@reval.com";
@@ -106,7 +107,7 @@ public class SendEmailServlet extends HttpServlet {
         //String to = "amrita.arora.1192@gmail.com";
 
         String from = config.getInitParameter("from");
-        String host = "smtp.gmail.com";
+        String host = "smtp.office365.com";
         String pass = config.getInitParameter("password");
 
         Properties properties = System.getProperties();
@@ -119,11 +120,9 @@ public class SendEmailServlet extends HttpServlet {
         properties.setProperty("mail.smtp.auth", "true");
         properties.setProperty("mail.smtp.user", from);
 
-
         Session mailSession = Session.getDefaultInstance(properties);
 
         // Set response content type
-
         PrintWriter out = response.getWriter();
 
         try {
@@ -154,9 +153,10 @@ public class SendEmailServlet extends HttpServlet {
             transport.connect(host, from, pass);
             transport.sendMessage(message1, message1.getAllRecipients());
             transport.close();
-            out.print("Message Sent");
-            RequestDispatcher rd = request.getRequestDispatcher("./email#/GenerateDiscrepancy");
-            rd.include(request, response);
+
+            HttpSession session = request.getSession();
+            session.setAttribute("Message Sent", successfulMessage);
+            response.sendRedirect("./MainPage.jsp#/GenerateDiscrepancy");
 
         } catch (MessagingException mex) {
             mex.printStackTrace();

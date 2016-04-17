@@ -10,7 +10,7 @@ sampleApp.config(['$routeProvider',
             templateUrl: '../GenerateReport.html',
             controller: 'GenerateReportController'
         }).when('/GenerateDiscrepancy', {
-            templateUrl: '../GenerateDiscrepancy.html',
+            templateUrl: '../GenerateDiscrepancy.jsp',
             controller: 'GenerateDiscrepancyController'
         }).when('/GenerateWeekendHoliday', {
             templateUrl: '../GenerateWeekendHoliday.html',
@@ -24,6 +24,9 @@ sampleApp.config(['$routeProvider',
         }).when('/UploadFiles', {
             templateUrl: './UploadFiles.jsp',
             controller: 'UploadFilesController'
+        }).when('/Overview', {
+            templateUrl: './Overview.html',
+            controller: 'OverviewController'
         }).otherwise({
             redirectTo: '/MainPage.jsp'
         });
@@ -502,6 +505,12 @@ sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http,
 
 });
 sampleApp.controller("UploadFilesController", function ($scope, $http) {
+    $scope.A = function () {
+        console.log('you click A on ', Date());
+        $scope.button_A = Date();
+    }
+});
+sampleApp.controller("OverviewController", function ($scope, $http) {
     $scope.A = function () {
         console.log('you click A on ', Date());
         $scope.button_A = Date();

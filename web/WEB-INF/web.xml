@@ -26,11 +26,11 @@
         <servlet-class>servlets.SendEmailServlet</servlet-class>
         <init-param>
             <param-name>from</param-name>
-            <param-value>sample.id1192@gmail.com</param-value>
+            <param-value>amrita.arora@reval.com</param-value>
         </init-param>
         <init-param>
             <param-name>password</param-name>
-            <param-value>Amrita@12345</param-value>
+            <param-value></param-value>
         </init-param>
     </servlet>
     <servlet-mapping>
@@ -39,7 +39,7 @@
     </servlet-mapping>
 
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+
         <welcome-file>Signin.html</welcome-file>
     </welcome-file-list>
 </web-app>

@@ -7,6 +7,7 @@ import core.model.empl.BasicEmployeeDetails;
 import core.model.uploadedfiles.EmployeeBiometricDetails;
 import core.model.uploadedfiles.EmployeeHrnetDetails;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
@@ -19,7 +20,7 @@ import static core.model.attendence.AttendanceStatusType.*;
  * Created by kumars on 2/16/2016. 6-03-2016 changed the Type from ABSENT to
  * UNACCOUNTED_ABSENCE.
  */
-public class CombineFile {
+public class CombineFile implements Serializable {
 
     // Comparator needs string as Type
     public static Map<String, FinalObjectModel> EmpCombinedMap;

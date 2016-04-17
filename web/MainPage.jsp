@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="sampleApp" ng-controller="ReportController" lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -70,7 +71,7 @@
         <ul>
             <li class="cd-label">Main</li>
             <li class="has-children comments">
-                <a href="#0">Overview</a>
+                <a href="#Overview">Overview</a>
             </li>
             <li class="has-children overview">
                 <a href="#UploadFiles" id="upload">Upload Files</a>
@@ -113,7 +114,20 @@
             </ul>
     -->
     </nav>
-    <div ng-view></div>
+    <!--
+    <div>
+        <header class="jumbotron hero-spacer">
+            <h1>A Warm Welcome!</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa, ipsam, eligendi, in quo sunt possimus non incidunt odit vero aliquid similique quaerat nam nobis illo aspernatur vitae fugiat numquam repellat.</p>
+            <p><a class="btn btn-primary btn-large">Call to action!</a>
+            </p>
+        </header>
+
+
+    </div>
+    -->
+    <div ng-view>
+    </div>
 </main> <!-- .cd-main-content -->
 
 <script src="bower_components/jquery/dist/jquery.js"></script>

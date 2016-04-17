@@ -2,6 +2,7 @@ package core.combined;
 
 import core.model.FinalObjectModel;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -9,7 +10,7 @@ import java.util.Map;
  * UNACCOUNTED_ABSENCE.
  */
 
-public class MarkDiscrepancy {
+public class MarkDiscrepancy implements Serializable {
     public static Map<String, FinalObjectModel> EmpCombinedMap;
 
     public void findDiscrepancy() {
