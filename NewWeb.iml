@@ -26,5 +26,6 @@
     <orderEntry type="library" name="core-lib" level="project" />
     <orderEntry type="library" name="filegen-lib" level="project" />
     <orderEntry type="library" name="commons-io-2.4" level="project" />
+    <orderEntry type="library" name="Java EE 6-Java EE 6" level="project" />
   </component>
 </module>

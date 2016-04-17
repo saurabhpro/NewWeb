@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="sampleApp" ng-controller="GenerateDiscrepancyController" lang="en" class="no-js">
 <head>
     <meta charset="UTF-8">
@@ -29,7 +29,14 @@
         <h2 style="text-align: center">
             Monthly Discrepancy List
         </h2>
-
+        <%-- <%
+        String msg=(String)session.getAttribute("successfulMessage");
+            if(msg!=null)
+                out.print(msg);
+        %>
+       <%= request.getParameter("successfulMessage") %>
+        <%out.print(session.getAttribute("successfulMessage"));%>
+        --%>
         <form action="multigen" method="post">
             <input type="hidden" name="fileToUse" value="DiscrepancyInWorkers">
             <button class="btn btn-danger" style="float: right;" type="submit" ng-click="showSelected()"
