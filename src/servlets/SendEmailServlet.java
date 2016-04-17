@@ -22,7 +22,7 @@ import java.util.StringTokenizer;
  * Created by AmritaArora on 4/6/2016.
  */
 @WebServlet(name = "SendEmailServlet", urlPatterns = {"/email"})
-public class SendEmailServlet extends HttpServlet {
+public class SendEmailServlet extends HttpServlet implements java.io.Serializable {
 
     //public static final String ANSI_GREEN = "\u001B[32m";
     //public static final String ANSI_RED = "\u001B[31m";
@@ -39,7 +39,20 @@ public class SendEmailServlet extends HttpServlet {
     String tempMessage8;
     String tempMessage9;
     String[] tempMessage10;
-    String successfulMessage;
+
+    public String getSuccessfulMessage() {
+        return successfulMessage;
+    }
+
+    public void setSuccessfulMessage(String successfulMessage) {
+        this.successfulMessage = successfulMessage;
+    }
+
+    private String successfulMessage;
+
+    public SendEmailServlet(){
+
+    }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletConfig config = getServletConfig();
@@ -153,9 +166,10 @@ public class SendEmailServlet extends HttpServlet {
             transport.connect(host, from, pass);
             transport.sendMessage(message1, message1.getAllRecipients());
             transport.close();
-
-            HttpSession session = request.getSession();
-            session.setAttribute("Message Sent", successfulMessage);
+            //HttpSession session = request.getSession();
+            //session.setAttribute("Message Sent",successfulMessage);
+           // HttpSession session = request.getSession(false);
+           // session.setAttribute("Message Sent", successfulMessage);
             response.sendRedirect("./MainPage.jsp#/GenerateDiscrepancy");
 
         } catch (MessagingException mex) {
