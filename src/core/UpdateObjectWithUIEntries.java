@@ -46,7 +46,7 @@ public class UpdateObjectWithUIEntries {
             LocalTime checkOutTime = convertToProgramStandardTime(checkOut);
             update(empRevalId, date, checkInTime, checkOutTime);
 
-            BiometricFileWorker.empList = objectToBeUpdated;     //jugad wala kaam
+            BiometricFileWorker.empList = objectToBeUpdated;
         }
     }
 
@@ -56,7 +56,7 @@ public class UpdateObjectWithUIEntries {
 
         TimeZone tzone = TimeZone.getTimeZone("Asia/Calcutta");
         ZonedDateTime zdt = ZonedDateTime.parse(time.substring(1, time.length() - 1));
-        LocalDateTime ldt = zdt.toLocalDateTime();
+        LocalDateTime ldt = zdt.toLocalDateTime().plusMinutes(330);
 
         return ldt.toLocalTime();
     }
@@ -66,12 +66,14 @@ public class UpdateObjectWithUIEntries {
     }
 
     private void update(String empRevalId, LocalDate date, LocalTime checkInTime, LocalTime checkOutTime) {
-        objectToBeUpdated.values().stream().filter(obj -> obj.getEmpId().equals(empRevalId)).forEachOrdered(obj -> {
-            obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
-            obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
-            obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
-            obj.attendanceOfDate[date.getDayOfMonth() - 1].setWorkTimeForDay(TimeManager.calculateTimeDifference(checkOutTime, checkInTime, date));
-        });
+        for (EmployeeBiometricDetails obj : objectToBeUpdated.values()) {
+            if (obj.getEmpId().equals(empRevalId)) {
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setWorkTimeForDay(TimeManager.calculateTimeDifference(checkOutTime, checkInTime, date));
+            }
+        }
     }
 
 

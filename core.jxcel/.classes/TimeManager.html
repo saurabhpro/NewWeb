@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: TimeManager</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">core.jxcel</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: TimeManager (core.jxcel)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">TimeManager</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/ 7)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    96.2%
+  </span>
+  <span class="absValue">
+    (50/ 52)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package core.jxcel;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import core.model.attendence.AttendanceOfDate;
+        <i>4</i>&nbsp;import org.jetbrains.annotations.NotNull;
+        <i>5</i>&nbsp;
+        <i>6</i>&nbsp;import java.time.Duration;
+        <i>7</i>&nbsp;import java.time.LocalDate;
+        <i>8</i>&nbsp;import java.time.LocalDateTime;
+        <i>9</i>&nbsp;import java.time.LocalTime;
+        <i>10</i>&nbsp;import java.util.Arrays;
+        <i>11</i>&nbsp;import java.util.List;
+        <i>12</i>&nbsp;
+        <i>13</i>&nbsp;import static core.model.ProjectConstants.*;
+        <i>14</i>&nbsp;
+        <i>15</i>&nbsp;/**
+        <i>16</i>&nbsp; * Created by SaurabhK on 09-02-2016.
+        <i>17</i>&nbsp; */
+        <i>18</i>&nbsp;public class TimeManager {
+        <i>19</i>&nbsp;
+        <i>20</i>&nbsp;
+        <b class="nc"><i>21</i>&nbsp; private TimeManager() {</b>
+        <b class="nc"><i>22</i>&nbsp; }</b>
+        <i>23</i>&nbsp;
+        <i>24</i>&nbsp; public static LocalTime calculateAverageOfTime(String type, AttendanceOfDate[] attendanceOfDate)
+        {
+        <b class="fc"><i>25</i>&nbsp; List&lt;AttendanceOfDate&gt; ofDates = Arrays.asList(attendanceOfDate);</b>
+        <b class="fc"><i>26</i>&nbsp; int hoursTotal, minsTotal = 0, presentDays = 0;</b>
+        <i>27</i>&nbsp;
+        <b class="fc"><i>28</i>&nbsp; for (AttendanceOfDate date : ofDates) {</b>
+        <b class="fc"><i>29</i>&nbsp; if (date.getCheckIn() != null &amp;&amp;
+            !date.getCheckOut().equals(LocalTime.MIDNIGHT)) {</b>
+        <b class="fc"><i>30</i>&nbsp; switch (type) {</b>
+        <i>31</i>&nbsp; case EMP_AVERAGE_MONTHLY_CHECK_IN:
+        <b class="fc"><i>32</i>&nbsp; if (date.getCheckIn() != null) {</b>
+        <b class="fc"><i>33</i>&nbsp; minsTotal += date.getCheckIn().getHour() * 60;</b>
+        <b class="fc"><i>34</i>&nbsp; minsTotal += date.getCheckIn().getMinute();</b>
+        <b class="fc"><i>35</i>&nbsp; presentDays++;</b>
+        <i>36</i>&nbsp; }
+        <i>37</i>&nbsp; break;
+        <i>38</i>&nbsp;
+        <i>39</i>&nbsp; case EMP_AVERAGE_MONTHLY_CHECK_OUT:
+        <b class="fc"><i>40</i>&nbsp; if (date.getCheckOut() != null) {</b>
+        <b class="fc"><i>41</i>&nbsp; minsTotal += date.getCheckOut().getHour() * 60;</b>
+        <b class="fc"><i>42</i>&nbsp; minsTotal += date.getCheckOut().getMinute();</b>
+        <b class="fc"><i>43</i>&nbsp; presentDays++;</b>
+        <i>44</i>&nbsp; }
+        <i>45</i>&nbsp; break;
+        <i>46</i>&nbsp; }
+        <i>47</i>&nbsp;
+        <i>48</i>&nbsp; }
+        <b class="fc"><i>49</i>&nbsp; }</b>
+        <b class="fc"><i>50</i>&nbsp; int t = presentDays &gt; 0 ? presentDays : 1;</b>
+        <b class="fc"><i>51</i>&nbsp; minsTotal = minsTotal / t;</b>
+        <i>52</i>&nbsp;
+        <b class="fc"><i>53</i>&nbsp; hoursTotal = minsTotal / 60;</b>
+        <b class="fc"><i>54</i>&nbsp; minsTotal = minsTotal % 60;</b>
+        <b class="fc"><i>55</i>&nbsp; return LocalTime.of(hoursTotal, minsTotal);</b>
+        <i>56</i>&nbsp; }
+        <i>57</i>&nbsp;
+        <i>58</i>&nbsp; public static LocalTime calculateAverageTimeOfMonth(AttendanceOfDate[] attendanceOfDate) {
+        <b class="fc"><i>59</i>&nbsp; List&lt;AttendanceOfDate&gt; ofDates = Arrays.asList(attendanceOfDate);</b>
+        <b class="fc"><i>60</i>&nbsp; int hoursTotal, minsTotal = 0, presentDays = 0;</b>
+        <i>61</i>&nbsp;
+        <b class="fc"><i>62</i>&nbsp; for (AttendanceOfDate date : ofDates) {</b>
+        <b class="fc"><i>63</i>&nbsp; if (date.getCheckIn() != null &amp;&amp;
+            !date.getCheckOut().equals(LocalTime.MIDNIGHT)) {</b>
+        <i>64</i>&nbsp;
+        <b class="fc"><i>65</i>&nbsp; minsTotal += date.getWorkTimeForDay().getHour() * 60;</b>
+        <b class="fc"><i>66</i>&nbsp; minsTotal += date.getWorkTimeForDay().getMinute();</b>
+        <b class="fc"><i>67</i>&nbsp; presentDays++;</b>
+        <i>68</i>&nbsp;
+        <i>69</i>&nbsp;
+        <i>70</i>&nbsp; }
+        <b class="fc"><i>71</i>&nbsp; }</b>
+        <b class="fc"><i>72</i>&nbsp; int t = presentDays &gt; 0 ? presentDays : 1;</b>
+        <b class="fc"><i>73</i>&nbsp; minsTotal = minsTotal / t;</b>
+        <i>74</i>&nbsp;
+        <b class="fc"><i>75</i>&nbsp; hoursTotal = minsTotal / 60;</b>
+        <b class="fc"><i>76</i>&nbsp; minsTotal = minsTotal % 60;</b>
+        <b class="fc"><i>77</i>&nbsp; return LocalTime.of(hoursTotal, minsTotal);</b>
+        <i>78</i>&nbsp; }
+        <i>79</i>&nbsp;
+        <i>80</i>&nbsp; public static LocalTime calculateTimeDifference(LocalTime checkInTime, LocalTime checkOutTime,
+        LocalDate date) {
+        <i>81</i>&nbsp; LocalDate froDate, toDate;
+        <b class="fc"><i>82</i>&nbsp; froDate = toDate = date;</b>
+        <i>83</i>&nbsp; LocalTime time;
+        <i>84</i>&nbsp;
+        <b class="fc"><i>85</i>&nbsp; if (checkOutTime.compareTo(checkInTime) &lt; 0)</b>
+        <b class="fc"><i>86</i>&nbsp; toDate = froDate.plusDays(1);</b>
+        <i>87</i>&nbsp;
+        <b class="fc"><i>88</i>&nbsp; LocalDateTime fromDateTime = LocalDateTime.of(froDate, checkInTime);</b>
+        <b class="fc"><i>89</i>&nbsp; LocalDateTime toDateTime = LocalDateTime.of(toDate, checkOutTime);</b>
+        <i>90</i>&nbsp;
+        <b class="fc"><i>91</i>&nbsp; time = getTime(fromDateTime, toDateTime);</b>
+        <i>92</i>&nbsp;
+        <b class="fc"><i>93</i>&nbsp; return time;</b>
+        <i>94</i>&nbsp; }
+        <i>95</i>&nbsp;
+        <i>96</i>&nbsp; @NotNull
+        <i>97</i>&nbsp; public static LocalDate convertToLocalDate(String date) {
+        <i>98</i>&nbsp; int year;
+        <i>99</i>&nbsp; int month;
+        <i>100</i>&nbsp; int day;
+        <i>101</i>&nbsp;
+        <b class="fc"><i>102</i>&nbsp; String[] st = date.split(&quot;/&quot;);</b>
+        <i>103</i>&nbsp;
+        <b class="fc"><i>104</i>&nbsp; month = Integer.parseInt(st[0]);</b>
+        <b class="fc"><i>105</i>&nbsp; day = Integer.parseInt(st[1]);</b>
+        <b class="fc"><i>106</i>&nbsp; year = Integer.parseInt(st[2]);</b>
+        <i>107</i>&nbsp;
+        <b class="fc"><i>108</i>&nbsp; return LocalDate.of(year, month, day);</b>
+        <i>109</i>&nbsp; }
+        <i>110</i>&nbsp;
+        <i>111</i>&nbsp; private static LocalTime convertToTime(long hr, long min) {
+        <b class="fc"><i>112</i>&nbsp; return LocalTime.of((int) hr, (int) min);</b>
+        <i>113</i>&nbsp; }
+        <i>114</i>&nbsp;
+        <i>115</i>&nbsp; private static LocalTime getTime(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
+        <b class="fc"><i>116</i>&nbsp; Duration duration = Duration.between(fromDateTime, toDateTime);</b>
+        <i>117</i>&nbsp;
+        <b class="fc"><i>118</i>&nbsp; long seconds = duration.getSeconds();</b>
+        <i>119</i>&nbsp;
+        <b class="fc"><i>120</i>&nbsp; long hours = seconds / SECONDS_PER_HOUR;</b>
+        <b class="fc"><i>121</i>&nbsp; long minutes = ((seconds % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE);</b>
+        <i>122</i>&nbsp; // long secs = (seconds % SECONDS_PER_MINUTE);
+        <i>123</i>&nbsp;
+        <b class="fc"><i>124</i>&nbsp; return convertToTime(hours, minutes);</b>
+        <i>125</i>&nbsp;
+        <i>126</i>&nbsp; }
+        <i>127</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2016-04-12 17:29</div>
+</div>
+</body>
+</html>

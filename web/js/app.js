@@ -28,7 +28,7 @@ sampleApp.config(['$routeProvider',
             templateUrl: './Overview.html',
             controller: 'OverviewController'
         }).otherwise({
-            redirectTo: '/MainPage.jsp'
+            redirectTo: './MainPage.jsp'
         });
 
     }]);

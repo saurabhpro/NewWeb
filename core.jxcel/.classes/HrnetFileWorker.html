@@ -1,0 +1,242 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+    <title>Coverage Report :: HrnetFileWorker</title>
+    <style type="text/css">
+        @import "../../.css/coverage.css";
+    </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+    <div class="breadCrumbs">
+        [ <a href="../../index.html">all classes</a> ]
+        [ <a href="../index.html">core.jxcel</a> ]
+    </div>
+
+    <h1>Coverage Summary for Class: HrnetFileWorker (core.jxcel)</h1>
+
+    <table class="coverageStats">
+        <tr>
+            <th class="name">Class</th>
+            <th class="coverageStat
+">
+                Class, %
+            </th>
+            <th class="coverageStat
+">
+                Method, %
+            </th>
+            <th class="coverageStat
+">
+                Line, %
+            </th>
+        </tr>
+        <tr>
+            <td class="name">HrnetFileWorker</td>
+            <td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    83.3%
+  </span>
+  <span class="absValue">
+    (5/ 6)
+  </span>
+            </td>
+            <td class="coverageStat">
+  <span class="percent">
+    80.6%
+  </span>
+  <span class="absValue">
+    (50/ 62)
+  </span>
+            </td>
+        </tr>
+
+    </table>
+
+    <br/>
+    <br/>
+
+
+    <div class="sourceCode"><i>1</i>&nbsp;package core.jxcel;
+        <i>2</i>&nbsp;
+        <i>3</i>&nbsp;import core.factory.XLSXSheetAndCell;
+        <i>4</i>&nbsp;import core.model.FileOperations;
+        <i>5</i>&nbsp;import core.model.attendence.AttendanceOfLeave;
+        <i>6</i>&nbsp;import core.model.attendence.LeaveType;
+        <i>7</i>&nbsp;import core.model.uploadedfiles.EmployeeHrnetDetails;
+        <i>8</i>&nbsp;import org.apache.poi.ss.usermodel.Cell;
+        <i>9</i>&nbsp;import org.apache.poi.ss.usermodel.Sheet;
+        <i>10</i>&nbsp;import org.jetbrains.annotations.NotNull;
+        <i>11</i>&nbsp;
+        <i>12</i>&nbsp;import java.text.SimpleDateFormat;
+        <i>13</i>&nbsp;import java.time.LocalDate;
+        <i>14</i>&nbsp;import java.util.*;
+        <i>15</i>&nbsp;
+        <i>16</i>&nbsp;import static core.model.ProjectConstants.getMONTH;
+        <i>17</i>&nbsp;import static core.model.ProjectConstants.getYEAR;
+        <i>18</i>&nbsp;
+        <i>19</i>&nbsp;/**
+        <i>20</i>&nbsp; * Created by Saurabh on 2/10/2016.
+        <i>21</i>&nbsp; */
+        <i>22</i>&nbsp;public class HrnetFileWorker implements FileOperations {
+        <i>23</i>&nbsp;
+        <i>24</i>&nbsp; public static Map&lt;String, ArrayList&lt;HrnetDetails&gt;&gt; hrnetDetails;
+        <i>25</i>&nbsp; private final Sheet sheet;
+        <i>26</i>&nbsp;
+        <b class="fc"><i>27</i>&nbsp; public HrnetFileWorker(String hrNetFile) {</b>
+        <b class="fc"><i>28</i>&nbsp; sheet = new XLSXSheetAndCell().ApacheXLSXSheet(hrNetFile);</b>
+        <b class="fc"><i>29</i>&nbsp; }</b>
+        <i>30</i>&nbsp;
+        <i>31</i>&nbsp; @Override
+        <i>32</i>&nbsp; public void displayFile() {
+        <b class="nc"><i>33</i>&nbsp; Set&lt;Map.Entry&lt;String, ArrayList&lt;HrnetDetails&gt;&gt;&gt; s =
+            hrnetDetails.entrySet();</b>
+        <i>34</i>&nbsp;
+        <b class="nc"><i>35</i>&nbsp; for (Map.Entry&lt;String, ArrayList&lt;HrnetDetails&gt;&gt; entry : s) {</b>
+        <b class="nc"><i>36</i>&nbsp; entry.getValue().forEach(HrnetDetails::printHrNetDetail);</b>
+        <b class="nc"><i>37</i>&nbsp; }</b>
+        <b class="nc"><i>38</i>&nbsp; }</b>
+        <i>39</i>&nbsp;
+        <i>40</i>&nbsp; private String getID(Cell cell) {
+        <b class="fc"><i>41</i>&nbsp; if (cell.getCellType() == Cell.CELL_TYPE_STRING)</b>
+        <b class="fc"><i>42</i>&nbsp; return cell.getStringCellValue();</b>
+        <i>43</i>&nbsp; else
+        <b class="nc"><i>44</i>&nbsp; return Objects.toString((int) cell.getNumericCellValue());</b>
+        <i>45</i>&nbsp; }
+        <i>46</i>&nbsp;
+        <i>47</i>&nbsp; @NotNull
+        <i>48</i>&nbsp; private LocalDate getLocalDate(Cell cell) {
+        <b class="fc"><i>49</i>&nbsp; if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)</b>
+        <b class="fc"><i>50</i>&nbsp; return TimeManager.convertToLocalDate(new SimpleDateFormat(&quot;dd/MM/yyyy&quot;).format(cell.getDateCellValue()));</b>
+        <i>51</i>&nbsp; else
+        <b class="fc"><i>52</i>&nbsp; return TimeManager.convertToLocalDate(cell.getStringCellValue());</b>
+        <i>53</i>&nbsp; }
+        <i>54</i>&nbsp;
+        <i>55</i>&nbsp; // hi
+        <i>56</i>&nbsp; @Override
+        <i>57</i>&nbsp; public void readFile() {
+        <i>58</i>&nbsp; Cell cell;
+        <i>59</i>&nbsp;
+        <i>60</i>&nbsp; AttendanceOfLeave attendanceOfLeave;
+        <i>61</i>&nbsp;
+        <b class="fc"><i>62</i>&nbsp; String empName = null;</b>
+        <b class="fc"><i>63</i>&nbsp; String salesForceID = null;</b>
+        <i>64</i>&nbsp; LocalDate tempDate;
+        <i>65</i>&nbsp;
+        <b class="fc"><i>66</i>&nbsp; int numberOfRowsInHr = sheet.getPhysicalNumberOfRows();</b>
+        <b class="fc"><i>67</i>&nbsp; hrnetDetails = new TreeMap&lt;&gt;();</b>
+        <i>68</i>&nbsp;
+        <b class="fc"><i>69</i>&nbsp; for (int i = 1; i &lt; numberOfRowsInHr; i++) {</b>
+        <i>70</i>&nbsp; ArrayList&lt;HrnetDetails&gt; tempArrLst;
+        <b class="fc"><i>71</i>&nbsp; attendanceOfLeave = new AttendanceOfLeave();</b>
+        <i>72</i>&nbsp;
+        <b class="fc"><i>73</i>&nbsp; for (int j = 0; j &lt; 7; j++) {</b>
+        <i>74</i>&nbsp; // Update the value of cell
+        <b class="fc"><i>75</i>&nbsp; cell = sheet.getRow(i).getCell(j);</b>
+        <i>76</i>&nbsp;
+        <b class="fc"><i>77</i>&nbsp; switch (j) {</b>
+        <i>78</i>&nbsp; case 0:
+        <b class="fc"><i>79</i>&nbsp; salesForceID = getID(cell);</b>
+        <b class="fc"><i>80</i>&nbsp; break;</b>
+        <i>81</i>&nbsp;
+        <i>82</i>&nbsp; case 1:
+        <b class="fc"><i>83</i>&nbsp; empName = cell.getStringCellValue();</b>
+        <b class="fc"><i>84</i>&nbsp; break;</b>
+        <i>85</i>&nbsp;
+        <i>86</i>&nbsp; case 2:
+        <b class="fc"><i>87</i>&nbsp; String tmp = cell.getStringCellValue().replace(&quot; &quot;, &quot;_&quot;).toUpperCase();</b>
+        <b class="fc"><i>88</i>&nbsp; for (LeaveType leaveType : LeaveType.values()) {</b>
+        <b class="fc"><i>89</i>&nbsp; if (Objects.equals(leaveType.toString(), tmp)) {</b>
+        <b class="fc"><i>90</i>&nbsp; attendanceOfLeave.setLeaveType(LeaveType.valueOf(tmp));</b>
+        <b class="fc"><i>91</i>&nbsp; break;</b>
+        <i>92</i>&nbsp; }
+        <i>93</i>&nbsp; }
+        <b class="fc"><i>94</i>&nbsp; break;</b>
+        <i>95</i>&nbsp; case 3:// startdate column
+        <b class="fc"><i>96</i>&nbsp; tempDate = getLocalDate(cell);</b>
+        <b class="fc"><i>97</i>&nbsp; attendanceOfLeave.setStartDate(tempDate);</b>
+        <b class="fc"><i>98</i>&nbsp; break;</b>
+        <i>99</i>&nbsp; case 4:// end date column
+        <b class="fc"><i>100</i>&nbsp; tempDate = getLocalDate(cell);</b>
+        <b class="fc"><i>101</i>&nbsp; attendanceOfLeave.setEndDate(tempDate);</b>
+        <b class="fc"><i>102</i>&nbsp; break;</b>
+        <i>103</i>&nbsp;
+        <i>104</i>&nbsp; case 5:
+        <b class="fc"><i>105</i>&nbsp; attendanceOfLeave.setAbsenceTime(cell.getNumericCellValue());</b>
+        <i>106</i>&nbsp; break;
+        <i>107</i>&nbsp;
+        <i>108</i>&nbsp; }
+        <i>109</i>&nbsp; }
+        <i>110</i>&nbsp;
+        <b class="fc"><i>111</i>&nbsp; leaveStartEndDayRangeFixer(attendanceOfLeave);</b>
+        <i>112</i>&nbsp; /**
+        <i>113</i>&nbsp; * only consider the salesforce data for those months which is on
+        <i>114</i>&nbsp; * biometric excel
+        <i>115</i>&nbsp; */
+        <b class="fc"><i>116</i>&nbsp; if (attendanceOfLeave.getStartDate() != null &amp;&amp;
+            attendanceOfLeave.getLeaveType() != null) {</b>
+        <b class="fc"><i>117</i>&nbsp; if (hrnetDetails.containsKey(salesForceID)) {</b>
+        <b class="fc"><i>118</i>&nbsp; tempArrLst = hrnetDetails.get(salesForceID);</b>
+        <b class="fc"><i>119</i>&nbsp; tempArrLst.add(new HrnetDetails(salesForceID, empName, attendanceOfLeave));</b>
+        <b class="fc"><i>120</i>&nbsp; hrnetDetails.put(salesForceID, tempArrLst);</b>
+        <i>121</i>&nbsp;
+        <i>122</i>&nbsp; } else {
+        <b class="fc"><i>123</i>&nbsp; tempArrLst = new ArrayList&lt;&gt;();</b>
+        <b class="fc"><i>124</i>&nbsp; tempArrLst.add(new HrnetDetails(salesForceID, empName, attendanceOfLeave));</b>
+        <b class="fc"><i>125</i>&nbsp; hrnetDetails.put(salesForceID, tempArrLst);</b>
+        <i>126</i>&nbsp; }
+        <i>127</i>&nbsp; }
+        <i>128</i>&nbsp; }
+        <i>129</i>&nbsp;
+        <b class="fc"><i>130</i>&nbsp; }</b>
+        <i>131</i>&nbsp;
+        <i>132</i>&nbsp; private void leaveStartEndDayRangeFixer(AttendanceOfLeave attendanceOfLeave) {
+        <i>133</i>&nbsp; /**
+        <i>134</i>&nbsp; * case where leave applied from 29th jan to 5th feb, and we are
+        <i>135</i>&nbsp; * calculating for Feb
+        <i>136</i>&nbsp; */
+        <b class="fc"><i>137</i>&nbsp; if (attendanceOfLeave.getEndDate().getMonth().equals(getMONTH())</b>
+        <b class="fc"><i>138</i>&nbsp; &amp;&amp; !attendanceOfLeave.getStartDate().getMonth().equals(getMONTH()))</b>
+        <b class="nc"><i>139</i>&nbsp; attendanceOfLeave</b>
+        <b class="nc"><i>140</i>&nbsp; .setStartDate(LocalDate.of(getYEAR().getValue(), getMONTH(), 1));</b>
+        <i>141</i>&nbsp;
+        <i>142</i>&nbsp; /**
+        <i>143</i>&nbsp; * case where leave applied from 29th jan to 5th feb, and we are
+        <i>144</i>&nbsp; * calculating for Jan
+        <i>145</i>&nbsp; */
+        <b class="fc"><i>146</i>&nbsp; else if (attendanceOfLeave.getStartDate().getMonth().equals(getMONTH())</b>
+        <b class="fc"><i>147</i>&nbsp; &amp;&amp; !attendanceOfLeave.getEndDate().getMonth().equals(getMONTH()))</b>
+        <b class="nc"><i>148</i>&nbsp; attendanceOfLeave.setEndDate(LocalDate.of(getYEAR().getValue(), getMONTH(),</b>
+        <b class="nc"><i>149</i>&nbsp; getMONTH().maxLength()));</b>
+        <i>150</i>&nbsp;
+        <i>151</i>&nbsp; /**
+        <i>152</i>&nbsp; * case where leave applied from 8th jan to 14th jan, and we are
+        <i>153</i>&nbsp; * calculating for feb
+        <i>154</i>&nbsp; */
+        <b class="fc"><i>155</i>&nbsp; else if (!attendanceOfLeave.getStartDate().getMonth().equals(getMONTH())</b>
+        <b class="nc"><i>156</i>&nbsp; &amp;&amp; !attendanceOfLeave.getEndDate().getMonth().equals(getMONTH()))</b>
+        <b class="nc"><i>157</i>&nbsp; attendanceOfLeave.setStartDate(null);</b>
+        <i>158</i>&nbsp;
+        <b class="fc"><i>159</i>&nbsp; }</b>
+        <i>160</i>&nbsp;}
+    </div>
+</div>
+
+<div class="footer">
+
+    <div style="float:right;">generated on 2016-04-12 17:29</div>
+</div>
+</body>
+</html>
