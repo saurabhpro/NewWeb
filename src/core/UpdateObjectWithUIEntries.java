@@ -1,10 +1,10 @@
 package core;
 
-import core.jxcel.BiometricFileWorker;
-import core.jxcel.TimeManager;
-import core.model.attendence.AttendanceStatusType;
-import core.model.uploadedfiles.EmployeeBiometricDetails;
-import servlets.core.BackEndLogic;
+import core.appfilereader.BiometricFileWorker;
+import core.model.appfilereadermodal.EmployeeBiometricDetails;
+import core.model.attendencemodal.AttendanceStatusType;
+import core.utils.TimeManager;
+import servlets.main.BackEndLogic;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ public class UpdateObjectWithUIEntries {
 
     public UpdateObjectWithUIEntries() {
         BackEndLogic.readDataFromSources();
-        objectToBeUpdated = BiometricFileWorker.empList;
+        objectToBeUpdated = BiometricFileWorker.empBiometricMap;
     }
 
 
@@ -46,7 +46,7 @@ public class UpdateObjectWithUIEntries {
             LocalTime checkOutTime = convertToProgramStandardTime(checkOut);
             update(empRevalId, date, checkInTime, checkOutTime);
 
-            BiometricFileWorker.empList = objectToBeUpdated;
+            BiometricFileWorker.empBiometricMap = objectToBeUpdated;
         }
     }
 

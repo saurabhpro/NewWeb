@@ -1,8 +1,8 @@
 package core.view;
 
-import core.model.FinalObjectModel;
-import core.model.ListGeneratorModel;
-import core.model.WebJSONModel;
+import core.model.viewmodal.FinalObjectModel;
+import core.model.viewmodal.ListGeneratorModel;
+import core.model.viewmodal.WebJSONModel;
 
 import java.util.TreeMap;
 

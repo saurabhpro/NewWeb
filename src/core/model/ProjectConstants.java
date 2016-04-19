@@ -43,6 +43,7 @@ public class ProjectConstants {
     public static String BIOMETRIC_FILE_PATH = "C:\\ProjectFiles\\Biometric\\";
     public static String FINANCIAL_FORCE_FILE_PATH = "C:\\ProjectFiles\\Salesforce\\";
     public static String ALL_EMPLOYEE_RECORD_FILE_PATH = "C:\\ProjectFiles\\EmailList\\";
+    public static String UPDATED_RECORD_OBJECTS = "C:\\ProjectFiles\\SerialObjects\\";
 
     public static String ALL_EMP_WORKERS_LIST = "AllWorkers";
     public static String DISCREPANCY_IN_WORKERS_LIST = "DiscrepancyInWorkers";

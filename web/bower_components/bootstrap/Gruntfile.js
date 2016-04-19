@@ -360,7 +360,7 @@ module.exports = function (grunt) {
         watch: {
             src: {
                 files: '<%= jshint.core.src %>',
-                tasks: ['jshint:core', 'qunit', 'concat']
+                tasks: ['jshint:main', 'qunit', 'concat']
             },
             test: {
                 files: '<%= jshint.test.src %>',
@@ -448,9 +448,9 @@ module.exports = function (grunt) {
 
     // Test task.
     var testSubtasks = [];
-    // Skip core tests if running a different subset of the test suite
+    // Skip main tests if running a different subset of the test suite
     if (runSubset('core') &&
-            // Skip core tests if this is a Savage build
+            // Skip main tests if this is a Savage build
         process.env.TRAVIS_REPO_SLUG !== 'twbs-savage/bootstrap') {
         testSubtasks = testSubtasks.concat(['dist-css', 'dist-js', 'csslint:dist', 'test-js', 'docs']);
     }
@@ -470,14 +470,14 @@ module.exports = function (grunt) {
         testSubtasks.push('saucelabs-qunit');
     }
     grunt.registerTask('test', testSubtasks);
-    grunt.registerTask('test-js', ['jshint:core', 'jshint:test', 'jshint:grunt', 'jscs:core', 'jscs:test', 'jscs:grunt', 'qunit']);
+    grunt.registerTask('test-js', ['jshint:main', 'jshint:test', 'jshint:grunt', 'jscs:main', 'jscs:test', 'jscs:grunt', 'qunit']);
 
     // JS distribution task.
-    grunt.registerTask('dist-js', ['concat', 'uglify:core', 'commonjs']);
+    grunt.registerTask('dist-js', ['concat', 'uglify:main', 'commonjs']);
 
     // CSS distribution task.
     grunt.registerTask('less-compile', ['less:compileCore', 'less:compileTheme']);
-    grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:core', 'autoprefixer:theme', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
+    grunt.registerTask('dist-css', ['less-compile', 'autoprefixer:main', 'autoprefixer:theme', 'csscomb:dist', 'cssmin:minifyCore', 'cssmin:minifyTheme']);
 
     // Full distribution task.
     grunt.registerTask('dist', ['clean:dist', 'dist-css', 'copy:fonts', 'dist-js']);

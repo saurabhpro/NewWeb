@@ -1,13 +1,13 @@
 package core.combined;
 
-import core.emplmasterrecord.AllEmployeesBasicData;
+import core.appfilereader.AllEmployeesBasicData;
 import core.model.ProjectConstants;
-import core.model.attendence.AttendanceStatusType;
-import core.model.attendence.HolidaysList;
-import core.model.attendence.LeaveType;
-import core.model.empl.BasicEmployeeDetails;
-import core.model.uploadedfiles.EmployeeBiometricDetails;
-import core.model.uploadedfiles.EmployeeHrnetDetails;
+import core.model.appfilereadermodal.EmployeeBiometricDetails;
+import core.model.appfilereadermodal.EmployeeHrnetDetails;
+import core.model.attendencemodal.AttendanceStatusType;
+import core.model.attendencemodal.HolidaysList;
+import core.model.attendencemodal.LeaveType;
+import core.model.employeemodal.BasicEmployeeDetails;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -17,7 +17,7 @@ import java.util.Set;
 
 import static core.combined.CombineFile.empBiometricDetails;
 import static core.combined.CombineFile.empHrnetDetails;
-import static core.model.attendence.AttendanceStatusType.*;
+import static core.model.attendencemodal.AttendanceStatusType.*;
 
 /**
  * Created by Saurabh on 4/9/2016.
@@ -28,7 +28,7 @@ class CombineFileHelperUtility {
 
     static void preRequiredTasks() {
         empBiometricDetails.keySet().forEach(CombineFileHelperUtility::setNumberOfLeavesForEachEmployee);
-        //set holidays for that month for each employee
+        //set holidays for that month for each employeemodal
         empBiometricDetails.values().forEach((empObj) -> CombineFileHelperUtility.holidayStatusUpdater(empObj));
         // this worked just fine for January
         empBiometricDetails.values().forEach(CombineFileHelperUtility::absentStatusUpdater);

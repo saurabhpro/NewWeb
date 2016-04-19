@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!--Sample Data stored in xml file format, this example consist of 2 employees 
 	and their biometric information for January, containing 31 days, As February 
-	should have 28/29 days the dates should be 28/29 only Each employee is sorted 
+	should have 28/29 days the dates should be 28/29 only Each employeemodal is sorted
 	based on there 'IdOfEmployee' The 'EmpStatus' for each date should be calculated 
 	by considering the following parameters 1. if user checks-in and checks-out, 
 	then status = P, 2. if user checks-in, but forgets to check-out, then status=P/A 

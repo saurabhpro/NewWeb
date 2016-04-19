@@ -54,7 +54,7 @@ $info-button-bg-color: $info-color !default;
 $info-button-bg-hover: scale-color($info-color, $lightness: $button-function-factor) !default;
 $info-button-border-color: $info-button-bg-hover !default;
 
-// We use this to set the default radius used throughout the core.
+// We use this to set the default radius used throughout the main.
 $button-radius: $global-radius !default;
 $button-round: $global-rounded !default;
 

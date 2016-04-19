@@ -1,8 +1,12 @@
 package core.view;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import core.model.*;
-import core.model.attendence.HolidaysList;
+import core.model.ProjectConstants;
+import core.model.attendencemodal.HolidaysList;
+import core.model.viewmodal.FinalObjectModel;
+import core.model.viewmodal.HolidayWorkerModel;
+import core.model.viewmodal.ListGeneratorModel;
+import core.model.viewmodal.WebJSONModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static core.model.ProjectConstants.FILE_PATH;
-import static core.model.attendence.AttendanceStatusType.PUBLIC_HOLIDAY;
+import static core.model.attendencemodal.AttendanceStatusType.PUBLIC_HOLIDAY;
 
 /**
  * Created by kumars on 3/4/2016.

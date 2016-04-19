@@ -1,14 +1,14 @@
 package core.view;
 
-import core.model.FinalObjectModel;
-import core.model.ListGeneratorModel;
 import core.model.ProjectConstants;
-import core.model.WebJSONModel;
-import core.model.attendence.AttendanceOfDate;
+import core.model.attendencemodal.AttendanceOfDate;
+import core.model.viewmodal.FinalObjectModel;
+import core.model.viewmodal.ListGeneratorModel;
+import core.model.viewmodal.WebJSONModel;
 
 import java.util.TreeMap;
 
-import static core.model.attendence.AttendanceStatusType.WEEKEND_HOLIDAY;
+import static core.model.attendencemodal.AttendanceStatusType.WEEKEND_HOLIDAY;
 
 /**
  * Created by Saurabh on 4/8/2016.

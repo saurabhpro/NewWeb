@@ -1,14 +1,14 @@
 package core.combined;
 
-import core.model.FinalObjectModel;
 import core.model.ProjectConstants;
-import core.model.uploadedfiles.EmployeeHrnetDetails;
+import core.model.appfilereadermodal.EmployeeHrnetDetails;
+import core.model.viewmodal.FinalObjectModel;
 
 import java.time.LocalDate;
 
-import static core.model.attendence.AttendanceStatusType.*;
-import static core.model.attendence.LeaveType.NO_LEAVE;
-import static core.model.attendence.LeaveType.WORK_FROM_HOME_IND;
+import static core.model.attendencemodal.AttendanceStatusType.*;
+import static core.model.attendencemodal.LeaveType.NO_LEAVE;
+import static core.model.attendencemodal.LeaveType.WORK_FROM_HOME_IND;
 
 /**
  * Created by Saurabh on 4/10/2016.
@@ -37,14 +37,14 @@ class MarkDiscrepancyHelperUtility {
                 }
             }
 
-            // MarkDiscrepancy if there is an entry for an employee in both
+            // MarkDiscrepancy if there is an entry for an employeemodal in both
             // Biometric and Hrnet file.
             else if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(PRESENT)) {
                 for (EmployeeHrnetDetails hrnetDetail : finalObjectModel.employeeHrnetDetails)
                     setClarificationStatus(j, finalObjectModel, hrnetDetail, "PresentInBoth", 0);
             }
 
-            // MarkDiscrepancy if an employee applies for half day but works
+            // MarkDiscrepancy if an employeemodal applies for half day but works
             // for less than four hours.
             else if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY)) {
                 setIfHalfDayLessThanSixHoursWork(finalObjectModel, j);
@@ -80,9 +80,7 @@ class MarkDiscrepancyHelperUtility {
                     .filter(hrnet -> hrnet.attendanceOfLeave.getStartDate().getDayOfMonth() == j + 1)
                     .filter(hrnet -> (f.attendanceOfDate[j].getWorkTimeForDay() == null)
                             || (f.attendanceOfDate[j].getWorkTimeForDay().getHour() < 4))
-                    .forEach(hrnetDetail -> {
-                        f.setIfClarificationNeeded(true);
-                    });
+                    .forEach(hrnetDetail -> f.setIfClarificationNeeded(true));
 
     }
 

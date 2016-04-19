@@ -1,0 +1,75 @@
+package core.model.employeemodal;
+
+import core.appfilereader.AllEmployeesBasicData;
+
+import java.io.Serializable;
+
+import static core.model.ProjectConstants.*;
+
+/**
+ * Created by kumars on 2/29/2016.
+ */
+public class BasicEmployeeDetails implements Serializable {
+    private String name;
+    private String empId;
+    private String salesForceId;
+    private String emailId;
+
+    public BasicEmployeeDetails(String name, String empId, String salesForceId, String emailId) {
+        this.name = name;
+        this.empId = empId;
+        this.salesForceId = salesForceId;
+        this.emailId = emailId;
+    }
+
+    public BasicEmployeeDetails() {
+    }
+
+    public void displayBasicInfo() {
+        System.out.print(EMP_REVAL_IND_ID + " : " + this.getEmpId());
+        System.out.print("\t" + EMP_NAME + " : " + this.getName());
+        System.out.print("\t" + EMP_EMAIL_ID + " : " + this.getEmailId());
+        System.out.println("\t" + EMP_FINANCIAL_FORCE_ID + " : " + this.getSalesForceId());
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId.toLowerCase();
+    }
+
+    public String getEmpId() {
+        return empId;
+    }
+
+    public void setEmpId(String empId) {
+        this.empId = empId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSalesForceId() {
+        return salesForceId;
+    }
+
+    public void setSalesForceId(String salesForceId) {
+        this.salesForceId = salesForceId;
+    }
+
+    public String getSalesForceId(String empId) {
+        BasicEmployeeDetails tempSalesForceId = AllEmployeesBasicData.allEmployeeRecordMap.get(empId);
+        if (tempSalesForceId != null && tempSalesForceId.getSalesForceId() != null)
+            return tempSalesForceId.getSalesForceId();
+        else
+            return null;
+    }
+
+}

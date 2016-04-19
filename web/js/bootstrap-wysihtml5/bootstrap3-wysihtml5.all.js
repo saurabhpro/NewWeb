@@ -452,7 +452,7 @@ var wysihtml5 = {
 
         var module = createModule(false, name, dependencies, initFunc);
 
-        // Initialize the module immediately if the core is already initialized
+        // Initialize the module immediately if the main is already initialized
         if (api.initialized) {
             module.init();
         }
@@ -3807,7 +3807,7 @@ var wysihtml5 = {
  * Part of Rangy, a cross-browser JavaScript range and selection library
  * http://code.google.com/p/rangy/
  *
- * Depends on Rangy core.
+ * Depends on Rangy main.
  *
  * Copyright 2014, Tim Down
  * Licensed under the MIT license.

@@ -9364,9 +9364,9 @@
     "empSalesforceId": "9999",
     "empName": "Saurabh Kumar",
     "empEmailId": "saurabh.kumar@reval.com",
-    "empAvgCheckInTimeForMonth": "08:27",
-    "empAvgCheckOutTimeForMonth": "17:38",
-    "empAvgWorkHoursForMonth": "09:11",
+    "empAvgCheckInTimeForMonth": "08:31",
+    "empAvgCheckOutTimeForMonth": "17:34",
+    "empAvgWorkHoursForMonth": "09:02",
     "allDateDetailsList": [
       {
         "currentDate": "2016-03-01",
@@ -9474,11 +9474,11 @@
       },
       {
         "currentDate": "2016-03-14",
-        "attendanceStatusType": "PRESENT",
+        "attendanceStatusType": "UNACCOUNTED_ABSENCE",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "07:02",
-        "checkOut": "19:02",
-        "workTimeForDay": "12:00"
+        "checkIn": "NA",
+        "checkOut": "NA",
+        "workTimeForDay": "NA"
       },
       {
         "currentDate": "2016-03-15",
@@ -9617,7 +9617,7 @@
         "workTimeForDay": "07:51"
       }
     ],
-    "empIfClarificationNeeded": false
+    "empIfClarificationNeeded": true
   },
   "R14": {
     "empRevalId": "R14",

@@ -1,11 +1,11 @@
 package core.combined;
 
-import core.jxcel.BiometricFileWorker;
-import core.jxcel.HrnetFileWorker;
-import core.model.FinalObjectModel;
-import core.model.empl.BasicEmployeeDetails;
-import core.model.uploadedfiles.EmployeeBiometricDetails;
-import core.model.uploadedfiles.EmployeeHrnetDetails;
+import core.appfilereader.BiometricFileWorker;
+import core.appfilereader.HrnetFileWorker;
+import core.model.appfilereadermodal.EmployeeBiometricDetails;
+import core.model.appfilereadermodal.EmployeeHrnetDetails;
+import core.model.employeemodal.BasicEmployeeDetails;
+import core.model.viewmodal.FinalObjectModel;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -14,23 +14,20 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import static core.model.ProjectConstants.getMONTH;
-import static core.model.attendence.AttendanceStatusType.*;
+import static core.model.attendencemodal.AttendanceStatusType.*;
 
 /**
  * Created by kumars on 2/16/2016. 6-03-2016 changed the Type from ABSENT to
  * UNACCOUNTED_ABSENCE.
  */
-public class CombineFile implements Serializable {
-
-    // Comparator needs string as Type
-    public static Map<String, FinalObjectModel> EmpCombinedMap;
+public class CombineFile extends FinalObject implements Serializable {
 
     static Map<String, ArrayList<EmployeeHrnetDetails>> empHrnetDetails;
     static Map<String, EmployeeBiometricDetails> empBiometricDetails;
 
     public CombineFile() {
         EmpCombinedMap = new TreeMap<>(String::compareTo);
-        empBiometricDetails = BiometricFileWorker.empList;
+        empBiometricDetails = BiometricFileWorker.empBiometricMap;
         empHrnetDetails = HrnetFileWorker.hrnetDetails;
     }
 
@@ -38,8 +35,8 @@ public class CombineFile implements Serializable {
 
         CombineFileHelperUtility.preRequiredTasks();
 
-        // update the basic employee biometric file
-        BiometricFileWorker.empList = empBiometricDetails;
+        // update the basic employeemodal biometric file
+        //  BiometricFileWorker.empBiometricMap = empBiometricDetails;
 
         // Combine Hrnet and Biometric Files
         for (EmployeeBiometricDetails empObj : empBiometricDetails.values()) {

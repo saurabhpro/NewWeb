@@ -86,7 +86,7 @@
     // The ready event handler
       DOMContentLoaded,
 
-    // Save a reference to some core methods
+    // Save a reference to some main methods
       toString = Object.prototype.toString,
       hasOwn = Object.prototype.hasOwnProperty,
       push = Array.prototype.push,
@@ -489,7 +489,7 @@
         }
       },
 
-      // See test/unit/core.js for details concerning isFunction.
+      // See test/unit/main.js for details concerning isFunction.
       // Since version 1.3, DOM methods and functions like alert
       // aren't supported. They return false on IE (#2968).
       isFunction: function (obj) {
