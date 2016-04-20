@@ -2,7 +2,6 @@ package core.appfilereader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import core.factory.fileimportfactory.XLSXSheetAndCell;
-import core.model.appfilereadermodal.FileOperations;
 import core.model.employeemodal.BasicEmployeeDetails;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -18,7 +17,7 @@ import static core.model.ProjectConstants.FILE_PATH;
 /**
  * Created by kumars on 3/1/2016. this contains all employees basic records
  */
-public class AllEmployeesBasicData extends InitialObjects implements FileOperations {
+public class AllEmployeesBasicData extends InitialObjects {
 
 
     private int numberOfRowsInBio;
@@ -27,12 +26,20 @@ public class AllEmployeesBasicData extends InitialObjects implements FileOperati
     public AllEmployeesBasicData() {
     }
 
+    /**
+     * @param allEmpDetails
+     */
     public AllEmployeesBasicData(String allEmpDetails) {
         sheet = new XLSXSheetAndCell().ApacheXLSXSheet(allEmpDetails);
         // Get the first sheet
         numberOfRowsInBio = sheet.getPhysicalNumberOfRows();
     }
 
+    /**
+     * @param column the column number starting from 0 from which data is to be retrieved
+     * @param row    the row number stating with 0 from which data is to be retrieved
+     * @return return the contents for the cell specified by column and row
+     */
     private String getCustomCellContent(int column, int row) {
         Cell cell = sheet.getRow(row).getCell(column);
         if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)
@@ -41,12 +48,18 @@ public class AllEmployeesBasicData extends InitialObjects implements FileOperati
             return cell.getStringCellValue();
     }
 
-    @Override
+    /**
+     * Method to display the contents read till reading of the All Employees Basic Details file
+     *
+     * @implNote Remove this from the production release version
+     */
     public void displayFile() {
         allEmployeeRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
     }
 
-    @Override
+    /**
+     * Reads the All Employees Basic record data like email id, name, reval id and corresponding Salesforce Id
+     */
     public void readFile() {
         allEmployeeRecordMap = new TreeMap<>();
 
@@ -62,6 +75,9 @@ public class AllEmployeesBasicData extends InitialObjects implements FileOperati
         }
     }
 
+    /**
+     * method to convert the object map containing the all employees basic data record to Json files
+     */
     public void toJsonFile() {
         ObjectMapper mapper = new ObjectMapper();
         // For testing

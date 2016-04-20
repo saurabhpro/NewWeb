@@ -12,23 +12,43 @@ import java.time.LocalTime;
 import static core.model.ProjectConstants.*;
 
 public class EmployeeBiometricDetails extends BasicEmployeeDetails {
-    public final AttendanceOfDate[] attendanceOfDate;
+    public AttendanceOfDate[] attendanceOfDate;
     public int numberOfEntriesInHrNet = 0; // To check how many leaves have been applied
 
+    /**
+     * @param eID
+     * @param eName
+     * @param attendanceOfDate
+     */
     public EmployeeBiometricDetails(String eID, String eName, AttendanceOfDate[] attendanceOfDate) {
         setName(eName);
         setEmpId(eID);
         this.attendanceOfDate = attendanceOfDate;
     }
 
+    /**
+     *
+     */
+    public EmployeeBiometricDetails() {
+    }
+
+    /**
+     * @return
+     */
     public int getNumberOfEntriesInHrNet() {
         return numberOfEntriesInHrNet;
     }
 
+    /**
+     * @param numberOfEntriesInHrNet
+     */
     public void setNumberOfEntriesInHrNet(int numberOfEntriesInHrNet) {
         this.numberOfEntriesInHrNet = numberOfEntriesInHrNet;
     }
 
+    /**
+     *
+     */
     public void printEmpBiometricDetails() {
         System.out.println(EMP_NAME + " : " + this.getName());
         System.out.println(EMP_REVAL_IND_ID + " : " + this.getEmpId());

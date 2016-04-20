@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016.
+ */
+
 package core.appfilereader;
 
 import core.factory.fileimportfactory.JXLSSheetAndCell;
@@ -6,6 +10,7 @@ import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.appfilereadermodal.FileOperations;
 import core.model.attendencemodal.AttendanceOfDate;
 import core.model.attendencemodal.AttendanceStatusType;
+import core.model.employeemodal.BasicEmployeeDetails;
 import jxl.Sheet;
 
 import java.io.Serializable;
@@ -23,33 +28,54 @@ import static core.model.attendencemodal.AttendanceStatusType.*;
  */
 public class BiometricFileWorker extends InitialObjects implements FileOperations, Serializable {
 
-    private int numberOfRowsInBio;
-    private Sheet sheet = null;
-    private int ADD_ROW_STEPS = 0;
+    /**
+     * Variable to store the number of rows in biometric file
+     *
+     * @implSpec use this variable to allow dynamic growth of biometric file employee entries
+     */
+    private transient int numberOfRowsInBio;
+    /**
+     * Variable to store the reference of sheet from workbook of biometric file
+     */
+    private transient Sheet sheet = null;
+    /**
+     * Variable to add rows after which biometric xls file starts the new users entries
+     */
+    private transient int ADD_ROW_STEPS = 0;
 
-    public BiometricFileWorker() {
-    }
-
+    /**
+     * @param biometricFile This is the filename which is passed to the JXLSSheet method which is read to
+     *                      return the reference of its sheet from the workbook
+     */
     public BiometricFileWorker(String biometricFile) {
         sheet = new JXLSSheetAndCell().JXLSSheet(biometricFile);
         numberOfRowsInBio = (sheet.getRows() - 11) / 18;
     }
 
+    /**
+     * Method to display the contents read till reading of the Biometric file
+     *
+     * @implNote Remove this from the production release version
+     */
     @Override
     public void displayFile() {
         System.out.println(ProjectConstants.getMONTH());
         empBiometricMap.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
     }
 
+
     /**
-     * method to return the contents of a given row, col
+     * @param column the column number starting from 0 from which data is to be retrieved
+     * @param row    the row number stating with 0 from which data is to be retrieved
+     * @return return the contents for the cell specified by column and row
      */
     private String getCustomCellContent(int column, int row) {
         return sheet.getCell(column, row).getContents();
     }
 
+
     /**
-     * method to return the attendance for an employeemodal for that month
+     * @param attendanceOfDate method to retrieve the attendance for an employee for that month
      */
     private void getMonthlyAttendanceOfEmployee(AttendanceOfDate[] attendanceOfDate) {
         StringTokenizer st;
@@ -105,8 +131,9 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
         }
     }
 
+
     @Override
-    public void readFile() {
+    public void readFile(BasicEmployeeDetails obj) {
         // local data
         String empId, empName;
         AttendanceOfDate[] attendanceOfDate;
@@ -125,8 +152,9 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
             empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));
             empId = getCustomCellContent(3, 15 + (18 * ADD_ROW_STEPS));
 
+            obj = new EmployeeBiometricDetails(empId, empName, attendanceOfDate);
             //name change
-            empBiometricMap.put(empId, new EmployeeBiometricDetails(empId, empName, attendanceOfDate));
+            empBiometricMap.put(empId, (EmployeeBiometricDetails) obj);
 
             ADD_ROW_STEPS++;
         }

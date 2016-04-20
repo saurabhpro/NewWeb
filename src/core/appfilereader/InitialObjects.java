@@ -10,7 +10,9 @@ import java.util.Map;
 /**
  * Created by kumars on 4/19/2016.
  */
-public class InitialObjects {
+class InitialObjects {
+    private static final long serialVersionUID = 1L;
+
     public static Map<String, EmployeeBiometricDetails> empBiometricMap;
 
     public static Map<String, ArrayList<EmployeeHrnetDetails>> hrnetDetails;

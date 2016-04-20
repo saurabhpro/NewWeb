@@ -31,11 +31,6 @@ public class HolidayListUploadServlet extends HttpServlet {
         out.println(filename + "Successfully Uploaded");
 
         response.sendRedirect("./MainPage.jsp#/UploadFiles");
-        /*
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
-        requestDispatcher.include(request, response);
-        */
-
 
     }
 

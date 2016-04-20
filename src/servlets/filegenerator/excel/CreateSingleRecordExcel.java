@@ -19,7 +19,7 @@ import static core.model.ProjectConstants.FILE_PATH;
  */
 public class CreateSingleRecordExcel {
 
-    public static void fromJsonToExcel(String fileName, String key, String fileToUse) {
+    public static void createExcelFromJson(String fileName, String key, String fileToUse) {
         try {
             FileOutputStream fos;
 

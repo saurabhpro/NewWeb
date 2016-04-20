@@ -40,18 +40,6 @@
         </h2>
 
         <br><br>
-        <!--
-                <form action="multigen" method="post">
-                    <input type="hidden" name="fileToUse" value="PublicHolidayWorkers">
-                    <button class="btn btn-danger" style="float: right;" type="submit" ng-click="showSelected()"
-                            name="DownloadButtonType"
-                            value="DOWNLOAD_PDF">
-                        DOWNLOAD PDF
-                    </button>
-                    <input type="hidden" name="listOfIds" value={{itemsSelected}}>
-                </form>
-        -->
-
         <form>
             <br/>
             <br/>
@@ -74,14 +62,14 @@
                 <tbody>
                 <tr ng-repeat="item in rowCollection">
 
-                    <td>{{item.subMenuAttendanceOfDate.currentDate}} <strong>[{{item.holiday}}]</strong></td>
+                    <td>{{item.perDayAttendanceRecord.currentDate}} <strong>[{{item.holiday}}]</strong></td>
                     <td ng-model="item.empRevalId">{{item.basicEmployeeDetails.empId}}</td>
                     <td>{{item.basicEmployeeDetails.salesForceId}}</td>
                     <td>{{item.basicEmployeeDetails.emailId}}</td>
                     <td>{{item.basicEmployeeDetails.name}}</td>
-                    <td>{{item.subMenuAttendanceOfDate.checkIn}}</td>
-                    <td>{{item.subMenuAttendanceOfDate.checkOut}}</td>
-                    <td>{{item.subMenuAttendanceOfDate.workTimeForDay}}</td>
+                    <td>{{item.perDayAttendanceRecord.checkIn}}</td>
+                    <td>{{item.perDayAttendanceRecord.checkOut}}</td>
+                    <td>{{item.perDayAttendanceRecord.workTimeForDay}}</td>
                 </tr>
                 </tbody>
             </table>

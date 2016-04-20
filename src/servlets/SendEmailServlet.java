@@ -12,7 +12,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Properties;
@@ -39,6 +38,11 @@ public class SendEmailServlet extends HttpServlet implements java.io.Serializabl
     String tempMessage8;
     String tempMessage9;
     String[] tempMessage10;
+    private String successfulMessage;
+
+    public SendEmailServlet() {
+
+    }
 
     public String getSuccessfulMessage() {
         return successfulMessage;
@@ -46,12 +50,6 @@ public class SendEmailServlet extends HttpServlet implements java.io.Serializabl
 
     public void setSuccessfulMessage(String successfulMessage) {
         this.successfulMessage = successfulMessage;
-    }
-
-    private String successfulMessage;
-
-    public SendEmailServlet(){
-
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -73,29 +71,28 @@ public class SendEmailServlet extends HttpServlet implements java.io.Serializabl
         tempMessage9 = request.getParameter("message9");
         tempMessage10 = request.getParameterValues("message10");
         if ((tempMessage6 != null) || (tempMessage4 != null)) {
-          //  System.out.println(tempMessage6);
+            //  System.out.println(tempMessage6);
             finalMessage += "<br/>" + tempMessage2;
         }
-        if (tempMessage4 != null){
+        if (tempMessage4 != null) {
             finalMessage += "<br/>" + tempMessage3 + "<br/>";
-            for (String str: tempMessage4) {
-                finalMessage+= str +"<br/>";
+            for (String str : tempMessage4) {
+                finalMessage += str + "<br/>";
             }
         }
-        if (tempMessage6 != null)
-        {
+        if (tempMessage6 != null) {
             finalMessage += "<br/>" + tempMessage5 + "<br/>";
-            for (String str: tempMessage6) {
-                finalMessage+= str +"<br/>";
+            for (String str : tempMessage6) {
+                finalMessage += str + "<br/>";
             }
         }
 
         if ((tempMessage6 != null) || (tempMessage4 != null))
             finalMessage += "<br/>" + tempMessage7;
-        if (tempMessage10 != null){
+        if (tempMessage10 != null) {
             finalMessage += "<br/>" + tempMessage8 + "<br/>" + tempMessage9 + "<br/>";
-            for (String str: tempMessage10) {
-                finalMessage+= str +"<br/>";
+            for (String str : tempMessage10) {
+                finalMessage += str + "<br/>";
             }
         }
         System.out.println(finalMessage);
@@ -114,7 +111,7 @@ public class SendEmailServlet extends HttpServlet implements java.io.Serializabl
 
         for( String st : message)        finalMessage+= st;
        */
-        to="amrita.arora@reval.com";
+        to = "amrita.arora@reval.com";
         //to = "saurabh.kumar@reval.com";
         //to = request.getParameter("to");
         //String to = "amrita.arora.1192@gmail.com";
@@ -168,8 +165,8 @@ public class SendEmailServlet extends HttpServlet implements java.io.Serializabl
             transport.close();
             //HttpSession session = request.getSession();
             //session.setAttribute("Message Sent",successfulMessage);
-           // HttpSession session = request.getSession(false);
-           // session.setAttribute("Message Sent", successfulMessage);
+            // HttpSession session = request.getSession(false);
+            // session.setAttribute("Message Sent", successfulMessage);
             response.sendRedirect("./MainPage.jsp#/GenerateDiscrepancy");
 
         } catch (MessagingException mex) {

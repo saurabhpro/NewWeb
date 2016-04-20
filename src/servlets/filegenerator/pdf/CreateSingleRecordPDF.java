@@ -13,7 +13,7 @@ import java.io.FileOutputStream;
  */
 public class CreateSingleRecordPDF extends DataParserForPDF {
 
-    public static Document createPDF(String fileName, String key, String fileToUse) {
+    public static Document createPDFFromJson(String fileName, String key, String fileToUse) {
         Document document = null;
         FileCreatorModel ob = new FileCreatorModel();
         try {

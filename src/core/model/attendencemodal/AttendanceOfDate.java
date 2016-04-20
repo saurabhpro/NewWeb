@@ -2,6 +2,7 @@ package core.model.attendencemodal;
 
 import core.utils.TimeManager;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -9,7 +10,7 @@ import java.time.LocalTime;
 /**
  * Created by kumars on 2/12/2016.
  */
-public class AttendanceOfDate {
+public class AttendanceOfDate implements Serializable {
     private LocalDate currentDate = null;
     private LocalTime checkIn = null;
     private LocalTime checkOut = null;

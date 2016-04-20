@@ -5,6 +5,7 @@ import core.model.appfilereadermodal.EmployeeHrnetDetails;
 import core.model.appfilereadermodal.FileOperations;
 import core.model.attendencemodal.AttendanceOfLeave;
 import core.model.attendencemodal.LeaveType;
+import core.model.employeemodal.BasicEmployeeDetails;
 import core.utils.TimeManager;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -54,7 +55,7 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
 
     // hi
     @Override
-    public void readFile() {
+    public void readFile(BasicEmployeeDetails obj) {
         Cell cell;
 
         AttendanceOfLeave attendanceOfLeave;
@@ -113,15 +114,17 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
              * only consider the salesforce data for those months which is on
              * biometric excel
              */
+            obj = new EmployeeHrnetDetails(salesForceID, empName, attendanceOfLeave);
+
             if (attendanceOfLeave.getStartDate() != null && attendanceOfLeave.getLeaveType() != null) {
                 if (hrnetDetails.containsKey(salesForceID)) {
                     tempArrLst = hrnetDetails.get(salesForceID);
-                    tempArrLst.add(new EmployeeHrnetDetails(salesForceID, empName, attendanceOfLeave));
+                    tempArrLst.add((EmployeeHrnetDetails) obj);
                     hrnetDetails.put(salesForceID, tempArrLst);
 
                 } else {
                     tempArrLst = new ArrayList<>();
-                    tempArrLst.add(new EmployeeHrnetDetails(salesForceID, empName, attendanceOfLeave));
+                    tempArrLst.add((EmployeeHrnetDetails) obj);
                     hrnetDetails.put(salesForceID, tempArrLst);
                 }
             }

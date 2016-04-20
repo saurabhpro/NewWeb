@@ -4,8 +4,10 @@ import core.appfilereader.AllEmployeesBasicData;
 import core.combined.CombineFile;
 import core.combined.MarkDiscrepancy;
 import core.factory.fileimportfactory.SheetFactory;
+import core.factory.objectfillerfactory.FileObjectFactory;
 import core.model.Version;
 import core.model.appfilereadermodal.FileOperations;
+import core.model.employeemodal.BasicEmployeeDetails;
 import core.model.viewmodal.ListGeneratorModel;
 import core.view.AllEmployeeDetailsJson;
 import core.view.OnlyDiscrepancyDetailsJson;
@@ -26,7 +28,10 @@ public class ReadExcel {
 
     public static void main(String[] args) throws IOException, ParseException {
         FileOperations fileWorker;
+        BasicEmployeeDetails fillObject;
+
         SheetFactory sheetFactory = new SheetFactory();
+        FileObjectFactory objectFactory = new FileObjectFactory();
 
         setEmployeeRecordFileName(FileFolderWorker.getPathToFile(ALL_EMPLOYEE_RECORD_FILE_PATH));
         setBiometricFileName(FileFolderWorker.getPathToFile(BIOMETRIC_FILE_PATH));
@@ -38,11 +43,13 @@ public class ReadExcel {
 
         // read Biometric Excel File
         fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
-        fileWorker.readFile();      //TODO readFile argument should also be a factory
+        fillObject = objectFactory.dispatch("Biometric");
+        fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
 
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
-        fileWorker.readFile();      //TODO readFile argument should also be a factory
+        fillObject = objectFactory.dispatch("Hrnet");
+        fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
 
         CombineFile combineFile = new CombineFile();
         combineFile.combineFiles();

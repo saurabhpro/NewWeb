@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.Arrays;
 
 import static core.model.ProjectConstants.FILE_PATH;
@@ -25,20 +24,20 @@ public class UpdateRecordServlet extends HttpServlet {
     String empRevalId;
     String[] currentDate;
     String[] checkIn;
-    String[]  checkOut;
+    String[] checkOut;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        empRevalId=request.getParameter("empRevalId");
-        currentDate=request.getParameterValues("currentDate");
+        empRevalId = request.getParameter("empRevalId");
+        currentDate = request.getParameterValues("currentDate");
 
-        checkIn=request.getParameterValues("checkIn");
-        checkOut=request.getParameterValues("checkOut");
+        checkIn = request.getParameterValues("checkIn");
+        checkOut = request.getParameterValues("checkOut");
         session.setAttribute("currentDate", currentDate);
         session.setAttribute("empRevalId", empRevalId);
         session.setAttribute("checkIn", checkIn);
         session.setAttribute("checkOut", checkOut);
 
-        PrintWriter out = response.getWriter();
         response.setContentType("text/html");
         System.out.println(empRevalId);
         System.out.println(Arrays.toString(currentDate));
