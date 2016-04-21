@@ -13,7 +13,6 @@ import core.model.attendencemodal.AttendanceStatusType;
 import core.model.employeemodal.BasicEmployeeDetails;
 import jxl.Sheet;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
@@ -24,33 +23,57 @@ import java.util.TreeMap;
 import static core.model.attendencemodal.AttendanceStatusType.*;
 
 /**
- * Created by Saurabh on 2/10/2016. updated on 2/13/2016
+ * Created by Saurabh on 2/10/2016. updated on 4/22/2016
  */
-public class BiometricFileWorker extends InitialObjects implements FileOperations, Serializable {
+public class BiometricFileWorker extends InitialObjects implements FileOperations {
 
-    /**
-     * Variable to store the number of rows in biometric file
-     *
-     * @implSpec use this variable to allow dynamic growth of biometric file employee entries
-     */
+    //Variable to store the number of rows in biometric file
     private transient int numberOfRowsInBio;
-    /**
-     * Variable to store the reference of sheet from workbook of biometric file
-     */
+    //Variable to store the reference of sheet from workbook of biometric file
     private transient Sheet sheet = null;
-    /**
-     * Variable to add rows after which biometric xls file starts the new users entries
-     */
+    //Variable to add rows after which biometric xls file starts the new users entries
     private transient int ADD_ROW_STEPS = 0;
 
     /**
-     * @param biometricFile This is the filename which is passed to the JXLSSheet method which is read to
+     * @param biometricFile This is the filename which is read to
      *                      return the reference of its sheet from the workbook
      */
     public BiometricFileWorker(String biometricFile) {
+        // Get the first sheet
         sheet = new JXLSSheetAndCell().JXLSSheet(biometricFile);
         numberOfRowsInBio = (sheet.getRows() - 11) / 18;
     }
+
+    /**
+     * Reads the biometric xls file and stores in object form
+     */
+    @Override
+    public void readFile(BasicEmployeeDetails obj) {
+        // local data
+        String empId, empName;
+        AttendanceOfDate[] attendanceOfDate;
+        empBiometricMap = new TreeMap<>();
+
+        String monthYear = getCustomCellContent(13, 7);
+        String[] st = monthYear.split("   ");
+
+        ProjectConstants.setMONTH(Month.valueOf(st[0].toUpperCase()));
+        ProjectConstants.setYEAR(Year.parse(st[1]));
+
+        for (int i = 0; i < numberOfRowsInBio; i++) {
+            attendanceOfDate = new AttendanceOfDate[ProjectConstants.getMONTH().maxLength()];
+            getMonthlyAttendanceOfEmployee(attendanceOfDate); // referenced
+
+            empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));
+            empId = getCustomCellContent(3, 15 + (18 * ADD_ROW_STEPS));
+
+            obj = new EmployeeBiometricDetails(empId, empName, attendanceOfDate);
+            empBiometricMap.put(empId, (EmployeeBiometricDetails) obj);
+
+            ADD_ROW_STEPS++;
+        }
+    }
+
 
     /**
      * Method to display the contents read till reading of the Biometric file
@@ -75,7 +98,11 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 
 
     /**
-     * @param attendanceOfDate method to retrieve the attendance for an employee for that month
+     * method to retrieve the attendance for an employee for that month
+     *
+     * @param attendanceOfDate Empty object that will hold all dates information as array, since it is pass by reference
+     *                         expected behavior is that after the method ends, we will have a filled object without
+     *                         need to return anything from method
      */
     private void getMonthlyAttendanceOfEmployee(AttendanceOfDate[] attendanceOfDate) {
         StringTokenizer st;
@@ -87,11 +114,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
             LocalDate tempDate = LocalDate.of(ProjectConstants.getYEAR().getValue(), ProjectConstants.getMONTH(), (k + 1));
             attendanceOfDate[k] = new AttendanceOfDate();
             attendanceOfDate[k].setCurrentDate(tempDate);
-            attendanceStatus = NOT_AN_EMPLOYEE; // default
-            // status
-            // for
-            // an
-            // employeemodal
+            attendanceStatus = NOT_AN_EMPLOYEE; // default attendance status for an employee
 
             st = new StringTokenizer(getCustomCellContent(k, 20 + (18 * ADD_ROW_STEPS)), "   ");
 
@@ -132,31 +155,4 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
     }
 
 
-    @Override
-    public void readFile(BasicEmployeeDetails obj) {
-        // local data
-        String empId, empName;
-        AttendanceOfDate[] attendanceOfDate;
-        empBiometricMap = new TreeMap<>();
-
-        String monthYear = getCustomCellContent(13, 7);
-        String[] st = monthYear.split("   ");
-
-        ProjectConstants.setMONTH(Month.valueOf(st[0].toUpperCase()));
-        ProjectConstants.setYEAR(Year.parse(st[1]));
-
-        for (int i = 0; i < numberOfRowsInBio; i++) {
-            attendanceOfDate = new AttendanceOfDate[ProjectConstants.getMONTH().maxLength()];
-            getMonthlyAttendanceOfEmployee(attendanceOfDate); // referenced
-
-            empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));
-            empId = getCustomCellContent(3, 15 + (18 * ADD_ROW_STEPS));
-
-            obj = new EmployeeBiometricDetails(empId, empName, attendanceOfDate);
-            //name change
-            empBiometricMap.put(empId, (EmployeeBiometricDetails) obj);
-
-            ADD_ROW_STEPS++;
-        }
-    }
 }

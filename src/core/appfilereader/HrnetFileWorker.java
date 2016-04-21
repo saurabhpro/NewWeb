@@ -13,7 +13,10 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.Objects;
+import java.util.TreeMap;
 
 import static core.model.ProjectConstants.getMONTH;
 import static core.model.ProjectConstants.getYEAR;
@@ -23,52 +26,34 @@ import static core.model.ProjectConstants.getYEAR;
  */
 public class HrnetFileWorker extends InitialObjects implements FileOperations {
 
+    //Variable to store the reference of sheet from workbook of financial force file
     private final Sheet sheet;
 
+    /**
+     * @param hrNetFile This is the filename which is read to
+     *                  return the reference of its sheet from the workbook
+     */
     public HrnetFileWorker(String hrNetFile) {
+        // Get the first sheet
         sheet = new XLSXSheetAndCell().ApacheXLSXSheet(hrNetFile);
     }
 
-    @Override
-    public void displayFile() {
-        Set<Map.Entry<String, ArrayList<EmployeeHrnetDetails>>> s = hrnetDetails.entrySet();
-
-        for (Map.Entry<String, ArrayList<EmployeeHrnetDetails>> entry : s) {
-            entry.getValue().forEach(EmployeeHrnetDetails::printHrNetDetail);
-        }
-    }
-
-    private String getID(Cell cell) {
-        if (cell.getCellType() == Cell.CELL_TYPE_STRING)
-            return cell.getStringCellValue();
-        else
-            return Objects.toString((int) cell.getNumericCellValue());
-    }
-
-    @NotNull
-    private LocalDate getLocalDate(Cell cell) {
-        if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)
-            return TimeManager.convertToLocalDate(new SimpleDateFormat("dd/MM/yyyy").format(cell.getDateCellValue()));
-        else
-            return TimeManager.convertToLocalDate(cell.getStringCellValue());
-    }
-
-    // hi
+    /**
+     * Reads the financial force xlsx file and stores in object form
+     */
     @Override
     public void readFile(BasicEmployeeDetails obj) {
+
+        hrnetDetailsMap = new TreeMap<>();
+        int numberOfRowsInHr = sheet.getPhysicalNumberOfRows();
         Cell cell;
-
-        AttendanceOfLeave attendanceOfLeave;
-
         String empName = null;
         String salesForceID = null;
         LocalDate tempDate;
 
-        int numberOfRowsInHr = sheet.getPhysicalNumberOfRows();
-        hrnetDetails = new TreeMap<>();
+        AttendanceOfLeave attendanceOfLeave;
 
         for (int i = 1; i < numberOfRowsInHr; i++) {
-            ArrayList<EmployeeHrnetDetails> tempArrLst;
             attendanceOfLeave = new AttendanceOfLeave();
 
             for (int j = 0; j < 7; j++) {
@@ -109,27 +94,58 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
                 }
             }
 
+            //method to only consider leaves for month specified by biometric file
             leaveStartEndDayRangeFixer(attendanceOfLeave);
-            /**
-             * only consider the salesforce data for those months which is on
-             * biometric excel
-             */
+
             obj = new EmployeeHrnetDetails(salesForceID, empName, attendanceOfLeave);
 
+            ArrayList<EmployeeHrnetDetails> tempArrLst;
+            //only consider the salesforce data for those months which is on biometric excel
             if (attendanceOfLeave.getStartDate() != null && attendanceOfLeave.getLeaveType() != null) {
-                if (hrnetDetails.containsKey(salesForceID)) {
-                    tempArrLst = hrnetDetails.get(salesForceID);
+                //case where employee entry present in map
+                //i.e. employee id is already read once form Financial Force file
+                if (hrnetDetailsMap.containsKey(salesForceID)) {
+                    tempArrLst = hrnetDetailsMap.get(salesForceID);
                     tempArrLst.add((EmployeeHrnetDetails) obj);
-                    hrnetDetails.put(salesForceID, tempArrLst);
+                    hrnetDetailsMap.put(salesForceID, tempArrLst);
 
-                } else {
+                }
+                //case where new employee id is found
+                //we prepare a new arraylist for that employee to hold all his requests on Financial Force file
+                else {
                     tempArrLst = new ArrayList<>();
                     tempArrLst.add((EmployeeHrnetDetails) obj);
-                    hrnetDetails.put(salesForceID, tempArrLst);
+                    hrnetDetailsMap.put(salesForceID, tempArrLst);
                 }
             }
         }
 
+    }
+
+    /**
+     * Method to display the contents read till reading of the Financial Force file
+     *
+     * @implNote Remove this from the production release version
+     */
+    @Override
+    public void displayFile() {
+        for (Map.Entry<String, ArrayList<EmployeeHrnetDetails>> entry : hrnetDetailsMap.entrySet())
+            entry.getValue().forEach(EmployeeHrnetDetails::printHrNetDetail);
+    }
+
+    private String getID(Cell cell) {
+        if (cell.getCellType() == Cell.CELL_TYPE_STRING)
+            return cell.getStringCellValue();
+        else
+            return Objects.toString((int) cell.getNumericCellValue());
+    }
+
+    @NotNull
+    private LocalDate getLocalDate(Cell cell) {
+        if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)
+            return TimeManager.convertToLocalDate(new SimpleDateFormat("dd/MM/yyyy").format(cell.getDateCellValue()));
+        else
+            return TimeManager.convertToLocalDate(cell.getStringCellValue());
     }
 
     private void leaveStartEndDayRangeFixer(AttendanceOfLeave attendanceOfLeave) {

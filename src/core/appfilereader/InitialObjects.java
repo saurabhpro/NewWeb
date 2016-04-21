@@ -13,9 +13,18 @@ import java.util.Map;
 class InitialObjects {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Map to store the record read from Biometric File with Reval Employee Id as the key
+     */
     public static Map<String, EmployeeBiometricDetails> empBiometricMap;
 
-    public static Map<String, ArrayList<EmployeeHrnetDetails>> hrnetDetails;
+    /**
+     * Map to store the record read from Financial Force File with Reval Salesforce Id as the key
+     */
+    public static Map<String, ArrayList<EmployeeHrnetDetails>> hrnetDetailsMap;
 
-    public static Map<String, BasicEmployeeDetails> allEmployeeRecordMap;
+    /**
+     * Map to store the record read from AllEmployeeBasicRecord File with Reval Employee Id as the key
+     */
+    public static Map<String, BasicEmployeeDetails> allEmployeeBasicRecordMap;
 }

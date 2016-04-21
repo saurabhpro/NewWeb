@@ -8,7 +8,6 @@ import org.apache.poi.ss.usermodel.Sheet;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
@@ -19,20 +18,19 @@ import static core.model.ProjectConstants.FILE_PATH;
  */
 public class AllEmployeesBasicData extends InitialObjects {
 
-
-    private int numberOfRowsInBio;
+    //Variable to store the number of rows in all employee basic details file
+    private int numberOfRowsInAllEmpDetailList;
+    //Variable to store the reference of sheet from workbook of all employee basic details file
     private Sheet sheet = null;
 
-    public AllEmployeesBasicData() {
-    }
-
     /**
-     * @param allEmpDetails
+     * @param allEmpDetails This is the filename which is read to
+     *                      return the reference of its sheet from the workbook
      */
     public AllEmployeesBasicData(String allEmpDetails) {
-        sheet = new XLSXSheetAndCell().ApacheXLSXSheet(allEmpDetails);
         // Get the first sheet
-        numberOfRowsInBio = sheet.getPhysicalNumberOfRows();
+        sheet = new XLSXSheetAndCell().ApacheXLSXSheet(allEmpDetails);
+        numberOfRowsInAllEmpDetailList = sheet.getPhysicalNumberOfRows();
     }
 
     /**
@@ -49,21 +47,21 @@ public class AllEmployeesBasicData extends InitialObjects {
     }
 
     /**
-     * Method to display the contents read till reading of the All Employees Basic Details file
+     * Method to display the contents read till reading of the all employee basic details file
      *
      * @implNote Remove this from the production release version
      */
     public void displayFile() {
-        allEmployeeRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
+        allEmployeeBasicRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
     }
 
     /**
-     * Reads the All Employees Basic record data like email id, name, reval id and corresponding Salesforce Id
+     * Reads the all employee basic record data like email id, name, reval id and corresponding Salesforce Id
      */
     public void readFile() {
-        allEmployeeRecordMap = new TreeMap<>();
+        allEmployeeBasicRecordMap = new TreeMap<>();
 
-        for (int row = 0; row < numberOfRowsInBio; row++) {
+        for (int row = 0; row < numberOfRowsInAllEmpDetailList; row++) {
             BasicEmployeeDetails b = new BasicEmployeeDetails();
 
             b.setName(getCustomCellContent(0, row));
@@ -71,7 +69,7 @@ public class AllEmployeesBasicData extends InitialObjects {
             b.setEmpId(getCustomCellContent(2, row));
             b.setSalesForceId(getCustomCellContent(3, row));
 
-            allEmployeeRecordMap.put(b.getEmpId(), b);
+            allEmployeeBasicRecordMap.put(b.getEmpId(), b);
         }
     }
 
@@ -80,13 +78,12 @@ public class AllEmployeesBasicData extends InitialObjects {
      */
     public void toJsonFile() {
         ObjectMapper mapper = new ObjectMapper();
-        // For testing
-        Map<String, BasicEmployeeDetails> user = allEmployeeRecordMap;
+        // Map<String, BasicEmployeeDetails> user = allEmployeeBasicRecordMap;
 
         try {
             File jfile = new File(FILE_PATH + "JsonFiles\\Emails.json");
             // Convert object to JSON string and save into file directly
-            mapper.writeValue(jfile, user);
+            mapper.writeValue(jfile, allEmployeeBasicRecordMap);
 
         } catch (IOException e) {
             e.printStackTrace();
