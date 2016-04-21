@@ -49,14 +49,16 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
      */
     @Override
     public void readFile(BasicEmployeeDetails obj) {
+
+        empBiometricMap = new TreeMap<>();
+
         // local data
         String empId, empName;
         AttendanceOfDate[] attendanceOfDate;
-        empBiometricMap = new TreeMap<>();
 
+        //Set Global Month and Year
         String monthYear = getCustomCellContent(13, 7);
         String[] st = monthYear.split("   ");
-
         ProjectConstants.setMONTH(Month.valueOf(st[0].toUpperCase()));
         ProjectConstants.setYEAR(Year.parse(st[1]));
 

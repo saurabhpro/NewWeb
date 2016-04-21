@@ -52,6 +52,7 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
         LocalDate tempDate;
 
         AttendanceOfLeave attendanceOfLeave;
+        ArrayList<EmployeeHrnetDetails> tempArrLst;
 
         for (int i = 1; i < numberOfRowsInHr; i++) {
             attendanceOfLeave = new AttendanceOfLeave();
@@ -99,7 +100,6 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
 
             obj = new EmployeeHrnetDetails(salesForceID, empName, attendanceOfLeave);
 
-            ArrayList<EmployeeHrnetDetails> tempArrLst;
             //only consider the salesforce data for those months which is on biometric excel
             if (attendanceOfLeave.getStartDate() != null && attendanceOfLeave.getLeaveType() != null) {
                 //case where employee entry present in map
