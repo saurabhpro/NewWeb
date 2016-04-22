@@ -15,6 +15,8 @@ import static core.model.ProjectConstants.FILE_PATH;
 
 /**
  * Created by kumars on 3/1/2016. this contains all employees basic records
+ * @author Saurabh
+ * @version 1.2
  */
 public class AllEmployeesBasicData extends InitialObjects {
 

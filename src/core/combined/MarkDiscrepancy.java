@@ -5,18 +5,28 @@ import core.model.viewmodal.FinalObjectModel;
 import java.io.Serializable;
 
 /**
- * Created by AroraA on 17-02-2016. 6-03-2016 changed the Type from ABSENT to
- * UNACCOUNTED_ABSENCE.
+ * Created by AroraA on 17-02-2016.
+ *
+ * @author Amrita & Saurabh
+ * @version 1.0
+ *          Class to find discrepancy and set the discrepancy flag
  */
 
 public class MarkDiscrepancy extends FinalObject implements Serializable {
 
-    public void findDiscrepancy() {
+    /**
+     * Method to find discrepancy and set the discrepancy flag
+     *
+     * @see MarkDiscrepancyHelperUtility
+     */
+    @Override
+    public final void findDiscrepancy() {
         // MarkDiscrepancy if an employeemodal is absent and there is no entry in Hrnet file.
         for (FinalObjectModel finalObjectModel : EmpCombinedMap.values())
-            // case where there is an entry
+
             if (finalObjectModel.employeeHrnetDetails == null)
                 MarkDiscrepancyHelperUtility.setIfAbsentButNoLeaveApplied(finalObjectModel);
-            else MarkDiscrepancyHelperUtility.setIfEntryPresentInEither(finalObjectModel);
+            else /*case where there is an entry*/
+                MarkDiscrepancyHelperUtility.setIfEntryPresentInEither(finalObjectModel);
     }
 }

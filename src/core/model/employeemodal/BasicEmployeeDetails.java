@@ -111,7 +111,7 @@ public class BasicEmployeeDetails implements Serializable {
      * @return the SalesForce Id returned corresponding to the Reval Id
      */
     public String getSalesForceId(String empId) {
-        BasicEmployeeDetails tempSalesForceId = AllEmployeesBasicData.allEmployeeRecordMap.get(empId);
+        BasicEmployeeDetails tempSalesForceId = AllEmployeesBasicData.allEmployeeBasicRecordMap.get(empId);
         if (tempSalesForceId != null && tempSalesForceId.getSalesForceId() != null)
             return tempSalesForceId.getSalesForceId();
         else

@@ -12,11 +12,36 @@ import static core.model.attendencemodal.LeaveType.WORK_FROM_HOME_IND;
 
 /**
  * Created by Saurabh on 4/10/2016.
+ *
+ * @author Amrita & Saurabh
+ * @version 1.5
+ *          Helper Utility class for MarkDiscrepancy
  */
 class MarkDiscrepancyHelperUtility {
     private MarkDiscrepancyHelperUtility() {
     }
 
+    /**
+     * Method to set clarification needed to true if no leaves are applied for any absent day
+     *
+     * @param finalObjectModel Object modal for Final Object
+     *                         that contains result of combining Biometric and Financial Force
+     */
+    static void setIfAbsentButNoLeaveApplied(FinalObjectModel finalObjectModel) {
+        for (int j = 0; j < ProjectConstants.getMONTH().maxLength(); j++) {
+            if ((finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
+                    || (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))) {
+                finalObjectModel.setIfClarificationNeeded(true);
+            }
+        }
+    }
+
+    /**
+     * Method to set clarification needed to true if employee has entries in both files for a day
+     *
+     * @param finalObjectModel Object modal for Final Object
+     *                         that contains result of combining Biometric and Financial Force
+     */
     static void setIfEntryPresentInEither(FinalObjectModel finalObjectModel) {
         int flag;
         for (int j = 0; j < ProjectConstants.getMONTH().maxLength(); j++) {
@@ -48,15 +73,6 @@ class MarkDiscrepancyHelperUtility {
             // for less than four hours.
             else if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY)) {
                 setIfHalfDayLessThanSixHoursWork(finalObjectModel, j);
-            }
-        }
-    }
-
-    static void setIfAbsentButNoLeaveApplied(FinalObjectModel finalObjectModel) {
-        for (int j = 0; j < ProjectConstants.getMONTH().maxLength(); j++) {
-            if ((finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
-                    || (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))) {
-                finalObjectModel.setIfClarificationNeeded(true);
             }
         }
     }

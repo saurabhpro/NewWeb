@@ -30,7 +30,7 @@ public class FinalObjectModel extends BasicEmployeeDetails implements Serializab
     public FinalObjectModel(String EmployeeID, int numberOfEntriesInHrNet, AttendanceOfDate[] a, ArrayList<EmployeeHrnetDetails> hr1) {
         this.setEmpId(EmployeeID);
 
-        BasicEmployeeDetails b = AllEmployeesBasicData.allEmployeeRecordMap.get(EmployeeID);
+        BasicEmployeeDetails b = AllEmployeesBasicData.allEmployeeBasicRecordMap.get(EmployeeID);
 
         if (b != null) {
             this.setName(b.getName());

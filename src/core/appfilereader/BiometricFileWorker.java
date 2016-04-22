@@ -58,9 +58,9 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 
         //Set Global Month and Year
         String monthYear = getCustomCellContent(13, 7);
-        String[] st = monthYear.split("   ");
-        ProjectConstants.setMONTH(Month.valueOf(st[0].toUpperCase()));
-        ProjectConstants.setYEAR(Year.parse(st[1]));
+        String[] temp = monthYear.split("   ");
+        ProjectConstants.setMONTH(Month.valueOf(temp[0].toUpperCase()));
+        ProjectConstants.setYEAR(Year.parse(temp[1]));
 
         for (int i = 0; i < numberOfRowsInBio; i++) {
             attendanceOfDate = new AttendanceOfDate[ProjectConstants.getMONTH().maxLength()];
