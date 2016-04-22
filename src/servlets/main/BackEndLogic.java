@@ -49,9 +49,10 @@ public class BackEndLogic {
             fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
             fillObject = objectFactory.dispatch("Biometric");
             fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
-            Serialize.serialSave("Biometric", InitialObjects.empBiometricMap);
+
+            Serialize.serialSave(UPDATED_RECORD_OBJECTS + "Biometric.ser", InitialObjects.empBiometricMap);
         } else {
-            InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve("biometric.ser");
+            InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "biometric.ser");
         }
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());

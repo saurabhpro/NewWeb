@@ -2,6 +2,7 @@ package core;
 
 import core.appfilereader.BiometricFileWorker;
 import core.appfilereader.InitialObjects;
+import core.model.ProjectConstants;
 import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.attendencemodal.AttendanceStatusType;
 import core.utils.Serialize;
@@ -58,7 +59,8 @@ public class UpdateObjectWithUIEntries {
             }
         }
 
-        Serialize.serialSave("biometric.ser", InitialObjects.empBiometricMap);
+        Serialize.serialSave(ProjectConstants.UPDATED_RECORD_OBJECTS + "biometric.ser", InitialObjects.empBiometricMap);
+
     }
 
     private LocalTime convertToProgramStandardTime(String time) {

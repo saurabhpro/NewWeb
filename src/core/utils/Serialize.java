@@ -14,7 +14,7 @@ public class Serialize {
     public static void serialSave(String fileName, Map<String, EmployeeBiometricDetails> object) {
         try {
             FileOutputStream fileOut =
-                    new FileOutputStream(fileName + ".ser");
+                    new FileOutputStream(fileName);
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
             out.writeObject(object);
             out.close();
@@ -33,7 +33,7 @@ public class Serialize {
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Object ob = in.readObject();
             Map<String, EmployeeBiometricDetails> bmp = (Map<String, EmployeeBiometricDetails>) ob;
-            bmp.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
+            //    bmp.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
 
             System.out.println("\ndone\n");
             in.close();

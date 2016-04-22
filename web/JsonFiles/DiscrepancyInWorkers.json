@@ -1,32 +1,4 @@
 {
-  "R1": {
-    "empRevalId": "R1",
-    "empSalesforceId": "235",
-    "empName": "Subrata Ghosh",
-    "empEmailId": "subrata.ghosh@reval.com",
-    "empAvgCheckInTimeForMonth": "09:00",
-    "empAvgCheckOutTimeForMonth": "18:43",
-    "empAvgWorkHoursForMonth": "09:43",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-02-16",
-        "attendanceStatusType": "UNACCOUNTED_ABSENCE",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "09:01",
-        "checkOut": "00:00",
-        "workTimeForDay": "14:59"
-      },
-      {
-        "currentDate": "2016-02-29",
-        "attendanceStatusType": "UNACCOUNTED_ABSENCE",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "08:54",
-        "checkOut": "00:00",
-        "workTimeForDay": "15:06"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
   "R100": {
     "empRevalId": "R100",
     "empSalesforceId": "1477",
