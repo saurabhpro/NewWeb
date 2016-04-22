@@ -1,8 +1,10 @@
 package core;
 
 import core.appfilereader.BiometricFileWorker;
+import core.appfilereader.InitialObjects;
 import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.attendencemodal.AttendanceStatusType;
+import core.utils.Serialize;
 import core.utils.TimeManager;
 import servlets.main.BackEndLogic;
 
@@ -11,7 +13,6 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Map;
 import java.util.TimeZone;
 
 import static core.model.ProjectConstants.UNDEFINED;
@@ -20,11 +21,9 @@ import static core.model.ProjectConstants.UNDEFINED;
  * Created by Saurabh on 4/14/2016.
  */
 public class UpdateObjectWithUIEntries {
-    private Map<String, EmployeeBiometricDetails> objectToBeUpdated;
 
     public UpdateObjectWithUIEntries() {
         BackEndLogic.readDataFromSources();
-        objectToBeUpdated = BiometricFileWorker.empBiometricMap;
     }
 
 
@@ -45,9 +44,21 @@ public class UpdateObjectWithUIEntries {
             LocalTime checkInTime = convertToProgramStandardTime(checkIn);
             LocalTime checkOutTime = convertToProgramStandardTime(checkOut);
             update(empRevalId, date, checkInTime, checkOutTime);
-
-            BiometricFileWorker.empBiometricMap = objectToBeUpdated;
         }
+    }
+
+
+    private void update(String empRevalId, LocalDate date, LocalTime checkInTime, LocalTime checkOutTime) {
+        for (EmployeeBiometricDetails obj : BiometricFileWorker.empBiometricMap.values()) {
+            if (obj.getEmpId().equals(empRevalId)) {
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setWorkTimeForDay(TimeManager.calculateTimeDifference(checkOutTime, checkInTime, date));
+            }
+        }
+
+        Serialize.serialSave("biometric.ser", InitialObjects.empBiometricMap);
     }
 
     private LocalTime convertToProgramStandardTime(String time) {
@@ -65,16 +76,6 @@ public class UpdateObjectWithUIEntries {
         return LocalDate.parse(currentDate, DateTimeFormatter.ISO_DATE);
     }
 
-    private void update(String empRevalId, LocalDate date, LocalTime checkInTime, LocalTime checkOutTime) {
-        for (EmployeeBiometricDetails obj : objectToBeUpdated.values()) {
-            if (obj.getEmpId().equals(empRevalId)) {
-                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
-                obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
-                obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
-                obj.attendanceOfDate[date.getDayOfMonth() - 1].setWorkTimeForDay(TimeManager.calculateTimeDifference(checkOutTime, checkInTime, date));
-            }
-        }
-    }
 
 
 }

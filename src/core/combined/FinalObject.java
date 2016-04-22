@@ -2,6 +2,7 @@ package core.combined;
 
 import core.model.viewmodal.FinalObjectModel;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Map;
  * @author Saurabh
  * @version 1.0
  */
-public class FinalObject {
+public class FinalObject implements Serializable {
     /**
      * The Final object where we will store the result of combining and setting discrepancy flag.
      */

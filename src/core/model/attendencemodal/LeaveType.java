@@ -2,6 +2,10 @@ package core.model.attendencemodal;
 
 /**
  * Created by AroraA on 09-02-2016.
+ * @author Saurabh
+ * @version 1.1
+ * @apiNote Java Enums Are Inherently Serializable
+ *
  */
 public enum LeaveType {
     VACATION_IND,

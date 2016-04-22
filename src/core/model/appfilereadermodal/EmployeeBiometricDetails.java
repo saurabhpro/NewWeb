@@ -16,9 +16,9 @@ public class EmployeeBiometricDetails extends BasicEmployeeDetails {
     public int numberOfEntriesInHrNet = 0; // To check how many leaves have been applied
 
     /**
-     * @param eID
-     * @param eName
-     * @param attendanceOfDate
+     * @param eID The Reval Employee Id
+     * @param eName The name of the Employee
+     * @param attendanceOfDate The record of all days attendance
      */
     public EmployeeBiometricDetails(String eID, String eName, AttendanceOfDate[] attendanceOfDate) {
         setName(eName);

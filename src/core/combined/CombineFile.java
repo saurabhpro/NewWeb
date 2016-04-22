@@ -8,7 +8,6 @@ import core.model.appfilereadermodal.EmployeeHrnetDetails;
 import core.model.employeemodal.BasicEmployeeDetails;
 import core.model.viewmodal.FinalObjectModel;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
@@ -23,14 +22,14 @@ import static core.model.attendencemodal.AttendanceStatusType.*;
  * @author Saurabh
  * @version 1.4
  */
-public class CombineFile extends FinalObject implements Serializable {
+public class CombineFile extends FinalObject {
     /**
      * Constructor that initializes the Final Object Map with a Treemap with string Comparator
      *
      * @see FinalObject
      */
     public CombineFile() {
-        EmpCombinedMap = new TreeMap<>(String::compareTo);
+        EmpCombinedMap = new TreeMap<>();
     }
 
     /**

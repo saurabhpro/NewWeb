@@ -12,7 +12,7 @@ import java.util.Map;
  * @author Saurabh
  * @version 1.0
  */
-class InitialObjects {
+public class InitialObjects {
     private static final long serialVersionUID = 1L;
 
     /**

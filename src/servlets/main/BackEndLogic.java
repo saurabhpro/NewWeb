@@ -1,16 +1,19 @@
 package servlets.main;
 
 import core.appfilereader.AllEmployeesBasicData;
+import core.appfilereader.InitialObjects;
 import core.combined.CombineFile;
 import core.combined.FinalObject;
 import core.combined.MarkDiscrepancy;
 import core.factory.fileimportfactory.SheetFactory;
 import core.factory.objectfillerfactory.FileObjectFactory;
+import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.appfilereadermodal.FileOperations;
 import core.model.employeemodal.BasicEmployeeDetails;
 import core.model.viewmodal.FinalObjectModel;
 import core.model.viewmodal.ListGeneratorModel;
 import core.utils.FileFolderWorker;
+import core.utils.Serialize;
 import core.view.AllEmployeeDetailsJson;
 import core.view.OnlyDiscrepancyDetailsJson;
 import core.view.PublicHolidayWorkerJson;
@@ -25,6 +28,7 @@ import static core.model.ProjectConstants.*;
  */
 public class BackEndLogic {
     public static void readDataFromSources() {
+
         FileOperations fileWorker;
         BasicEmployeeDetails fillObject;
 
@@ -39,11 +43,16 @@ public class BackEndLogic {
         allEmployeesBasicData.readFile();
         allEmployeesBasicData.toJsonFile();      //Writes Emails.json
 
-        // read Biometric Excel File
-        fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
-        fillObject = objectFactory.dispatch("Biometric");
-        fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
-
+        String callerClassName = new Exception().getStackTrace()[1].getClassName();
+        if (!callerClassName.equals("core.UpdateObjectWithUIEntries")) {
+            // read Biometric Excel File
+            fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
+            fillObject = objectFactory.dispatch("Biometric");
+            fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
+            Serialize.serialSave("Biometric", InitialObjects.empBiometricMap);
+        } else {
+            InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve("biometric.ser");
+        }
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
         fillObject = objectFactory.dispatch("Hrnet");

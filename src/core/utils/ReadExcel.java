@@ -60,6 +60,9 @@ public class ReadExcel {
         MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
         markDiscrepancy.findDiscrepancy();
 
+
+        Serialize.serialRetrieve("Biometric.ser");
+
         ListGeneratorModel ob = new PublicHolidayWorkerJson();
         ob.generate();
         //ph.displayOnConsole();

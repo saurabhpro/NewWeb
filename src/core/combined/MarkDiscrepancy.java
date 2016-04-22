@@ -2,8 +2,6 @@ package core.combined;
 
 import core.model.viewmodal.FinalObjectModel;
 
-import java.io.Serializable;
-
 /**
  * Created by AroraA on 17-02-2016.
  *
@@ -12,7 +10,7 @@ import java.io.Serializable;
  *          Class to find discrepancy and set the discrepancy flag
  */
 
-public class MarkDiscrepancy extends FinalObject implements Serializable {
+public class MarkDiscrepancy extends FinalObject {
 
     /**
      * Method to find discrepancy and set the discrepancy flag

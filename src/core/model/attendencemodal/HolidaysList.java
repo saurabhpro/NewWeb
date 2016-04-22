@@ -5,6 +5,9 @@ import java.time.Month;
 
 /**
  * Created by kumars on 2/16/2016.
+ * @author Saurabh
+ * @version 1.0
+ * @apiNote Java Enums Are Inherently Serializable
  */
 
 public enum HolidaysList {

@@ -1,12 +1,13 @@
 package core.model.attendencemodal;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 /**
  * Created by kumars on 2/12/2016.
  */
 //
-public class AttendanceOfLeave {
+public class AttendanceOfLeave implements Serializable {
     private LeaveType leaveType = null;
     private LocalDate startDate = null;
     private LocalDate endDate = null;
