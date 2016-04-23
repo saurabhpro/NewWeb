@@ -1,6 +1,7 @@
 package servlets.upload;
 
 import com.oreilly.servlet.MultipartRequest;
+import core.utils.FileFolderWorker;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,7 +22,9 @@ public class HolidayListUploadServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File holidayListFilePath = new File("C:\\ProjectFiles\\HolidayList");
         if (!holidayListFilePath.exists()) {
-            holidayListFilePath.mkdirs();
+            FileFolderWorker.makeDirectory(holidayListFilePath);
+        } else {
+            FileFolderWorker.cleanDirectory(holidayListFilePath);
         }
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();

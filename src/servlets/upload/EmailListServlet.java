@@ -23,22 +23,37 @@ public class EmailListServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File emailListFilePath = new File(ALL_EMPLOYEE_RECORD_FILE_PATH);
+
+        String tmp = (String) request.getAttribute("emailListFile");
+        System.out.println(tmp);
         if (!emailListFilePath.exists()) {
-            emailListFilePath.mkdirs();
+            FileFolderWorker.makeDirectory(emailListFilePath);
         } else {
             FileFolderWorker.cleanDirectory(emailListFilePath);
         }
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
-        m = new MultipartRequest(request, emailListFilePath.toString());
-
-        String filename = m.getFilesystemName("emailListFile");
-        out.println(filename + "Successfully Uploaded");
+        /**
+         * Constructs a new MultipartRequest to handle the specified request, saving any uploaded files to
+         * the given directory, and limiting the upload size to the specified length. If the content is too large,
+         * an IOException is thrown. This constructor actually parses the multipart/form-data and throws
+         * an IOException if there's any problem reading or parsing the request.
+         */
+        m = new MultipartRequest(request, emailListFilePath.toString(), (1024 * 1024 * 2));
+        m.getFilesystemName("emailListFile");
+        // out.println(filename + "Successfully Uploaded");
 
         response.sendRedirect("./MainPage.jsp#/UploadFiles");
     }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
 }
+
+
+/**
+ * The com.oreilly.servlet.multipart package contains a FileRenamePolicy interface that can be used when you want to implement a particular file-renaming policy with file uploads.
+ * <p>
+ * The DefaultFileRenamePolicy class renames an uploaded file whose name conflicts with an existing file by adding a number to the uploaded filename. For example, if index.txt already exists, then the DefaultFileRenamePolicy class renames the uploaded file index1.txt; and if a second file is uploaded with the same name it will be renamed index2.txt, and so on.
+ * <p>
+ * If you want to implement your own renaming policy, then create your own class that implements the FileRenamePolicy interface, then implement the class's rename(java.io.File file) method to initiate the renaming action.
+ * <p>
+ * This code sample shows a MultipartRequest constructor from Example 8-3. This time, the constructor adds a DefaultFileRenamePolicy object as a constructor parameter:
+ */

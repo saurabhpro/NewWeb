@@ -35,7 +35,7 @@ class CombineFileHelperUtility {
      * Method to process the Biometric File Object and update the Number of Leaves Of Each Employee,
      * Holiday [PUBLIC_HOLIDAY] marker,
      */
-    static void leaveCountandHolidayUpdater() {
+    static void leaveCountAndHolidayUpdater() {
         //set number of leaves employee took, who are present in Biometric File
         BiometricFileWorker.empBiometricMap.keySet().forEach(CombineFileHelperUtility::setNumberOfLeavesForEachEmployee);
         //set holidays for that month for each employeemodal

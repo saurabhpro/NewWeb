@@ -12,8 +12,9 @@ import java.time.LocalTime;
 import static core.model.ProjectConstants.*;
 
 public class EmployeeBiometricDetails extends BasicEmployeeDetails {
+    final long serialVersionUID = 1L;
     public AttendanceOfDate[] attendanceOfDate;
-    public int numberOfEntriesInHrNet = 0; // To check how many leaves have been applied
+    private int numberOfEntriesInHrNet = 0; // To check how many leaves have been applied
 
     /**
      * @param eID The Reval Employee Id

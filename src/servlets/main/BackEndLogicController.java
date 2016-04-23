@@ -8,6 +8,7 @@ import core.combined.MarkDiscrepancy;
 import core.factory.fileimportfactory.SheetFactory;
 import core.factory.objectfillerfactory.FileObjectFactory;
 import core.model.appfilereadermodal.EmployeeBiometricDetails;
+import core.model.appfilereadermodal.EmployeeHrnetDetails;
 import core.model.appfilereadermodal.FileOperations;
 import core.model.employeemodal.BasicEmployeeDetails;
 import core.model.viewmodal.FinalObjectModel;
@@ -19,6 +20,8 @@ import core.view.OnlyDiscrepancyDetailsJson;
 import core.view.PublicHolidayWorkerJson;
 import core.view.WeekendWorkerJson;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Map;
 
 import static core.model.ProjectConstants.*;
@@ -26,7 +29,7 @@ import static core.model.ProjectConstants.*;
 /**
  * Created by kumars on 4/15/2016.
  */
-public class BackEndLogic {
+public class BackEndLogicController {
     public static void readDataFromSources() {
 
         FileOperations fileWorker;
@@ -35,29 +38,42 @@ public class BackEndLogic {
         SheetFactory sheetFactory = new SheetFactory();
         FileObjectFactory objectFactory = new FileObjectFactory();
 
+        /**
+         * This should run only once when any of the file is uploaded,
+         * create one serial object folder if there is none
+         */
+        File serialPath = new File(UPDATED_RECORD_OBJECTS);
+        if (!serialPath.exists()) FileFolderWorker.makeDirectory(serialPath);
+
         setEmployeeRecordFileName(FileFolderWorker.getPathToFile(ALL_EMPLOYEE_RECORD_FILE_PATH));
         setBiometricFileName(FileFolderWorker.getPathToFile(BIOMETRIC_FILE_PATH));
         setFinancialForceFileName(FileFolderWorker.getPathToFile(FINANCIAL_FORCE_FILE_PATH));
 
         AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
         allEmployeesBasicData.readFile();
-        allEmployeesBasicData.toJsonFile();      //Writes Emails.json
+        //  allEmployeesBasicData.toJsonFile();      //Writes Emails.json
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "emailList.ser", InitialObjects.allEmployeeBasicRecordMap);
 
-        String callerClassName = new Exception().getStackTrace()[1].getClassName();
-        if (!callerClassName.equals("core.UpdateObjectWithUIEntries")) {
-            // read Biometric Excel File
-            fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
-            fillObject = objectFactory.dispatch("Biometric");
-            fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
+        // read Biometric Excel File
+        fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
+        fillObject = objectFactory.dispatch("Biometric");
+        fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "Biometric.ser", InitialObjects.empBiometricMap);
 
-            Serialize.serialSave(UPDATED_RECORD_OBJECTS + "Biometric.ser", InitialObjects.empBiometricMap);
-        } else {
-            InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "biometric.ser");
-        }
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
         fillObject = objectFactory.dispatch("Hrnet");
         fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "salesforce.ser", InitialObjects.hrnetDetailsMap);
+
+    }
+
+    public static void readFromSerialObjects() {
+        InitialObjects.allEmployeeBasicRecordMap = (Map<String, BasicEmployeeDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "emailList.ser");
+        //InitialObjects.allEmployeeBasicRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
+        InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "biometric.ser");
+        //InitialObjects.empBiometricMap.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
+        InitialObjects.hrnetDetailsMap = (Map<String, ArrayList<EmployeeHrnetDetails>>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "salesforce.ser");
 
     }
 
@@ -77,6 +93,7 @@ public class BackEndLogic {
     }
 
     public static void generateReportsJson() {
+
         ListGeneratorModel ob = new PublicHolidayWorkerJson();
         ob.generate();
         //ph.displayOnConsole();

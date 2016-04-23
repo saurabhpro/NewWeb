@@ -40,7 +40,7 @@ public class CombineFile extends FinalObject {
     public final void combineFiles() {
 
         // update the employeemodal in biometric file
-        CombineFileHelperUtility.leaveCountandHolidayUpdater();
+        CombineFileHelperUtility.leaveCountAndHolidayUpdater();
         CombineFileHelperUtility.unaccountedAbsentStatusUpdater();
 
         // Combine Financial Force and Biometric Files object

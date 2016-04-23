@@ -1,6 +1,7 @@
 package core.utils;
 
 import core.appfilereader.AllEmployeesBasicData;
+import core.appfilereader.InitialObjects;
 import core.combined.CombineFile;
 import core.combined.MarkDiscrepancy;
 import core.factory.fileimportfactory.SheetFactory;
@@ -13,7 +14,9 @@ import core.view.AllEmployeeDetailsJson;
 import core.view.OnlyDiscrepancyDetailsJson;
 import core.view.PublicHolidayWorkerJson;
 import core.view.WeekendWorkerJson;
+import servlets.main.BackEndLogicController;
 
+import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 
@@ -39,17 +42,22 @@ public class ReadExcel {
 
         AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
         allEmployeesBasicData.readFile();
-        allEmployeesBasicData.toJsonFile();      //Writes Emails.json
+        //  allEmployeesBasicData.toJsonFile();      //Writes Emails.json
+        File serialPath = new File(UPDATED_RECORD_OBJECTS);
+        if (!serialPath.exists()) FileFolderWorker.makeDirectory(serialPath);
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "emailList.ser", InitialObjects.allEmployeeBasicRecordMap);
 
         // read Biometric Excel File
         fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
         fillObject = objectFactory.dispatch("Biometric");
         fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "Biometric.ser", InitialObjects.empBiometricMap);
 
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
         fillObject = objectFactory.dispatch("Hrnet");
         fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "salesforce.ser", InitialObjects.hrnetDetailsMap);
 
         CombineFile combineFile = new CombineFile();
         combineFile.combineFiles();
@@ -60,8 +68,7 @@ public class ReadExcel {
         MarkDiscrepancy markDiscrepancy = new MarkDiscrepancy();
         markDiscrepancy.findDiscrepancy();
 
-
-        Serialize.serialRetrieve("Biometric.ser");
+        BackEndLogicController.readFromSerialObjects();
 
         ListGeneratorModel ob = new PublicHolidayWorkerJson();
         ob.generate();

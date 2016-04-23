@@ -16,16 +16,16 @@ import static core.model.ProjectConstants.FILE_PATH;
 /**
  * Created by kumars on 4/5/2016.
  */
-@WebServlet(name = "CoreServlet", urlPatterns = {"/core"})
-public class CoreServlet extends HttpServlet {
+@WebServlet(name = "CoreControllerServlet", urlPatterns = {"/core"})
+public class CoreControllerServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            BackEndLogic.readDataFromSources();
+            BackEndLogicController.readDataFromSources();
 
-            BackEndLogic.getFinalObject();
+            BackEndLogicController.getFinalObject();
 
-            BackEndLogic.generateReportsJson();
+            BackEndLogicController.generateReportsJson();
 
         } catch (Exception ignored) {
         }
@@ -34,9 +34,8 @@ public class CoreServlet extends HttpServlet {
         File source = new File(FILE_PATH + "JsonFiles");
         //update this for amrita and home
         //TODO when deploying on actual server, use this to copy the JSon files directory
-        File dest = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
-        //File dest = new File("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
-
+        //File dest = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
+        File dest = new File("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
         //File dest = new File("C:\\Users\\Aroraa\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
         try {
             FileUtils.copyDirectory(source, dest);

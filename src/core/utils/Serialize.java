@@ -1,6 +1,5 @@
 package core.utils;
 
-import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import org.jetbrains.annotations.Nullable;
 
 import java.io.*;
@@ -11,7 +10,7 @@ import java.util.Map;
  */
 public class Serialize {
 
-    public static void serialSave(String fileName, Map<String, EmployeeBiometricDetails> object) {
+    public static void serialSave(String fileName, Map object) {
         try {
             FileOutputStream fileOut =
                     new FileOutputStream(fileName);
@@ -19,7 +18,6 @@ public class Serialize {
             out.writeObject(object);
             out.close();
             fileOut.close();
-            System.out.printf("Serialized data is saved in /tmp/employeemodal.ser");
         } catch (IOException i) {
             i.printStackTrace();
         }
@@ -32,10 +30,6 @@ public class Serialize {
             FileInputStream fileIn = new FileInputStream(fileName);
             ObjectInputStream in = new ObjectInputStream(fileIn);
             Object ob = in.readObject();
-            Map<String, EmployeeBiometricDetails> bmp = (Map<String, EmployeeBiometricDetails>) ob;
-            //    bmp.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
-
-            System.out.println("\ndone\n");
             in.close();
             fileIn.close();
             return ob;

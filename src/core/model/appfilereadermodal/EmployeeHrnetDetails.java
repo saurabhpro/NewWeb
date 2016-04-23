@@ -9,6 +9,7 @@ import static core.model.ProjectConstants.*;
  * Created by AroraA on 09-02-2016.
  */
 public class EmployeeHrnetDetails extends BasicEmployeeDetails {
+    final long serialVersionUID = 1L;
     /**
      * the object of the Attendance of leave which
      */

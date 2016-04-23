@@ -25,7 +25,7 @@ public class BiometricServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File biometricFilePath = new File(BIOMETRIC_FILE_PATH);
         if (!biometricFilePath.exists()) {
-            biometricFilePath.mkdirs();
+            FileFolderWorker.makeDirectory(biometricFilePath);
         } else {
             FileFolderWorker.cleanDirectory(biometricFilePath);
         }

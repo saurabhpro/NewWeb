@@ -24,7 +24,7 @@ public class SalesforceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File salesforceFilePath = new File(FINANCIAL_FORCE_FILE_PATH);
         if (!salesforceFilePath.exists()) {
-            salesforceFilePath.mkdirs();
+            FileFolderWorker.makeDirectory(salesforceFilePath);
         } else {
             FileFolderWorker.cleanDirectory(salesforceFilePath);
         }

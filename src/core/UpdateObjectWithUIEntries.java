@@ -7,7 +7,7 @@ import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.attendencemodal.AttendanceStatusType;
 import core.utils.Serialize;
 import core.utils.TimeManager;
-import servlets.main.BackEndLogic;
+import servlets.main.BackEndLogicController;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -24,7 +24,7 @@ import static core.model.ProjectConstants.UNDEFINED;
 public class UpdateObjectWithUIEntries {
 
     public UpdateObjectWithUIEntries() {
-        BackEndLogic.readDataFromSources();
+        BackEndLogicController.readFromSerialObjects();
     }
 
 
@@ -34,8 +34,8 @@ public class UpdateObjectWithUIEntries {
             updateObject(empRevalId, date, checkIn[i], checkOut[i]);
             i++;
         }
-        BackEndLogic.getFinalObject();
-        BackEndLogic.generateReportsJson();
+        BackEndLogicController.getFinalObject();
+        BackEndLogicController.generateReportsJson();
     }
 
     private void updateObject(String empRevalId, String currentDate, String checkIn, String checkOut) {
@@ -55,7 +55,7 @@ public class UpdateObjectWithUIEntries {
                 obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
                 obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
                 obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
-                obj.attendanceOfDate[date.getDayOfMonth() - 1].setWorkTimeForDay(TimeManager.calculateTimeDifference(checkOutTime, checkInTime, date));
+                obj.attendanceOfDate[date.getDayOfMonth() - 1].setWorkTimeForDay(TimeManager.calculateTimeDifference(checkInTime, checkOutTime, date));
             }
         }
 
@@ -77,7 +77,6 @@ public class UpdateObjectWithUIEntries {
     private LocalDate convertToProgramStandardDate(String currentDate) {
         return LocalDate.parse(currentDate, DateTimeFormatter.ISO_DATE);
     }
-
 
 
 }

@@ -1,1 +1,155 @@
-[]
+[
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Kawaljeet Singh",
+      "empId": "R148",
+      "salesForceId": "2047",
+      "emailId": "kawaljeet.singh@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "18:02",
+      "checkOut": "01:31",
+      "workTimeForDay": "07:29"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Arzoo Anjum",
+      "empId": "R149",
+      "salesForceId": "2053",
+      "emailId": "arzoo.anjum@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "18:37",
+      "checkOut": "01:29",
+      "workTimeForDay": "06:52"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Madhur Kaushal",
+      "empId": "R150",
+      "salesForceId": "2054",
+      "emailId": "madhur.kaushal@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "17:14",
+      "checkOut": "00:32",
+      "workTimeForDay": "07:18"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Prateek Chanana",
+      "empId": "R151",
+      "salesForceId": "2055",
+      "emailId": "prateek.chanana@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "18:01",
+      "checkOut": "01:38",
+      "workTimeForDay": "07:37"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Shashank Taneja",
+      "empId": "R152",
+      "salesForceId": "2056",
+      "emailId": "shashank.taneja@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "18:01",
+      "checkOut": "01:38",
+      "workTimeForDay": "07:37"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Shalendra Verma",
+      "empId": "R153",
+      "salesForceId": "2057",
+      "emailId": "shalendra.verma@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "17:47",
+      "checkOut": "01:31",
+      "workTimeForDay": "07:44"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Sasmita Parida",
+      "empId": "R154",
+      "salesForceId": "2059",
+      "emailId": "sasmita.parida@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "18:37",
+      "checkOut": "01:29",
+      "workTimeForDay": "06:52"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Keshav Sachdeva",
+      "empId": "R155",
+      "salesForceId": "2060",
+      "emailId": "keshav.sachdeva@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "18:00",
+      "checkOut": "01:38",
+      "workTimeForDay": "07:38"
+    }
+  },
+  {
+    "holiday": "HOLI",
+    "basicEmployeeDetails": {
+      "name": "Devta Shukla",
+      "empId": "R156",
+      "salesForceId": "2061",
+      "emailId": "devta.shukla@reval.com"
+    },
+    "perDayAttendanceRecord": {
+      "currentDate": "2016-03-24",
+      "attendanceStatusType": "PUBLIC_HOLIDAY",
+      "leaveTypeForThisDate": "NO_LEAVE",
+      "checkIn": "18:36",
+      "checkOut": "01:29",
+      "workTimeForDay": "06:53"
+    }
+  }
+]

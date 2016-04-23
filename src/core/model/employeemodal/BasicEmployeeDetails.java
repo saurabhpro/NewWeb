@@ -10,6 +10,7 @@ import static core.model.ProjectConstants.*;
  * Created by kumars on 2/29/2016.
  */
 public class BasicEmployeeDetails implements Serializable {
+    final long serialVersionUID = 1L;
     private String name;
     private String empId;
     private String salesForceId;
@@ -114,6 +115,7 @@ public class BasicEmployeeDetails implements Serializable {
         BasicEmployeeDetails tempSalesForceId = AllEmployeesBasicData.allEmployeeBasicRecordMap.get(empId);
         if (tempSalesForceId != null && tempSalesForceId.getSalesForceId() != null)
             return tempSalesForceId.getSalesForceId();
+
         else
             return null;
     }
