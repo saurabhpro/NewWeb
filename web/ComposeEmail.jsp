@@ -82,30 +82,31 @@
                             <div class="form-group" class="form-control">
                                 Hi {{items.empName}},
                                 <ul>
-                                      <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
+                                    <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
                                 </ul>
                                 <ul>
-                                      <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
+                                    <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
                                 </ul>
                                 <ul>
                                     <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
                                 </ul>
-<!--
-                                <input type="text" name="message" style="width: 20px; border: none; outline: none; "
-                                       value="Hi">
-                                <input type="text" name="message" style="border: none; outline: none; "
-                                       value={{items.empName}}>
--->
+                                <!--
+                                                                <input type="text" name="message" style="width: 20px; border: none; outline: none; "
+                                                                       value="Hi">
+                                                                <input type="text" name="message" style="border: none; outline: none; "
+                                                                       value={{items.empName}}>
+                                -->
 
 
                                 <textarea ng-show=discrepancyFound() type="text" name="message2"
-                                              class="form-control"
-                                              style="outline: none; height: 85px; border: none; float: left;"
-                                              contenteditable="true">You have not entered the below leave days on Financial Force, and nor have you registered your attendance in the biometric system for these days:
+                                          class="form-control"
+                                          style="outline: none; height: 85px; border: none; float: left;"
+                                          contenteditable="true">You have not entered the below leave days on Financial Force, and nor have you registered your attendance in the biometric system for these days:
                                 </textarea>
 
                                 <input type="text" ng-show=leaveNotAppliedFunc()
-                                       style="font-weight: bold; color: red; border: none; position: relative;" name="message3"
+                                       style="font-weight: bold; color: red; border: none; position: relative;"
+                                       name="message3"
                                        value="Full Day Leaves"/>
                                 <ul ng-show=leaveNotAppliedFunc()
                                     style="font-weight: bold; border: none; position: relative;">
@@ -115,22 +116,22 @@
                                                    value={{day.currentDate}}>
                                         </li>
                                     </div>
-                                    </ul>
+                                </ul>
 
                                 <input ng-show=halfDayFunc() type="text"
                                        style="font-weight: bold; color: red; border: none;"
                                        name="message5" value="Half Day Leaves"/>
                                 <ul ng-show=halfDayFunc() style="font-weight: bold; border: none; ">
 
-                                        <li ng-repeat="day in halfDay">
-                                            <input type="text" name="message6" style="outline: none; border: none;"
-                                                   value={{day.currentDate}}>
-                                        </li>
-                                    </ul>
+                                    <li ng-repeat="day in halfDay">
+                                        <input type="text" name="message6" style="outline: none; border: none;"
+                                               value={{day.currentDate}}>
+                                    </li>
+                                </ul>
 
                                 <input ng-show=discrepancyFound() name="message7" class="form-control"
-                                           style="height: 40px; border: none; float: left; font-weight: bold; outline: none;"
-                                           value="Request you to apply for these days in Financial Force."/>
+                                       style="height: 40px; border: none; float: left; font-weight: bold; outline: none;"
+                                       value="Request you to apply for these days in Financial Force."/>
 
                                     <textarea ng-show=checkOutTimeNotApplicable() name="message8" class="form-control"
                                               style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days: </textarea>
@@ -138,11 +139,11 @@
                                        style="font-weight: bold; color: red; border: none;" name="message9"
                                        value="Days"/>
                                 <ul ng-show=checkOutTimeNotApplicable() style="font-weight: bold; border: none; ">
-                                        <li ng-repeat="day in checkOutTime">
-                                            <input type="text" name="message10" style="outline: none; border: none;"
-                                                   value={{day.currentDate}}>
-                                        </li>
-                                    </ul>
+                                    <li ng-repeat="day in checkOutTime">
+                                        <input type="text" name="message10" style="outline: none; border: none;"
+                                               value={{day.currentDate}}>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
                     </div>
@@ -170,22 +171,13 @@
         <!-- /.content -->
     </div>
 
-    </div>
 </script>
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.0 -->
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-<!-- Slimscroll -->
-<script src="js/slimScroll/jquery.slimscroll.min.js"></script>
-<!-- AdminLTE App -->
-<script src="js/js/app.min.js"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="js/js/demo.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="js/bootstrap-wysihtml5.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Page Script -->
 <script>
     $(function () {

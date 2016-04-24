@@ -20,15 +20,12 @@ import static core.model.ProjectConstants.FILE_PATH;
 public class CoreControllerServlet extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            BackEndLogicController.readDataFromSources();
 
-            BackEndLogicController.getFinalObject();
+        BackEndLogicController.readDataFromSourcesToInitialObjects();
 
-            BackEndLogicController.generateReportsJson();
+        BackEndLogicController.prepareFinalObject();
 
-        } catch (Exception ignored) {
-        }
+        BackEndLogicController.generateReportsJson();
 
 
         File source = new File(FILE_PATH + "JsonFiles");

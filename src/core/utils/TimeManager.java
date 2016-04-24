@@ -3,10 +3,8 @@ package core.utils;
 import core.model.attendencemodal.AttendanceOfDate;
 import org.jetbrains.annotations.NotNull;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -18,7 +16,7 @@ import static core.model.ProjectConstants.*;
  * Created by SaurabhK on 09-02-2016.
  *
  * @author Amrita & Saurabh
- * @version 1.4
+ * @version 1.5
  */
 public class TimeManager {
 
@@ -118,6 +116,37 @@ public class TimeManager {
 
         return time;
     }
+
+
+    /**
+     * Method to convert the time format returned from the browser Json update
+     *
+     * @param time the argument specifies the input that needs to be converted in string
+     * @return the time in LocalTime format
+     * @since 1.5
+     */
+    public static LocalTime convertToProgramStandardTime(String time) {
+        if (time.length() < 6)
+            return LocalTime.parse(time);
+
+        //TimeZone tzone = TimeZone.getTimeZone("Asia/Calcutta");
+        ZonedDateTime zdt = ZonedDateTime.parse(time.substring(1, time.length() - 1));
+        LocalDateTime ldt = zdt.toLocalDateTime().plusMinutes(330);
+
+        return ldt.toLocalTime();
+    }
+
+    /**
+     * Method to convert the date format returned from the browser Json update
+     *
+     * @param currentDate the argument specifies the input that needs to be converted in string
+     * @return the date in LocalDate format (ISO_DATE = yyyy-mm-dd)
+     * @since 1.5
+     */
+    public static LocalDate convertToProgramStandardDate(String currentDate) {
+        return LocalDate.parse(currentDate, DateTimeFormatter.ISO_DATE);
+    }
+
 
     /**
      * This method transforms the string date to a proper LocalDate

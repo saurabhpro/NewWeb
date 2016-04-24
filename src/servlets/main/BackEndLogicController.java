@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) 2016.
+ */
+
 package servlets.main;
 
 import core.appfilereader.AllEmployeesBasicData;
@@ -11,7 +15,6 @@ import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.appfilereadermodal.EmployeeHrnetDetails;
 import core.model.appfilereadermodal.FileOperations;
 import core.model.employeemodal.BasicEmployeeDetails;
-import core.model.viewmodal.FinalObjectModel;
 import core.model.viewmodal.ListGeneratorModel;
 import core.utils.FileFolderWorker;
 import core.utils.Serialize;
@@ -30,7 +33,10 @@ import static core.model.ProjectConstants.*;
  * Created by kumars on 4/15/2016.
  */
 public class BackEndLogicController {
-    public static void readDataFromSources() {
+    /**
+     *
+     */
+    static void readDataFromSourcesToInitialObjects() {
 
         FileOperations fileWorker;
         BasicEmployeeDetails fillObject;
@@ -68,6 +74,9 @@ public class BackEndLogicController {
 
     }
 
+    /**
+     *
+     */
     public static void readFromSerialObjects() {
         InitialObjects.allEmployeeBasicRecordMap = (Map<String, BasicEmployeeDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "emailList.ser");
         //InitialObjects.allEmployeeBasicRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
@@ -77,7 +86,10 @@ public class BackEndLogicController {
 
     }
 
-    public static Map<String, FinalObjectModel> getFinalObject() {
+    /**
+     *
+     */
+    public static void prepareFinalObject() {
         FinalObject combineFile = new CombineFile();
         combineFile.combineFiles();
 
@@ -88,10 +100,11 @@ public class BackEndLogicController {
         FinalObject markDiscrepancy = new MarkDiscrepancy();
         markDiscrepancy.findDiscrepancy();
 
-        return FinalObject.EmpCombinedMap;
-
     }
 
+    /**
+     *
+     */
     public static void generateReportsJson() {
 
         ListGeneratorModel ob = new PublicHolidayWorkerJson();

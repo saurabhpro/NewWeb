@@ -239,6 +239,34 @@
     ],
     "empIfClarificationNeeded": true
   },
+  "R106": {
+    "empRevalId": "R106",
+    "empSalesforceId": "1535",
+    "empName": "Sakshi Kapila",
+    "empEmailId": "sakshi.kapila@reval.com",
+    "empAvgCheckInTimeForMonth": "10:38",
+    "empAvgCheckOutTimeForMonth": "19:09",
+    "empAvgWorkHoursForMonth": "08:30",
+    "allDateDetailsList": [
+      {
+        "currentDate": "2016-03-02",
+        "attendanceStatusType": "UNACCOUNTED_ABSENCE",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "11:09",
+        "checkOut": "00:00",
+        "workTimeForDay": "12:51"
+      },
+      {
+        "currentDate": "2016-03-15",
+        "attendanceStatusType": "UNACCOUNTED_ABSENCE",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "11:57",
+        "checkOut": "00:00",
+        "workTimeForDay": "12:03"
+      }
+    ],
+    "empIfClarificationNeeded": true
+  },
   "R107": {
     "empRevalId": "R107",
     "empSalesforceId": "243",
@@ -264,10 +292,26 @@
     "empSalesforceId": "1439",
     "empName": "Gagan Shah",
     "empEmailId": "gagan.shah@reval.com",
-    "empAvgCheckInTimeForMonth": "10:42",
-    "empAvgCheckOutTimeForMonth": "18:16",
-    "empAvgWorkHoursForMonth": "08:09",
+    "empAvgCheckInTimeForMonth": "11:07",
+    "empAvgCheckOutTimeForMonth": "18:31",
+    "empAvgWorkHoursForMonth": "07:24",
     "allDateDetailsList": [
+      {
+        "currentDate": "2016-03-01",
+        "attendanceStatusType": "UNACCOUNTED_ABSENCE",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "NA",
+        "checkOut": "NA",
+        "workTimeForDay": "NA"
+      },
+      {
+        "currentDate": "2016-03-02",
+        "attendanceStatusType": "UNACCOUNTED_ABSENCE",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "NA",
+        "checkOut": "NA",
+        "workTimeForDay": "NA"
+      },
       {
         "currentDate": "2016-03-11",
         "attendanceStatusType": "HALF_DAY",

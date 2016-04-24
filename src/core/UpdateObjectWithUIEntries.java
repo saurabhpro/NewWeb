@@ -10,45 +10,91 @@ import core.utils.TimeManager;
 import servlets.main.BackEndLogicController;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.TimeZone;
 
 import static core.model.ProjectConstants.UNDEFINED;
+import static core.utils.TimeManager.convertToProgramStandardDate;
 
 /**
  * Created by Saurabh on 4/14/2016.
+ * Class to update the Biometric file object with the updated entry from UI
+ *
+ * @author Saurabh
+ * @version 1.0
  */
 public class UpdateObjectWithUIEntries {
 
+    /**
+     * Constructor that initializes the initial objects using serialized files
+     */
     public UpdateObjectWithUIEntries() {
+        //Method that reads serialized objects and updates the initial objects
         BackEndLogicController.readFromSerialObjects();
     }
 
-
-    public void updateObjects(String empRevalId, String[] currentDate, String[] checkIn, String[] checkOut) {
+    /**
+     * This method updates the object which is save using serialization.
+     *
+     * @param empRevalId  The employee's Reval Id which will be used to find the entry in map
+     * @param listOfDates the array of dates which needs to be changed
+     * @param checkIn     the array of check-in time for  the respective dates
+     * @param checkOut    the array of check-out time for respective dates
+     * @see InitialObjects
+     */
+    public void updateObjects(String empRevalId, String[] listOfDates, String[] checkIn, String[] checkOut) {
         int i = 0;
-        for (String date : currentDate) {
+        //loop through the list of days
+        for (String date : listOfDates) {
+            /**
+             * begin calling the chain method for single day from array of days
+             */
             updateObject(empRevalId, date, checkIn[i], checkOut[i]);
             i++;
         }
-        BackEndLogicController.getFinalObject();
+        /**
+         * Call the method to combine and find discrepancy and update Final Object accordingly
+         * @see core.combined.FinalObject
+         * @see core.combined.CombineFile
+         * @see core.combined.MarkDiscrepancy
+         */
+        BackEndLogicController.prepareFinalObject();
+        /**
+         * Call the method to generate Json files based on the FinalObjects
+         * @see core.model.viewmodal.ListGeneratorModel
+         * @see core.combined.FinalObject
+         */
         BackEndLogicController.generateReportsJson();
     }
 
+    /**
+     * The second method in the chain which basically does the validation checks
+     * and performs necessary standard format conversions and then call the update method
+     *
+     * @param empRevalId  The employee's Reval Id which will be used to find the entry in map
+     * @param currentDate the date which needs to be changed in string
+     * @param checkIn     the check-in time for  the respective date in string
+     * @param checkOut    the check-out time for respective date in string
+     */
     private void updateObject(String empRevalId, String currentDate, String checkIn, String checkOut) {
-        LocalDate date = convertToProgramStandardDate(currentDate);
-        System.out.println(date + " " + checkIn + " " + checkOut);
         if (!checkIn.equals(UNDEFINED) || !checkOut.equals(UNDEFINED)) {
-            LocalTime checkInTime = convertToProgramStandardTime(checkIn);
-            LocalTime checkOutTime = convertToProgramStandardTime(checkOut);
+            LocalTime checkInTime = TimeManager.convertToProgramStandardTime(checkIn);
+            LocalTime checkOutTime = TimeManager.convertToProgramStandardTime(checkOut);
+
+            LocalDate date = convertToProgramStandardDate(currentDate);
             update(empRevalId, date, checkInTime, checkOutTime);
         }
+        //System.out.println(date + " " + checkIn + " " + checkOut);
     }
 
-
+    /**
+     * The third method in the chain which finds the employee who needs to be updated and updates the checkin,
+     * check-out and worktime for date with attendance status
+     *
+     * @param empRevalId   The employee's Reval Id which will be used to find the entry in map
+     * @param date         the date which needs to be changed in LocalDate
+     * @param checkInTime  the check-out time for respective date in LocalTime
+     * @param checkOutTime the check-out time for respective date in LocalTime
+     */
     private void update(String empRevalId, LocalDate date, LocalTime checkInTime, LocalTime checkOutTime) {
         for (EmployeeBiometricDetails obj : BiometricFileWorker.empBiometricMap.values()) {
             if (obj.getEmpId().equals(empRevalId)) {
@@ -59,23 +105,9 @@ public class UpdateObjectWithUIEntries {
             }
         }
 
+        //Save the updated object back using serialization
         Serialize.serialSave(ProjectConstants.UPDATED_RECORD_OBJECTS + "biometric.ser", InitialObjects.empBiometricMap);
 
-    }
-
-    private LocalTime convertToProgramStandardTime(String time) {
-        if (time.length() < 6)
-            return LocalTime.parse(time);
-
-        TimeZone tzone = TimeZone.getTimeZone("Asia/Calcutta");
-        ZonedDateTime zdt = ZonedDateTime.parse(time.substring(1, time.length() - 1));
-        LocalDateTime ldt = zdt.toLocalDateTime().plusMinutes(330);
-
-        return ldt.toLocalTime();
-    }
-
-    private LocalDate convertToProgramStandardDate(String currentDate) {
-        return LocalDate.parse(currentDate, DateTimeFormatter.ISO_DATE);
     }
 
 
