@@ -1,4 +1,4 @@
-package core.factory.fileimportfactory;
+package core.factory.FileImportFactory;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

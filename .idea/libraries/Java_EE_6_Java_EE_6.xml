@@ -1,15 +1,22 @@
 <component name="libraryTable">
   <library name="Java EE 6-Java EE 6">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/lib/javax.annotation.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.persistence.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.jms.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.transaction.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.ejb.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.resource.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jar!/" />
-      <root url="jar://$PROJECT_DIR$/lib/javax.servlet.jsp.jstl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/jackson-annotations-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/jackson-databind-2.7.1-1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/poi-ooxml-schemas-3.13-20150929.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/poi-ooxml-3.13-20150929.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/xmlbeans-2.6.0.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/jxl.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/poi-3.13-20150929.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/core-lib/jackson-core-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/itextpdf-5.5.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/annotations-java8.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/filegen-lib/json-simple-1.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/mail.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/commons-io-2.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/cos.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/activation.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

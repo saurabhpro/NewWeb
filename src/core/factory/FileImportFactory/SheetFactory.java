@@ -1,4 +1,4 @@
-package core.factory.fileimportfactory;
+package core.factory.FileImportFactory;
 
 import core.appfilereader.BiometricFileWorker;
 import core.appfilereader.HrnetFileWorker;

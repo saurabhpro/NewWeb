@@ -46,6 +46,15 @@ sampleApp.controller('mainCtrl', ['$scope', function( $scope ) {
             $scope.inputType = 'password';
     };
 }]);
+sampleApp.controller('uploadFiles', ['$scope', function ($scope) {
+    $("#check").click(function () {
+        var fileName = $("#file1").val();
+        if (fileName.lastIndexOf("png") === fileName.length - 3)
+            alert("OK");
+        else
+            alert("Not PNG");
+    })
+}]);
 sampleApp.controller("ReportController", function ($scope, $http) {
     $http.get("./JsonFiles/AllWorkers.json").then(function (response) {
         $scope.rowCollection = response.data;
@@ -504,15 +513,46 @@ sampleApp.controller("GeneratePublicHolidayController", function ($scope, $http,
     };
 
 });
-sampleApp.controller("UploadFilesController", function ($scope, $http) {
+sampleApp.controller("UploadFilesController", function ($scope, $http, $log) {
+    var buttonA = null;
+    $scope.button_A = localStorage.getItem("buttonA");
+
     $scope.A = function () {
         console.log('you click A on ', Date());
-        $scope.button_A = Date();
-    }
+        $log.info(buttonA);
+        //var button_A = Date();
+        window.localStorage.setItem("buttonA", Date());
+    };
+    var buttonB = null;
+    $scope.button_B = localStorage.getItem("buttonB");
+    $scope.B = function () {
+        console.log('you click B on ', Date());
+        $log.info(buttonB + Date());
+        //var button_A = Date();
+        window.localStorage.setItem("buttonB", Date());
+    };
+    var buttonC = null;
+    $scope.button_C = localStorage.getItem("buttonC");
+    $scope.C = function () {
+        console.log('you click C on ', Date());
+        $log.info(buttonC + Date());
+        //var button_A = Date();
+        window.localStorage.setItem("buttonC", Date());
+    };
+
+
+    $scope.checkJson = function () {
+        if (buttonA === null || buttonB === null || buttonC === null) {
+            $log.info(biometFile + "hello");
+            return 0;
+        }
+        else {
+            $log.info(biometFile + "hi");
+            return 1;
+        }
+    };
+
 });
 sampleApp.controller("OverviewController", function ($scope, $http) {
-    $scope.A = function () {
-        console.log('you click A on ', Date());
-        $scope.button_A = Date();
-    }
+
 });

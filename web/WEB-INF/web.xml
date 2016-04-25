@@ -9,11 +9,11 @@
         <servlet-class>servlets.login.SignInServlet</servlet-class>
         <init-param>
             <param-name>userName</param-name>
-            <param-value>test@reval.com</param-value>
+            <param-value>admin@reval.com</param-value>
         </init-param>
         <init-param>
             <param-name>password</param-name>
-            <param-value>Test</param-value>
+            <param-value>Test123</param-value>
         </init-param>
     </servlet>
     <servlet-mapping>

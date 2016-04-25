@@ -81,9 +81,9 @@
   },
   "R142": {
     "empRevalId": "R142",
-    "empSalesforceId": "2030",
-    "empName": "Sahil Wadhwa",
-    "empEmailId": "sahil.wadhwa@reval.com",
+    "empSalesforceId": null,
+    "empName": null,
+    "empEmailId": null,
     "empAvgCheckInTimeForMonth": "10:01",
     "empAvgCheckOutTimeForMonth": "20:00",
     "empAvgWorkHoursForMonth": "09:59",
@@ -101,9 +101,9 @@
   },
   "R143": {
     "empRevalId": "R143",
-    "empSalesforceId": "2031",
-    "empName": "Inderjeet Kumar",
-    "empEmailId": "inderjeet.kumar@reval.com",
+    "empSalesforceId": null,
+    "empName": null,
+    "empEmailId": null,
     "empAvgCheckInTimeForMonth": "08:48",
     "empAvgCheckOutTimeForMonth": "18:12",
     "empAvgWorkHoursForMonth": "09:24",
@@ -129,7 +129,7 @@
   },
   "R144": {
     "empRevalId": "R144",
-    "empSalesforceId": "2032",
+    "empSalesforceId": "",
     "empName": "Jyotnain Kaur",
     "empEmailId": "jyotnain.kaur@reval.com",
     "empAvgCheckInTimeForMonth": "09:19",
@@ -157,7 +157,7 @@
   },
   "R145": {
     "empRevalId": "R145",
-    "empSalesforceId": "2033",
+    "empSalesforceId": "",
     "empName": "Khushboo Sood",
     "empEmailId": "khushboo.sood@reval.com",
     "empAvgCheckInTimeForMonth": "08:34",
@@ -246,7 +246,7 @@
   "R80": {
     "empRevalId": "R80",
     "empSalesforceId": "431",
-    "empName": "Christopher Whitby",
+    "empName": "Chris Whitby",
     "empEmailId": "chris.whitby@reval.com",
     "empAvgCheckInTimeForMonth": "11:14",
     "empAvgCheckOutTimeForMonth": "20:02",

@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,6 +24,10 @@ public class BiometricServlet extends HttpServlet {
     String message;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       /* Part filePart = request.getPart("biometricFile"); // Retrieves <input type="file" name="biometricFile">
+        String fileName = filePart.getSubmittedFileName();
+        System.out.println(fileName);
+        */
         File biometricFilePath = new File(BIOMETRIC_FILE_PATH);
         if (!biometricFilePath.exists()) {
             FileFolderWorker.makeDirectory(biometricFilePath);
