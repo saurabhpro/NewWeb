@@ -542,7 +542,7 @@ sampleApp.controller("UploadFilesController", function ($scope, $http, $log) {
 
 
     $scope.checkJson = function () {
-        if (buttonA === null || buttonB === null || buttonC === null) {
+        if (buttonA === "" || buttonB === "" || buttonC === "") {
             $log.info(biometFile + "hello");
             return 0;
         }
