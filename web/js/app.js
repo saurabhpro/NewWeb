@@ -540,7 +540,6 @@ sampleApp.controller("UploadFilesController", function ($scope, $http, $log) {
         window.localStorage.setItem("buttonC", Date());
     };
 
-
     $scope.checkJson = function () {
         if (buttonA === "" || buttonB === "" || buttonC === "") {
             $log.info(biometFile + "hello");
