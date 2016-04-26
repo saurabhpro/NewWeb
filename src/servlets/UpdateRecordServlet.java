@@ -33,10 +33,14 @@ public class UpdateRecordServlet extends HttpServlet {
 
         checkIn = request.getParameterValues("checkIn");
         checkOut = request.getParameterValues("checkOut");
+        System.out.println(checkOut);
+        System.out.println(checkIn);
         session.setAttribute("currentDate", currentDate);
         session.setAttribute("empRevalId", empRevalId);
         session.setAttribute("checkIn", checkIn);
         session.setAttribute("checkOut", checkOut);
+        System.out.println(checkOut);
+        System.out.println(checkIn);
 
         response.setContentType("text/html");
         System.out.println(empRevalId);
