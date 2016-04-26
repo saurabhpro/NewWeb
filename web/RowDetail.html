@@ -75,10 +75,10 @@
                 <td> {{day.currentDate | date}}</td>
                 <td ng-model="day.attendanceStatusType"> {{day.attendanceStatusType}}</td>
                 <td> {{day.leaveTypeForThisDate}}</td>
-                <td><input ng-model="day.checkIn" type="time" contenteditable="true" value={{day.checkIn}}>{{day.checkIn
+                <td><input ng-model="day.checkIn" type="time" value={{day.checkIn}}>{{day.checkIn
                     | date:"hh:mm a"}}
                 </td>
-                <td><input ng-model="day.checkOut" type="time" contenteditable="true" value={{day.checkOut}}>{{day.checkOut
+                <td><input ng-model="day.checkOut" type="time" value={{day.checkOut}}>{{day.checkOut
                     | date:"hh:mm a"}}
                 </td>
                 <td>{{day.workTimeForDay}}</td>
@@ -87,25 +87,24 @@
         </table>
         <!--        <a ng-click="selected.item = item">{{ item }}</a> -->
         <!-- Selected: <b>{{ selected.item }}</b>-->
-        <ul>
-            <li ng-repeat="selectedRecord in (selectedRecordsArray = (items.allDateDetailsList | filter: {Selected:true}))">
 
-            </li>
-        </ul>
+        <div ng-repeat="selectedRecord in (selectedRecordsArray = (items.allDateDetailsList | filter: {Selected:true}))">
+
+        </div>
 
 
         <div class="modal-footer">
             <form action="updateRecord" method="post">
                 <input type="hidden" style="outline: none; border: none;" name="empRevalId"
                        value={{items.empRevalId}}>
-                <li ng-repeat="selectedRecord in selectedRecordsArray">
+                <div ng-repeat="selectedRecord in selectedRecordsArray">
                     <input type="hidden" style="outline: none; border: none;" name="currentDate"
                            value={{selectedRecord.currentDate}}>
                     <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkIn"
                            value={{selectedRecord.checkIn}}>
                     <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkOut"
                            value={{selectedRecord.checkOut}}>
-                </li>
+                </div>
 
                 <button class="btn btn-primary" ng-click="update()" ng-disabled="countChecked() == 0">Update Record
                 </button>

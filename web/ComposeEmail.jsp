@@ -111,19 +111,16 @@
                                        value="Full Day Leaves"/>
                                 <ul ng-show=leaveNotAppliedFunc()
                                     style="font-weight: bold; border: none; position: relative;">
-                                    <div name="message4">
                                         <li ng-repeat="day in leaveNotApplied">
-                                            <input type="text" style="outline: none; border: none;"
+                                            <input name="message4" type="text" style="outline: none; border: none;"
                                                    value={{day.currentDate}}>
                                         </li>
-                                    </div>
                                 </ul>
 
                                 <input ng-show=halfDayFunc() type="text"
                                        style="font-weight: bold; color: red; border: none;"
                                        name="message5" value="Half Day Leaves"/>
                                 <ul ng-show=halfDayFunc() style="font-weight: bold; border: none; ">
-                                    g
                                     <li ng-repeat="day in halfDay">
                                         <input type="text" name="message6" style="outline: none; border: none;"
                                                value={{day.currentDate}}>
