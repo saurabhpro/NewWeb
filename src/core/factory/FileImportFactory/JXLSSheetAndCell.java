@@ -1,4 +1,4 @@
-package core.factory.FileImportFactory;
+package core.factory.fileimportfactory;
 
 import jxl.Sheet;
 import jxl.Workbook;

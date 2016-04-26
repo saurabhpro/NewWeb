@@ -32,11 +32,25 @@
             <tr>
                 <td>
                     <form action="/upBiometric" method="post" enctype="multipart/form-data">
-                        <input type="file" name="biometricFile" required><br/>
+                        <input type="file" name="biometricFile" ng-model="bFile" required><br/>
                         <input ng-click="A()" class="btn btn-primary" type="submit" value="Upload Biometric Excel"/>
                     </form>
-                    {{button_A}}
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>Details of Last Biometric File Uploaded </h4>
+                    <b>Time:</b>
+                    <br/>
+                    {{button_A | date}}
+                    <br/>
 
+                    <%
+                        if (session.getAttribute("biometricName") != null) {
+                            out.println("<b> Biometric File Name: </b>");
+                            out.print(session.getAttribute("biometricName"));
+                        }
+                    %>
                 </td>
 
                 <td>
@@ -44,15 +58,42 @@
                         <input type="file" name="salesforceFile" required><br/>
                         <input ng-click="B()" class="btn btn-primary" type="submit" value="Upload Salesforce Excel"/>
                     </form>
-                    {{button_B}}
-
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>Details of Last Salesforce File Uploaded </h4>
+                    <b>Time:</b>
+                    <br/>
+                    {{button_B | date}}
+                    <br/>
+                    <%
+                        if (session.getAttribute("salesforceName") != null) {
+                            out.println("<b> Salesforce File Name: </b>");
+                            out.print(session.getAttribute("salesforceName"));
+                        }
+                    %>
                 </td>
                 <td>
                     <form action="upEmailList" method="post" enctype="multipart/form-data">
                         <input type="file" name="emailListFile" required><br/>
                         <input ng-click="C()" class="btn btn-primary" type="submit" value="Upload Email Excel"/>
                     </form>
-                    {{button_C}}
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <h4>Details of Last Email File Uploaded </h4>
+                    <b>Time:</b>
+                    <br/>
+                    {{button_C | date:'yyyy-MM-dd'}}
+                    <br/>
+                    <%
+                        if (session.getAttribute("emailName") != null) {
+                            out.println("<b> Email List File Name: </b>");
+                            out.print(session.getAttribute("emailName"));
+                        }
+                    %>
                 </td>
                 <td>
                     <form action="upHoliday" method="post" enctype="multipart/form-data">
@@ -61,6 +102,7 @@
                                value="Upload Holiday Excel"/>
                         {{button_D}}
                     </form>
+
                 </td>
 
             </tr>

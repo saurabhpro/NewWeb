@@ -62,9 +62,10 @@
             </section>
 
             <!-- Main content -->
+            <div class="col-md-9">
             <form action="email" method="post">
                 <!-- /.col -->
-                <div class="col-md-9">
+
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Compose New Message</h3>
@@ -122,7 +123,7 @@
                                        style="font-weight: bold; color: red; border: none;"
                                        name="message5" value="Half Day Leaves"/>
                                 <ul ng-show=halfDayFunc() style="font-weight: bold; border: none; ">
-
+                                    g
                                     <li ng-repeat="day in halfDay">
                                         <input type="text" name="message6" style="outline: none; border: none;"
                                                value={{day.currentDate}}>
@@ -147,7 +148,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="box-footer">
+
+                <div class="modal-footer">
                         <div class="pull-right">
                             <!--     <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button> -->
                             <button type="submit" class="btn btn-primary"><i
@@ -157,14 +159,25 @@
 
                     </div>
                     <!-- /.box-footer -->
-                </div>
+
                 <!-- /. box -->
             </form>
+                <button style="float:right;" type="reset" ng-click="cancel()" class="btn btn-warning"><i
+                        class="fa fa-times"></i>
+                    Discard
+                </button>
+            </div>
             <div class="modal-footer">
+            </div>
+
+            <!--
+            <div class="modal-footer">
+
                 <button type="reset" ng-click="cancel()" class="btn btn-default"><i class="fa fa-times"></i>
                     Discard
                 </button>
             </div>
+            -->
         </div>
         <!-- /.col -->
         <!-- /.row -->

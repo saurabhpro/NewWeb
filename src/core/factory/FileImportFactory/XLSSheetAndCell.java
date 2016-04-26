@@ -1,4 +1,4 @@
-package core.factory.FileImportFactory;
+package core.factory.fileimportfactory;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;

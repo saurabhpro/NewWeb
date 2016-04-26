@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,6 +22,26 @@ import static core.model.ProjectConstants.ALL_EMPLOYEE_RECORD_FILE_PATH;
 public class EmailListServlet extends HttpServlet {
     MultipartRequest m;
 
+    public String getFilename() {
+        return filename;
+    }
+
+    public void setFilename(String filename) {
+        this.filename = filename;
+    }
+
+    String filename;
+
+    public String getEmailName() {
+        return emailName;
+    }
+
+    public void setEmailName(String emailName) {
+        this.emailName = emailName;
+    }
+
+    String emailName;
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         File emailListFilePath = new File(ALL_EMPLOYEE_RECORD_FILE_PATH);
 
@@ -32,6 +53,7 @@ public class EmailListServlet extends HttpServlet {
             FileFolderWorker.cleanDirectory(emailListFilePath);
         }
         response.setContentType("text/html");
+        HttpSession session = request.getSession();
         PrintWriter out = response.getWriter();
         /**
          * Constructs a new MultipartRequest to handle the specified request, saving any uploaded files to
@@ -40,7 +62,10 @@ public class EmailListServlet extends HttpServlet {
          * an IOException if there's any problem reading or parsing the request.
          */
         m = new MultipartRequest(request, emailListFilePath.toString(), (1024 * 1024 * 2));
-        m.getFilesystemName("emailListFile");
+        filename = m.getFilesystemName("emailListFile");
+        session.setAttribute("emailName", filename);
+        //System.out.println(nameForUI);
+        System.out.println(filename);
         // out.println(filename + "Successfully Uploaded");
 
         response.sendRedirect("./MainPage.jsp#/UploadFiles");
