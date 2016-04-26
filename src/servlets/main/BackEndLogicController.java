@@ -11,6 +11,7 @@ import core.combined.FinalObject;
 import core.combined.MarkDiscrepancy;
 import core.factory.fileimportfactory.SheetFactory;
 import core.factory.objectfillerfactory.FileObjectFactory;
+import core.model.ProjectConstants;
 import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.appfilereadermodal.EmployeeHrnetDetails;
 import core.model.appfilereadermodal.FileOperations;
@@ -24,6 +25,7 @@ import core.view.PublicHolidayWorkerJson;
 import core.view.WeekendWorkerJson;
 
 import java.io.File;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -84,6 +86,8 @@ public class BackEndLogicController {
         //InitialObjects.empBiometricMap.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
         InitialObjects.hrnetDetailsMap = (Map<String, ArrayList<EmployeeHrnetDetails>>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "salesforce.ser");
 
+        ProjectConstants.setMONTH(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getMonth());
+        ProjectConstants.setYEAR(Year.of(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getYear()));
     }
 
     /**
