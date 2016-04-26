@@ -75,10 +75,11 @@
                 <td> {{day.currentDate | date}}</td>
                 <td ng-model="day.attendanceStatusType"> {{day.attendanceStatusType}}</td>
                 <td> {{day.leaveTypeForThisDate}}</td>
-                <td><input ng-model="day.checkIn" type="time" value={{day.checkIn}}>{{day.checkIn
+
+                <td><input ng-model="day.checkIn" type="time">{{day.checkIn
                     | date:"hh:mm a"}}
                 </td>
-                <td><input ng-model="day.checkOut" type="time" value={{day.checkOut}}>{{day.checkOut
+                <td><input ng-model="day.checkOut" type="time">{{day.checkOut
                     | date:"hh:mm a"}}
                 </td>
                 <td>{{day.workTimeForDay}}</td>
@@ -102,7 +103,7 @@
                            value={{selectedRecord.currentDate}}>
                     <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkIn"
                            value={{selectedRecord.checkIn}}>
-                    <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkOut"
+                    <input contenteditable="true" type="text" style="outline: none; border: none;" name="checkOut"
                            value={{selectedRecord.checkOut}}>
                 </div>
 
