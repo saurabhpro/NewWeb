@@ -1,7 +1,7 @@
 package servlets;
 
 import core.UpdateObjectWithUIEntries;
-import org.apache.commons.io.FileUtils;
+import core.utils.FileFolderWorker;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,11 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
-
-import static core.model.ProjectConstants.FILE_PATH;
 
 /**
  * Created by AroraA on 14-04-2016.
@@ -50,17 +47,9 @@ public class UpdateRecordServlet extends HttpServlet {
 
         new UpdateObjectWithUIEntries().updateObjects(empRevalId, currentDate, checkIn, checkOut);
 
-        File source = new File(FILE_PATH + "JsonFiles");
-        //update this for amrita and home
-        //TODO when deploying on actual server, use this to copy the JSon files directory
-        //File dest = new File("C:\\Users\\kumars\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
-        //File dest = new File("C:\\Users\\Saurabh\\Documents\\GitHub\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
-        File dest = new File("C:\\Users\\Aroraa\\IdeaProjects\\NewWeb\\out\\artifacts\\NewWeb_war_exploded\\JsonFiles");
-        try {
-            FileUtils.copyDirectory(source, dest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        //temporary function to copy json files generated and stored in web local folder to artifact out folder
+        FileFolderWorker.copyFromWebToArtifacts();
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
         requestDispatcher.forward(request, response);
     }

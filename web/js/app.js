@@ -541,12 +541,12 @@ sampleApp.controller("UploadFilesController", function ($scope, $http, $log) {
     };
 
     $scope.checkJson = function () {
-        if (buttonA === "" || buttonB === "" || buttonC === "") {
-            $log.info(biometFile + "hello");
+        if (buttonA == "" || buttonB == "" || buttonC == "") {
+            $log.info(biometricFile + "hello");
             return 0;
         }
         else {
-            $log.info(biometFile + "hi");
+            $log.info("hi");
             return 1;
         }
     };
