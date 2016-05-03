@@ -132,7 +132,7 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
     @Override
     public void displayFile() {
         for (Map.Entry<String, ArrayList<EmployeeHrnetDetails>> entry : hrnetDetailsMap.entrySet())
-            entry.getValue().forEach(EmployeeHrnetDetails::printHrNetDetail);
+            entry.getValue().forEach(EmployeeHrnetDetails::displayHrNetDetail);
     }
 
     private String getID(Cell cell) {

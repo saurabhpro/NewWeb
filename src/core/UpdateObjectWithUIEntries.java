@@ -76,7 +76,7 @@ public class UpdateObjectWithUIEntries {
      * @param checkOut    the check-out time for respective date in string
      */
     private void updateObject(String empRevalId, String currentDate, String checkIn, String checkOut) {
-        if (!checkIn.equals(UNDEFINED) || !checkOut.equals(UNDEFINED)) {
+        if (!checkIn.equals(UNDEFINED) && !checkOut.equals(UNDEFINED)) {
             LocalTime checkInTime = TimeManager.convertToProgramStandardTime(checkIn);
             LocalTime checkOutTime = TimeManager.convertToProgramStandardTime(checkOut);
 

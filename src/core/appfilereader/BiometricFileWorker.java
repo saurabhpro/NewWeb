@@ -85,7 +85,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
     @Override
     public void displayFile() {
         System.out.println(ProjectConstants.getMONTH());
-        empBiometricMap.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
+        empBiometricMap.values().forEach(EmployeeBiometricDetails::displayEmpBiometricDetails);
     }
 
 

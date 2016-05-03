@@ -48,7 +48,7 @@ public class FinalObjectModel extends BasicEmployeeDetails implements Serializab
     }
 
     private void displayArrayList() {
-        employeeHrnetDetails.forEach(EmployeeHrnetDetails::printHrNetDetail);
+        employeeHrnetDetails.forEach(EmployeeHrnetDetails::displayHrNetDetail);
     }
 
     public void displayFinalList() {

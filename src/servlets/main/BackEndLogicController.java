@@ -60,32 +60,37 @@ public class BackEndLogicController {
         AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
         allEmployeesBasicData.readFile();
         //  allEmployeesBasicData.toJsonFile();      //Writes Emails.json
-        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "emailList.ser", InitialObjects.allEmployeeBasicRecordMap);
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + BASIC_EMPLOYEE_RECORD_SERIALIZED, InitialObjects.allEmployeeBasicRecordMap);
 
         // read Biometric Excel File
         fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
         fillObject = objectFactory.dispatch("Biometric");
         fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
-        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "Biometric.ser", InitialObjects.empBiometricMap);
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + BIOMETRIC_SERIALIZED, InitialObjects.empBiometricMap);
 
         // read HRNet Excel File
         fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
         fillObject = objectFactory.dispatch("Hrnet");
         fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
-        Serialize.serialSave(UPDATED_RECORD_OBJECTS + "salesforce.ser", InitialObjects.hrnetDetailsMap);
+        Serialize.serialSave(UPDATED_RECORD_OBJECTS + FINANCIAL_FORCE_SERIALIZED, InitialObjects.hrnetDetailsMap);
 
     }
 
     /**
-     *
+     *Method to read serialized objects, and set month and year according to any one of the biometric employee entry**
      */
     public static void readFromSerialObjects() {
-        InitialObjects.allEmployeeBasicRecordMap = (Map<String, BasicEmployeeDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "emailList.ser");
+        InitialObjects.allEmployeeBasicRecordMap = (Map<String, BasicEmployeeDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + BASIC_EMPLOYEE_RECORD_SERIALIZED);
         //InitialObjects.allEmployeeBasicRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
-        InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "biometric.ser");
-        //InitialObjects.empBiometricMap.values().forEach(EmployeeBiometricDetails::printEmpBiometricDetails);
-        InitialObjects.hrnetDetailsMap = (Map<String, ArrayList<EmployeeHrnetDetails>>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + "salesforce.ser");
+        InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + BIOMETRIC_SERIALIZED);
+        //InitialObjects.empBiometricMap.values().forEach(EmployeeBiometricDetails::displayEmpBiometricDetails);
+        InitialObjects.hrnetDetailsMap = (Map<String, ArrayList<EmployeeHrnetDetails>>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + FINANCIAL_FORCE_SERIALIZED);
 
+        //set month and year which will be required for looping in final object
+        setMonthAndYear();
+    }
+
+    private static void setMonthAndYear() {
         ProjectConstants.setMONTH(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getMonth());
         ProjectConstants.setYEAR(Year.of(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getYear()));
     }

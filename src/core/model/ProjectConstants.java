@@ -37,6 +37,10 @@ public class ProjectConstants {
     public final static String EMP_AVERAGE_MONTHLY_CHECK_OUT = "Avg Monthly Check Out Time";
     public final static String CLARIFICATION_NEEDED = "Clarification Needed";
 
+    public static final String FINANCIAL_FORCE_SERIALIZED = "FinancialForce.ser";
+    public static final String BIOMETRIC_SERIALIZED = "Biometric.ser";
+    public static final String BASIC_EMPLOYEE_RECORD_SERIALIZED = "EmployeeInfo.ser";
+
     public final static String UNDEFINED = "NA";
 
     public static String FILE_PATH = getJsonFilePath();

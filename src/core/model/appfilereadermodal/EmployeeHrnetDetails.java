@@ -37,7 +37,7 @@ public class EmployeeHrnetDetails extends BasicEmployeeDetails {
      *
      * @implNote Remove this from the production release version
      */
-    public void printHrNetDetail() {
+    public void displayHrNetDetail() {
         System.out.print(EMP_FINANCIAL_FORCE_ID + " : " + this.getEmpId());
         System.out.print("\t" + EMP_NAME + " : " + this.getName());
         System.out.print("\t" + EMP_LEAVE_REQUEST_TYPE + " : " + this.attendanceOfLeave.getLeaveType());

@@ -50,7 +50,7 @@ public class EmployeeBiometricDetails extends BasicEmployeeDetails {
     /**
      *
      */
-    public void printEmpBiometricDetails() {
+    public void displayEmpBiometricDetails() {
         System.out.println(EMP_NAME + " : " + this.getName());
         System.out.println(EMP_REVAL_IND_ID + " : " + this.getEmpId());
 
