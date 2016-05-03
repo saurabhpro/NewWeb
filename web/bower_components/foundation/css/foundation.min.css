@@ -5993,7 +5993,7 @@ meta.foundation-mq-topbar {
 
 @media only screen and (min-width: 40.0625em) {
     .top-bar, .top-bar.expanded {
-        background: #333
+        background: white;
     }
 
     .top-bar .title-area, .top-bar-section ul li {
