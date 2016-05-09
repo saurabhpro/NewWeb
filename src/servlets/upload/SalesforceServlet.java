@@ -20,48 +20,47 @@ import static core.model.ProjectConstants.FINANCIAL_FORCE_FILE_PATH;
  */
 @WebServlet(name = "servlets.upload.SalesforceServlet", urlPatterns = {"/upSalesforce"})
 public class SalesforceServlet extends HttpServlet {
-    MultipartRequest m;
+	private String filename;
+	private String salesforceName;
 
-    public String getFilename() {
-        return filename;
-    }
+	public String getFilename() {
+		return filename;
+	}
 
-    public void setFilename(String filename) {
-        this.filename = filename;
-    }
+	public void setFilename(String filename) {
+		this.filename = filename;
+	}
 
-    String filename;
+	public String getSalesforceName() {
+		return salesforceName;
+	}
 
-    public String getSalesforceName() {
-        return salesforceName;
-    }
+	public void setSalesforceName(String salesforceName) {
+		this.salesforceName = salesforceName;
+	}
 
-    public void setSalesforceName(String salesforceName) {
-        this.salesforceName = salesforceName;
-    }
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		File salesforceFilePath = new File(FINANCIAL_FORCE_FILE_PATH);
+		if (!salesforceFilePath.exists()) {
+			FileFolderWorker.makeDirectory(salesforceFilePath);
+		} else {
+			FileFolderWorker.cleanDirectory(salesforceFilePath);
+		}
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		MultipartRequest m = new MultipartRequest(request, salesforceFilePath.toString());
 
-    String salesforceName;
+		// m = new MultipartRequest(request, salesforceFilePath.toString(),
+		// (1024 * 1024 * 2));
+		filename = m.getFilesystemName("salesforceFile");
+		session.setAttribute("salesforceName", filename);
+		// System.out.println(nameForUI);
+		System.out.println(filename);
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        File salesforceFilePath = new File(FINANCIAL_FORCE_FILE_PATH);
-        if (!salesforceFilePath.exists()) {
-            FileFolderWorker.makeDirectory(salesforceFilePath);
-        } else {
-            FileFolderWorker.cleanDirectory(salesforceFilePath);
-        }
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        HttpSession session = request.getSession();
-        m = new MultipartRequest(request, salesforceFilePath.toString());
+		out.println(filename + "Successfully Uploaded");
 
-        //m = new MultipartRequest(request, salesforceFilePath.toString(), (1024 * 1024 * 2));
-        filename = m.getFilesystemName("salesforceFile");
-        session.setAttribute("salesforceName", filename);
-        //System.out.println(nameForUI);
-        System.out.println(filename);
-
-        out.println(filename + "Successfully Uploaded");
-
-        response.sendRedirect("./MainPage.jsp#/UploadFiles");
-    }
+		response.sendRedirect("./MainPage.jsp#/UploadFiles");
+	}
 }

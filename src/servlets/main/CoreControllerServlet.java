@@ -16,20 +16,20 @@ import java.io.IOException;
 @WebServlet(name = "CoreControllerServlet", urlPatterns = {"/core"})
 public class CoreControllerServlet extends HttpServlet {
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        BackEndLogicController.readDataFromSourcesToInitialObjects();
+		BackEndLogicController.readDataFromSourcesToInitialObjects();
 
-        BackEndLogicController.prepareFinalObject();
+		BackEndLogicController.prepareFinalObject();
 
-        BackEndLogicController.generateReportsJson();
+		BackEndLogicController.generateReportsJson();
 
+		// temporary function to copy json files generated and stored in web
+		// local folder to artifact out folder
+		FileFolderWorker.copyFromWebToArtifacts();
 
-        //temporary function to copy json files generated and stored in web local folder to artifact out folder
-        FileFolderWorker.copyFromWebToArtifacts();
-
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
-        requestDispatcher.forward(request, response);
-    }
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
+		requestDispatcher.forward(request, response);
+	}
 
 }

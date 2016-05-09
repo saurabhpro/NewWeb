@@ -33,107 +33,117 @@ import static core.model.ProjectConstants.*;
 
 /**
  * Created by kumars on 4/15/2016.
+ * @author Saurabh
+ * @version 1.5
  */
 public class BackEndLogicController {
-    /**
-     *
-     */
-    static void readDataFromSourcesToInitialObjects() {
+	/**
+	 *
+	 */
+	static void readDataFromSourcesToInitialObjects() {
 
-        FileOperations fileWorker;
-        BasicEmployeeDetails fillObject;
+		FileOperations fileWorker;
+		BasicEmployeeDetails fillObject;
 
-        SheetFactory sheetFactory = new SheetFactory();
-        FileObjectFactory objectFactory = new FileObjectFactory();
+		SheetFactory sheetFactory = new SheetFactory();
+		FileObjectFactory objectFactory = new FileObjectFactory();
 
-        /**
-         * This should run only once when any of the file is uploaded,
-         * create one serial object folder if there is none
-         */
-        File serialPath = new File(UPDATED_RECORD_OBJECTS);
-        if (!serialPath.exists()) FileFolderWorker.makeDirectory(serialPath);
+		/**
+		 * This should run only once when any of the file is uploaded, create
+		 * one serial object folder if there is none
+		 */
+		File serialPath = new File(UPDATED_RECORD_OBJECTS);
+		if (!serialPath.exists())
+			FileFolderWorker.makeDirectory(serialPath);
 
-        setEmployeeRecordFileName(FileFolderWorker.getPathToFile(ALL_EMPLOYEE_RECORD_FILE_PATH));
-        setBiometricFileName(FileFolderWorker.getPathToFile(BIOMETRIC_FILE_PATH));
-        setFinancialForceFileName(FileFolderWorker.getPathToFile(FINANCIAL_FORCE_FILE_PATH));
+		setEmployeeRecordFileName(FileFolderWorker.getPathToFile(ALL_EMPLOYEE_RECORD_FILE_PATH));
+		setBiometricFileName(FileFolderWorker.getPathToFile(BIOMETRIC_FILE_PATH));
+		setFinancialForceFileName(FileFolderWorker.getPathToFile(FINANCIAL_FORCE_FILE_PATH));
 
-        AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
-        allEmployeesBasicData.readFile();
-        //  allEmployeesBasicData.toJsonFile();      //Writes Emails.json
-        Serialize.serialSave(UPDATED_RECORD_OBJECTS + BASIC_EMPLOYEE_RECORD_SERIALIZED, InitialObjects.allEmployeeBasicRecordMap);
+		AllEmployeesBasicData allEmployeesBasicData = new AllEmployeesBasicData(getEmployeeRecordFileName());
+		allEmployeesBasicData.readFile();
+		// allEmployeesBasicData.toJsonFile(); //Writes Emails.json
+		Serialize.serialSave(UPDATED_RECORD_OBJECTS + BASIC_EMPLOYEE_RECORD_SERIALIZED,
+				InitialObjects.allEmployeeBasicRecordMap);
 
-        // read Biometric Excel File
-        fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
-        fillObject = objectFactory.dispatch("Biometric");
-        fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
-        Serialize.serialSave(UPDATED_RECORD_OBJECTS + BIOMETRIC_SERIALIZED, InitialObjects.empBiometricMap);
+		// read Biometric Excel File
+		fileWorker = sheetFactory.dispatch("Jxcel", getBiometricFileName());
+		fillObject = objectFactory.dispatch("Biometric");
+		fileWorker.readFile(fillObject);
+		Serialize.serialSave(UPDATED_RECORD_OBJECTS + BIOMETRIC_SERIALIZED, InitialObjects.empBiometricMap);
 
-        // read HRNet Excel File
-        fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
-        fillObject = objectFactory.dispatch("Hrnet");
-        fileWorker.readFile(fillObject);      //TODO readFile argument should also be a factory
-        Serialize.serialSave(UPDATED_RECORD_OBJECTS + FINANCIAL_FORCE_SERIALIZED, InitialObjects.hrnetDetailsMap);
+		// read HRNet Excel File
+		fileWorker = sheetFactory.dispatch("XLSX", getFinancialForceFileName());
+		fillObject = objectFactory.dispatch("Hrnet");
+		fileWorker.readFile(fillObject);
+		Serialize.serialSave(UPDATED_RECORD_OBJECTS + FINANCIAL_FORCE_SERIALIZED, InitialObjects.hrnetDetailsMap);
 
-    }
+	}
 
-    /**
-     *Method to read serialized objects, and set month and year according to any one of the biometric employee entry**
-     */
-    public static void readFromSerialObjects() {
-        InitialObjects.allEmployeeBasicRecordMap = (Map<String, BasicEmployeeDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + BASIC_EMPLOYEE_RECORD_SERIALIZED);
-        //InitialObjects.allEmployeeBasicRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
-        InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + BIOMETRIC_SERIALIZED);
-        //InitialObjects.empBiometricMap.values().forEach(EmployeeBiometricDetails::displayEmpBiometricDetails);
-        InitialObjects.hrnetDetailsMap = (Map<String, ArrayList<EmployeeHrnetDetails>>) Serialize.serialRetrieve(UPDATED_RECORD_OBJECTS + FINANCIAL_FORCE_SERIALIZED);
+	/**
+	 * Method to read serialized objects, and set month and year according to
+	 * any one of the biometric employee entry**
+	 */
+	public static void readFromSerialObjects() {
+		InitialObjects.allEmployeeBasicRecordMap = (Map<String, BasicEmployeeDetails>) Serialize
+				.serialRetrieve(UPDATED_RECORD_OBJECTS + BASIC_EMPLOYEE_RECORD_SERIALIZED);
+		// InitialObjects.allEmployeeBasicRecordMap.values().forEach(BasicEmployeeDetails::displayBasicInfo);
+		InitialObjects.empBiometricMap = (Map<String, EmployeeBiometricDetails>) Serialize
+				.serialRetrieve(UPDATED_RECORD_OBJECTS + BIOMETRIC_SERIALIZED);
+		// InitialObjects.empBiometricMap.values().forEach(EmployeeBiometricDetails::displayEmpBiometricDetails);
+		InitialObjects.hrnetDetailsMap = (Map<String, ArrayList<EmployeeHrnetDetails>>) Serialize
+				.serialRetrieve(UPDATED_RECORD_OBJECTS + FINANCIAL_FORCE_SERIALIZED);
 
-        //set month and year which will be required for looping in final object
-        setMonthAndYear();
-    }
+		// set month and year which will be required for looping in final object
+		setMonthAndYear();
+	}
 
-    private static void setMonthAndYear() {
-        ProjectConstants.setMONTH(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getMonth());
-        ProjectConstants.setYEAR(Year.of(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getYear()));
-    }
+	private static void setMonthAndYear() {
+		ProjectConstants
+				.setMONTH(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getMonth());
+		ProjectConstants.setYEAR(
+				Year.of(InitialObjects.empBiometricMap.get("R2").attendanceOfDate[0].getCurrentDate().getYear()));
+	}
 
-    /**
-     *
-     */
-    public static void prepareFinalObject() {
-        FinalObject combineFile = new CombineFile();
-        combineFile.combineFiles();
+	/**
+	 *
+	 */
+	public static void prepareFinalObject() {
+		FinalObject combineFile = new CombineFile();
+		combineFile.combineFiles();
 
-        //displayAllDates Combined Files
-        //combineFile.displayCombineFiles();
+		// displayAllDates Combined Files
+		// combineFile.displayCombineFiles();
 
-        // remove discrepancies
-        FinalObject markDiscrepancy = new MarkDiscrepancy();
-        markDiscrepancy.findDiscrepancy();
+		// remove discrepancies
+		FinalObject markDiscrepancy = new MarkDiscrepancy();
+		markDiscrepancy.findDiscrepancy();
 
-    }
+	}
 
-    /**
-     *
-     */
-    public static void generateReportsJson() {
+	/**
+	 *
+	 */
+	public static void generateReportsJson() {
 
-        ListGeneratorModel ob = new PublicHolidayWorkerJson();
-        ob.generate();
-        //ph.displayOnConsole();
-        ob.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
+		ListGeneratorModel ob = new PublicHolidayWorkerJson();
+		ob.generate();
+		// ph.displayOnConsole();
+		ob.createJSONList(PUBLIC_HOLIDAY_WORKER_LIST);
 
-        ob = new AllEmployeeDetailsJson();
-        ob.generate();
-        //c.displayOnConsole();
-        ob.createJSONList(ALL_EMP_WORKERS_LIST);
+		ob = new AllEmployeeDetailsJson();
+		ob.generate();
+		// c.displayOnConsole();
+		ob.createJSONList(ALL_EMP_WORKERS_LIST);
 
-        ob = new OnlyDiscrepancyDetailsJson();
-        ob.generate();
-        //ob.displayOnConsole();
-        ob.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
+		ob = new OnlyDiscrepancyDetailsJson();
+		ob.generate();
+		// ob.displayOnConsole();
+		ob.createJSONList(DISCREPANCY_IN_WORKERS_LIST);
 
-        ob = new WeekendWorkerJson();
-        ob.generate();
-        //ow.displayOnConsole();
-        ob.createJSONList(WEEKEND_WORKERS_LIST);
-    }
+		ob = new WeekendWorkerJson();
+		ob.generate();
+		// ow.displayOnConsole();
+		ob.createJSONList(WEEKEND_WORKERS_LIST);
+	}
 }

@@ -3,7 +3,7 @@ package servlets.filegenerator.pdf;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
-import servlets.filegenerator.FileCreatorModel;
+import servlets.filegenerator.utils.FileCreatorModel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -13,29 +13,28 @@ import java.io.FileOutputStream;
  */
 public class CreateSingleRecordPDF extends DataParserForPDF {
 
-    public static Document createPDFFromJson(String fileName, String key, String fileToUse) {
-        Document document = null;
-        FileCreatorModel ob = new FileCreatorModel();
-        try {
-            document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(fileName));
-            document.open();
+	public static Document createPDFFromJson(String fileName, String key, String fileToUse) {
+		Document document = null;
+		FileCreatorModel ob = new FileCreatorModel();
+		try {
+			document = new Document();
+			PdfWriter.getInstance(document, new FileOutputStream(fileName));
+			document.open();
 
-            addMetaData(document);
+			addMetaData(document);
 
-            setSingleObjectData(key, ob, fileToUse);
+			setSingleObjectData(key, ob, fileToUse);
 
-            addTitlePage(document, ob, fileToUse);
+			addTitlePage(document, ob, fileToUse);
 
-            createTable(document, ob);
+			createTable(document, ob);
 
-            document.close();
+			document.close();
 
-        } catch (FileNotFoundException | DocumentException e) {
-            e.printStackTrace();
-        }
-        return document;
-    }
-
+		} catch (FileNotFoundException | DocumentException e) {
+			e.printStackTrace();
+		}
+		return document;
+	}
 
 }

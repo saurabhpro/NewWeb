@@ -11,46 +11,43 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.util.Arrays;
 
 /**
  * Created by AroraA on 14-04-2016.
+ * @author Amrita & Saurabh
+ * @version 1.2
  */
 @WebServlet(name = "UpdateRecordServlet", urlPatterns = {"/updateRecord"})
 public class UpdateRecordServlet extends HttpServlet {
-    String empRevalId;
-    String[] currentDate;
-    String[] checkIn;
-    String[] checkOut;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        empRevalId = request.getParameter("empRevalId");
-        currentDate = request.getParameterValues("currentDate");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 
-        checkIn = request.getParameterValues("checkIn");
-        checkOut = request.getParameterValues("checkOut");
-        System.out.println(checkOut);
-        System.out.println(checkIn);
-        session.setAttribute("currentDate", currentDate);
-        session.setAttribute("empRevalId", empRevalId);
-        session.setAttribute("checkIn", checkIn);
-        session.setAttribute("checkOut", checkOut);
-        System.out.println(checkOut);
-        System.out.println(checkIn);
+		String empRevalId = request.getParameter("empRevalId");
+		String[] currentDate = request.getParameterValues("currentDate");
+		String[] checkIn = request.getParameterValues("checkIn");
+		String[] checkOut = request.getParameterValues("checkOut");
 
-        response.setContentType("text/html");
-        System.out.println(empRevalId);
-        System.out.println(Arrays.toString(currentDate));
-        System.out.println(Arrays.toString(checkIn));
-        System.out.println(Arrays.toString(checkOut));
+		session.setAttribute("currentDate", currentDate);
+		session.setAttribute("empRevalId", empRevalId);
+		session.setAttribute("checkIn", checkIn);
+		session.setAttribute("checkOut", checkOut);
 
-        new UpdateObjectWithUIEntries().updateObjects(empRevalId, currentDate, checkIn, checkOut);
+		response.setContentType("text/html");
+		/*System.out.println(empRevalId);
+		System.out.println(Arrays.toString(currentDate));
+		System.out.println(Arrays.toString(checkIn));
+		System.out.println(Arrays.toString(checkOut));*/
 
-        //temporary function to copy json files generated and stored in web local folder to artifact out folder
-        FileFolderWorker.copyFromWebToArtifacts();
+		//Function call to update the serialized object for persistence
+		new UpdateObjectWithUIEntries().updateObjects(empRevalId, currentDate, checkIn, checkOut);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
-        requestDispatcher.forward(request, response);
-    }
+		// temporary function to copy json files generated and stored in web
+		// local folder to artifact out folder
+		FileFolderWorker.copyFromWebToArtifacts();
+
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
+		requestDispatcher.forward(request, response);
+	}
 }

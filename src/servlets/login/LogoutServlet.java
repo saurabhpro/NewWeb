@@ -16,22 +16,22 @@ import java.io.PrintWriter;
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/logout"})
 public class LogoutServlet extends HttpServlet {
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
 
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
+		HttpSession session = request.getSession();
+		session.setAttribute("userName", null);
+		request.getSession().invalidate();
+		response.setHeader("Cache-Control", "no-cache, no-store");
+		response.setHeader("Pragma", "no-cache");
+		response.setDateHeader("Expires", 0);
 
-        HttpSession session = request.getSession();
-        session.setAttribute("userName", null);
-        request.getSession().invalidate();
-        response.setHeader("Cache-Control", "no-cache, no-store");
-        response.setHeader("Pragma", "no-cache");
-        response.setDateHeader("Expires", 0);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("./Logout.html");
+		dispatcher.include(request, response);
+		out.close();
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("./Logout.html");
-        dispatcher.include(request, response);
-        out.close();
-
-    }
+	}
 }

@@ -1,5 +1,7 @@
 package servlets.filegenerator;
 
+import servlets.filegenerator.utils.RecordBuilder;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,25 +17,24 @@ import java.io.IOException;
 @WebServlet(name = "SingleRecordServlet", urlPatterns = {"/filegenerator"})
 public class SingleRecordServlet extends HttpServlet {
 
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
-    protected void doGet(HttpServletRequest request,
-                         HttpServletResponse response) throws ServletException, IOException {
+		final ServletContext servletContext = request.getSession().getServletContext();
 
-        final ServletContext servletContext = request.getSession().getServletContext();
+		final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
 
-        final File tempDirectory = (File) servletContext.getAttribute("javax.servlet.context.tempdir");
+		final String temporaryFilePath = tempDirectory.getAbsolutePath();
 
-        final String temporaryFilePath = tempDirectory.getAbsolutePath();
+		String id = request.getParameter("id");
+		String fileToUse = request.getParameter("fileToUse");
+		String excelOrPdf;
 
-        String id = request.getParameter("id");
-        String fileToUse = request.getParameter("fileToUse");
-        String excelOrPdf;
-
-        try {
-            excelOrPdf = "PDF";
-            RecordBuilder.buildSingleRecord(id, fileToUse, excelOrPdf, temporaryFilePath, response);
-        } catch (Exception e1) {
-            e1.printStackTrace();
-        }
-    }
+		try {
+			excelOrPdf = "PDF";
+			RecordBuilder.buildSingleRecord(id, fileToUse, excelOrPdf, temporaryFilePath, response);
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
 }

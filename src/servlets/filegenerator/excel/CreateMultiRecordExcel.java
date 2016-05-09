@@ -19,88 +19,85 @@ import static core.model.ProjectConstants.FILE_PATH;
  * Created by kumars on 4/12/2016.
  */
 public class CreateMultiRecordExcel {
-    private static XSSFWorkbook workbook;
+	private static XSSFWorkbook workbook;
 
+	public static void fromJsonToExcel(String fileName, List<String> listOfIds, String fileToUse) {
+		workbook = new XSSFWorkbook();
+		XSSFSheet sheet = workbook.createSheet("Employee Record");
 
-    public static void fromJsonToExcel(String fileName, List<String> listOfIds, String fileToUse) {
-        workbook = new XSSFWorkbook();
-        XSSFSheet sheet = workbook.createSheet("Employee Record");
+		if (listOfIds.get(0) == null) {
+			makeAll(fileName, fileToUse, sheet);
+		} else
+			makeSpecifiedExcel(fileName, listOfIds, fileToUse, sheet);
+	}
 
-        if (listOfIds.get(0) == null) {
-            makeAll(fileName, fileToUse, sheet);
-        } else
-            makeSpecifiedExcel(fileName, listOfIds, fileToUse, sheet);
-    }
+	private static void makeAll(String fileName, String fileToUse, XSSFSheet sheet) {
+		try {
+			JSONParser parser = new JSONParser();
+			Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
+			JSONObject jsonObject = (JSONObject) a;
+			Set s = jsonObject.keySet();
 
-    private static void makeAll(String fileName, String fileToUse, XSSFSheet sheet) {
-        try {
-            JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
-            JSONObject jsonObject = (JSONObject) a;
-            Set s = jsonObject.keySet();
+			int rowNumber = 0;
+			for (Object value : s) {
+				String jKey = (String) value;
+				/*
+				 * First Row for Each Employee
+				 */
+				// System.out.println(jKey);
+				DataParserForExcel.setStyles(workbook);
+				DataParserForExcel.createHeaderRowForMonthlyData(sheet, rowNumber);
+				rowNumber = DataParserForExcel.createDailyData(sheet, jsonObject, rowNumber, jKey);
+			}
 
-            int rowNumber = 0;
-            for (Object value : s) {
-                String jKey = (String) value;
-                /*
-                First Row for Each Employee
-                 */
-                //  System.out.println(jKey);
-                DataParserForExcel.setStyles(workbook);
-                DataParserForExcel.createHeaderRowForMonthlyData(sheet, rowNumber);
-                rowNumber = DataParserForExcel.createDailyData(sheet, jsonObject, rowNumber, jKey);
-            }
+			for (int i = 0; i < 7; i++) {
+				sheet.autoSizeColumn(i);
+			}
 
+			FileOutputStream fos = new FileOutputStream(new File(fileName));
+			workbook.write(fos);
+			fos.flush();
+			fos.close();
 
-            for (int i = 0; i < 7; i++) {
-                sheet.autoSizeColumn(i);
-            }
+		} catch (ParseException | IOException e) {
+			e.printStackTrace();
+		}
+	}
 
-            FileOutputStream fos = new FileOutputStream(new File(fileName));
-            workbook.write(fos);
-            fos.flush();
-            fos.close();
+	private static void makeSpecifiedExcel(String fileName, List<String> listOfIds, String fileToUse, XSSFSheet sheet) {
+		try {
+			JSONParser parser = new JSONParser();
+			Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
+			JSONObject jsonObject = (JSONObject) a;
+			Set s = jsonObject.keySet();
 
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
-        }
-    }
+			int rowNumber = 0;
+			for (String webKey : listOfIds) {
+				for (Object value : s) {
+					String jKey = (String) value;
+					// System.out.println("@Row = " + rowNumber);
+					if (jKey.equals(webKey)) {
+						/*
+						 * First Row for Each Employee
+						 */
+						DataParserForExcel.setStyles(workbook);
+						DataParserForExcel.createHeaderRowForMonthlyData(sheet, rowNumber);
+						rowNumber = DataParserForExcel.createDailyData(sheet, jsonObject, rowNumber, jKey);
+					}
+				}
+			}
 
-    private static void makeSpecifiedExcel(String fileName, List<String> listOfIds, String fileToUse, XSSFSheet sheet) {
-        try {
-            JSONParser parser = new JSONParser();
-            Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
-            JSONObject jsonObject = (JSONObject) a;
-            Set s = jsonObject.keySet();
+			for (int i = 0; i < 7; i++) {
+				sheet.autoSizeColumn(i);
+			}
 
-            int rowNumber = 0;
-            for (String webKey : listOfIds) {
-                for (Object value : s) {
-                    String jKey = (String) value;
-                    // System.out.println("@Row = " + rowNumber);
-                    if (jKey.equals(webKey)) {
-                        /*
-                        First Row for Each Employee
-                         */
-                        DataParserForExcel.setStyles(workbook);
-                        DataParserForExcel.createHeaderRowForMonthlyData(sheet, rowNumber);
-                        rowNumber = DataParserForExcel.createDailyData(sheet, jsonObject, rowNumber, jKey);
-                    }
-                }
-            }
+			FileOutputStream fos = new FileOutputStream(new File(fileName));
+			workbook.write(fos);
+			fos.flush();
+			fos.close();
 
-            for (int i = 0; i < 7; i++) {
-                sheet.autoSizeColumn(i);
-            }
-
-            FileOutputStream fos = new FileOutputStream(new File(fileName));
-            workbook.write(fos);
-            fos.flush();
-            fos.close();
-
-        } catch (ParseException | IOException e) {
-            e.printStackTrace();
-        }
-    }
+		} catch (ParseException | IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
-

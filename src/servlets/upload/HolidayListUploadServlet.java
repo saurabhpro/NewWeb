@@ -17,27 +17,23 @@ import java.io.PrintWriter;
  */
 @WebServlet(name = "servlets.upload.HolidayListUploadServlet", urlPatterns = {"/upHoliday"})
 public class HolidayListUploadServlet extends HttpServlet {
-    MultipartRequest m;
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        File holidayListFilePath = new File("C:\\ProjectFiles\\HolidayList");
-        if (!holidayListFilePath.exists()) {
-            FileFolderWorker.makeDirectory(holidayListFilePath);
-        } else {
-            FileFolderWorker.cleanDirectory(holidayListFilePath);
-        }
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
-        m = new MultipartRequest(request, holidayListFilePath.toString());
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		File holidayListFilePath = new File("C:\\ProjectFiles\\HolidayList");
+		if (!holidayListFilePath.exists()) {
+			FileFolderWorker.makeDirectory(holidayListFilePath);
+		} else {
+			FileFolderWorker.cleanDirectory(holidayListFilePath);
+		}
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		MultipartRequest m = new MultipartRequest(request, holidayListFilePath.toString());
 
-        String filename = m.getFilesystemName("holidayListFile");
-        out.println(filename + "Successfully Uploaded");
+		String filename = m.getFilesystemName("holidayListFile");
+		out.println(filename + "Successfully Uploaded");
 
-        response.sendRedirect("./MainPage.jsp#/UploadFiles");
+		response.sendRedirect("./MainPage.jsp#/UploadFiles");
 
-    }
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-    }
+	}
 }

@@ -5,7 +5,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import servlets.filegenerator.FileCreatorModel;
+import servlets.filegenerator.utils.FileCreatorModel;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -20,44 +20,43 @@ import static core.model.ProjectConstants.FILE_PATH;
  */
 public class CreateMultipleRecordPDF extends DataParserForPDF {
 
-    public static Document createPDF(String fileName, List<String> listOfIds, String fileToUse) {
-        Document document = null;
-        FileCreatorModel ob;
-        try {
-            document = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream(fileName));
-            document.open();
+	public static Document createPDF(String fileName, List<String> listOfIds, String fileToUse) {
+		Document document = null;
+		FileCreatorModel ob;
+		try {
+			document = new Document();
+			PdfWriter.getInstance(document, new FileOutputStream(fileName));
+			document.open();
 
-            addMetaData(document);
+			addMetaData(document);
 
-            if (listOfIds.get(0) == null) {
-                try {
-                    JSONParser parser = new JSONParser();
-                    Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
-                    JSONObject jsonObject = (JSONObject) a;
-                    Set s = jsonObject.keySet();
+			if (listOfIds.get(0) == null) {
+				try {
+					JSONParser parser = new JSONParser();
+					Object a = parser.parse(new FileReader(FILE_PATH + "JsonFiles\\" + fileToUse + ".json"));
+					JSONObject jsonObject = (JSONObject) a;
+					Set s = jsonObject.keySet();
 
-                    for (Object value : s) {
-                        ob = new FileCreatorModel();
-                        addData(jsonObject, ob, (String) value);
+					for (Object value : s) {
+						ob = new FileCreatorModel();
+						addData(jsonObject, ob, (String) value);
 
-                        addTitlePage(document, ob, fileToUse);
+						addTitlePage(document, ob, fileToUse);
 
-                        createTable(document, ob);
-                        document.newPage();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            } else
-                DataParserForPDF.setMultipleObject(listOfIds, document, fileToUse);
+						createTable(document, ob);
+						document.newPage();
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else
+				DataParserForPDF.setMultipleObject(listOfIds, document, fileToUse);
 
-            document.close();
-        } catch (FileNotFoundException | DocumentException e) {
-            e.printStackTrace();
-        }
-        return document;
-    }
-
+			document.close();
+		} catch (FileNotFoundException | DocumentException e) {
+			e.printStackTrace();
+		}
+		return document;
+	}
 
 }
