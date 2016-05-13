@@ -27,10 +27,16 @@ public class UpdateObjectWithUIEntries {
 
 	/**
 	 * Constructor that initializes the initial objects using serialized files
+	 * in case of any exception new serialized objects are created
 	 */
 	public UpdateObjectWithUIEntries() {
-		// Method that reads serialized objects and updates the initial objects
-		BackEndLogicController.readFromSerialObjects();
+		try {
+			// Method that reads serialized objects and updates the initial objects
+			BackEndLogicController.readFromSerialObjects();
+		} catch (Exception e) {
+			//In case no serialized object was found, create initial objects from scratch and save as serialized
+			BackEndLogicController.readDataFromSourcesToInitialObjects();
+		}
 	}
 
 	/**

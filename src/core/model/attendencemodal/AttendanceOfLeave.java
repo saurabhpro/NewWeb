@@ -8,41 +8,41 @@ import java.time.LocalDate;
  */
 //
 public class AttendanceOfLeave implements Serializable {
-    private LeaveType leaveType = null;
-    private LocalDate startDate = null;
-    private LocalDate endDate = null;
-    private double absenceTime;
+	private LeaveType leaveType = null;
+	private LocalDate startDate = null;
+	private LocalDate endDate = null;
+	private double absenceTime;
 
-    public double getAbsenceTime() {
-        return absenceTime;
-    }
+	public double getAbsenceTime() {
+		return absenceTime;
+	}
 
-    public void setAbsenceTime(double absenceTime) {
-        this.absenceTime = absenceTime;
-    }
+	public void setAbsenceTime(double absenceTime) {
+		this.absenceTime = absenceTime;
+	}
 
-    public LocalDate getEndDate() {
-        return endDate;
-    }
+	public LocalDate getEndDate() {
+		return endDate;
+	}
 
-    public void setEndDate(LocalDate endDate) {
-        this.endDate = endDate;
-    }
+	public void setEndDate(LocalDate endDate) {
+		this.endDate = endDate;
+	}
 
-    public LeaveType getLeaveType() {
-        return leaveType;
-    }
+	public LeaveType getLeaveType() {
+		return leaveType;
+	}
 
-    public void setLeaveType(LeaveType leaveType) {
-        this.leaveType = leaveType;
-    }
+	public void setLeaveType(LeaveType leaveType) {
+		this.leaveType = leaveType;
+	}
 
-    public LocalDate getStartDate() {
-        return startDate;
-    }
+	public LocalDate getStartDate() {
+		return startDate;
+	}
 
-    public void setStartDate(LocalDate startDate) {
-        this.startDate = startDate;
-    }
+	public void setStartDate(LocalDate startDate) {
+		this.startDate = startDate;
+	}
 
 }

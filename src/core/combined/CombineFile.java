@@ -1,6 +1,5 @@
 package core.combined;
 
-
 import core.appfilereader.BiometricFileWorker;
 import core.appfilereader.HrnetFileWorker;
 import core.model.appfilereadermodal.EmployeeBiometricDetails;
@@ -23,77 +22,78 @@ import static core.model.attendencemodal.AttendanceStatusType.*;
  * @version 1.4
  */
 public class CombineFile extends FinalObject {
-    /**
-     * Constructor that initializes the Final Object Map with a Treemap with string Comparator
-     *
-     * @see FinalObject
-     */
-    public CombineFile() {
-        EmpCombinedMap = new TreeMap<>();
-    }
+	/**
+	 * Constructor that initializes the Final Object Map with a Treemap with
+	 * string Comparator
+	 *
+	 * @see FinalObject
+	 */
+	public CombineFile() {
+		EmpCombinedMap = new TreeMap<>();
+	}
 
-    /**
-     * Method that updates Biometric File Object's missing data with information extracted from Financial Force File
-     *
-     * @see CombineFileHelperUtility
-     */
-    public final void combineFiles() {
+	/**
+	 * Method that updates Biometric File Object's missing data with information
+	 * extracted from Financial Force File
+	 *
+	 * @see CombineFileHelperUtility
+	 */
+	public final void combineFiles() {
 
-        // update the employeemodal in biometric file
-        CombineFileHelperUtility.leaveCountAndHolidayUpdater();
-        CombineFileHelperUtility.unaccountedAbsentStatusUpdater();
+		// update the employeemodal in biometric file
+		CombineFileHelperUtility.leaveCountAndHolidayUpdater();
+		CombineFileHelperUtility.unaccountedAbsentStatusUpdater();
 
-        // Combine Financial Force and Biometric Files object
-        for (EmployeeBiometricDetails empObj : BiometricFileWorker.empBiometricMap.values()) {
-            if (empObj.getNumberOfEntriesInHrNet() == 0) {
-                EmpCombinedMap.put(empObj.getEmpId(),
-                        new FinalObjectModel(empObj.getEmpId(), 0, empObj.attendanceOfDate, null));
-            } else {
-                Set<String> hrKeySet = HrnetFileWorker.hrnetDetailsMap.keySet();
+		// Combine Financial Force and Biometric Files object
+		for (EmployeeBiometricDetails empObj : BiometricFileWorker.empBiometricMap.values()) {
+			if (empObj.getNumberOfEntriesInHrNet() == 0) {
+				EmpCombinedMap.put(empObj.getEmpId(),
+						new FinalObjectModel(empObj.getEmpId(), 0, empObj.attendanceOfDate, null));
+			} else {
+				Set<String> hrKeySet = HrnetFileWorker.hrnetDetailsMap.keySet();
 
-                for (String hrKey : hrKeySet) {
-                    String tempSalesForceId = new BasicEmployeeDetails().getSalesForceId(empObj.getEmpId());
+				for (String hrKey : hrKeySet) {
+					String tempSalesForceId = new BasicEmployeeDetails().getSalesForceId(empObj.getEmpId());
 
-                    if (tempSalesForceId != null && hrKey.equals(tempSalesForceId)) {
+					if (tempSalesForceId != null && hrKey.equals(tempSalesForceId)) {
 
-                        ArrayList<EmployeeHrnetDetails> hrnet = HrnetFileWorker.hrnetDetailsMap.get(hrKey);
-                        EmpCombinedMap.put(empObj.getEmpId(),
-                                new FinalObjectModel(empObj.getEmpId(), empObj.getNumberOfEntriesInHrNet(),
-                                        empObj.attendanceOfDate, hrnet));
-                    }
-                }
-            }
-        }
+						ArrayList<EmployeeHrnetDetails> hrnet = HrnetFileWorker.hrnetDetailsMap.get(hrKey);
+						EmpCombinedMap.put(empObj.getEmpId(), new FinalObjectModel(empObj.getEmpId(),
+								empObj.getNumberOfEntriesInHrNet(), empObj.attendanceOfDate, hrnet));
+					}
+				}
+			}
+		}
 
-        EmpCombinedMap.values().forEach(this::countAttendanceStatusType);
-    }
+		EmpCombinedMap.values().forEach(this::countAttendanceStatusType);
+	}
 
-    /**
-     * Method to display the result of combining Biometric and Financial Force File Objects
-     */
-    public void displayCombineFiles() {
-        System.out.println(getMONTH());
-        EmpCombinedMap.values().forEach(FinalObjectModel::displayFinalList);
-    }
+	/**
+	 * Method to display the result of combining Biometric and Financial Force
+	 * File Objects
+	 */
+	public void displayCombineFiles() {
+		System.out.println(getMONTH());
+		EmpCombinedMap.values().forEach(FinalObjectModel::displayFinalList);
+	}
 
-    private void countAttendanceStatusType(FinalObjectModel emp) {
-        // to be removed today
-        for (int j = 0; j < getMONTH().maxLength(); j++) {
+	private void countAttendanceStatusType(FinalObjectModel emp) {
+		// to be removed today
+		for (int j = 0; j < getMONTH().maxLength(); j++) {
 
-            // AMRITA
-            if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
-                emp.setCount(0);
-            else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(PRESENT))
-                emp.setCount(1);
-            else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(PUBLIC_HOLIDAY))
-                emp.setCount(2);
-            else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(WEEKEND_HOLIDAY))
-                emp.setCount(3);
-            else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))
-                emp.setCount(4);
-        }
+			// AMRITA
+			if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
+				emp.setCount(0);
+			else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(PRESENT))
+				emp.setCount(1);
+			else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(PUBLIC_HOLIDAY))
+				emp.setCount(2);
+			else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(WEEKEND_HOLIDAY))
+				emp.setCount(3);
+			else if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))
+				emp.setCount(4);
+		}
 
-    }
-
+	}
 
 }

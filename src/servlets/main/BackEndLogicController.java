@@ -40,7 +40,7 @@ public class BackEndLogicController {
 	/**
 	 *
 	 */
-	static void readDataFromSourcesToInitialObjects() {
+	public static void readDataFromSourcesToInitialObjects() {
 
 		FileOperations fileWorker;
 		BasicEmployeeDetails fillObject;

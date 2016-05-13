@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eclipse-userlibraries>
+  <library name="Java EE 6-Java EE 6">
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jackson-annotations-2.7.1.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jackson-databind-2.7.1-1.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/poi-ooxml-schemas-3.13-20150929.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/poi-ooxml-3.13-20150929.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/xmlbeans-2.6.0.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jxl.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/poi-3.13-20150929.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/log4j-1.2.17.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jackson-core-2.7.1.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/itextpdf-5.5.9.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/annotations-java8.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/filegen-lib/json-simple-1.1.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/mail.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/commons-io-2.4.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/cos.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/activation.jar" />
+  </library>
+  <library name="commons-io-2.4">
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/commons-io-2.4.jar" />
+  </library>
+  <library name="core-lib">
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jxl.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/log4j-1.2.17.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/xmlbeans-2.6.0.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/poi-3.13-20150929.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jackson-core-2.7.1.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/poi-ooxml-3.13-20150929.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jackson-databind-2.7.1-1.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/jackson-annotations-2.7.1.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/core-lib/poi-ooxml-schemas-3.13-20150929.jar" />
+  </library>
+  <library name="cos">
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/cos.jar" />
+  </library>
+  <library name="filegen-lib">
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/filegen-lib/json-simple-1.1.jar" />
+  </library>
+  <library name="lib">
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/cos.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/mail.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/activation.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/commons-io-2.4.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/itextpdf-5.5.9.jar" />
+    <archive path="C:/Users/Saurabh/Documents/GitHub/NewWeb/lib/annotations-java8.jar" />
+  </library>
+  <library name="angular">
+    <archive path="C:/Users/Saurabh/.IntelliJIdea2016.1/config/javascript/extLibs/http_ajax.googleapis.com_ajax_libs_angularjs_1.0.7_angular.js" />
+  </library>
+  <library name="angular-animate">
+    <archive path="C:/Users/Saurabh/.IntelliJIdea2016.1/config/javascript/extLibs/http_ajax.googleapis.com_ajax_libs_angularjs_1.4.8_angular-animate.js" />
+  </library>
+</eclipse-userlibraries>
+

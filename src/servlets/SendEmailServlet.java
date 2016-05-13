@@ -105,9 +105,9 @@ public class SendEmailServlet extends HttpServlet implements java.io.Serializabl
 		 * 
 		 * for( String st : message) finalMessage+= st;
 		 */
-		String to = "amrita.arora@reval.com";
+		//String to = "amrita.arora@reval.com";
 		// to = "saurabh.kumar@reval.com";
-		// to = request.getParameter("to");
+		String to = request.getParameter("to");
 		// String to = "amrita.arora.1192@gmail.com";
 
 		String from = config.getInitParameter("from");

@@ -1,60 +1,40 @@
 {
-  "R104": {
-    "empRevalId": "R104",
-    "empSalesforceId": "1482",
-    "empName": "Ashish Bansal",
-    "empEmailId": "ashish.bansal@reval.com",
-    "empAvgCheckInTimeForMonth": "11:01",
-    "empAvgCheckOutTimeForMonth": "18:32",
-    "empAvgWorkHoursForMonth": "08:51",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "19:39",
-        "checkOut": "00:41",
-        "workTimeForDay": "05:02"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
   "R120": {
     "empRevalId": "R120",
     "empSalesforceId": "1609",
     "empName": "Purwaaj Ahuja",
     "empEmailId": "purwaaj.ahuja@reval.com",
-    "empAvgCheckInTimeForMonth": "10:40",
-    "empAvgCheckOutTimeForMonth": "17:53",
-    "empAvgWorkHoursForMonth": "08:43",
+    "empAvgCheckInTimeForMonth": "10:12",
+    "empAvgCheckOutTimeForMonth": "19:55",
+    "empAvgWorkHoursForMonth": "09:42",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "14:30",
-        "checkOut": "00:08",
-        "workTimeForDay": "09:38"
+        "checkIn": "11:40",
+        "checkOut": "23:27",
+        "workTimeForDay": "11:47"
       }
     ],
     "empIfClarificationNeeded": true
   },
-  "R125": {
-    "empRevalId": "R125",
-    "empSalesforceId": "1748",
-    "empName": "Devashish Sharma",
-    "empEmailId": "devashish.sharma@reval.com",
-    "empAvgCheckInTimeForMonth": "10:01",
-    "empAvgCheckOutTimeForMonth": "17:05",
-    "empAvgWorkHoursForMonth": "08:34",
+  "R127": {
+    "empRevalId": "R127",
+    "empSalesforceId": "1754",
+    "empName": "Narender Jangra",
+    "empEmailId": "narender.jangra@reval.com",
+    "empAvgCheckInTimeForMonth": "10:26",
+    "empAvgCheckOutTimeForMonth": "19:52",
+    "empAvgWorkHoursForMonth": "09:25",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "20:19",
-        "checkOut": "00:29",
-        "workTimeForDay": "04:10"
+        "checkIn": "12:10",
+        "checkOut": "20:16",
+        "workTimeForDay": "08:06"
       }
     ],
     "empIfClarificationNeeded": true
@@ -64,17 +44,17 @@
     "empSalesforceId": "1842",
     "empName": "Anamika Das",
     "empEmailId": "anamika.das@reval.com",
-    "empAvgCheckInTimeForMonth": "10:21",
-    "empAvgCheckOutTimeForMonth": "16:58",
-    "empAvgWorkHoursForMonth": "08:12",
+    "empAvgCheckInTimeForMonth": "10:33",
+    "empAvgCheckOutTimeForMonth": "19:20",
+    "empAvgWorkHoursForMonth": "08:46",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "19:46",
-        "checkOut": "00:45",
-        "workTimeForDay": "04:59"
+        "checkIn": "13:21",
+        "checkOut": "21:10",
+        "workTimeForDay": "07:49"
       }
     ],
     "empIfClarificationNeeded": true
@@ -84,405 +64,141 @@
     "empSalesforceId": "2034",
     "empName": "Ankita Chand",
     "empEmailId": "ankita.chand@reval.com",
-    "empAvgCheckInTimeForMonth": "09:24",
-    "empAvgCheckOutTimeForMonth": "16:46",
-    "empAvgWorkHoursForMonth": "08:37",
+    "empAvgCheckInTimeForMonth": "08:52",
+    "empAvgCheckOutTimeForMonth": "17:44",
+    "empAvgWorkHoursForMonth": "08:51",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-20",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "20:19",
-        "checkOut": "00:29",
-        "workTimeForDay": "04:10"
+        "checkIn": "10:11",
+        "checkOut": "15:28",
+        "workTimeForDay": "05:17"
       }
     ],
-    "empIfClarificationNeeded": true
+    "empIfClarificationNeeded": false
   },
   "R142": {
     "empRevalId": "R142",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "10:36",
-    "empAvgCheckOutTimeForMonth": "18:20",
-    "empAvgWorkHoursForMonth": "09:04",
+    "empSalesforceId": "2030",
+    "empName": "Sahil Wadhwa",
+    "empEmailId": "sahil.wadhwa@reval.com",
+    "empAvgCheckInTimeForMonth": "10:01",
+    "empAvgCheckOutTimeForMonth": "20:00",
+    "empAvgWorkHoursForMonth": "09:59",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "19:46",
-        "checkOut": "00:45",
-        "workTimeForDay": "04:59"
+        "checkIn": "11:34",
+        "checkOut": "23:36",
+        "workTimeForDay": "12:02"
       }
     ],
     "empIfClarificationNeeded": true
   },
   "R143": {
     "empRevalId": "R143",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "09:18",
-    "empAvgCheckOutTimeForMonth": "16:49",
-    "empAvgWorkHoursForMonth": "08:46",
+    "empSalesforceId": "2031",
+    "empName": "Inderjeet Kumar",
+    "empEmailId": "inderjeet.kumar@reval.com",
+    "empAvgCheckInTimeForMonth": "08:48",
+    "empAvgCheckOutTimeForMonth": "18:12",
+    "empAvgWorkHoursForMonth": "09:24",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-05",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "19:13",
-        "checkOut": "00:45",
-        "workTimeForDay": "05:32"
+        "checkIn": "12:32",
+        "checkOut": "20:29",
+        "workTimeForDay": "07:57"
+      },
+      {
+        "currentDate": "2016-03-19",
+        "attendanceStatusType": "WEEKEND_HOLIDAY",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "10:25",
+        "checkOut": "23:37",
+        "workTimeForDay": "13:12"
+      }
+    ],
+    "empIfClarificationNeeded": true
+  },
+  "R144": {
+    "empRevalId": "R144",
+    "empSalesforceId": "2032",
+    "empName": "Jyotnain Kaur",
+    "empEmailId": "jyotnain.kaur@reval.com",
+    "empAvgCheckInTimeForMonth": "09:19",
+    "empAvgCheckOutTimeForMonth": "17:56",
+    "empAvgWorkHoursForMonth": "08:37",
+    "allDateDetailsList": [
+      {
+        "currentDate": "2016-03-05",
+        "attendanceStatusType": "WEEKEND_HOLIDAY",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "09:27",
+        "checkOut": "18:04",
+        "workTimeForDay": "08:37"
+      },
+      {
+        "currentDate": "2016-03-19",
+        "attendanceStatusType": "WEEKEND_HOLIDAY",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "10:25",
+        "checkOut": "18:42",
+        "workTimeForDay": "08:17"
       }
     ],
     "empIfClarificationNeeded": true
   },
   "R145": {
     "empRevalId": "R145",
-    "empSalesforceId": "",
+    "empSalesforceId": "2033",
     "empName": "Khushboo Sood",
     "empEmailId": "khushboo.sood@reval.com",
-    "empAvgCheckInTimeForMonth": "09:13",
-    "empAvgCheckOutTimeForMonth": "16:26",
-    "empAvgWorkHoursForMonth": "08:33",
+    "empAvgCheckInTimeForMonth": "08:34",
+    "empAvgCheckOutTimeForMonth": "17:38",
+    "empAvgWorkHoursForMonth": "09:04",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-05",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "20:31",
-        "checkOut": "00:19",
-        "workTimeForDay": "03:48"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R147": {
-    "empRevalId": "R147",
-    "empSalesforceId": "2043",
-    "empName": "Lalit Sharma",
-    "empEmailId": "lalit.sharma@reval.com",
-    "empAvgCheckInTimeForMonth": "10:12",
-    "empAvgCheckOutTimeForMonth": "12:07",
-    "empAvgWorkHoursForMonth": "13:55",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-09",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:32",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:28"
+        "checkIn": "09:27",
+        "checkOut": "18:03",
+        "workTimeForDay": "08:36"
       },
       {
-        "currentDate": "2016-04-23",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:48",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:12"
+        "checkIn": "10:25",
+        "checkOut": "18:42",
+        "workTimeForDay": "08:17"
       }
     ],
     "empIfClarificationNeeded": true
   },
-  "R148": {
-    "empRevalId": "R148",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "08:56",
-    "empAvgCheckOutTimeForMonth": "16:21",
-    "empAvgWorkHoursForMonth": "12:57",
+  "R56": {
+    "empRevalId": "R56",
+    "empSalesforceId": "296",
+    "empName": "Ankit Pande",
+    "empEmailId": "ankit.pande@reval.com",
+    "empAvgCheckInTimeForMonth": "11:00",
+    "empAvgCheckOutTimeForMonth": "19:31",
+    "empAvgWorkHoursForMonth": "08:30",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-09",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:35",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:25"
-      },
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:58",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:02"
-      },
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:42",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:18"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R149": {
-    "empRevalId": "R149",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "11:18",
-    "empAvgCheckOutTimeForMonth": "12:19",
-    "empAvgWorkHoursForMonth": "13:01",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-09",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:32",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:28"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R150": {
-    "empRevalId": "R150",
-    "empSalesforceId": "9999",
-    "empName": "Inderjeet Kumar",
-    "empEmailId": "inderjeet.kumar@reval.com",
-    "empAvgCheckInTimeForMonth": "09:30",
-    "empAvgCheckOutTimeForMonth": "13:27",
-    "empAvgWorkHoursForMonth": "14:14",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-09",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:32",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:28"
-      },
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:48",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:12"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R151": {
-    "empRevalId": "R151",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "09:40",
-    "empAvgCheckOutTimeForMonth": "15:19",
-    "empAvgWorkHoursForMonth": "12:30",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-09",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:36",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:24"
-      },
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:58",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:02"
-      },
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:43",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:17"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R152": {
-    "empRevalId": "R152",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "09:26",
-    "empAvgCheckOutTimeForMonth": "15:38",
-    "empAvgWorkHoursForMonth": "12:36",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-09",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:36",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:24"
-      },
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:58",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:02"
-      },
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:43",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:17"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R153": {
-    "empRevalId": "R153",
-    "empSalesforceId": "9999",
-    "empName": "Sahil Wadhwa",
-    "empEmailId": "sahil.wadhwa@reval.com",
-    "empAvgCheckInTimeForMonth": "08:31",
-    "empAvgCheckOutTimeForMonth": "11:55",
-    "empAvgWorkHoursForMonth": "14:28",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:42",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:18"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R154": {
-    "empRevalId": "R154",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "09:28",
-    "empAvgCheckOutTimeForMonth": "13:32",
-    "empAvgWorkHoursForMonth": "14:21",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:42",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:18"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R155": {
-    "empRevalId": "R155",
-    "empSalesforceId": "9999",
-    "empName": "Sumit Tongya",
-    "empEmailId": "sumit.tongya@reval.com",
-    "empAvgCheckInTimeForMonth": "09:25",
-    "empAvgCheckOutTimeForMonth": "15:49",
-    "empAvgWorkHoursForMonth": "12:48",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-09",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:35",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:25"
-      },
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:59",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:01"
-      },
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:43",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:17"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R156": {
-    "empRevalId": "R156",
-    "empSalesforceId": null,
-    "empName": null,
-    "empEmailId": null,
-    "empAvgCheckInTimeForMonth": "10:15",
-    "empAvgCheckOutTimeForMonth": "12:54",
-    "empAvgWorkHoursForMonth": "13:50",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-09",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:32",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:28"
-      },
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "05:47",
-        "checkOut": "00:00",
-        "workTimeForDay": "18:13"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R48": {
-    "empRevalId": "R48",
-    "empSalesforceId": "294",
-    "empName": "Saurabh Singhal",
-    "empEmailId": "saurabh.singhal@reval.com",
-    "empAvgCheckInTimeForMonth": "11:16",
-    "empAvgCheckOutTimeForMonth": "19:18",
-    "empAvgWorkHoursForMonth": "09:22",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "20:28",
-        "checkOut": "01:36",
-        "workTimeForDay": "05:08"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R54": {
-    "empRevalId": "R54",
-    "empSalesforceId": "446",
-    "empName": "Varun Yadav",
-    "empEmailId": "varun.yadav@reval.com",
-    "empAvgCheckInTimeForMonth": "09:27",
-    "empAvgCheckOutTimeForMonth": "20:04",
-    "empAvgWorkHoursForMonth": "11:52",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "19:20",
-        "checkOut": "01:36",
-        "workTimeForDay": "06:16"
+        "checkIn": "15:18",
+        "checkOut": "20:27",
+        "workTimeForDay": "05:09"
       }
     ],
     "empIfClarificationNeeded": true
@@ -492,37 +208,57 @@
     "empSalesforceId": "562",
     "empName": "Anjali Kohli",
     "empEmailId": "anjali.kohli@reval.com",
-    "empAvgCheckInTimeForMonth": "11:06",
-    "empAvgCheckOutTimeForMonth": "20:40",
-    "empAvgWorkHoursForMonth": "09:33",
+    "empAvgCheckInTimeForMonth": "11:07",
+    "empAvgCheckOutTimeForMonth": "20:18",
+    "empAvgWorkHoursForMonth": "09:11",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-20",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "20:31",
+        "checkIn": "11:11",
         "checkOut": "00:00",
-        "workTimeForDay": "03:29"
+        "workTimeForDay": "12:49"
       }
     ],
     "empIfClarificationNeeded": true
   },
-  "R67": {
-    "empRevalId": "R67",
-    "empSalesforceId": "988",
-    "empName": "Shubhangi Singhal",
-    "empEmailId": "shubhangi.singhal@reval.com",
-    "empAvgCheckInTimeForMonth": "09:06",
-    "empAvgCheckOutTimeForMonth": "16:42",
-    "empAvgWorkHoursForMonth": "08:51",
+  "R78": {
+    "empRevalId": "R78",
+    "empSalesforceId": "1202",
+    "empName": "Shubhangi Paliwal",
+    "empEmailId": "shubhangi.paliwal@reval.com",
+    "empAvgCheckInTimeForMonth": "11:08",
+    "empAvgCheckOutTimeForMonth": "19:55",
+    "empAvgWorkHoursForMonth": "08:47",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "20:31",
-        "checkOut": "00:19",
-        "workTimeForDay": "03:48"
+        "checkIn": "15:18",
+        "checkOut": "20:27",
+        "workTimeForDay": "05:09"
+      }
+    ],
+    "empIfClarificationNeeded": true
+  },
+  "R80": {
+    "empRevalId": "R80",
+    "empSalesforceId": "431",
+    "empName": "Christopher Whitby",
+    "empEmailId": "chris.whitby@reval.com",
+    "empAvgCheckInTimeForMonth": "11:14",
+    "empAvgCheckOutTimeForMonth": "20:02",
+    "empAvgWorkHoursForMonth": "08:47",
+    "allDateDetailsList": [
+      {
+        "currentDate": "2016-03-20",
+        "attendanceStatusType": "WEEKEND_HOLIDAY",
+        "leaveTypeForThisDate": "NO_LEAVE",
+        "checkIn": "11:11",
+        "checkOut": "15:41",
+        "workTimeForDay": "04:30"
       }
     ],
     "empIfClarificationNeeded": true
@@ -532,105 +268,37 @@
     "empSalesforceId": "268",
     "empName": "Devanshu Bhatt",
     "empEmailId": "devanshu.bhatt@reval.com",
-    "empAvgCheckInTimeForMonth": "10:25",
-    "empAvgCheckOutTimeForMonth": "19:52",
-    "empAvgWorkHoursForMonth": "10:47",
+    "empAvgCheckInTimeForMonth": "11:10",
+    "empAvgCheckOutTimeForMonth": "20:38",
+    "empAvgWorkHoursForMonth": "09:28",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-19",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "20:23",
-        "checkOut": "01:36",
-        "workTimeForDay": "05:13"
-      },
-      {
-        "currentDate": "2016-04-23",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "07:27",
-        "checkOut": "00:00",
-        "workTimeForDay": "16:33"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R85": {
-    "empRevalId": "R85",
-    "empSalesforceId": "1316",
-    "empName": "Mohit Manocha",
-    "empEmailId": "mohit.manocha@reval.com",
-    "empAvgCheckInTimeForMonth": "11:18",
-    "empAvgCheckOutTimeForMonth": "19:11",
-    "empAvgWorkHoursForMonth": "09:18",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "19:19",
-        "checkOut": "00:16",
+        "checkIn": "13:03",
+        "checkOut": "18:00",
         "workTimeForDay": "04:57"
       }
     ],
     "empIfClarificationNeeded": true
   },
-  "R86": {
-    "empRevalId": "R86",
-    "empSalesforceId": "1322",
-    "empName": "Amandeep Singh",
-    "empEmailId": "amandeep.singh@reval.com",
-    "empAvgCheckInTimeForMonth": "09:39",
-    "empAvgCheckOutTimeForMonth": "17:05",
-    "empAvgWorkHoursForMonth": "08:50",
+  "R96": {
+    "empRevalId": "R96",
+    "empSalesforceId": "1377",
+    "empName": "Ashwini Lakshminarayan",
+    "empEmailId": "ashwini.lakshminarayan@reval.com",
+    "empAvgCheckInTimeForMonth": "09:32",
+    "empAvgCheckOutTimeForMonth": "18:50",
+    "empAvgWorkHoursForMonth": "09:18",
     "allDateDetailsList": [
       {
-        "currentDate": "2016-04-16",
+        "currentDate": "2016-03-05",
         "attendanceStatusType": "WEEKEND_HOLIDAY",
         "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "17:58",
-        "checkOut": "01:15",
-        "workTimeForDay": "07:17"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R95": {
-    "empRevalId": "R95",
-    "empSalesforceId": "1375",
-    "empName": "Amey Kulkarni",
-    "empEmailId": "amey.kulkarni@reval.com",
-    "empAvgCheckInTimeForMonth": "11:18",
-    "empAvgCheckOutTimeForMonth": "18:18",
-    "empAvgWorkHoursForMonth": "08:36",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "21:12",
-        "checkOut": "00:32",
-        "workTimeForDay": "03:20"
-      }
-    ],
-    "empIfClarificationNeeded": true
-  },
-  "R98": {
-    "empRevalId": "R98",
-    "empSalesforceId": "1398",
-    "empName": "Amarjeet Dahiya",
-    "empEmailId": "amarjeet.dahiya@reval.com",
-    "empAvgCheckInTimeForMonth": "09:41",
-    "empAvgCheckOutTimeForMonth": "16:27",
-    "empAvgWorkHoursForMonth": "08:15",
-    "allDateDetailsList": [
-      {
-        "currentDate": "2016-04-16",
-        "attendanceStatusType": "WEEKEND_HOLIDAY",
-        "leaveTypeForThisDate": "NO_LEAVE",
-        "checkIn": "19:13",
-        "checkOut": "01:15",
-        "workTimeForDay": "06:02"
+        "checkIn": "14:48",
+        "checkOut": "00:00",
+        "workTimeForDay": "09:12"
       }
     ],
     "empIfClarificationNeeded": true

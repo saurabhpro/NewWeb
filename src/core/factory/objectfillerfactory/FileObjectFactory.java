@@ -9,14 +9,14 @@ import core.model.employeemodal.BasicEmployeeDetails;
  */
 public class FileObjectFactory {
 
-    public BasicEmployeeDetails dispatch(String type) {
-        switch (type) {
-            case "Biometric":
-                return new EmployeeBiometricDetails();
-            case "Hrnet":
-                return new EmployeeHrnetDetails();
-        }
-        return null;
-    }
+	public BasicEmployeeDetails dispatch(String type) {
+		switch (type) {
+			case "Biometric":
+				return new EmployeeBiometricDetails();
+			case "Hrnet":
+				return new EmployeeHrnetDetails();
+		}
+		return null;
+	}
 
 }

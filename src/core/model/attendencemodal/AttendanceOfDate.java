@@ -11,89 +11,90 @@ import java.time.LocalTime;
  * Created by kumars on 2/12/2016.
  */
 public class AttendanceOfDate implements Serializable {
-    private LocalDate currentDate = null;
-    private LocalTime checkIn = null;
-    private LocalTime checkOut = null;
-    private LocalTime overTime = null;
-    private LocalTime workTimeForDay = null;
-    private AttendanceStatusType attendanceStatusType = null;
-    private LeaveType leaveTypeForThisDate = LeaveType.NO_LEAVE;
+	private LocalDate currentDate = null;
+	private LocalTime checkIn = null;
+	private LocalTime checkOut = null;
+	private LocalTime overTime = null;
+	private LocalTime workTimeForDay = null;
+	private AttendanceStatusType attendanceStatusType = null;
+	private LeaveType leaveTypeForThisDate = LeaveType.NO_LEAVE;
 
-    public LeaveType getLeaveTypeForThisDate() {
-        return leaveTypeForThisDate;
-    }
+	public LeaveType getLeaveTypeForThisDate() {
+		return leaveTypeForThisDate;
+	}
 
-    public void setLeaveTypeForThisDate(LeaveType leaveTypeForThisDate) {
-        this.leaveTypeForThisDate = leaveTypeForThisDate;
-    }
+	public void setLeaveTypeForThisDate(LeaveType leaveTypeForThisDate) {
+		this.leaveTypeForThisDate = leaveTypeForThisDate;
+	}
 
-    public AttendanceStatusType getAttendanceStatusType() {
-        return attendanceStatusType;
-    }
+	public AttendanceStatusType getAttendanceStatusType() {
+		return attendanceStatusType;
+	}
 
-    public void setAttendanceStatusType(AttendanceStatusType statusType) {
-        if (statusType.compareTo(AttendanceStatusType.PRESENT) == 0) {
-            if (getWorkTimeForDay().compareTo(LocalTime.of(4, 0)) < 0)
-                statusType = AttendanceStatusType.ABSENT;
-            else if (getWorkTimeForDay().compareTo(LocalTime.of(6, 0)) < 0)
-                statusType = AttendanceStatusType.HALF_DAY;         //first point where we set HALF_DAY
-        }
+	public void setAttendanceStatusType(AttendanceStatusType statusType) {
+		if (statusType.compareTo(AttendanceStatusType.PRESENT) == 0) {
+			if (getWorkTimeForDay().compareTo(LocalTime.of(4, 0)) < 0)
+				statusType = AttendanceStatusType.ABSENT;
+			else if (getWorkTimeForDay().compareTo(LocalTime.of(6, 0)) < 0)
+				statusType = AttendanceStatusType.HALF_DAY; // first point where
+			// we set HALF_DAY
+		}
 
-        if (statusType.compareTo(AttendanceStatusType.ABSENT) == 0) {
-            if (getCurrentDate().getDayOfWeek() == DayOfWeek.SATURDAY
-                    || getCurrentDate().getDayOfWeek() == DayOfWeek.SUNDAY)
+		if (statusType.compareTo(AttendanceStatusType.ABSENT) == 0) {
+			if (getCurrentDate().getDayOfWeek() == DayOfWeek.SATURDAY
+					|| getCurrentDate().getDayOfWeek() == DayOfWeek.SUNDAY)
 
-                statusType = AttendanceStatusType.WEEKEND_HOLIDAY;
+				statusType = AttendanceStatusType.WEEKEND_HOLIDAY;
 
-            if (getWorkTimeForDay() != null && !getCheckOut().equals(LocalTime.MIDNIGHT)) {
-                if (getWorkTimeForDay().compareTo(LocalTime.of(6, 0)) > 0)
-                    statusType = AttendanceStatusType.PRESENT;
-            }
+			if (getWorkTimeForDay() != null && !getCheckOut().equals(LocalTime.MIDNIGHT)) {
+				if (getWorkTimeForDay().compareTo(LocalTime.of(6, 0)) > 0)
+					statusType = AttendanceStatusType.PRESENT;
+			}
 
-        }
-        this.attendanceStatusType = statusType;
-    }
+		}
+		this.attendanceStatusType = statusType;
+	}
 
-    public LocalTime getCheckIn() {
-        return checkIn;
-    }
+	public LocalTime getCheckIn() {
+		return checkIn;
+	}
 
-    public void setCheckIn(LocalTime checkIn) {
-        this.checkIn = checkIn;
-    }
+	public void setCheckIn(LocalTime checkIn) {
+		this.checkIn = checkIn;
+	}
 
-    public LocalTime getCheckOut() {
-        return checkOut;
-    }
+	public LocalTime getCheckOut() {
+		return checkOut;
+	}
 
-    public void setCheckOut(LocalTime checkOut) {
-        this.checkOut = checkOut;
-    }
+	public void setCheckOut(LocalTime checkOut) {
+		this.checkOut = checkOut;
+	}
 
-    public LocalDate getCurrentDate() {
-        return currentDate;
-    }
+	public LocalDate getCurrentDate() {
+		return currentDate;
+	}
 
-    public void setCurrentDate(LocalDate date) {
-        this.currentDate = date;
-    }
+	public void setCurrentDate(LocalDate date) {
+		this.currentDate = date;
+	}
 
-    public LocalTime getOverTime() {
-        return overTime;
-    }
+	public LocalTime getOverTime() {
+		return overTime;
+	}
 
-    public void setOverTime(LocalTime overTime) {
-        this.overTime = overTime;
-    }
+	public void setOverTime(LocalTime overTime) {
+		this.overTime = overTime;
+	}
 
-    public LocalTime getWorkTimeForDay() {
-        if (workTimeForDay == null && getCheckIn() != null && getCheckOut() != null && getCurrentDate() != null)
-            workTimeForDay = TimeManager.calculateTimeDifference(getCheckIn(), getCheckOut(), getCurrentDate());
+	public LocalTime getWorkTimeForDay() {
+		if (workTimeForDay == null && getCheckIn() != null && getCheckOut() != null && getCurrentDate() != null)
+			workTimeForDay = TimeManager.calculateTimeDifference(getCheckIn(), getCheckOut(), getCurrentDate());
 
-        return workTimeForDay;
-    }
+		return workTimeForDay;
+	}
 
-    public void setWorkTimeForDay(LocalTime workTimeForDay) {
-        this.workTimeForDay = workTimeForDay;
-    }
+	public void setWorkTimeForDay(LocalTime workTimeForDay) {
+		this.workTimeForDay = workTimeForDay;
+	}
 }

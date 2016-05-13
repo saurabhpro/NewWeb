@@ -12,15 +12,16 @@ import java.util.Map;
  * @version 1.0
  */
 public class FinalObject implements Serializable {
-    /**
-     * The Final object where we will store the result of combining and setting discrepancy flag.
-     */
-    public static Map<String, FinalObjectModel> EmpCombinedMap;
+	/**
+	 * The Final object where we will store the result of combining and setting
+	 * discrepancy flag.
+	 */
+	public static Map<String, FinalObjectModel> EmpCombinedMap;
 
-    public void combineFiles() {
-    }
+	public void combineFiles() {
+	}
 
-    public void findDiscrepancy() {
-    }
+	public void findDiscrepancy() {
+	}
 
 }
