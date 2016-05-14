@@ -1,7 +1,8 @@
-package servlets;
+/*
+ * Copyright (c) 2016.
+ */
 
-import core.UpdateObjectWithUIEntries;
-import core.utils.FileFolderWorker;
+package servlets.updateui;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,6 +15,7 @@ import java.io.IOException;
 
 /**
  * Created by AroraA on 14-04-2016.
+ *
  * @author Amrita & Saurabh
  * @version 1.2
  */
@@ -45,7 +47,7 @@ public class UpdateRecordServlet extends HttpServlet {
 
 		// temporary function to copy json files generated and stored in web
 		// local folder to artifact out folder
-		FileFolderWorker.copyFromWebToArtifacts();
+		//FileFolderWorker.copyFromWebToArtifacts();
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
 		requestDispatcher.forward(request, response);

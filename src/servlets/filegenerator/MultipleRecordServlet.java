@@ -1,6 +1,6 @@
 package servlets.filegenerator;
 
-import servlets.filegenerator.utils.RecordBuilder;
+import servlets.filegenerator.utils.RecordBuilderHelperUtility;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -51,7 +51,7 @@ public class MultipleRecordServlet extends HttpServlet {
 
 			// for (String s : listOfIds)
 			// System.out.println(s);
-			RecordBuilder.buildMultipleRecords(listOfIds, fileToUse, excelOrPdf, temporaryFilePath, response);
+			RecordBuilderHelperUtility.buildMultipleRecords(listOfIds, fileToUse, excelOrPdf, temporaryFilePath, response);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

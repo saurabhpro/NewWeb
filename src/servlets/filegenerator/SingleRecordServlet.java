@@ -1,6 +1,6 @@
 package servlets.filegenerator;
 
-import servlets.filegenerator.utils.RecordBuilder;
+import servlets.filegenerator.utils.RecordBuilderHelperUtility;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -32,7 +32,7 @@ public class SingleRecordServlet extends HttpServlet {
 
 		try {
 			excelOrPdf = "PDF";
-			RecordBuilder.buildSingleRecord(id, fileToUse, excelOrPdf, temporaryFilePath, response);
+			RecordBuilderHelperUtility.buildSingleRecord(id, fileToUse, excelOrPdf, temporaryFilePath, response);
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}

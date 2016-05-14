@@ -36,7 +36,9 @@ import static core.model.ProjectConstants.*;
  * @author Saurabh
  * @version 1.5
  */
-public class BackEndLogicController {
+public class BackendLogicHelperUtility {
+	private BackendLogicHelperUtility() {
+	}
 	/**
 	 *
 	 */

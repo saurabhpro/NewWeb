@@ -48,7 +48,7 @@ public class FileFolderWorker {
 	 * @return the list of all the files in the Top Level directory
 	 */
 	@Contract("_, _ -> !null")
-	public static List<File> getDirectoryContents(File dir, String[] extensions) {
+	private static List<File> getDirectoryContents(File dir, String[] extensions) {
 		return (List<File>) FileUtils.listFiles(dir, extensions, true);
 	}
 

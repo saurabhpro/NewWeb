@@ -1,7 +1,5 @@
 package servlets.main;
 
-import core.utils.FileFolderWorker;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,15 +16,15 @@ public class CoreControllerServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		BackEndLogicController.readDataFromSourcesToInitialObjects();
+		BackendLogicHelperUtility.readDataFromSourcesToInitialObjects();
 
-		BackEndLogicController.prepareFinalObject();
+		BackendLogicHelperUtility.prepareFinalObject();
 
-		BackEndLogicController.generateReportsJson();
+		BackendLogicHelperUtility.generateReportsJson();
 
 		// temporary function to copy json files generated and stored in web
 		// local folder to artifact out folder
-		FileFolderWorker.copyFromWebToArtifacts();
+		//FileFolderWorker.copyFromWebToArtifacts();
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
 		requestDispatcher.forward(request, response);

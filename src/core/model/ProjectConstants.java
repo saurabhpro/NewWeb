@@ -2,6 +2,7 @@ package core.model;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.time.LocalTime;
 import java.time.Month;
 import java.time.Year;
 
@@ -12,6 +13,11 @@ public class ProjectConstants {
 
 	public static final int MINUTES_PER_HOUR = 60;
 	public static final int SECONDS_PER_MINUTE = 60;
+	public static final LocalTime WORK_HOURS_GIVEN_FOR_WORK_FROM_HOME = LocalTime.of(9, 0);
+	public static final LocalTime WORK_HOURS_FOR_HALF_DAY = LocalTime.of(4, 0);
+	public static final LocalTime MIN_WORK_HOURS_FOR_FULL_DAY = LocalTime.of(6, 0);
+
+
 	public static final int SECONDS_PER_HOUR = SECONDS_PER_MINUTE * MINUTES_PER_HOUR;
 	public final static String EMP_REVAL_IND_ID = "Emp Reval Id";
 	public final static String EMP_FINANCIAL_FORCE_ID = "Emp FinancialForce Id";

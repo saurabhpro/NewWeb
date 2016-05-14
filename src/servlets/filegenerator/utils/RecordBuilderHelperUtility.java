@@ -20,9 +20,13 @@ import java.util.List;
  * @version 1.0
  *          Class to create pdf or excel record/file which is downloaded to users system
  */
-public class RecordBuilder {
+public class RecordBuilderHelperUtility {
+
 	private static ByteArrayOutputStream baos = new ByteArrayOutputStream();
 	private static OutputStream os;
+
+	private RecordBuilderHelperUtility() {
+	}
 
 	/**
 	 * Method to create pdf file for single employee

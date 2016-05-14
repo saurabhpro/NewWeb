@@ -7,8 +7,14 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+import static core.model.ProjectConstants.MIN_WORK_HOURS_FOR_FULL_DAY;
+import static core.model.ProjectConstants.WORK_HOURS_FOR_HALF_DAY;
+import static core.model.attendencemodal.AttendanceStatusType.*;
+
 /**
  * Created by kumars on 2/12/2016.
+ * @author Saurabh
+ * @version 1.3
  */
 public class AttendanceOfDate implements Serializable {
 	private LocalDate currentDate = null;
@@ -31,24 +37,27 @@ public class AttendanceOfDate implements Serializable {
 		return attendanceStatusType;
 	}
 
+	/**
+	 * @param statusType Enum fields
+	 */
 	public void setAttendanceStatusType(AttendanceStatusType statusType) {
-		if (statusType.compareTo(AttendanceStatusType.PRESENT) == 0) {
-			if (getWorkTimeForDay().compareTo(LocalTime.of(4, 0)) < 0)
-				statusType = AttendanceStatusType.ABSENT;
-			else if (getWorkTimeForDay().compareTo(LocalTime.of(6, 0)) < 0)
-				statusType = AttendanceStatusType.HALF_DAY; // first point where
+		if (statusType.compareTo(PRESENT) == 0) {
+			if (getWorkTimeForDay().compareTo(WORK_HOURS_FOR_HALF_DAY) < 0)
+				statusType = ABSENT;
+			else if (getWorkTimeForDay().compareTo(MIN_WORK_HOURS_FOR_FULL_DAY) < 0)
+				statusType = HALF_DAY; // first point where
 			// we set HALF_DAY
 		}
 
-		if (statusType.compareTo(AttendanceStatusType.ABSENT) == 0) {
+		if (statusType.compareTo(ABSENT) == 0) {
 			if (getCurrentDate().getDayOfWeek() == DayOfWeek.SATURDAY
 					|| getCurrentDate().getDayOfWeek() == DayOfWeek.SUNDAY)
 
-				statusType = AttendanceStatusType.WEEKEND_HOLIDAY;
+				statusType = WEEKEND_HOLIDAY;
 
 			if (getWorkTimeForDay() != null && !getCheckOut().equals(LocalTime.MIDNIGHT)) {
-				if (getWorkTimeForDay().compareTo(LocalTime.of(6, 0)) > 0)
-					statusType = AttendanceStatusType.PRESENT;
+				if (getWorkTimeForDay().compareTo(MIN_WORK_HOURS_FOR_FULL_DAY) > 0)
+					statusType = PRESENT;
 			}
 
 		}

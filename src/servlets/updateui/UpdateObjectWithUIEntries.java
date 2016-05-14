@@ -1,4 +1,8 @@
-package core;
+/*
+ * Copyright (c) 2016.
+ */
+
+package servlets.updateui;
 
 import core.appfilereader.BiometricFileWorker;
 import core.appfilereader.InitialObjects;
@@ -7,7 +11,7 @@ import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.attendencemodal.AttendanceStatusType;
 import core.utils.Serialize;
 import core.utils.TimeManager;
-import servlets.main.BackEndLogicController;
+import servlets.main.BackendLogicHelperUtility;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -23,19 +27,19 @@ import static core.utils.TimeManager.convertToProgramStandardDate;
  * @author Saurabh
  * @version 1.0
  */
-public class UpdateObjectWithUIEntries {
+class UpdateObjectWithUIEntries {
 
 	/**
 	 * Constructor that initializes the initial objects using serialized files
 	 * in case of any exception new serialized objects are created
 	 */
-	public UpdateObjectWithUIEntries() {
+	UpdateObjectWithUIEntries() {
 		try {
 			// Method that reads serialized objects and updates the initial objects
-			BackEndLogicController.readFromSerialObjects();
+			BackendLogicHelperUtility.readFromSerialObjects();
 		} catch (Exception e) {
 			//In case no serialized object was found, create initial objects from scratch and save as serialized
-			BackEndLogicController.readDataFromSourcesToInitialObjects();
+			BackendLogicHelperUtility.readDataFromSourcesToInitialObjects();
 		}
 	}
 
@@ -49,7 +53,7 @@ public class UpdateObjectWithUIEntries {
 	 * @param checkOut    the array of check-out time for respective dates
 	 * @see InitialObjects
 	 */
-	public void updateObjects(String empRevalId, String[] listOfDates, String[] checkIn, String[] checkOut) {
+	void updateObjects(String empRevalId, String[] listOfDates, String[] checkIn, String[] checkOut) {
 		int i = 0;
 		// loop through the list of days
 		for (String date : listOfDates) {
@@ -67,14 +71,14 @@ public class UpdateObjectWithUIEntries {
 		 * @see core.combined.CombineFile
 		 * @see core.combined.MarkDiscrepancy
 		 */
-		BackEndLogicController.prepareFinalObject();
+		BackendLogicHelperUtility.prepareFinalObject();
 		/**
 		 * Call the method to generate Json files based on the FinalObjects
 		 *
 		 * @see core.model.viewmodal.ListGeneratorModel
 		 * @see core.combined.FinalObject
 		 */
-		BackEndLogicController.generateReportsJson();
+		BackendLogicHelperUtility.generateReportsJson();
 	}
 
 	/**
