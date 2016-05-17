@@ -43,7 +43,7 @@ public class Serialize {
 	 * @param fileAndPathName the file and path from where we need to pick up
 	 *                        the serial object
 	 * @return the object which were stored as Objects instead of IntialObjects
-	 * during serilization
+	 * during serialization
 	 */
 	@Nullable
 	public static Object serialRetrieve(String fileAndPathName) {

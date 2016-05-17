@@ -16,7 +16,7 @@ import static core.model.attendencemodal.LeaveType.WORK_FROM_HOME_IND;
  * @author Amrita & Saurabh
  * @version 1.5 Helper Utility class for MarkDiscrepancy
  */
-class MarkDiscrepancyHelperUtility {
+public class MarkDiscrepancyHelperUtility {
 	private MarkDiscrepancyHelperUtility() {
 	}
 

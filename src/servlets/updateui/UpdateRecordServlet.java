@@ -4,6 +4,8 @@
 
 package servlets.updateui;
 
+import core.utils.FileFolderWorker;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +49,7 @@ public class UpdateRecordServlet extends HttpServlet {
 
 		// temporary function to copy json files generated and stored in web
 		// local folder to artifact out folder
-		//FileFolderWorker.copyFromWebToArtifacts();
+		FileFolderWorker.copyFromWebToArtifacts();
 
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainPage.jsp");
 		requestDispatcher.forward(request, response);

@@ -5,13 +5,12 @@ import core.utils.FileFolderWorker;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import static core.model.ProjectConstants.ALL_EMPLOYEE_RECORD_FILE_PATH;
 
@@ -51,8 +50,7 @@ public class EmailListServlet extends HttpServlet {
 			FileFolderWorker.cleanDirectory(emailListFilePath);
 		}
 		response.setContentType("text/html");
-		HttpSession session = request.getSession();
-		PrintWriter out = response.getWriter();
+		//HttpSession session = request.getSession();
 		/**
 		 * Constructs a new MultipartRequest to handle the specified request,
 		 * saving any uploaded files to the given directory, and limiting the
@@ -63,10 +61,13 @@ public class EmailListServlet extends HttpServlet {
 		 */
 		MultipartRequest m = new MultipartRequest(request, emailListFilePath.toString(), (1024 * 1024 * 2));
 		filename = m.getFilesystemName("emailListFile");
-		session.setAttribute("emailName", filename);
+		//session.setAttribute("emailName", filename);
 		// System.out.println(nameForUI);
 		System.out.println(filename);
-		// out.println(filename + "Successfully Uploaded");
+
+		Cookie cookie = new Cookie("emailName", filename);
+		cookie.setMaxAge(3600 * 24 * 365 * 5);
+		response.addCookie(cookie);
 
 		response.sendRedirect("./MainPage.jsp#/UploadFiles");
 	}

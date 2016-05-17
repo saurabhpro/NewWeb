@@ -1,42 +1,39 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="sampleApp" ng-controller="GeneratePublicHolidayController" lang="en" class="no-js">
+<div ng-include="GeneratePublicHoliday.jsp"></div>
 <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,700' rel='stylesheet' type='text/css'>
-
-     <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
-    <!-- <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
-
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- since there could be dependencies problem, maintain the inculsion order -->
+    <!-- since there could be dependencies problem, maintain the inclusion order -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <script src="js/app.js"></script>
-    <style type="text/css" media="screen">
-        .click:hover {
-            text-decoration: underline;
+    <script language="javascript">
+        function LoadOnce() {
+            window.location.reload();
         }
-    </style>
-
-    <!-- Optional theme -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">-->
-
-    <!--    <script src="bower_components/angular-smart-table/dist/smart-table.min.js"></script>-->
-    <title>List of Employees Who Worked on Public Holidays</title>
+    </script>
+    <%
+        Cookie[] cookies = request.getCookies();
+        String headline = "List of Employees Who Worked on Public Holidays";
+        if (cookies != null)
+            for (Cookie cookie : cookies)
+                if (cookie.getName().equals("month"))
+                    headline = "Employees Who Worked on Public Holidays in " + cookie.getValue();
+    %>
 </head>
-<body>
-
+<body onload="LoadOnce()">
 <main class="cd-main-content">
     <div class="content-wrapper">
         <br>
         <h2 style="text-align: center">
-            List of Employees Who Worked on Public Holidays
+            <%=headline%>
         </h2>
 
         <br><br>

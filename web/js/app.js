@@ -7,16 +7,16 @@ var sampleApp = angular.module('sampleApp', ['ui.bootstrap', 'ngRoute']);
 sampleApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.when('/GenerateReport', {
-            templateUrl: '../GenerateReport.html',
+            templateUrl: '../GenerateReport.jsp',
             controller: 'GenerateReportController'
         }).when('/GenerateDiscrepancy', {
             templateUrl: '../GenerateDiscrepancy.jsp',
             controller: 'GenerateDiscrepancyController'
         }).when('/GenerateWeekendHoliday', {
-            templateUrl: '../GenerateWeekendHoliday.html',
+            templateUrl: '../GenerateWeekendHoliday.jsp',
             controller: 'GenerateWeekendHolidayController'
         }).when('/GeneratePublicHoliday', {
-            templateUrl: '../GeneratePublicHoliday.html',
+            templateUrl: '../GeneratePublicHoliday.jsp',
             controller: 'GeneratePublicHolidayController'
         }).when('/uploadBiometric', {
             templateUrl: './UploadFiles/uploadBiometric.jsp',
@@ -542,7 +542,6 @@ sampleApp.controller("UploadFilesController", function ($scope, $http, $log) {
 
     $scope.checkJson = function () {
         if (buttonA == "" || buttonB == "" || buttonC == "") {
-            $log.info(biometricFile + "hello");
             return 0;
         }
         else {

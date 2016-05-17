@@ -1,32 +1,39 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html ng-app="sampleApp" ng-controller="GenerateWeekendHolidayController" lang="en" class="no-js">
+<div ng-include="GenerateWeekendHoliday.jsp"></div>
 <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- since there could be dependencies problem, maintain the inculsion order -->
+    <!-- since there could be dependencies problem, maintain the inclusion order -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
 
     <script src="js/app.js"></script>
-    <style type="text/css" media="screen">
-        .click:hover {
-            text-decoration: underline;
+    <script language="javascript">
+        function LoadOnce() {
+            window.location.reload();
         }
-    </style>
-    <title>List of Employees Who Worked on Weekend</title>
+    </script>
+    <%
+        Cookie[] cookies = request.getCookies();
+        String headline = "List of Employees Who Worked on Weekend";
+        if (cookies != null)
+            for (Cookie cookie : cookies)
+                if (cookie.getName().equals("month"))
+                    headline = "Employees Who Worked on Weekend in " + cookie.getValue();
+    %>
 </head>
-<body>
-
+<body onload="LoadOnce()">
 <main class="cd-main-content">
     <div class="content-wrapper">
         <br>
         <h2 style="text-align: center">
-            List of Employees Who Worked on Weekend
+            <%=headline%>
         </h2>
         <form action="multigen" method="post">
             <input type="hidden" name="fileToUse" value="WeekendWorkers">

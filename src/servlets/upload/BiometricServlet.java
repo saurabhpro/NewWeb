@@ -5,10 +5,10 @@ import core.utils.FileFolderWorker;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -54,7 +54,10 @@ public class BiometricServlet extends HttpServlet {
 		} else {
 			FileFolderWorker.cleanDirectory(biometricFilePath);
 		}
-		HttpSession session = request.getSession();
+
+
+		//HttpSession session = request.getSession();
+
 
 		/**
 		 * mkdirs() will create the specified directory path in its entirety
@@ -70,9 +73,13 @@ public class BiometricServlet extends HttpServlet {
 		m = new MultipartRequest(request, biometricFilePath.toString());
 
 		filename = m.getFilesystemName("biometricFile");
-		session.setAttribute("biometricName", filename);
+		//session.setAttribute("biometricName", filename);
 		// System.out.println(nameForUI);
 		System.out.println(filename);
+
+		Cookie cookie = new Cookie("biometricName", filename);
+		cookie.setMaxAge(3600 * 24 * 365 * 5);
+		response.addCookie(cookie);
 
 		response.sendRedirect("./MainPage.jsp#/UploadFiles");
 	}

@@ -56,7 +56,7 @@ public class SendEmailServlet extends HttpServlet implements java.io.Serializabl
 			mex.printStackTrace();
 			out.print("Error: unable to send message...." + mex);
 			//no need of thankyou on error !!!!!
-			RequestDispatcher rd = request.getRequestDispatcher("./ThankYou.html");
+			RequestDispatcher rd = request.getRequestDispatcher("./MailError.html");
 			rd.include(request, response);
 		}
 	}

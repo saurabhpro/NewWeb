@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 /**
  * Created by Saurabh on 4/4/2016.
@@ -20,18 +19,16 @@ public class LogoutServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
 
 		HttpSession session = request.getSession();
 		session.setAttribute("userName", null);
 		request.getSession().invalidate();
-		response.setHeader("Cache-Control", "no-cache, no-store");
-		response.setHeader("Pragma", "no-cache");
-		response.setDateHeader("Expires", 0);
+		response.setHeader("Cache-Control", "no-cache"); //Forces caches to obtain a new copy of the page from the origin server
+		response.setHeader("Cache-Control", "no-store"); //Directs caches not to store the page under any circumstance
+		response.setDateHeader("Expires", 0); //Causes the proxy cache to see the page as "stale"
+		response.setHeader("Pragma", "no-cache"); //HTTP 1.0 backward compatibility
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("./Logout.html");
-		dispatcher.include(request, response);
-		out.close();
-
+		dispatcher.forward(request, response);
 	}
 }
