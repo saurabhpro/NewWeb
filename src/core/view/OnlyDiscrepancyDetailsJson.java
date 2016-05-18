@@ -4,6 +4,7 @@ import core.model.ProjectConstants;
 import core.model.viewmodal.FinalObjectModel;
 import core.model.viewmodal.ListGeneratorModel;
 import core.model.viewmodal.WebJSONModel;
+import core.utils.RevalIdComparator;
 
 import java.util.TreeMap;
 
@@ -14,7 +15,7 @@ public class OnlyDiscrepancyDetailsJson extends ListGeneratorModel {
 	@Override
 	public void generate() {
 		WebJSONModel webJSONModel;
-		filteredEmpDetails = new TreeMap<>();
+		filteredEmpDetails = new TreeMap<>(new RevalIdComparator());
 		for (FinalObjectModel f : allEmpDetails.values()) {
 			if (f.getIfClarificationNeeded()) {
 				webJSONModel = new WebJSONModel(f, ProjectConstants.DISCREPANCY_IN_WORKERS_LIST);

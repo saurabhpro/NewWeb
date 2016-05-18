@@ -57,7 +57,7 @@ public class EmployeeBiometricDetails extends BasicEmployeeDetails {
 
 		LocalTime workTime;
 
-		for (int j = 0; j < getMONTH().maxLength(); j++) {
+		for (int j = 0; j < getNumberOfDaysInRespectiveMonth(); j++) {
 			System.out.print(CURRENT_DATE + " : " + this.attendanceOfDate[j].getCurrentDate());
 			System.out.print("\t" + EMP_CHECK_IN + " : " + this.attendanceOfDate[j].getCheckIn());
 			System.out.print("\t+" + EMP_CHECK_OUT + " : " + this.attendanceOfDate[j].getCheckOut());

@@ -2,12 +2,15 @@ package core.model;
 
 import org.jetbrains.annotations.Nullable;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Month;
 import java.time.Year;
 
 /**
  * Created by Saurabh on 4/8/2016.
+ * @version 1.3
+ * @since 1.2 added getNumberOfDaysInRespectiveMonth()
  */
 public class ProjectConstants {
 
@@ -135,6 +138,14 @@ public class ProjectConstants {
 
 	public static void setYEAR(Year YEAR) {
 		ProjectConstants.YEAR = YEAR;
+	}
+
+	public static int getNumberOfDaysInRespectiveMonth() {
+		if (LocalDate.now().getMonth().compareTo(MONTH) == 0) {
+			int currentDateValue = LocalDate.now().getDayOfMonth();
+			return ((currentDateValue > getMONTH().maxLength()) ? getMONTH().maxLength() : currentDateValue);
+		} else
+			return getMONTH().maxLength();
 	}
 
 }

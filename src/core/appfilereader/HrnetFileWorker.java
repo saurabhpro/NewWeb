@@ -18,14 +18,13 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
-import static core.model.ProjectConstants.getMONTH;
-import static core.model.ProjectConstants.getYEAR;
+import static core.model.ProjectConstants.*;
 
 /**
  * Created by Saurabh on 2/10/2016.
  *
  * @author Saurabh
- * @version 1.4
+ * @version 1.5 updated dd/MM/yyyy to MM/dd/yyyy
  */
 public class HrnetFileWorker extends InitialObjects implements FileOperations {
 
@@ -150,7 +149,7 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
 	@NotNull
 	private LocalDate getLocalDate(Cell cell) {
 		if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)
-			return TimeManager.convertToLocalDate(new SimpleDateFormat("dd/MM/yyyy").format(cell.getDateCellValue()));
+			return TimeManager.convertToLocalDate(new SimpleDateFormat("MM/dd/yyyy").format(cell.getDateCellValue()));
 		else
 			return TimeManager.convertToLocalDate(cell.getStringCellValue());
 	}
@@ -170,7 +169,7 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
 		 */
 		else if (attendanceOfLeave.getStartDate().getMonth().equals(getMONTH())
 				&& !attendanceOfLeave.getEndDate().getMonth().equals(getMONTH()))
-			attendanceOfLeave.setEndDate(LocalDate.of(getYEAR().getValue(), getMONTH(), getMONTH().maxLength()));
+			attendanceOfLeave.setEndDate(LocalDate.of(getYEAR().getValue(), getMONTH(), getNumberOfDaysInRespectiveMonth()));
 
 		/**
 		 * case where leave applied from 8th jan to 14th jan, and we are

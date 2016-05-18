@@ -6,12 +6,14 @@ import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.appfilereadermodal.EmployeeHrnetDetails;
 import core.model.employeemodal.BasicEmployeeDetails;
 import core.model.viewmodal.FinalObjectModel;
+import core.utils.RevalIdComparator;
 
 import java.util.ArrayList;
 import java.util.Set;
 import java.util.TreeMap;
 
 import static core.model.ProjectConstants.getMONTH;
+import static core.model.ProjectConstants.getNumberOfDaysInRespectiveMonth;
 import static core.model.attendencemodal.AttendanceStatusType.*;
 
 /**
@@ -19,7 +21,8 @@ import static core.model.attendencemodal.AttendanceStatusType.*;
  * UNACCOUNTED_ABSENCE.
  *
  * @author Saurabh
- * @version 1.4
+ * @version 1.5
+ * @since 1.4 added revalidcomparator and loop till getNumberOfDaysInRespectiveMonth()
  */
 public class CombineFile extends FinalObject {
 	/**
@@ -29,7 +32,7 @@ public class CombineFile extends FinalObject {
 	 * @see FinalObject
 	 */
 	public CombineFile() {
-		EmpCombinedMap = new TreeMap<>();
+		EmpCombinedMap = new TreeMap<>(new RevalIdComparator());
 	}
 
 	/**
@@ -79,7 +82,7 @@ public class CombineFile extends FinalObject {
 
 	private void countAttendanceStatusType(FinalObjectModel emp) {
 		// to be removed today
-		for (int j = 0; j < getMONTH().maxLength(); j++) {
+		for (int j = 0; j < getNumberOfDaysInRespectiveMonth(); j++) {
 
 			// AMRITA
 			if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))

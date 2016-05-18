@@ -14,7 +14,8 @@ import static core.model.attendencemodal.LeaveType.WORK_FROM_HOME_IND;
  * Created by Saurabh on 4/10/2016.
  *
  * @author Amrita & Saurabh
- * @version 1.5 Helper Utility class for MarkDiscrepancy
+ * @version 1.6 Helper Utility class for MarkDiscrepancy
+ * @since 1.5 loop till getNumberOfDaysInRespectiveMonth()
  */
 public class MarkDiscrepancyHelperUtility {
 	private MarkDiscrepancyHelperUtility() {
@@ -28,7 +29,7 @@ public class MarkDiscrepancyHelperUtility {
 	 *                         result of combining Biometric and Financial Force
 	 */
 	static void setIfAbsentButNoLeaveApplied(FinalObjectModel finalObjectModel) {
-		for (int j = 0; j < ProjectConstants.getMONTH().maxLength(); j++) {
+		for (int j = 0; j < ProjectConstants.getNumberOfDaysInRespectiveMonth(); j++) {
 			if ((finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
 					|| (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))) {
 				finalObjectModel.setIfClarificationNeeded(true);
@@ -45,7 +46,7 @@ public class MarkDiscrepancyHelperUtility {
 	 */
 	static void setIfEntryPresentInEither(FinalObjectModel finalObjectModel) {
 		int flag;
-		for (int j = 0; j < ProjectConstants.getMONTH().maxLength(); j++) {
+		for (int j = 0; j < ProjectConstants.getNumberOfDaysInRespectiveMonth(); j++) {
 			flag = 0;
 			// his status is still absent after merging
 			if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE)) {
@@ -127,7 +128,7 @@ public class MarkDiscrepancyHelperUtility {
 				startDate = startDate.plusDays(1);
 			}
 		}
-		return new int[] { j, flag };
+		return new int[]{j, flag};
 	}
 
 }

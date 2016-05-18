@@ -27,9 +27,9 @@ public class PublicHolidayWorkerJson extends ListGeneratorModel {
 	public void generate() {
 		for (FinalObjectModel finalObjectModel : allEmpDetails.values()) {
 			for (HolidaysList h : HolidaysList.values()) {
-				Month curMnth = h.getDate().getMonth();
+				Month currentMonth = h.getDate().getMonth();
 				int changeOnDate = h.getDate().getDayOfMonth() - 1;
-				if (curMnth == ProjectConstants.getMONTH()
+				if (currentMonth == ProjectConstants.getMONTH()
 						&& finalObjectModel.attendanceOfDate[changeOnDate].getAttendanceStatusType() == PUBLIC_HOLIDAY
 						&& finalObjectModel.attendanceOfDate[changeOnDate].getCheckIn() != null) {
 					HolidayWorkerModel h1 = new WebJSONModel(finalObjectModel)

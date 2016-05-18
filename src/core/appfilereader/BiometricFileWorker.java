@@ -64,7 +64,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 		ProjectConstants.setYEAR(Year.parse(temp[1]));
 
 		for (int i = 0; i < numberOfRowsInBio; i++) {
-			attendanceOfDate = new AttendanceOfDate[ProjectConstants.getMONTH().maxLength()];
+			attendanceOfDate = new AttendanceOfDate[ProjectConstants.getNumberOfDaysInRespectiveMonth()];
 			getMonthlyAttendanceOfEmployee(attendanceOfDate); // referenced
 
 			empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));
@@ -111,9 +111,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 		StringTokenizer st;
 		AttendanceStatusType attendanceStatus;
 
-		int noOfDaysInThatMonth = ProjectConstants.getMONTH().maxLength();
-
-		for (int k = 0; k < noOfDaysInThatMonth; k++) {
+		for (int k = 0; k < ProjectConstants.getNumberOfDaysInRespectiveMonth(); k++) {
 			LocalDate tempDate = LocalDate.of(ProjectConstants.getYEAR().getValue(), ProjectConstants.getMONTH(),
 					(k + 1));
 			attendanceOfDate[k] = new AttendanceOfDate();

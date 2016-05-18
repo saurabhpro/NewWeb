@@ -23,9 +23,8 @@ import static core.model.attendencemodal.AttendanceStatusType.*;
  * Created by Saurabh on 4/9/2016.
  *
  * @author Amrita & Saurabh
- * @version 1.1
- *          <p>
- *          Helper Utility class for CombineFile
+ * @version 1.2 Helper Utility class for CombineFile
+ * @since 1.1 loop till getNumberOfDaysInRespectiveMonth()
  */
 class CombineFileHelperUtility {
 	private CombineFileHelperUtility() {
@@ -82,7 +81,7 @@ class CombineFileHelperUtility {
 	}
 
 	private static void absentStatusUpdater(EmployeeBiometricDetails empObj) {
-		for (int i = 0; i < getMONTH().maxLength(); i++) {
+		for (int i = 0; i < getNumberOfDaysInRespectiveMonth(); i++) {
 
 			switch (empObj.attendanceOfDate[i].getAttendanceStatusType()) {
 				case ABSENT:
@@ -108,7 +107,7 @@ class CombineFileHelperUtility {
 	}// end of function
 
 	private static void setAbsentToUnaccountedAndHalfDayWorkTime(EmployeeBiometricDetails empObj) {
-		for (int i = 0; i < getMONTH().maxLength(); i++) {
+		for (int i = 0; i < getNumberOfDaysInRespectiveMonth(); i++) {
 			// 06-03-2016 changed the Type from ABSENT to UNACCOUNTED_ABSENCE.
 			if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(ABSENT)) {
 				empObj.attendanceOfDate[i].setAttendanceStatusType(UNACCOUNTED_ABSENCE);
