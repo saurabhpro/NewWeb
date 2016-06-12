@@ -132,7 +132,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 						case "A":
 						case "A/A":
 						case "P/A":
-						case "A/P":
+
 							attendanceStatus = ABSENT;
 							break lb;
 
@@ -141,6 +141,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 							attendanceStatus = WEEKEND_HOLIDAY;
 							break lb;
 
+						case "A/P":    //this case was considered as present because Amrita said that Saurabh is completely and utterly mad
 						case "P":
 							attendanceStatus = PRESENT;
 							break lb;

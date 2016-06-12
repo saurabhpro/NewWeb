@@ -63,8 +63,8 @@
 
             <!-- Main content -->
             <div class="col-md-9">
-            <form action="email" method="post">
-                <!-- /.col -->
+                <form action="email" method="post">
+                    <!-- /.col -->
 
                     <div class="box box-primary">
                         <div class="box-header with-border">
@@ -77,13 +77,13 @@
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Subject:" name="subject"
-                                       value="Mail Regarding Discrepancies">
+                                       value="Leave Discrepancies - ">
                             </div>
                             <input type="hidden" name="message" value={{items.empName}}>
                             <div class="form-group" class="form-control">
                                 Hi {{items.empName}},
                                 <ul>
-                                    <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: 'NA'}))"></li>
+                                    <li ng-repeat="day in (leaveNotApplied = (items.allDateDetailsList | filter:{Selected:true, checkOut: '!00:00', attendanceStatusType: '!HALF_DAY' }))"></li>
                                 </ul>
                                 <ul>
                                     <li ng-repeat="day in (halfDay = (items.allDateDetailsList | filter:{Selected:true, attendanceStatusType: 'HALF_DAY'}))"></li>
@@ -111,10 +111,10 @@
                                        value="Full Day Leaves"/>
                                 <ul ng-show=leaveNotAppliedFunc()
                                     style="font-weight: bold; border: none; position: relative;">
-                                        <li ng-repeat="day in leaveNotApplied">
-                                            <input name="message4" type="text" style="outline: none; border: none;"
-                                                   value={{day.currentDate}}>
-                                        </li>
+                                    <li ng-repeat="day in leaveNotApplied">
+                                        <input name="message4" type="text" style="outline: none; border: none;"
+                                               value={{day.currentDate}}>
+                                    </li>
                                 </ul>
 
                                 <input ng-show=halfDayFunc() type="text"
@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                <div class="modal-footer">
+                    <div class="modal-footer">
                         <div class="pull-right">
                             <!--     <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button> -->
                             <button type="submit" class="btn btn-primary"><i
@@ -157,8 +157,8 @@
                     </div>
                     <!-- /.box-footer -->
 
-                <!-- /. box -->
-            </form>
+                    <!-- /. box -->
+                </form>
                 <button style="float:right;" type="reset" ng-click="cancel()" class="btn btn-warning"><i
                         class="fa fa-times"></i>
                     Discard

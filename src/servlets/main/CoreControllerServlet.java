@@ -20,11 +20,11 @@ public class CoreControllerServlet extends HttpServlet {
 
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		BackendLogicHelperUtility.readDataFromSourcesToInitialObjects();
+		BackEndLogicHelperUtility.readDataFromSourcesToInitialObjects();
 
-		BackendLogicHelperUtility.prepareFinalObject();
+		BackEndLogicHelperUtility.prepareFinalObject();
 
-		BackendLogicHelperUtility.generateReportsJson();
+		BackEndLogicHelperUtility.generateReportsJson();
 
 		// temporary function to copy json files generated and stored in web
 		// local folder to artifact out folder

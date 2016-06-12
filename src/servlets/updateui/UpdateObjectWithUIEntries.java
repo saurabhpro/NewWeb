@@ -11,7 +11,7 @@ import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.attendencemodal.AttendanceStatusType;
 import core.utils.Serialize;
 import core.utils.TimeManager;
-import servlets.main.BackendLogicHelperUtility;
+import servlets.main.BackEndLogicHelperUtility;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -36,10 +36,10 @@ class UpdateObjectWithUIEntries {
 	UpdateObjectWithUIEntries() {
 		try {
 			// Method that reads serialized objects and updates the initial objects
-			BackendLogicHelperUtility.readFromSerialObjects();
+			BackEndLogicHelperUtility.readFromSerialObjects();
 		} catch (Exception e) {
 			//In case no serialized object was found, create initial objects from scratch and save as serialized
-			BackendLogicHelperUtility.readDataFromSourcesToInitialObjects();
+			BackEndLogicHelperUtility.readDataFromSourcesToInitialObjects();
 		}
 	}
 
@@ -71,14 +71,14 @@ class UpdateObjectWithUIEntries {
 		 * @see core.combined.CombineFile
 		 * @see core.combined.MarkDiscrepancy
 		 */
-		BackendLogicHelperUtility.prepareFinalObject();
+		BackEndLogicHelperUtility.prepareFinalObject();
 		/**
 		 * Call the method to generate Json files based on the FinalObjects
 		 *
 		 * @see core.model.viewmodal.ListGeneratorModel
 		 * @see core.combined.FinalObject
 		 */
-		BackendLogicHelperUtility.generateReportsJson();
+		BackEndLogicHelperUtility.generateReportsJson();
 	}
 
 	/**
