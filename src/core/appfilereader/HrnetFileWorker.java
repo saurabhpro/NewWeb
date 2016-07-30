@@ -70,7 +70,7 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
 						break;
 
 					case 1:
-						empName = cell.getStringCellValue();
+						empName = cell.getStringCellValue().trim();
 						break;
 
 					case 2:
@@ -141,17 +141,17 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
 
 	private String getID(Cell cell) {
 		if (cell.getCellType() == Cell.CELL_TYPE_STRING)
-			return cell.getStringCellValue();
+			return cell.getStringCellValue().trim();
 		else
-			return Objects.toString((int) cell.getNumericCellValue());
+			return Objects.toString((int) cell.getNumericCellValue()).trim();
 	}
 
 	@NotNull
 	private LocalDate getLocalDate(Cell cell) {
 		if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)
-			return TimeManager.convertToLocalDate(new SimpleDateFormat("MM/dd/yyyy").format(cell.getDateCellValue()));
+			return TimeManager.convertToLocalDate(new SimpleDateFormat("MM/dd/yyyy").format(cell.getDateCellValue()), "m/d/y");
 		else
-			return TimeManager.convertToLocalDate(cell.getStringCellValue());
+			return TimeManager.convertToLocalDate(cell.getStringCellValue(), "m/d/y");
 	}
 
 	private void leaveStartEndDayRangeFixer(AttendanceOfLeave attendanceOfLeave) {
@@ -169,7 +169,7 @@ public class HrnetFileWorker extends InitialObjects implements FileOperations {
 		 */
 		else if (attendanceOfLeave.getStartDate().getMonth().equals(getMONTH())
 				&& !attendanceOfLeave.getEndDate().getMonth().equals(getMONTH()))
-			attendanceOfLeave.setEndDate(LocalDate.of(getYEAR().getValue(), getMONTH(), getNumberOfDaysInRespectiveMonth()));
+			attendanceOfLeave.setEndDate(LocalDate.of(getYEAR().getValue(), getMONTH(), getNumberOfDaysConsideredInRespectiveMonth()));
 
 		/**
 		 * case where leave applied from 8th jan to 14th jan, and we are

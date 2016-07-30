@@ -13,7 +13,7 @@ import java.util.Set;
 import java.util.TreeMap;
 
 import static core.model.ProjectConstants.getMONTH;
-import static core.model.ProjectConstants.getNumberOfDaysInRespectiveMonth;
+import static core.model.ProjectConstants.getNumberOfDaysConsideredInRespectiveMonth;
 import static core.model.attendencemodal.AttendanceStatusType.*;
 
 /**
@@ -22,7 +22,7 @@ import static core.model.attendencemodal.AttendanceStatusType.*;
  *
  * @author Saurabh
  * @version 1.5
- * @since 1.4 added revalidcomparator and loop till getNumberOfDaysInRespectiveMonth()
+ * @since 1.4 added revalidcomparator and loop till getNumberOfDaysConsideredInRespectiveMonth()
  */
 public class CombineFile extends FinalObject {
 	/**
@@ -81,8 +81,8 @@ public class CombineFile extends FinalObject {
 	}
 
 	private void countAttendanceStatusType(FinalObjectModel emp) {
-		// to be removed today
-		for (int j = 0; j < getNumberOfDaysInRespectiveMonth(); j++) {
+		// to be removed
+		for (int j = 0; j < getNumberOfDaysConsideredInRespectiveMonth(); j++) {
 
 			// AMRITA
 			if (emp.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))

@@ -78,7 +78,7 @@ public class FinalObjectModel extends BasicEmployeeDetails implements Serializab
 		System.out.println("Number of Half Days " + this.getCount(4));
 
 		System.out.println("\nBiometric Data for Each Day: ");
-		for (int j = 0; j < getNumberOfDaysInRespectiveMonth(); j++) {
+		for (int j = 0; j < getNumberOfDaysConsideredInRespectiveMonth(); j++) {
 			System.out.print(this.attendanceOfDate[j].getCurrentDate());
 			System.out.print("\t" + EMP_CHECK_IN + " : " + this.attendanceOfDate[j].getCheckIn());
 			System.out.print("\t" + EMP_CHECK_OUT + " : " + this.attendanceOfDate[j].getCheckOut());

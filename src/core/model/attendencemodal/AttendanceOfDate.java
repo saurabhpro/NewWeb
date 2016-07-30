@@ -42,26 +42,25 @@ public class AttendanceOfDate implements Serializable {
 	 * @param statusType Enum fields
 	 */
 	public void setAttendanceStatusType(AttendanceStatusType statusType) {
+		//by default set sat and sunday to weekend
+		if (getCurrentDate().getDayOfWeek() == DayOfWeek.SATURDAY
+				|| getCurrentDate().getDayOfWeek() == DayOfWeek.SUNDAY)
+			statusType = WEEKEND_HOLIDAY;
+
+		if (statusType.compareTo(ABSENT) == 0) {
+			if (getWorkTimeForDay() != null && !getCheckOut().equals(LocalTime.MIDNIGHT)) {
+				statusType = PRESENT;
+			}
+		}
+
 		if (statusType.compareTo(PRESENT) == 0) {
-			if (getWorkTimeForDay().compareTo(WORK_HOURS_FOR_HALF_DAY) < 0)
+			if (getWorkTimeForDay() == null || getWorkTimeForDay().compareTo(WORK_HOURS_FOR_HALF_DAY) < 0)
 				statusType = ABSENT;
 			else if (getWorkTimeForDay().compareTo(MIN_WORK_HOURS_FOR_FULL_DAY) < 0)
 				statusType = HALF_DAY; // first point where
 			// we set HALF_DAY
 		}
 
-		if (statusType.compareTo(ABSENT) == 0) {
-			if (getCurrentDate().getDayOfWeek() == DayOfWeek.SATURDAY
-					|| getCurrentDate().getDayOfWeek() == DayOfWeek.SUNDAY)
-
-				statusType = WEEKEND_HOLIDAY;
-
-			if (getWorkTimeForDay() != null && !getCheckOut().equals(LocalTime.MIDNIGHT)) {
-				if (getWorkTimeForDay().compareTo(MIN_WORK_HOURS_FOR_FULL_DAY) > 0)
-					statusType = PRESENT;
-			}
-
-		}
 		this.attendanceStatusType = statusType;
 	}
 
@@ -98,13 +97,13 @@ public class AttendanceOfDate implements Serializable {
 	}
 
 	public LocalTime getWorkTimeForDay() {
-		if (workTimeForDay == null && getCheckIn() != null && getCheckOut() != null && getCurrentDate() != null)
-			workTimeForDay = TimeManager.calculateTimeDifference(getCheckIn(), getCheckOut(), getCurrentDate());
-
 		return workTimeForDay;
 	}
 
 	public void setWorkTimeForDay(LocalTime workTimeForDay) {
+		if (workTimeForDay == null && getCheckIn() != null && getCheckOut() != null && getCurrentDate() != null)
+			workTimeForDay = TimeManager.calculateTimeDifference(getCheckIn(), getCheckOut(), getCurrentDate());
+
 		this.workTimeForDay = workTimeForDay;
 	}
 }

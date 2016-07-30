@@ -20,10 +20,15 @@ import java.time.Year;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
-import static core.model.attendencemodal.AttendanceStatusType.*;
+import static core.model.attendencemodal.AttendanceStatusType.ABSENT;
+import static core.model.attendencemodal.AttendanceStatusType.PRESENT;
+import static core.utils.TimeManager.convertToLocalDate;
 
 /**
  * Created by Saurabh on 2/10/2016. updated on 4/22/2016
+ * @version 1.8
+ * @since 1.7 A/P is considered by default Present
+ * @since 1.8 added setBiometricFileGenerationDate and removed Weekend_holiday status setting
  */
 public class BiometricFileWorker extends InitialObjects implements FileOperations {
 
@@ -63,12 +68,15 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 		ProjectConstants.setMONTH(Month.valueOf(temp[0].toUpperCase()));
 		ProjectConstants.setYEAR(Year.parse(temp[1]));
 
-		for (int i = 0; i < numberOfRowsInBio; i++) {
-			attendanceOfDate = new AttendanceOfDate[ProjectConstants.getNumberOfDaysInRespectiveMonth()];
-			getMonthlyAttendanceOfEmployee(attendanceOfDate); // referenced
+		//set file generation date
+		ProjectConstants.setBiometricFileGenerationDate(convertToLocalDate(getCustomCellContent(11, 5), "d/m/y"));
 
+		for (int i = 0; i < numberOfRowsInBio; i++) {
 			empName = getCustomCellContent(3, 13 + (18 * ADD_ROW_STEPS));
 			empId = getCustomCellContent(3, 15 + (18 * ADD_ROW_STEPS));
+
+			attendanceOfDate = new AttendanceOfDate[ProjectConstants.getNumberOfDaysConsideredInRespectiveMonth()];
+			getMonthlyAttendanceOfEmployee(attendanceOfDate); // referenced
 
 			obj = new EmployeeBiometricDetails(empId, empName, attendanceOfDate);
 			empBiometricMap.put(empId, (EmployeeBiometricDetails) obj);
@@ -96,7 +104,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 	 * @return return the contents for the cell specified by column and row
 	 */
 	private String getCustomCellContent(int column, int row) {
-		return sheet.getCell(column, row).getContents();
+		return sheet.getCell(column, row).getContents().trim();
 	}
 
 	/**
@@ -111,12 +119,12 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 		StringTokenizer st;
 		AttendanceStatusType attendanceStatus;
 
-		for (int k = 0; k < ProjectConstants.getNumberOfDaysInRespectiveMonth(); k++) {
+		for (int k = 0; k < ProjectConstants.getNumberOfDaysConsideredInRespectiveMonth(); k++) {
 			LocalDate tempDate = LocalDate.of(ProjectConstants.getYEAR().getValue(), ProjectConstants.getMONTH(),
 					(k + 1));
 			attendanceOfDate[k] = new AttendanceOfDate();
 			attendanceOfDate[k].setCurrentDate(tempDate);
-			attendanceStatus = NOT_AN_EMPLOYEE; // default attendance status for
+			attendanceStatus = ABSENT; // default attendance status for
 			// an employee
 
 			st = new StringTokenizer(getCustomCellContent(k, 20 + (18 * ADD_ROW_STEPS)), "   ");
@@ -125,7 +133,7 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 			for (int j = 2; j < 6; j++) {
 				String tempString;
 				if (st.hasMoreElements()) {
-					tempString = (String) st.nextElement();
+					tempString = ((String) st.nextElement()).trim();
 					// A
 					// 11:00 12:00 00;00 P
 					switch (tempString) {
@@ -136,9 +144,14 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 							attendanceStatus = ABSENT;
 							break lb;
 
+					/* Removing this case due to addition of night shift,
+					due to which the system now counts saturday as A and monday as W
+					Also we are adding the attendance status of weekend by checking for
+					saturday and sunday later so this case is moot
+					*/
 						case "W":
 							// case when employeemodal checks in on weekend
-							attendanceStatus = WEEKEND_HOLIDAY;
+							/*attendanceStatus = WEEKEND_HOLIDAY;*/
 							break lb;
 
 						case "A/P":    //this case was considered as present because Amrita said that Saurabh is completely and utterly mad
@@ -154,8 +167,8 @@ public class BiometricFileWorker extends InitialObjects implements FileOperation
 					}
 				}
 			}
+			attendanceOfDate[k].setWorkTimeForDay(null);
 			attendanceOfDate[k].setAttendanceStatusType(attendanceStatus);
 		}
 	}
-
 }

@@ -9,8 +9,10 @@ import java.time.Year;
 
 /**
  * Created by Saurabh on 4/8/2016.
- * @version 1.3
- * @since 1.2 added getNumberOfDaysInRespectiveMonth()
+ *
+ * @version 1.4
+ * @since 1.2 added getNumberOfDaysConsideredInRespectiveMonth()
+ * @since 1.4 added biometricFileGenDate for efficient management of current month
  */
 public class ProjectConstants {
 
@@ -60,8 +62,11 @@ public class ProjectConstants {
 	public static String DISCREPANCY_IN_WORKERS_LIST = "DiscrepancyInWorkers";
 	public static String WEEKEND_WORKERS_LIST = "WeekendWorkers";
 	public static String PUBLIC_HOLIDAY_WORKER_LIST = "PublicHolidayWorkers";
-	public static Year YEAR;
-	public static Month MONTH;
+
+	private static Year YEAR;
+	private static Month MONTH;
+	private static LocalDate BIOMETRIC_FILE_GENERATION_DATE;
+
 	private static String BIOMETRIC_FILE_NAME;
 	private static String FINANCIAL_FORCE_FILE_NAME;
 	private static String EMPLOYEE_RECORD_FILE_NAME;
@@ -140,12 +145,20 @@ public class ProjectConstants {
 		ProjectConstants.YEAR = YEAR;
 	}
 
-	public static int getNumberOfDaysInRespectiveMonth() {
+	public static LocalDate getBiometricFileGenerationDate() {
+		return BIOMETRIC_FILE_GENERATION_DATE;
+	}
+
+	public static void setBiometricFileGenerationDate(LocalDate generationDate) {
+		BIOMETRIC_FILE_GENERATION_DATE = generationDate;
+	}
+
+	public static int getNumberOfDaysConsideredInRespectiveMonth() {
 		if (LocalDate.now().getMonth().compareTo(MONTH) == 0) {
-			int currentDateValue = LocalDate.now().getDayOfMonth();
-			return ((currentDateValue > getMONTH().maxLength()) ? getMONTH().maxLength() : currentDateValue);
+			return (BIOMETRIC_FILE_GENERATION_DATE != null) ?
+					BIOMETRIC_FILE_GENERATION_DATE.getDayOfMonth() : LocalDate.now().getDayOfMonth();
 		} else
-			return getMONTH().maxLength();
+			return MONTH.maxLength();
 	}
 
 }

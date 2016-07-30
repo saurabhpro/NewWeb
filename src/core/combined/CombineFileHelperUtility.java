@@ -21,10 +21,11 @@ import static core.model.attendencemodal.AttendanceStatusType.*;
 
 /**
  * Created by Saurabh on 4/9/2016.
+ * Helper Utility class for CombineFile
  *
  * @author Amrita & Saurabh
- * @version 1.2 Helper Utility class for CombineFile
- * @since 1.1 loop till getNumberOfDaysInRespectiveMonth()
+ * @version 1.3
+ * @since 1.3 added boundaryDate for currentMonth efficient leave setting
  */
 class CombineFileHelperUtility {
 	private CombineFileHelperUtility() {
@@ -81,39 +82,67 @@ class CombineFileHelperUtility {
 	}
 
 	private static void absentStatusUpdater(EmployeeBiometricDetails empObj) {
-		for (int i = 0; i < getNumberOfDaysInRespectiveMonth(); i++) {
+		Set<Map.Entry<String, ArrayList<EmployeeHrnetDetails>>> hrDataSet = HrnetFileWorker.hrnetDetailsMap
+				.entrySet();
 
-			switch (empObj.attendanceOfDate[i].getAttendanceStatusType()) {
-				case ABSENT:
-					// check for Work from home and half day
-					Set<Map.Entry<String, ArrayList<EmployeeHrnetDetails>>> hrDataSet = HrnetFileWorker.hrnetDetailsMap
-							.entrySet();
+		for (Map.Entry<String, ArrayList<EmployeeHrnetDetails>> hrEntry : hrDataSet) {
+			String tempSalesForceId = new BasicEmployeeDetails().getSalesForceId(empObj.getEmpId());
 
-					for (Map.Entry<String, ArrayList<EmployeeHrnetDetails>> hrEntry : hrDataSet) {
-						String tempSalesForceId = new BasicEmployeeDetails().getSalesForceId(empObj.getEmpId());
-
-						if (tempSalesForceId != null && tempSalesForceId.equals(hrEntry.getKey())) {
-							// update emoObj using the details from hr
-							for (EmployeeHrnetDetails hr : hrEntry.getValue()) {
-								updateAbsentStatusWithLeaveToPresentOrHalfDay(hr, empObj);
-
-								updateAttendanceUsingLeaveType(hr, empObj);
-							}
-						}
-					}
-					break;
-			}// end of switch
-		} // end of for loop
+			if (tempSalesForceId != null && tempSalesForceId.equals(hrEntry.getKey())) {
+				// update emoObj using the details from hr
+				for (EmployeeHrnetDetails hr : hrEntry.getValue()) {
+					updateAttendanceUsingLeaveType(hr, empObj);
+				}
+			}
+		}
+		//TODO add case for present in biometric and has entry in salesforce
 	}// end of function
 
+
+	private static void updateAttendanceUsingLeaveType(EmployeeHrnetDetails hr,
+	                                                                  EmployeeBiometricDetails empObj) {
+
+		double leaveTime = hr.attendanceOfLeave.getAbsenceTime();
+		LocalDate tempStart = hr.attendanceOfLeave.getStartDate();
+		LocalDate tempEnd = hr.attendanceOfLeave.getEndDate();
+		int boundaryDate = getBiometricFileGenerationDate().getDayOfYear();
+
+		int thisDate;
+		while (leaveTime > 0 && tempStart.getMonth().equals(getMONTH()) && tempStart.getDayOfYear() <= boundaryDate) {
+			thisDate = tempStart.getDayOfMonth() - 1;
+
+			if (leaveTime == 0.5) {
+				empObj.attendanceOfDate[thisDate].setAttendanceStatusType(PRESENT);
+				// second point of update for Half_Day
+
+			} else if (hr.attendanceOfLeave.getLeaveType() == LeaveType.WORK_FROM_HOME_IND) {
+				empObj.attendanceOfDate[thisDate].setWorkTimeForDay(WORK_HOURS_GIVEN_FOR_WORK_FROM_HOME);
+				// set work from home as 9 hours
+				empObj.attendanceOfDate[thisDate].setAttendanceStatusType(PRESENT);
+			}
+
+			empObj.attendanceOfDate[thisDate].setLeaveTypeForThisDate(hr.attendanceOfLeave.getLeaveType());
+			// update the AttendanceStatusType to ON_LEAVE for leaves applied on salesforce
+			if (!empObj.attendanceOfDate[thisDate].getAttendanceStatusType().equals(HALF_DAY))
+				empObj.attendanceOfDate[thisDate].setAttendanceStatusType(AttendanceStatusType.ON_LEAVE);
+
+			if (tempStart.equals(tempEnd))
+				break;
+			leaveTime--;
+			tempStart = tempStart.plusDays(1);
+		}
+	}
+
 	private static void setAbsentToUnaccountedAndHalfDayWorkTime(EmployeeBiometricDetails empObj) {
-		for (int i = 0; i < getNumberOfDaysInRespectiveMonth(); i++) {
+		for (int i = 0; i < getNumberOfDaysConsideredInRespectiveMonth(); i++) {
+
 			// 06-03-2016 changed the Type from ABSENT to UNACCOUNTED_ABSENCE.
 			if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(ABSENT)) {
 				empObj.attendanceOfDate[i].setAttendanceStatusType(UNACCOUNTED_ABSENCE);
 			} else if (empObj.attendanceOfDate[i].getAttendanceStatusType().equals(HALF_DAY)) {
 				//if case - when employee has half day
 				LocalTime time = empObj.attendanceOfDate[i].getWorkTimeForDay();
+
 
 				if (time == null)
 					empObj.attendanceOfDate[i].setWorkTimeForDay(WORK_HOURS_FOR_HALF_DAY);
@@ -122,51 +151,4 @@ class CombineFileHelperUtility {
 			}
 		}
 	}
-
-	private static void updateAbsentStatusWithLeaveToPresentOrHalfDay(EmployeeHrnetDetails hr,
-	                                                                  EmployeeBiometricDetails empObj) {
-
-		double leaveTime = hr.attendanceOfLeave.getAbsenceTime();
-		LocalDate tempStart = hr.attendanceOfLeave.getStartDate();
-		LocalDate tempEnd = hr.attendanceOfLeave.getEndDate();
-
-		int thisDate;
-		do {
-			thisDate = tempStart.getDayOfMonth() - 1;
-
-			if (leaveTime == 0.5) {
-				empObj.attendanceOfDate[thisDate].setAttendanceStatusType(HALF_DAY);
-				// second point of update for Half_Day
-
-			} else if (hr.attendanceOfLeave.getLeaveType() == LeaveType.WORK_FROM_HOME_IND) {
-				empObj.attendanceOfDate[thisDate].setWorkTimeForDay(WORK_HOURS_GIVEN_FOR_WORK_FROM_HOME);
-				// set work from home as 6 hours
-				empObj.attendanceOfDate[thisDate].setAttendanceStatusType(PRESENT);
-			}
-			if (tempStart.equals(tempEnd))
-				break;
-			leaveTime--;
-			tempStart = tempStart.plusDays(1);
-		} while (leaveTime > 0 && tempStart.getMonth().equals(getMONTH()));
-	}
-
-	private static void updateAttendanceUsingLeaveType(EmployeeHrnetDetails hr, EmployeeBiometricDetails empObj) {
-		LocalDate tempStart = hr.attendanceOfLeave.getStartDate();
-		LocalDate tempEnd = hr.attendanceOfLeave.getEndDate();
-		int changeDatesRange;
-		do {
-			changeDatesRange = tempStart.getDayOfMonth() - 1;
-			empObj.attendanceOfDate[changeDatesRange].setLeaveTypeForThisDate(hr.attendanceOfLeave.getLeaveType());
-
-			// update the AttendanceStatusType to ON_LEAVE for leavs applied on
-			// salesforce
-			empObj.attendanceOfDate[changeDatesRange].setAttendanceStatusType(AttendanceStatusType.ON_LEAVE);
-
-			if (tempStart.equals(tempEnd))
-				break;
-
-			tempStart = tempStart.plusDays(1);
-		} while (tempStart.getMonth().equals(getMONTH()));
-	}
-
 }

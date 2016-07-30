@@ -17,7 +17,8 @@ import static core.model.ProjectConstants.FILE_PATH;
  * Created by kumars on 3/1/2016. this contains all employees basic records
  *
  * @author Saurabh
- * @version 1.2
+ * @version 1.3
+ * @since 1.3 added trim()
  */
 public class AllEmployeesBasicData extends InitialObjects {
 
@@ -47,9 +48,9 @@ public class AllEmployeesBasicData extends InitialObjects {
 	private String getCustomCellContent(int column, int row) {
 		Cell cell = sheet.getRow(row).getCell(column);
 		if (cell.getCellType() == Cell.CELL_TYPE_NUMERIC)
-			return Objects.toString((int) cell.getNumericCellValue());
+			return Objects.toString((int) cell.getNumericCellValue()).trim();
 		else
-			return cell.getStringCellValue();
+			return cell.getStringCellValue().trim();
 	}
 
 	/**

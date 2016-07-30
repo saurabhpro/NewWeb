@@ -119,9 +119,9 @@ class UpdateObjectWithUIEntries {
 			if (obj.getEmpId().equals(empRevalId)) {
 				obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckIn(checkInTime);
 				obj.attendanceOfDate[date.getDayOfMonth() - 1].setCheckOut(checkOutTime);
-				obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
 				obj.attendanceOfDate[date.getDayOfMonth() - 1]
 						.setWorkTimeForDay(TimeManager.calculateTimeDifference(checkInTime, checkOutTime, date));
+				obj.attendanceOfDate[date.getDayOfMonth() - 1].setAttendanceStatusType(AttendanceStatusType.PRESENT);
 			}
 		}
 

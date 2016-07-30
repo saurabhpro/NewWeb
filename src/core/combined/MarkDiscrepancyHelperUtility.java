@@ -15,7 +15,7 @@ import static core.model.attendencemodal.LeaveType.WORK_FROM_HOME_IND;
  *
  * @author Amrita & Saurabh
  * @version 1.6 Helper Utility class for MarkDiscrepancy
- * @since 1.5 loop till getNumberOfDaysInRespectiveMonth()
+ * @since 1.5 loop till getNumberOfDaysConsideredInRespectiveMonth()
  */
 public class MarkDiscrepancyHelperUtility {
 	private MarkDiscrepancyHelperUtility() {
@@ -29,7 +29,7 @@ public class MarkDiscrepancyHelperUtility {
 	 *                         result of combining Biometric and Financial Force
 	 */
 	static void setIfAbsentButNoLeaveApplied(FinalObjectModel finalObjectModel) {
-		for (int j = 0; j < ProjectConstants.getNumberOfDaysInRespectiveMonth(); j++) {
+		for (int j = 0; j < ProjectConstants.getNumberOfDaysConsideredInRespectiveMonth(); j++) {
 			if ((finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE))
 					|| (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(HALF_DAY))) {
 				finalObjectModel.setIfClarificationNeeded(true);
@@ -46,7 +46,7 @@ public class MarkDiscrepancyHelperUtility {
 	 */
 	static void setIfEntryPresentInEither(FinalObjectModel finalObjectModel) {
 		int flag;
-		for (int j = 0; j < ProjectConstants.getNumberOfDaysInRespectiveMonth(); j++) {
+		for (int j = 0; j < ProjectConstants.getNumberOfDaysConsideredInRespectiveMonth(); j++) {
 			flag = 0;
 			// his status is still absent after merging
 			if (finalObjectModel.attendanceOfDate[j].getAttendanceStatusType().equals(UNACCOUNTED_ABSENCE)) {
@@ -116,7 +116,8 @@ public class MarkDiscrepancyHelperUtility {
 					case "AbsentInOneNotInOther":
 						j++;
 						break;
-
+					/* case not considered coz if status is present from biometric,
+					we never check hrnet details and update the leave status, hence*/
 					case "PresentInBoth":
 						if (!hrnetDetail.attendanceOfLeave.getLeaveType().equals(WORK_FROM_HOME_IND)) {
 							// System.out.println("MarkDiscrepancy set for present:

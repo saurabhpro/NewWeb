@@ -16,7 +16,7 @@ import static core.model.ProjectConstants.*;
  * Created by SaurabhK on 09-02-2016.
  *
  * @author Amrita & Saurabh
- * @version 1.5
+ * @version 1.6
  */
 public class TimeManager {
 
@@ -78,7 +78,6 @@ public class TimeManager {
 
 		for (AttendanceOfDate date : ofDates) {
 			if (date.getCheckIn() != null && !date.getCheckOut().equals(LocalTime.MIDNIGHT)) {
-
 				minsTotal += date.getWorkTimeForDay().getHour() * 60;
 				minsTotal += date.getWorkTimeForDay().getMinute();
 				presentDays++;
@@ -155,34 +154,28 @@ public class TimeManager {
 	 * This method transforms the string date to a proper LocalDate
 	 *
 	 * @param date date in String format mm/dd/yyyy
-	 * @return the date in LocalDate format
+	 * @param formatter generalising this method to handle different formats
+	 * @since 1.6
+	 * @return the date in LocalDate ISO yyyyMMdd format
 	 */
 	@NotNull
-	public static LocalDate convertToLocalDate(String date) {
+	public static LocalDate convertToLocalDate(String date, String formatter) {
 		AtomicInteger year = new AtomicInteger();
 		AtomicInteger month = new AtomicInteger();
 		AtomicInteger day = new AtomicInteger();
 
 		String[] st = date.split("/");
 
-		month.set(Integer.parseInt(st[0]));
-		day.set(Integer.parseInt(st[1]));
-		year.set(Integer.parseInt(st[2]));
-
+		if (formatter.equals("m/d/y")) {
+			month.set(Integer.parseInt(st[0]));
+			day.set(Integer.parseInt(st[1]));
+			year.set(Integer.parseInt(st[2]));
+		} else {//"d/m/y"
+			day.set(Integer.parseInt(st[0]));
+			month.set(Integer.parseInt(st[1]));
+			year.set(Integer.parseInt(st[2]));
+		}
 		return LocalDate.of(year.get(), month.get(), day.get());
-	}
-
-	private static LocalTime getTime(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
-		Duration duration = Duration.between(fromDateTime, toDateTime);
-
-		AtomicLong seconds = new AtomicLong(duration.getSeconds());
-
-		AtomicLong hours = new AtomicLong(seconds.get() / SECONDS_PER_HOUR);
-		AtomicLong minutes = new AtomicLong(((seconds.get() % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE));
-		// long secs = (seconds % SECONDS_PER_MINUTE);
-
-		return convertToTime(hours.get(), minutes.get());
-
 	}
 
 	/**
@@ -197,4 +190,15 @@ public class TimeManager {
 		return LocalTime.of((int) hr, (int) min);
 	}
 
+	private static LocalTime getTime(LocalDateTime fromDateTime, LocalDateTime toDateTime) {
+		Duration duration = Duration.between(fromDateTime, toDateTime);
+
+		AtomicLong seconds = new AtomicLong(duration.getSeconds());
+
+		AtomicLong hours = new AtomicLong(seconds.get() / SECONDS_PER_HOUR);
+		AtomicLong minutes = new AtomicLong(((seconds.get() % SECONDS_PER_HOUR) / SECONDS_PER_MINUTE));
+		// long secs = (seconds % SECONDS_PER_MINUTE);
+
+		return convertToTime(hours.get(), minutes.get());
+	}
 }
