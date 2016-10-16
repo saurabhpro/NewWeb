@@ -44,20 +44,19 @@
     <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 
+  <!-- jsp scriptlet -->
+  <%
+      Cookie[] cookies = request.getCookies();
+      String monthInfo = "";
+      if (cookies != null)
+          for (Cookie cookie : cookies)
+              if (cookie.getName().equals("monthInfo"))
+                  monthInfo = "" + cookie.getValue();
+  %>
 </head>
+  
 <body style="background-color: white">
 <div id="temp"></div>
-
-<!-- jsp scriptlet -->
-<%
-    Cookie[] cookies = request.getCookies();
-    String monthInfo = "";
-    if (cookies != null)
-        for (Cookie cookie : cookies)
-            if (cookie.getName().equals("monthInfo"))
-                monthInfo = "" + cookie.getValue();
-%>
-
 <script type="text/ng-template" id="ComposeEmail.jsp">
 
     <div class="wrapper" ng-controller="GenerateDiscrepancyController">
@@ -173,6 +172,10 @@
                 </form>
 
             </div>
+            <!-- TODO Seems like this is required here and the upper footer is embeded here-->
+            <div class="modal-footer">
+            </div>
+            
         </div>
         <!-- /.col -->
         <!-- /.row -->
