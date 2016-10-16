@@ -3,6 +3,7 @@ package core.combined;
 import core.appfilereader.AllEmployeesBasicData;
 import core.appfilereader.BiometricFileWorker;
 import core.appfilereader.HrnetFileWorker;
+import core.model.ProjectConstants;
 import core.model.appfilereadermodal.EmployeeBiometricDetails;
 import core.model.appfilereadermodal.EmployeeHrnetDetails;
 import core.model.attendencemodal.AttendanceStatusType;
@@ -77,7 +78,8 @@ class CombineFileHelperUtility {
 	private static void holidayStatusUpdater(EmployeeBiometricDetails empObj) {
 		// set public holiday status
 		for (HolidaysList h : HolidaysList.values())
-			if (h.getDate().getMonth() == getMONTH())
+			if (h.getDate().getMonth() == getMONTH() &&
+					(h.getDate().getDayOfMonth() < ProjectConstants.getNumberOfDaysConsideredInRespectiveMonth()))
 				empObj.attendanceOfDate[h.getDate().getDayOfMonth() - 1].setAttendanceStatusType(PUBLIC_HOLIDAY);
 	}
 

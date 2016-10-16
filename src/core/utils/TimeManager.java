@@ -153,10 +153,10 @@ public class TimeManager {
 	/**
 	 * This method transforms the string date to a proper LocalDate
 	 *
-	 * @param date date in String format mm/dd/yyyy
+	 * @param date      date in String format mm/dd/yyyy
 	 * @param formatter generalising this method to handle different formats
-	 * @since 1.6
 	 * @return the date in LocalDate ISO yyyyMMdd format
+	 * @since 1.6
 	 */
 	@NotNull
 	public static LocalDate convertToLocalDate(String date, String formatter) {
@@ -166,15 +166,30 @@ public class TimeManager {
 
 		String[] st = date.split("/");
 
+		int md = Integer.parseInt(st[0]);
+		int dm = Integer.parseInt(st[1]);
+		int y = Integer.parseInt(st[2]);
+
 		if (formatter.equals("m/d/y")) {
-			month.set(Integer.parseInt(st[0]));
-			day.set(Integer.parseInt(st[1]));
-			year.set(Integer.parseInt(st[2]));
-		} else {//"d/m/y"
-			day.set(Integer.parseInt(st[0]));
-			month.set(Integer.parseInt(st[1]));
-			year.set(Integer.parseInt(st[2]));
+			if (md > 12) {
+				System.out.println("wrong input in xls file [should be d/m/y]");
+				month.set(dm);
+				day.set(md);
+			} else {
+				month.set(md);
+				day.set(dm);
+			}
+		} else if (formatter.equals("d/m/y")) {
+			if (dm > 12) {
+				System.out.println("wrong input in xls file [should be m/d/y]");
+				month.set(md);
+				day.set(dm);
+			} else {//"d/m/y"
+				month.set(dm);
+				day.set(md);
+			}
 		}
+		year.set(y);
 		return LocalDate.of(year.get(), month.get(), day.get());
 	}
 
@@ -182,7 +197,7 @@ public class TimeManager {
 	 * This method takes in hour and minute in long and returns a LocalTime from
 	 * it
 	 *
-	 * @param hr the Hour specifed as long value
+	 * @param hr  the Hour specifed as long value
 	 * @param min the Minutes specified as minute value
 	 * @return the time in LocalTime
 	 */
