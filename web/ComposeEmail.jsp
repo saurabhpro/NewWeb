@@ -48,6 +48,16 @@
 <body style="background-color: white">
 <div id="temp"></div>
 
+<!-- jsp scriptlet -->
+<%
+    Cookie[] cookies = request.getCookies();
+    String monthInfo = "";
+    if (cookies != null)
+        for (Cookie cookie : cookies)
+            if (cookie.getName().equals("monthInfo"))
+                monthInfo = "" + cookie.getValue();
+%>
+
 <script type="text/ng-template" id="ComposeEmail.jsp">
 
     <div class="wrapper" ng-controller="GenerateDiscrepancyController">
@@ -57,7 +67,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                    Mailbox
+                    &nbsp Mailbox
                 </h1>
             </section>
 
@@ -65,7 +75,6 @@
             <div class="col-md-9">
                 <form action="email" method="post">
                     <!-- /.col -->
-
                     <div class="box box-primary">
                         <div class="box-header with-border">
                             <h3 class="box-title">Compose New Message</h3>
@@ -77,7 +86,7 @@
                             </div>
                             <div class="form-group">
                                 <input class="form-control" placeholder="Subject:" name="subject"
-                                       value="Leave Discrepancies - ">
+                                       value="Leave Discrepancies - <%=monthInfo%>">
                             </div>
                             <input type="hidden" name="message" value={{items.empName}}>
                             <div class="form-group" class="form-control">
@@ -92,18 +101,18 @@
                                     <li ng-repeat="day in (checkOutTime = (items.allDateDetailsList | filter:{Selected:true, checkOut: '00:00'}))"></li>
                                 </ul>
                                 <!--
-                                                                <input type="text" name="message" style="width: 20px; border: none; outline: none; "
-                                                                       value="Hi">
-                                                                <input type="text" name="message" style="border: none; outline: none; "
-                                                                       value={{items.empName}}>
+                                <input type="text" name="message" style="width: 20px; border: none; outline: none; "
+                                       value="Hi">
+                                <input type="text" name="message" style="border: none; outline: none; "
+                                       value={{items.empName}}>
                                 -->
 
 
-                                <textarea ng-show=discrepancyFound() type="text" name="message2"
-                                          class="form-control"
-                                          style="outline: none; height: 85px; border: none; float: left;"
-                                          contenteditable="true">You have not entered the below leave days on Financial Force, and nor have you registered your attendance in the biometric system for these days:
-                                </textarea>
+                            <textarea ng-show=discrepancyFound() type="text" name="message2"
+                                      class="form-control"
+                                      style="outline: none; height: 85px; border: none; float: left;"
+                                      contenteditable="true">You have not entered the below leave days on Financial Force, and nor have you registered your attendance in the biometric system for these days:
+                            </textarea>
 
                                 <input type="text" ng-show=leaveNotAppliedFunc()
                                        style="font-weight: bold; color: red; border: none; position: relative;"
@@ -131,8 +140,8 @@
                                        style="height: 40px; border: none; float: left; font-weight: bold; outline: none;"
                                        value="Request you to apply for these days in Financial Force."/>
 
-                                    <textarea ng-show=checkOutTimeNotApplicable() name="message8" class="form-control"
-                                              style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days: </textarea>
+                                <textarea ng-show=checkOutTimeNotApplicable() name="message8" class="form-control"
+                                          style="height: 60px; border: none; float: left;"> You have not Checked In/Check Out on the below mentioned days through the biometric system. Request you to send the Check-In/Check-out-time for these days: </textarea>
                                 <input ng-show=checkOutTimeNotApplicable() type="text"
                                        style="font-weight: bold; color: red; border: none;" name="message9"
                                        value="Days"/>
@@ -147,34 +156,23 @@
                     </div>
 
                     <div class="modal-footer">
-                        <div class="pull-right">
-                            <!--     <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button> -->
-                            <button type="submit" class="btn btn-primary"><i
-                                    class="fa fa-envelope-o"></i> Send
-                            </button>
-                        </div>
 
+                        <!--     <button type="button" class="btn btn-default"><i class="fa fa-pencil"></i> Draft</button> -->
+                        <button type="submit" class="btn btn-primary btn-small-block">
+                            <i class="fa fa-envelope-o"></i>&nbsp Send
+                        </button>
+
+                        <button style="float:right;" type="reset" ng-click="cancel()"
+                                class="btn btn-warning btn-small-block">
+                            <i class="fa fa-times"></i>&nbsp Discard
+                        </button>
                     </div>
                     <!-- /.box-footer -->
 
                     <!-- /. box -->
                 </form>
-                <button style="float:right;" type="reset" ng-click="cancel()" class="btn btn-warning"><i
-                        class="fa fa-times"></i>
-                    Discard
-                </button>
-            </div>
-            <div class="modal-footer">
-            </div>
 
-            <!--
-            <div class="modal-footer">
-
-                <button type="reset" ng-click="cancel()" class="btn btn-default"><i class="fa fa-times"></i>
-                    Discard
-                </button>
             </div>
-            -->
         </div>
         <!-- /.col -->
         <!-- /.row -->

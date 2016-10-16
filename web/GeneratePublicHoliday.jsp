@@ -30,7 +30,7 @@
         String headline = "List of Employees Who Worked on Public Holidays";
         if (cookies != null)
             for (Cookie cookie : cookies)
-                if (cookie.getName().equals("month"))
+                if (cookie.getName().equals("monthInfo"))
                     headline = "Employees Who Worked on Public Holidays in " + cookie.getValue();
     %>
 </head>

@@ -3,8 +3,11 @@
 <div ng-include="'RowDetail.html'"></div>
 <head>
     <meta charset="UTF-8">
+
     <link rel="import" href="./RowDetail.html">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/customStyle.css">
+
     <!-- since there could be dependencies problem, maintain the inculsion order -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -90,10 +93,9 @@
         <!-- Selected: <b>{{ selected.item }}</b>-->
 
         <div ng-repeat="selectedRecord in (selectedRecordsArray = (items.allDateDetailsList | filter: {Selected:true}))">
-
         </div>
 
-
+        <!--Footer -->
         <div class="modal-footer">
             <form action="updateRecord" method="post">
                 <input type="hidden" style="outline: none; border: none;" name="empRevalId"
@@ -107,30 +109,32 @@
                            value={{selectedRecord.checkOut}}>
                 </div>
 
-                <button class="btn btn-primary" ng-click="update()" ng-disabled="countChecked() == 0">Update Record
+                <button class="btn btn-primary btn-small-block" ng-click="update()" ng-disabled="countChecked() == 0">
+                    Update Record
                 </button>
             </form>
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-            <br/>
             <!--     <form action="main">
                      <input type="text" name="myId" >
                      <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
                  </form> -->
+            <button class="btn btn-danger btn-small-block" ng-disabled="countChecked() == 0"
+                    ng-click="openEmailDialog(items,day,'lg')">
+                Compose Email
+            </button>
             <form action="filegenerator">
                 <input type="hidden" name="id" value={{items.empRevalId}}>
                 <input type="hidden" name="fileToUse" value="DiscrepancyInWorkers">
-                <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
+                <button class="btn btn-success btn-small-block" type="submit" value="Download This Report">
+                    Download This Report
+                </button>
             </form>
-            <br/>
 
             <!--
             <ul>
                 <li ng-repeat="day in filteredArray">{{day.checkIn}}</li>
             </ul>
             -->
-            <button class="btn btn-danger" ng-disabled="countChecked() == 0" ng-click="openEmailDialog(items,day,'lg')">
-                Compose Email
-            </button>
+            <button class="btn btn-warning btn-small-block" ng-click="cancel()">Cancel</button>
         </div>
     </div>
 </script>

@@ -31,7 +31,7 @@
         String headline = "Monthly Report of All Employees";
         if (cookies != null)
             for (Cookie cookie : cookies)
-                if (cookie.getName().equals("month"))
+                if (cookie.getName().equals("monthInfo"))
                     headline = "Attendance Report of All Employees for " + cookie.getValue();
     %>
 </head>

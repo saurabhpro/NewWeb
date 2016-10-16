@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/customStyle.css">
+
     <!-- since there could be dependencies problem, maintain the inculsion order -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -78,14 +80,14 @@
 
 
         <div class="modal-footer">
-            <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
-
             <form action="filegenerator">
                 <input type="hidden" name="id" value={{items.empRevalId}}>
                 <input type="hidden" name="fileToUse" value="AllWorkers">
-                <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
+                <button class="btn btn-success btn-small-block" type="submit" value="Download This Report">Download This
+                    Report
+                </button>
             </form>
-
+            <button class="btn btn-warning btn-small-block" ng-click="cancel()">Cancel</button>
         </div>
     </div>
 </script>

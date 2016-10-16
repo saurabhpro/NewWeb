@@ -30,7 +30,7 @@ public class CoreControllerServlet extends HttpServlet {
 		// local folder to artifact out folder
 		FileFolderWorker.copyFromWebToArtifacts();
 
-		Cookie cookie = new Cookie("month", ProjectConstants.getMONTH().toString());
+		Cookie cookie = new Cookie("monthInfo", ProjectConstants.getMONTH() + " " + ProjectConstants.getYEAR());
 		cookie.setMaxAge(3600 * 24 * 365 * 5);
 		response.addCookie(cookie);
 

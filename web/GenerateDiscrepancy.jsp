@@ -31,7 +31,7 @@
         String headline = "Monthly Discrepancy List";
         if (cookies != null)
             for (Cookie cookie : cookies)
-                if (cookie.getName().equals("month"))
+                if (cookie.getName().equals("monthInfo"))
                     headline = " Discrepancy Report for " + cookie.getValue();
     %>
 </head>
