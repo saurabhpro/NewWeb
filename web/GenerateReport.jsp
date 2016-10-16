@@ -2,12 +2,17 @@
 <html ng-app="sampleApp" ng-controller="GenerateReportController" lang="en" class="no-js">
 <div ng-include="GenerateReport.jsp"></div>
 <head>
+    <!-- Meta Tags -->
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-Control" content="no-cache">
+    <meta http-equiv="Expires" content="Sat, 01 Dec 2001 00:00:00 GMT">
 
+    <!-- css -->
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-    <!-- since there could be dependencies problem, maintain the inclusion order -->
+
+    <!-- js scripts, since there could be dependencies problem, maintain the inclusion order -->
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -19,6 +24,8 @@
             window.location.reload();
         }
     </script>
+
+    <!-- jsp scriptlet -->
     <%
         Cookie[] cookies = request.getCookies();
         String headline = "Monthly Report of All Employees";
@@ -28,8 +35,8 @@
                     headline = "Attendance Report of All Employees for " + cookie.getValue();
     %>
 </head>
-<body onload="LoadOnce()">
 
+<body onload="LoadOnce()">
 <main class="cd-main-content">
     <div class="content-wrapper">
         <br>
