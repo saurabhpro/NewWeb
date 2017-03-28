@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="filegen-lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/lib/filegen-lib" />
+      <root url="file://$PROJECT_DIR$/../NewWebAttendancev2/lib/filegen-lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html ng-app="sampleApp" lang="en" class="no-js">
+<div ng-include="'RowDetail.html'"></div>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="import" href="./RowDetail.html">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/customStyle.css">
+
+    <!-- since there could be dependencies problem, maintain the inculsion order -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+
+
+    <script src="js/app.js"></script>
+
+    <!-- Optional theme -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">-->
+
+    <title>Title</title>
+</head>
+<body>
+
+
+<script type="text/ng-template" id="RowDetail.html">
+    <div class="modal-header">
+        <h3>{{items.empName}}</h3>
+    </div>
+    <div ng-controller="GenerateDiscrepancyController">
+
+        <table name="emplistTable" class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th>EMPLOYEE ID</th>
+                <th>SALESFORCE ID</th>
+                <th>EMPLOYEE EMAILS</th>
+                <th>AVERAGE CHECK-IN</th>
+                <th>AVERAGE CHECK-OUT</th>
+                <th>AVERAGE WORK HOURS</th>
+                <th>CLARIFICATION NEEDED</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{items.empRevalId}}</td>
+                <td>{{items.empSalesforceId}}</td>
+                <td>{{items.empEmailId}}</td>
+                <td>{{items.empAvgCheckInTimeForMonth}}</td>
+                <td>{{items.empAvgCheckOutTimeForMonth}}</td>
+                <td>{{items.empAvgWorkHoursForMonth}}</td>
+                <td>{{items.empIfClarificationNeeded}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th style="width: 40px">
+                    <input type="checkbox" ng-model="discrepancySelectedAll" ng-click="discrepancyCheckAll()"/>
+                </th>
+                <th>Current Date</th>
+                <th>Attendance Type</th>
+                <th>Leave Type</th>
+                <th>CheckInTime</th>
+                <th>CheckOutTime</th>
+                <th>Total Work Hours</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="day in items.allDateDetailsList">
+                <td style="width: 40px"><input type="checkbox" ng-bind="modelName" ng-model="day.Selected"
+                                               ng-click="discrepancyCheckStatus()"></td>
+                <td> {{day.currentDate | date}}</td>
+                <td ng-model="day.attendanceStatusType"> {{day.attendanceStatusType}}</td>
+                <td> {{day.leaveTypeForThisDate}}</td>
+
+                <td><input ng-model="day.checkIn" type="time">{{day.checkIn
+                    | date:"hh:mm a"}}
+                </td>
+                <td><input ng-model="day.checkOut" type="time">{{day.checkOut
+                    | date:"hh:mm a"}}
+                </td>
+                <td>{{day.workTimeForDay}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <!--        <a ng-click="selected.item = item">{{ item }}</a> -->
+        <!-- Selected: <b>{{ selected.item }}</b>-->
+
+        <div ng-repeat="selectedRecord in (selectedRecordsArray = (items.allDateDetailsList | filter: {Selected:true}))">
+        </div>
+
+        <!--Footer -->
+        <div class="modal-footer">
+            <form action="updateRecord" method="post">
+                <input type="hidden" style="outline: none; border: none;" name="empRevalId"
+                       value={{items.empRevalId}}>
+                <div ng-repeat="selectedRecord in selectedRecordsArray">
+                    <input type="hidden" style="outline: none; border: none;" name="currentDate"
+                           value={{selectedRecord.currentDate}}>
+                    <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkIn"
+                           value={{selectedRecord.checkIn}}>
+                    <input contenteditable="true" type="hidden" style="outline: none; border: none;" name="checkOut"
+                           value={{selectedRecord.checkOut}}>
+                </div>
+
+                <button class="btn btn-primary btn-small-block" ng-click="update()" ng-disabled="countChecked() == 0">
+                    Update Record
+                </button>
+            </form>
+            <!--     <form action="main">
+                     <input type="text" name="myId" >
+                     <button class="btn btn-success" type="submit" value="Download This Report">Download This Report</button>
+                 </form> -->
+            <button class="btn btn-danger btn-small-block" ng-disabled="countChecked() == 0"
+                    ng-click="openEmailDialog(items,day,'lg')">
+                Compose Email
+            </button>
+            <form action="filegenerator">
+                <input type="hidden" name="id" value={{items.empRevalId}}>
+                <input type="hidden" name="fileToUse" value="DiscrepancyInWorkers">
+                <button class="btn btn-success btn-small-block" type="submit" value="Download This Report">
+                    Download This Report
+                </button>
+            </form>
+
+            <!--
+            <ul>
+                <li ng-repeat="day in filteredArray">{{day.checkIn}}</li>
+            </ul>
+            -->
+            <button class="btn btn-warning btn-small-block" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</script>
+</body>
+</html>

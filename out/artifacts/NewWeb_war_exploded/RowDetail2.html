@@ -1,0 +1,96 @@
+<html ng-app="sampleApp" lang="en" class="no-js">
+<div ng-include="'RowDetail2.html'"></div>
+<head>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/customStyle.css">
+
+    <!-- since there could be dependencies problem, maintain the inculsion order -->
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <script src="js/app.js"></script>
+
+    <!-- Optional theme -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">-->
+
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/ng-template" id="RowDetail2.html">
+    <div class="modal-header">
+        <h3>{{items.empName}}</h3>
+    </div>
+    <div class="modal-body" ng-controller="GenerateReportController">
+        <table name="emplistTable" class="table table-striped table-condensed">
+            <thead>
+            <tr>
+                <th>EMPLOYEE ID</th>
+                <th>SALESFORCE ID</th>
+                <th>EMPLOYEE EMAILS</th>
+                <th>AVERAGE CHECK-IN</th>
+                <th>AVERAGE CHECK-OUT</th>
+                <th>AVERAGE WORK HOURS</th>
+                <th>CLARIFICATION NEEDED</th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr>
+                <td>{{items.empRevalId}}</td>
+                <td>{{items.empSalesforceId}}</td>
+                <td>{{items.empEmailId}}</td>
+                <td>{{items.empAvgCheckInTimeForMonth}}</td>
+                <td>{{items.empAvgCheckOutTimeForMonth}}</td>
+                <td>{{items.empAvgWorkHoursForMonth}}</td>
+                <td>{{items.empIfClarificationNeeded}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <table class="table table-striped table-condensed">
+            <thead>
+            <tr>
+
+                <th>Current Date</th>
+                <th>Attendance Type</th>
+                <th>Leave Type</th>
+                <th>CheckInTime</th>
+                <th>CheckOutTime</th>
+                <th>Total Work Hours</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="day in items.allDateDetailsList">
+                <td> {{day.currentDate | date}}</td>
+                <td> {{day.attendanceStatusType}}</td>
+                <td> {{day.leaveTypeForThisDate}}</td>
+                <td> {{day.checkIn}}</td>
+                <td>{{day.checkOut}}</td>
+                <td>{{day.workTimeForDay}}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <!--        <a ng-click="selected.item = item">{{ item }}</a> -->
+        <!-- Selected: <b>{{ selected.item }}</b>-->
+
+
+        <div class="modal-footer">
+            <form action="filegenerator">
+                <input type="hidden" name="id" value={{items.empRevalId}}>
+                <input type="hidden" name="fileToUse" value="AllWorkers">
+                <button class="btn btn-success btn-small-block" type="submit" value="Download This Report">Download This
+                    Report
+                </button>
+            </form>
+            <button class="btn btn-warning btn-small-block" ng-click="cancel()">Cancel</button>
+        </div>
+    </div>
+</script>
+
+</body>
+</html>

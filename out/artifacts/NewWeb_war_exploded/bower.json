@@ -1,0 +1,30 @@
+{
+  "name": "web",
+  "homepage": "https://github.com/saurabhpro/JEE",
+  "authors": [
+    "Saurabh Kumar <saurabhk1511@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "foundation": "^5.5.3",
+    "angular-smart-table": "^2.1.8",
+    "angular": "^1.5.3",
+    "angular-animate": "^1.5.3",
+    "jQuery-menu-aim": "*",
+    "angular-bootstrap": "^1.2.5",
+    "angular-route": "^1.5.3",
+    "bootstrap": "^3.3.6",
+    "angular-sanitize": "^1.5.3"
+  }
+}

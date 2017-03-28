@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="core-lib">
     <CLASSES>
-      <root url="file://$PROJECT_DIR$/lib/core-lib" />
+      <root url="file://$PROJECT_DIR$/../NewWebAttendancev2/lib/core-lib" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

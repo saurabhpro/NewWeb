@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="sampleApp" ng-controller= "mainCtrl" lang="en">
+<html ng-app="sampleApp" ng-controller="mainCtrl" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Sign In</title>
@@ -39,7 +39,7 @@
     <div class="row">
         <div class="medium-6 medium-centered large-4 large-centered columns">
 
-            <form action="signinServlet" method="post">
+            <form name="login" action="signinServlet" method="post" accept-charset="utf-8">
                 <br/>
                 <br/>
                 <br/>
@@ -69,5 +69,14 @@
 <link rel="stylesheet" href="css/customStyle.css">
 <link rel="stylesheet" href="bower_components/foundation/css/foundation.min.css" property="">
 <script type="application/javascript" src="bower_components/foundation/js/foundation.min.js"></script>
+<script>
+    function validateForm() {
+        var x = document.forms["login"]["userName"].value;
+        if (x == null || x == "") {
+            alert("Please fill out the username");
+            return false;
+        }
+    }
+</script>
 </body>
 </html>

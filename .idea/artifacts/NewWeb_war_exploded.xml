@@ -1,10 +1,10 @@
 <component name="ArtifactManager">
   <artifact type="exploded-war" name="NewWeb:war exploded">
-    <output-path>$PROJECT_DIR$/out/artifacts/NewWeb_war_exploded</output-path>
+    <output-path>$USER_HOME$/IdeaProjects/NewWeb/out/artifacts/NewWeb_war_exploded</output-path>
     <root id="root">
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
-          <element id="module-output" name="NewWeb" />
+          <element id="module-output" name="NewWebAttendancev2" />
           <element id="library" level="application" name="ui-bootstrap-tpls-0.6.0" />
         </element>
         <element id="directory" name="lib">
@@ -12,11 +12,11 @@
           <element id="library" level="project" name="cos" />
           <element id="library" level="project" name="core-lib" />
           <element id="library" level="project" name="filegen-lib" />
-          <element id="file-copy" path="$PROJECT_DIR$/lib/annotations-java8.jar" />
+          <element id="file-copy" path="$USER_HOME$/IdeaProjects/NewWebAttendancev2/lib/annotations-java8.jar" />
           <element id="library" level="project" name="commons-io-2.4" />
         </element>
       </element>
-      <element id="javaee-facet-resources" facet="NewWeb/web/Web" />
+      <element id="javaee-facet-resources" facet="NewWebAttendancev2/web/Web" />
     </root>
   </artifact>
 </component>
